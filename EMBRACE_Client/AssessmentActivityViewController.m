@@ -48,7 +48,8 @@ NSMutableDictionary *assessmentActivities;          //the total assessment activ
 NSMutableArray *currentAssessmentActivitySteps;     //the current assessment activity step details
 NSInteger totalAssessmentActivitySteps;             //the total assessment activity steps
 NSInteger currentAssessmentActivityStep;            //the current assessment activity step
-
+NSInteger numAttemptsPerQuestion = 1;
+NSInteger numCurrentAttempts = 0;
 
 UIImage *BackgroundImage;   //The background image related to the story
 
@@ -323,6 +324,8 @@ UIImage *BackgroundImage;   //The background image related to the story
             tempCell.accessoryType = UITableViewCellAccessoryNone;
         }
         
+        numCurrentAttempts = 0;
+        
         [AnswerList reloadData];
         
         [[ServerCommunicationController sharedInstance] logDisplayAssessmentQuestion:Question withOptions:AnswerOptions context:assessmentContext];
@@ -377,14 +380,39 @@ UIImage *BackgroundImage;   //The background image related to the story
     //Checks if option has already been selected else do nothing
     if (AnswerSelection[[indexPath row]] == 0) {
         AnswerSelection[[indexPath row]] = 1;
+        numCurrentAttempts++;
      
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
         [[ServerCommunicationController sharedInstance] logSelectAssessmentAnswer:cell.textLabel.text context:assessmentContext];
         
-        //Checks if option is correct else gray out
-        if ([cell.textLabel.text isEqualToString:correctSelection]) {
-            [[ServerCommunicationController sharedInstance] logVerification:true forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+        if(numCurrentAttempts <= numAttemptsPerQuestion && [cell.textLabel.text isEqualToString:correctSelection]){
+            
+                [[ServerCommunicationController sharedInstance] logVerification:true forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+                
+                //Gray out other options
+                for (int i = 0; i < [AnswerOptions count]; i++) {
+                    if ([AnswerOptions[i] isEqualToString:correctSelection]) {
+                        UIColor *LightBlueColor = [UIColor colorWithRed:135.0/255.0 green:180.0/255.0 blue:225.0/255.0 alpha:1.0];
+                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                        cell.backgroundColor = LightBlueColor;
+                        nextButton.hidden = false;
+                    }
+                    else {
+                        //Gray out option
+                        AnswerSelection[i] = 1;
+                    }
+                }
+        }
+        else if(numCurrentAttempts < numAttemptsPerQuestion && ![cell.textLabel.text isEqualToString:correctSelection]){
+            [[ServerCommunicationController sharedInstance] logVerification:false forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+            
+            //Gray out option
+            cell.backgroundColor = [UIColor lightGrayColor];
+            cell.backgroundView.alpha = .2;
+        }
+        else{
+            [[ServerCommunicationController sharedInstance] logVerification:false forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
             
             //Gray out other options
             for (int i = 0; i < [AnswerOptions count]; i++) {
@@ -400,15 +428,8 @@ UIImage *BackgroundImage;   //The background image related to the story
                 }
             }
         }
-        else {
-            [[ServerCommunicationController sharedInstance] logVerification:false forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
-            
-            //Gray out option
-            cell.backgroundColor = [UIColor lightGrayColor];
-            cell.backgroundView.alpha = .2;
-        }
-     }
-    
+        
+    }
     [tableView reloadData];
 }
 
