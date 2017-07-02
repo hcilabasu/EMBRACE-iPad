@@ -68,6 +68,18 @@
             adjustedParticipantCode = [NSString stringWithFormat:@"MCD20%d", sequenceNumber];
         }
     }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"SOSPEM"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
+    }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"SOSPITS"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
+    }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"SOSIND"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
+    }
     // ITSP sequence
     else if ([participantCode rangeOfString:@"ITSP"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ITSP"][1] length] == 2) {
         numSequences = 4;
@@ -95,18 +107,6 @@
         else {
             adjustedParticipantCode = [NSString stringWithFormat:@"ITS00%d", sequenceNumber];
         }
-    }
-    // ITS sequence
-    else if ([participantCode rangeOfString:@"SOSPEM"].location != NSNotFound) {
-        adjustedParticipantCode = participantCode;
-    }
-    // ITS sequence
-    else if ([participantCode rangeOfString:@"SOSPITS"].location != NSNotFound) {
-        adjustedParticipantCode = participantCode;
-    }
-    // ITS sequence
-    else if ([participantCode rangeOfString:@"SOSIND"].location != NSNotFound) {
-        adjustedParticipantCode = participantCode;
     }
     
     return adjustedParticipantCode;
