@@ -214,33 +214,6 @@
             <intervention>ITSIM</intervention>
         </mode>
     </sequence>
-    <sequence bookTitle="The Circulatory System">
-        <mode chapterTitle="Why We Breathe" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>English</language>
-            <intervention>ITSPM</intervention>
-        </mode>
-        <mode chapterTitle="The Amazing Heart" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>English</language>
-            <intervention>ITSPM</intervention>
-        </mode>
-        <mode chapterTitle="Muscles Use Oxygen" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>English</language>
-            <intervention>ITSPM</intervention>
-        </mode>
-        <mode chapterTitle="Getting More Oxygen for the Muscles" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>English</language>
-            <intervention>ITSIM</intervention>
-        </mode>
-        <mode chapterTitle="Cigarette Smoke Hurts Your Lungs" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>English</language>
-            <intervention>ITSIM</intervention>
-        </mode>
-    </sequence>
     <sequence bookTitle="Bottled Up Joy">
         <mode chapterTitle="The Lucky Stone" newInstructions="false" vocabPage="false" vocabOnDemand="false" assessmentPage="true">
             <reader>User</reader>

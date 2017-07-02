@@ -3304,6 +3304,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             pressedNextLock = true;
             [self.view setUserInteractionEnabled:NO];
             
+            NSArray *arrSubviews = [self.view subviews];
+            for(UIView *tmpView in arrSubviews)
+            {
+                if([tmpView isMemberOfClass:[UIButton class]])
+                {
+                    // Optionally, check button.tag
+                    if(tmpView.tag == 4) {
+                        //disable the next button
+                        [tmpView setUserInteractionEnabled:false];
+                    }
+                }
+            }
+            
             [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
             
             //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
@@ -3316,6 +3329,22 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
             
             pressedNextLock = false;
+            
+            //Disables the next button for 3 seconds
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    NSArray *arrSubviews = [self.view subviews];
+                    for(UIView *tmpView in arrSubviews)
+                    {
+                        if([tmpView isMemberOfClass:[UIButton class]])
+                        {
+                            // Optionally, check button.tag
+                            if(tmpView.tag == 4) {
+                                //reenable the next button
+                                [tmpView setUserInteractionEnabled:true];
+                            }
+                        }
+                    }
+            });
         }
     }
 }
