@@ -804,9 +804,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         
         //Vocabulary introduction mode
+        
         if ([pageContext.currentPageId containsString:DASH_INTRO]) {
             [self tapGestureOnVocabWord: englishSentenceText:sentenceText:sentenceIDNum];
         }
+        
+        
+        
+        
         //Taps on vocab word in story
         else if ([pageContext.currentPageId containsString:@"-PM"] && conditionSetup.isOnDemandVocabEnabled) {
             
@@ -916,6 +921,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }else if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"pen"]){
                     [self playIntroVocabWord:@"corral" :currSolStep];
                 }else{
+                    //shang change
                     [self playIntroVocabWord:englishSentenceText :currSolStep];
                 }
             }
@@ -1229,11 +1235,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
     
+    
+    
     // This delay is needed in order to be able to play the last definition on a vocabulary page
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration] * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        
         //if audioPlayer is nil then we have returned to library view and should not play audio
+
         if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
+            //Shang change: comment these out for the SOS study as we only need Spanish audio.
+            /*
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],DEF_E]];
             
             if (!success) {
@@ -1243,7 +1255,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
             else {
                 [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
-            }
+            }*/
+            
+            
             
             [self highlightImageForText:englishTappedWord];
             
