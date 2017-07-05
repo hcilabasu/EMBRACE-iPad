@@ -89,7 +89,7 @@
         NSLog(@"did not load baseURL");
     
     NSError *error;
-    NSString *pageContents = [[NSString alloc] initWithContentsOfFile:page encoding:NSASCIIStringEncoding error:&error];
+    NSString *pageContents = [[NSString alloc] initWithContentsOfFile:page encoding:NSUTF8StringEncoding error:&error];
     if (error != nil)
         NSLog(@"problem loading page contents");
     

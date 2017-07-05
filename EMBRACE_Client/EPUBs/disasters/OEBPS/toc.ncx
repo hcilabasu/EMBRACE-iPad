@@ -76,23 +76,23 @@
             </navLabel>
             <content src="Text/Story2-Earthquakes-Intro-S.xhtml"/>
 		</navPoint>
-        <navPoint class="PM_MODE" id="story2-PM-1">
+        <navPoint class="PM_MODE" id="story2-PM-1S">
 		  <navLabel>
     		<text>Earthquakes - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Earthquakes-PM-1.xhtml"/>
+		  <content src="Text/Story2-Earthquakes-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story2-PM-2">
 		  <navLabel>
 	    	<text>Earthquakes - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Earthquakes-PM-2.xhtml"/>
+		  <content src="Text/Story2-Earthquakes-PM-2S.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story2-PM-3">
+       <navPoint class="PM_MODE" id="story2-PM-3S">
 		  <navLabel>
     		<text>Earthquakes - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Earthquakes-PM-3.xhtml"/>
+		  <content src="Text/Story2-Earthquakes-PM-3S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	
@@ -101,29 +101,29 @@
 			<text>Tsunamis</text>
 		</navLabel>
 		<content src="Text/Story3-Tsunamis-Title.xhtml"/>
-        <navPoint class="PM_MODE" id="story3-PM-1">
+        <navPoint class="PM_MODE" id="story3-PM-1S">
 		  <navLabel>
     		<text>Tsunamis - PM</text>
 		  </navLabel>
 		  <content src="Text/Story3-Tsunamis-PM-1.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story3-PM-2">
+       <navPoint class="PM_MODE" id="story3-PM-2S">
 		  <navLabel>
 	    	<text>Tsunamis - PM</text>
 		  </navLabel>
 		  <content src="Text/Story3-Tsunamis-PM-2.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story3-PM-3">
+       <navPoint class="PM_MODE" id="story3-PM-3S">
 		  <navLabel>
     		<text>Tsunamis - PM</text>
 		  </navLabel>
 		  <content src="Text/Story3-Tsunamis-PM-3.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story3-PM-4">
+       <navPoint class="PM_MODE" id="story3-PM-4S">
            <navLabel>
                <text>Tsunamis - PM</text>
            </navLabel>
-           <content src="Text/Story3-Tsunamis-PM-4.xhtml"/>
+           <content src="Text/Story3-Tsunamis-PM-4S.xhtml"/>
        </navPoint>
 	</navPoint>
 	
@@ -131,36 +131,36 @@
 		<navLabel>
 			<text>Volcanoes and the Making of Hawaii</text>
 		</navLabel>
-		<content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml"/>
+		<content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-TitleS.xhtml"/>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
     		<text>Volcanoes and the Making of Hawaii - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml"/>
+		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-2">
 		  <navLabel>
 	    	<text>Volcanoes and the Making of Hawaii - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml"/>
+		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-3">
 		  <navLabel>
     		<text>Volcanoes and the Making of Hawaii - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml"/>
+		  <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-4">
            <navLabel>
                <text>Volcanoes and the Making of Hawaii - PM</text>
            </navLabel>
-           <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml"/>
+           <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4S.xhtml"/>
        </navPoint>
        <navPoint class="PM_MODE" id="story4-PM-5">
            <navLabel>
                <text>Volcanoes and the Making of Hawaii - PM</text>
            </navLabel>
-           <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"/>
+           <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5S.xhtml"/>
        </navPoint>
 	</navPoint>
 	
@@ -175,23 +175,23 @@
             </navLabel>
             <content src="Text/Story5-Tornados-Intro-S.xhtml"/>
 		</navPoint>
-        <navPoint class="PM_MODE" id="story5-PM-1">
+        <navPoint class="PM_MODE" id="story5-PM-1S">
 		  <navLabel>
     		<text>Tornados - PM</text>
 		  </navLabel>
 		  <content src="Text/Story5-Tornados-PM-1.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story5-PM-2">
+       <navPoint class="PM_MODE" id="story5-PM-2S">
 		  <navLabel>
 	    	<text>Tornados - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-Tornados-PM-2.xhtml"/>
+		  <content src="Text/Story5-Tornados-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story5-PM-3">
 		  <navLabel>
     		<text>Tornados - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-Tornados-PM-3.xhtml"/>
+		  <content src="Text/Story5-Tornados-PM-3S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	

@@ -272,7 +272,7 @@
     }
     
     //Read the TOC for the book and create any Chapters and Activities as necessary
-    [self readTOCForBook:book: ENGLISH];
+    //[self readTOCForBook:book: ENGLISH];
     [self readTOCForBook:book: BILINGUAL];
     
     
