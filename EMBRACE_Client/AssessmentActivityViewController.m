@@ -381,8 +381,9 @@ UIImage *BackgroundImage;   //The background image related to the story
     if (AnswerSelection[[indexPath row]] == 0) {
         AnswerSelection[[indexPath row]] = 1;
         numCurrentAttempts++;
-     
+        
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        NSArray<NSIndexPath *> *indexPaths = [tableView indexPathsForVisibleRows];
 
         [[ServerCommunicationController sharedInstance] logSelectAssessmentAnswer:cell.textLabel.text context:assessmentContext];
         
@@ -392,15 +393,18 @@ UIImage *BackgroundImage;   //The background image related to the story
                 
                 //Gray out other options
                 for (int i = 0; i < [AnswerOptions count]; i++) {
+                    UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:indexPaths[i]];
                     if ([AnswerOptions[i] isEqualToString:correctSelection]) {
                         UIColor *LightBlueColor = [UIColor colorWithRed:135.0/255.0 green:180.0/255.0 blue:225.0/255.0 alpha:1.0];
-                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                        cell.backgroundColor = LightBlueColor;
+                        tempCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                        tempCell.backgroundColor = LightBlueColor;
                         nextButton.hidden = false;
                     }
                     else {
                         //Gray out option
                         AnswerSelection[i] = 1;
+                        tempCell.backgroundColor = [UIColor lightGrayColor];
+                        tempCell.backgroundView.alpha = .2;
                     }
                 }
         }
@@ -411,20 +415,23 @@ UIImage *BackgroundImage;   //The background image related to the story
             cell.backgroundColor = [UIColor lightGrayColor];
             cell.backgroundView.alpha = .2;
         }
-        else{
+        else if(numCurrentAttempts >= numAttemptsPerQuestion && ![cell.textLabel.text isEqualToString:correctSelection]){
             [[ServerCommunicationController sharedInstance] logVerification:false forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
             
             //Gray out other options
             for (int i = 0; i < [AnswerOptions count]; i++) {
+                UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:indexPaths[i]];
                 if ([AnswerOptions[i] isEqualToString:correctSelection]) {
                     UIColor *LightBlueColor = [UIColor colorWithRed:135.0/255.0 green:180.0/255.0 blue:225.0/255.0 alpha:1.0];
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                    cell.backgroundColor = LightBlueColor;
+                    tempCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    tempCell.backgroundColor = LightBlueColor;
                     nextButton.hidden = false;
                 }
                 else {
                     //Gray out option
                     AnswerSelection[i] = 1;
+                    tempCell.backgroundColor = [UIColor lightGrayColor];
+                    tempCell.backgroundView.alpha = .2;
                 }
             }
         }
