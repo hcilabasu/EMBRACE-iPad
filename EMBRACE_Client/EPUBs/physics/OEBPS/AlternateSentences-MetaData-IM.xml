@@ -173,7 +173,7 @@
         <story title="Newton's First Law" page_id="story2-PM-1">            
             <sentence number="1" action="no">                
                 <attributes complexity="10"/>                
-                <text>Here is part of Newton's First Law.</text>                
+                <text>Here is part of Newton&#8217;s First Law.</text>                
                 <ideas>                    
                     <idea number="10"/>                    
                 </ideas>                
@@ -209,7 +209,7 @@
             </sentence>
             <sentence number="5" action="no">                
                 <attributes complexity="2"/>                
-                <text>Here is part of Newton's First Law.</text>                
+                <text>Here is part of Newton&#8217;s First Law.</text>                
                 <ideas>                    
                     <idea number="10"/>                    
                 </ideas>                
@@ -257,7 +257,7 @@
         <story title="Newton's First Law" page_id="story2-PM-2">            
             <sentence number="10" action="yes">                
                 <attributes complexity="10"/>                
-                <text>If you push the rocket up, the force changes the rocket's direction.</text>                
+                <text>If you push the rocket up, the force changes the rocket&#8217;s direction.</text>                
                 <ideas>                    
                     <idea number="14"/>                    
                 </ideas>                
@@ -296,7 +296,7 @@
             </sentence>
             <sentence number="14" action="yes">                
                 <attributes complexity="2"/>                
-                <text>If you push the rocket up, the force changes the rocket's direction.</text>                
+                <text>If you push the rocket up, the force changes the rocket&#8217;s direction.</text>                
                 <ideas>                    
                     <idea number="14"/>                    
                 </ideas>                
@@ -749,7 +749,7 @@
             </sentence>            
             <sentence number="3" action="no">                
                 <attributes complexity="10"/>                
-                <text>Newton's Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>                
+                <text>Newton&#8217;s Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>                
                 <ideas>                    
                     <idea number="35"/>                    
                 </ideas>                
@@ -776,7 +776,7 @@
             </sentence>            
             <sentence number="6" action="no">                
                 <attributes complexity="2"/>                
-                <text>Newton's Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>                
+                <text>Newton&#8217;s Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>                
                 <ideas>                    
                     <idea number="35"/>                    
                 </ideas>                
@@ -864,7 +864,7 @@
             </sentence>            
             <sentence number="15" action="yes">                
                 <attributes complexity="3"/>                
-                <text>If you give a little push to the big rocket, you'll see that it starts to move, but more slowly.</text>                
+                <text>If you give a little push to the big rocket, you&#8217;ll see that it starts to move, but more slowly.</text>                
                 <ideas>                    
                     <idea number="38"/>                    
                 </ideas>                
@@ -875,7 +875,7 @@
         <story title="Newton's Second Law: Acceleration" page_id="story4-PM-3">
             <sentence number="16" action="no">                
                 <attributes complexity="10"/>                
-                <text>Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>                
+                <text>Newton&#8217;s Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>                
                 <ideas>                    
                     <idea number="39"/>                    
                 </ideas>                
@@ -884,7 +884,7 @@
             </sentence>            
             <sentence number="17" action="yes">                
                 <attributes complexity="10"/>                
-                <text>So, to get the big rocket to accelerate more, you'll need to keep pushing it to add a big force.</text>                
+                <text>So, to get the big rocket to accelerate more, you&#8217;ll need to keep pushing it to add a big force.</text>                
                 <ideas>                    
                     <idea number="40"/>                    
                 </ideas>                
@@ -904,7 +904,7 @@
             </sentence>
             <sentence number="19" action="no">                
                 <attributes complexity="2"/>                
-                <text>Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>                
+                <text>Newton&#8217;s Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>                
                 <ideas>                    
                     <idea number="39"/>                    
                 </ideas>                
@@ -913,7 +913,7 @@
             </sentence>            
             <sentence number="20" action="yes">                
                 <attributes complexity="2"/>                
-                <text>So, to get the big rocket to accelerate more, you'll need to keep pushing it to add a big force.</text>                
+                <text>So, to get the big rocket to accelerate more, you&#8217;ll need to keep pushing it to add a big force.</text>                
                 <ideas>                    
                     <idea number="40"/>                    
                 </ideas>                
@@ -933,7 +933,7 @@
             </sentence>            
             <sentence number="22" action="yes">                
                 <attributes complexity="1"/>                
-                <text>You'll need to keep pushing the rocket to add a big force.</text>                
+                <text>You&#8217;ll need to keep pushing the rocket to add a big force.</text>                
                 <ideas>                    
                     <idea number="40"/>                    
                 </ideas>                
@@ -1204,7 +1204,7 @@
         <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-1">            
             <sentence number="1" action="no">                
                 <attributes complexity="10"/>                
-                <text>Newton's Third Law says that a force in one direction is always paired with a force in the other direction.</text>                
+                <text>Newton&#8217;s Third Law says that a force in one direction is always paired with a force in the other direction.</text>                
                 <ideas>                    
                     <idea number="52"/>                    
                 </ideas>                
@@ -1242,7 +1242,7 @@
             </sentence>
             <sentence number="5" action="no">                
                 <attributes complexity="2"/>                
-                <text>Newton's Third Law says that a force in one direction is always paired with a force in the other direction.</text>                
+                <text>Newton&#8217;s Third Law says that a force in one direction is always paired with a force in the other direction.</text>                
                 <ideas>                    
                     <idea number="52"/>                    
                 </ideas>                
@@ -1292,7 +1292,7 @@
         <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-2">            
             <sentence number="10" action="no">                
                 <attributes complexity="10"/>                
-                <text>The force of Maria's push on Sara is paired with a force pushing Maria back.</text>                
+                <text>The force of Maria&#8217;s push on Sara is paired with a force pushing Maria back.</text>                
                 <ideas>                    
                     <idea number="56"/>                    
                 </ideas>                
@@ -1339,7 +1339,7 @@
             </sentence>
            <sentence number="15" action="no">                
                 <attributes complexity="2"/>                
-                <text>The force of Maria's push on Sara is paired with a force pushing Maria back.</text>                
+                <text>The force of Maria&#8217;s push on Sara is paired with a force pushing Maria back.</text>                
                 <ideas>                    
                     <idea number="56"/>                    
                 </ideas>                
@@ -1386,7 +1386,7 @@
             </sentence>            
             <sentence number="20" action="no">                
                 <attributes complexity="3"/>                
-                <text>Maria goes backward because the force of Maria's push on Sara is paired with a force pushing Maria back.</text>                
+                <text>Maria goes backward because the force of Maria&#8217;s push on Sara is paired with a force pushing Maria back.</text>                
                 <ideas>                    
                     <idea number="56"/>                    
                     <idea number="57"/>                    

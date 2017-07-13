@@ -13,7 +13,7 @@
             <navLabel>
                 <text>The Naughty Monkey</text>
             </navLabel>
-            <content src="Text/Story1-The-Naughty-Monkey-Title.xhtml"/>
+            <content src="Text/Story1-The-Naughty-Monkey-TitleS.xhtml"/>
             <navPoint class="PM_MODE" id="story1-PM-1">
                 <navLabel>
                     <text>The Naughty Monkey - PM</text>
@@ -30,7 +30,7 @@
                 <navLabel>
                     <text>The Naughty Monkey - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Naughty-Monkey-PM-3.xhtml"/>
+                <content src="Text/Story1-The-Naughty-Monkey-PM-3S.xhtml"/>
             </navPoint>
         </navPoint>
         

@@ -49,19 +49,19 @@
 		  <navLabel>
     		<text>Newton's First Law - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Newton's-First-Law-PM-1.xhtml"/>
+		  <content src="Text/Story2-Newton's-First-Law-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story2-PM-2">
 		  <navLabel>
 	    	<text>Newton's First Law - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Newton's-First-Law-PM-2.xhtml"/>
+		  <content src="Text/Story2-Newton's-First-Law-PM-2S.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story2-PM-3">
+       <navPoint class="PM_MODE" id="story2-PM-3S">
            <navLabel>
                <text>Newton's First Law - PM</text>
            </navLabel>
-           <content src="Text/Story2-Newton's-First-Law-PM-3.xhtml"/>
+           <content src="Text/Story2-Newton's-First-Law-PM-3S.xhtml"/>
        </navPoint>
 	</navPoint>
 	
@@ -74,19 +74,19 @@
 		  <navLabel>
     		<text>Newton's First Law on Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-1.xhtml"/>
+		  <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story3-PM-2">
 		  <navLabel>
 	    	<text>Newton's First Law on Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-2.xhtml"/>
+		  <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story3-PM-3">
            <navLabel>
                <text>Newton's First Law on Earth - PM</text>
            </navLabel>
-           <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-3.xhtml"/>
+           <content src="Text/Story3-Newton's-First-Law-on-Earth-PM-3S.xhtml"/>
        </navPoint>
     </navPoint>
 	
@@ -99,19 +99,19 @@
 		  <navLabel>
     		<text>Newton's Second Law: Acceleration - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-1.xhtml"/>
+		  <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-2">
 		  <navLabel>
 	    	<text>Newton's Second Law: Acceleration - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-2.xhtml"/>
+		  <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-3">
            <navLabel>
                <text>Newton's Second Law: Acceleration - PM</text>
            </navLabel>
-           <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-3.xhtml"/>
+           <content src="Text/Story4-Newton's-Second-Law-Acceleration-PM-3S.xhtml"/>
        </navPoint>
 	</navPoint>
 	
@@ -130,13 +130,13 @@
 		  <navLabel>
     		<text>Newton's Law of Acceleration on Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml"/>
+		  <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story5-PM-2">
 		  <navLabel>
 	    	<text>Newton's Law of Acceleration on Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml"/>
+		  <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
     
@@ -155,25 +155,25 @@
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - PM</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-1S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-2">
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - PM</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-3">
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - PM</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-3S.xhtml"/>
         </navPoint>
         <navPoint class="PM_MODE" id="story6-PM-4">
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - PM</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-4S.xhtml"/>
         </navPoint>
 	</navPoint>
     
@@ -186,19 +186,19 @@
             <navLabel>
                 <text>The Three Laws Work Together - PM</text>
             </navLabel>
-            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-1.xhtml"/>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-1S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story7-PM-2">
             <navLabel>
                 <text>The Three Laws Work Together - PM</text>
             </navLabel>
-            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-2.xhtml"/>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-2S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story7-PM-3">
             <navLabel>
                 <text>The Three Laws Work Together - PM</text>
             </navLabel>
-            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-3.xhtml"/>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-3S.xhtml"/>
         </navPoint>
 	</navPoint>
 

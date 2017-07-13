@@ -163,24 +163,24 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="yes">
+            <sentence number="8" action="no">
                 <attributes complexity="1"/>
                 <text>The cat drank the milk.</text>
                 <ideas>
                     <idea number="14"/>
                 </ideas>
                 <solution>
-                    <step number="11"/>
-                    <step number="12"/>
                 </solution>
             </sentence>
-            <sentence number="9" action="no">
+            <sentence number="9" action="yes">
                 <attributes complexity="1"/>
                 <text>The milk makes the cat’s fur shiny.</text>
                 <ideas>
                     <idea number="14"/>
                 </ideas>
                 <solution>
+                    <step number="11"/>
+                    <step number="12"/>
                 </solution>
             </sentence>
             
