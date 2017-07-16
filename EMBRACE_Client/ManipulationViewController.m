@@ -1244,7 +1244,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
         if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
-            //Shang change: comment these out for the SOS study as we only need Spanish audio.
+        //Shang change: comment these out for the SOS study as we only need Spanish audio.
             /*
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],DEF_E]];
             
@@ -3889,7 +3889,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
         if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3]) && sentenceContext.currentSentence != 1) {
-            if (conditionSetup.language == BILINGUAL && sentenceContext.currentSentence < 8) {
+       //     if (conditionSetup.language == BILINGUAL && sentenceContext.currentSentence < 8) {
+            //Shang change: change that to all Spanish
+              if (conditionSetup.language == BILINGUAL) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", sentenceContext.currentSentence - 2];
             }
             else {
@@ -4108,7 +4110,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
         if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3]) && sentenceContext.currentSentence != 1) {
-            if (conditionSetup.language == BILINGUAL && sentenceContext.currentSentence < 8) {
+            //Shang change deleting: && sentenceContext.currentSentence < 8
+            if (conditionSetup.language == BILINGUAL ) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", sentenceContext.currentSentence - 2];
             }
             else {
