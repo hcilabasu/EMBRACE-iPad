@@ -6234,6 +6234,22 @@
 		5665352D1F1B0BE3008C36D0 /* TheNaughtyMonkeyS6S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5665352A1F1B0BE3008C36D0 /* TheNaughtyMonkeyS6S.mp3 */; };
 		5665352E1F1B0BE3008C36D0 /* TheNaughtyMonkeyS7S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5665352B1F1B0BE3008C36D0 /* TheNaughtyMonkeyS7S.mp3 */; };
 		5665352F1F1B0BE3008C36D0 /* TheNaughtyMonkeyS8S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5665352C1F1B0BE3008C36D0 /* TheNaughtyMonkeyS8S.mp3 */; };
+		566535371F1C46AB008C36D0 /* Story1-The-Contest-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535301F1C46AB008C36D0 /* Story1-The-Contest-Intro-SO.xhtml */; };
+		566535381F1C46AB008C36D0 /* Story2-Getting-Ready-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535311F1C46AB008C36D0 /* Story2-Getting-Ready-Intro-SO.xhtml */; };
+		566535391F1C46AB008C36D0 /* Story3-Cleaning-Up-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535321F1C46AB008C36D0 /* Story3-Cleaning-Up-Intro-SO.xhtml */; };
+		5665353A1F1C46AB008C36D0 /* Story4-Who-is-the-Best-Animal-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535331F1C46AB008C36D0 /* Story4-Who-is-the-Best-Animal-Intro-SO.xhtml */; };
+		5665353B1F1C46AB008C36D0 /* Story5-The-Wise-Owl-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535341F1C46AB008C36D0 /* Story5-The-Wise-Owl-Intro-SO.xhtml */; };
+		5665353C1F1C46AB008C36D0 /* Story6-Everyone-Helps-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535351F1C46AB008C36D0 /* Story6-Everyone-Helps-Intro-SO.xhtml */; };
+		5665353D1F1C46AB008C36D0 /* Story7-The-Best-Farm-Award-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535361F1C46AB008C36D0 /* Story7-The-Best-Farm-Award-Intro-SO.xhtml */; };
+		566535421F1C640C008C36D0 /* Story1-How-do-Objects-Move-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5665353E1F1C640C008C36D0 /* Story1-How-do-Objects-Move-Intro-SO.xhtml */; };
+		566535431F1C640C008C36D0 /* Story2-Newton's-First-Law-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5665353F1F1C640C008C36D0 /* Story2-Newton's-First-Law-Intro-SO.xhtml */; };
+		566535441F1C640C008C36D0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535401F1C640C008C36D0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml */; };
+		566535451F1C640C008C36D0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535411F1C640C008C36D0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml */; };
+		5665354B1F1C64A7008C36D0 /* Story1-The-Lucky-Stone-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535461F1C64A7008C36D0 /* Story1-The-Lucky-Stone-Intro-SO.xhtml */; };
+		5665354C1F1C64A7008C36D0 /* Story2-Magic-Toys-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535471F1C64A7008C36D0 /* Story2-Magic-Toys-Intro-SO.xhtml */; };
+		5665354D1F1C64A7008C36D0 /* Story3-Baby-Brother-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535481F1C64A7008C36D0 /* Story3-Baby-Brother-Intro-SO.xhtml */; };
+		5665354E1F1C64A7008C36D0 /* Story4-Words-of-Wisdom-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 566535491F1C64A7008C36D0 /* Story4-Words-of-Wisdom-Intro-SO.xhtml */; };
+		5665354F1F1C64A7008C36D0 /* Story5-Catch-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5665354A1F1C64A7008C36D0 /* Story5-Catch-Intro-SO.xhtml */; };
 		56EA20471EEC7C4D00F75239 /* IntroToNativeHomesS1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56EA20131EEC7C4D00F75239 /* IntroToNativeHomesS1.mp3 */; };
 		56EA20481EEC7C4D00F75239 /* IntroToNativeHomesS2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56EA20141EEC7C4D00F75239 /* IntroToNativeHomesS2.mp3 */; };
 		56EA20491EEC7C4D00F75239 /* IntroToNativeHomesS3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56EA20151EEC7C4D00F75239 /* IntroToNativeHomesS3.mp3 */; };
@@ -7948,6 +7964,22 @@
 		5665352A1F1B0BE3008C36D0 /* TheNaughtyMonkeyS6S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS6S.mp3; sourceTree = "<group>"; };
 		5665352B1F1B0BE3008C36D0 /* TheNaughtyMonkeyS7S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS7S.mp3; sourceTree = "<group>"; };
 		5665352C1F1B0BE3008C36D0 /* TheNaughtyMonkeyS8S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS8S.mp3; sourceTree = "<group>"; };
+		566535301F1C46AB008C36D0 /* Story1-The-Contest-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535311F1C46AB008C36D0 /* Story2-Getting-Ready-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Getting-Ready-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535321F1C46AB008C36D0 /* Story3-Cleaning-Up-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Cleaning-Up-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535331F1C46AB008C36D0 /* Story4-Who-is-the-Best-Animal-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Who-is-the-Best-Animal-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535341F1C46AB008C36D0 /* Story5-The-Wise-Owl-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Wise-Owl-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535351F1C46AB008C36D0 /* Story6-Everyone-Helps-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Everyone-Helps-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535361F1C46AB008C36D0 /* Story7-The-Best-Farm-Award-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Best-Farm-Award-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		5665353E1F1C640C008C36D0 /* Story1-How-do-Objects-Move-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		5665353F1F1C640C008C36D0 /* Story2-Newton's-First-Law-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535401F1C640C008C36D0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535411F1C640C008C36D0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535461F1C64A7008C36D0 /* Story1-The-Lucky-Stone-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Lucky-Stone-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535471F1C64A7008C36D0 /* Story2-Magic-Toys-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Magic-Toys-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535481F1C64A7008C36D0 /* Story3-Baby-Brother-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		566535491F1C64A7008C36D0 /* Story4-Words-of-Wisdom-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		5665354A1F1C64A7008C36D0 /* Story5-Catch-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-Intro-SO.xhtml"; sourceTree = "<group>"; };
 		56EA20131EEC7C4D00F75239 /* IntroToNativeHomesS1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroToNativeHomesS1.mp3; sourceTree = "<group>"; };
 		56EA20141EEC7C4D00F75239 /* IntroToNativeHomesS2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroToNativeHomesS2.mp3; sourceTree = "<group>"; };
 		56EA20151EEC7C4D00F75239 /* IntroToNativeHomesS3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroToNativeHomesS3.mp3; sourceTree = "<group>"; };
@@ -14507,6 +14539,13 @@
 		56385F471F0F79DE00D2661F /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				566535301F1C46AB008C36D0 /* Story1-The-Contest-Intro-SO.xhtml */,
+				566535311F1C46AB008C36D0 /* Story2-Getting-Ready-Intro-SO.xhtml */,
+				566535321F1C46AB008C36D0 /* Story3-Cleaning-Up-Intro-SO.xhtml */,
+				566535331F1C46AB008C36D0 /* Story4-Who-is-the-Best-Animal-Intro-SO.xhtml */,
+				566535341F1C46AB008C36D0 /* Story5-The-Wise-Owl-Intro-SO.xhtml */,
+				566535351F1C46AB008C36D0 /* Story6-Everyone-Helps-Intro-SO.xhtml */,
+				566535361F1C46AB008C36D0 /* Story7-The-Best-Farm-Award-Intro-SO.xhtml */,
 				56385F481F0F79DE00D2661F /* Introduction-to-Best-Farm-Characters-Title.xhtml */,
 				56385F491F0F79DE00D2661F /* Story1-Introduction-At-the-Farm-PM.xhtml */,
 				56385F4A1F0F79DE00D2661F /* Story1-The-Contest-Intro-E.xhtml */,
@@ -14673,6 +14712,11 @@
 		563860531F0F79FE00D2661F /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				566535461F1C64A7008C36D0 /* Story1-The-Lucky-Stone-Intro-SO.xhtml */,
+				566535471F1C64A7008C36D0 /* Story2-Magic-Toys-Intro-SO.xhtml */,
+				566535481F1C64A7008C36D0 /* Story3-Baby-Brother-Intro-SO.xhtml */,
+				566535491F1C64A7008C36D0 /* Story4-Words-of-Wisdom-Intro-SO.xhtml */,
+				5665354A1F1C64A7008C36D0 /* Story5-Catch-Intro-SO.xhtml */,
 				563860541F0F79FE00D2661F /* Story1-The-Lucky-Stone-Intro-E.xhtml */,
 				563860551F0F79FE00D2661F /* Story1-The-Lucky-Stone-Intro-S.xhtml */,
 				563860561F0F79FE00D2661F /* Story1-The-Lucky-Stone-PM-1.xhtml */,
@@ -14846,6 +14890,10 @@
 		563862911F0F7DE800D2661F /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				5665353E1F1C640C008C36D0 /* Story1-How-do-Objects-Move-Intro-SO.xhtml */,
+				5665353F1F1C640C008C36D0 /* Story2-Newton's-First-Law-Intro-SO.xhtml */,
+				566535401F1C640C008C36D0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml */,
+				566535411F1C640C008C36D0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml */,
 				563862921F0F7DE800D2661F /* Story1-How-do-Objects-Move-Intro-E.xhtml */,
 				563862931F0F7DE800D2661F /* Story1-How-do-Objects-Move-Intro-S.xhtml */,
 				563862941F0F7DE800D2661F /* Story1-How-do-Objects-Move-PM-1.xhtml */,
@@ -21462,6 +21510,7 @@
 				1A8C65E71ED8B9560082AB44 /* bridle.png in Resources */,
 				1A8C65E81ED8B9560082AB44 /* calf.png in Resources */,
 				56EA204A1EEC7C4D00F75239 /* IntroToNativeHomesS4.mp3 in Resources */,
+				5665354E1F1C64A7008C36D0 /* Story4-Words-of-Wisdom-Intro-SO.xhtml in Resources */,
 				1A8C65E91ED8B9560082AB44 /* calf_flipped.png in Resources */,
 				56385F991F0F79DE00D2661F /* chicken_large.png in Resources */,
 				1A8C65EA1ED8B9560082AB44 /* champoorado.png in Resources */,
@@ -21784,6 +21833,7 @@
 				1A8C67031ED8B9570082AB44 /* ash_03.png in Resources */,
 				1A8C67041ED8B9570082AB44 /* australia.png in Resources */,
 				1A8C67051ED8B9570082AB44 /* bg_test.png in Resources */,
+				566535371F1C46AB008C36D0 /* Story1-The-Contest-Intro-SO.xhtml in Resources */,
 				1A8C67061ED8B9570082AB44 /* bg_volcano.png in Resources */,
 				563863221F0F7DE800D2661F /* SentenceAnalysis-MetaData.xml in Resources */,
 				1A8C67071ED8B9570082AB44 /* building_01.png in Resources */,
@@ -21886,6 +21936,7 @@
 				1A8C675F1ED8B9580082AB44 /* Oahu.png in Resources */,
 				1A8C67601ED8B9580082AB44 /* ocean_bulge.png in Resources */,
 				1A8C67611ED8B9580082AB44 /* ocean_bulge2.png in Resources */,
+				5665353D1F1C46AB008C36D0 /* Story7-The-Best-Farm-Award-Intro-SO.xhtml in Resources */,
 				1A8C67621ED8B9580082AB44 /* ocean_flat.png in Resources */,
 				1A8C67631ED8B9580082AB44 /* ocean_flatbulge.png in Resources */,
 				1A8C67641ED8B9580082AB44 /* ocean_flatwave.png in Resources */,
@@ -22489,6 +22540,7 @@
 				1A8C69FF1ED8B95B0082AB44 /* MissingKeysQ1A1.mp3 in Resources */,
 				1A8C6A001ED8B95B0082AB44 /* MissingKeysQ1A2.mp3 in Resources */,
 				1A8C6A011ED8B95B0082AB44 /* MissingKeysQ1A3.mp3 in Resources */,
+				566535431F1C640C008C36D0 /* Story2-Newton's-First-Law-Intro-SO.xhtml in Resources */,
 				1A8C6A021ED8B95B0082AB44 /* MissingKeysQ1A4.mp3 in Resources */,
 				1A8C6A031ED8B95B0082AB44 /* MissingKeysQ2.mp3 in Resources */,
 				1A8C6A041ED8B95B0082AB44 /* MissingKeysQ2A1.mp3 in Resources */,
@@ -22739,6 +22791,7 @@
 				56EA21451EEC7DA900F75239 /* TheBestFarmAwardS8S.mp3 in Resources */,
 				1A8C6AD91ED8B95C0082AB44 /* NaughtyS.mp3 in Resources */,
 				1A8C6ADA1ED8B95C0082AB44 /* ThrowsS.mp3 in Resources */,
+				5665354B1F1C64A7008C36D0 /* Story1-The-Lucky-Stone-Intro-SO.xhtml in Resources */,
 				1A8C6ADB1ED8B95C0082AB44 /* TroughS.mp3 in Resources */,
 				563860C71F0F79FE00D2661F /* Solutions-MetaData.xml in Resources */,
 				1A8C6ADC1ED8B95C0082AB44 /* Zebra'sS.mp3 in Resources */,
@@ -23742,6 +23795,7 @@
 				1A8C6E5B1ED8B9630082AB44 /* WhyWeBreatheQ2A2.mp3 in Resources */,
 				1A8C6E5C1ED8B9630082AB44 /* WhyWeBreatheQ2A3.mp3 in Resources */,
 				563863211F0F7DE800D2661F /* Script-Metadata.xml in Resources */,
+				5665354F1F1C64A7008C36D0 /* Story5-Catch-Intro-SO.xhtml in Resources */,
 				1A8C6E5D1ED8B9630082AB44 /* WhyWeBreatheQ2A4.mp3 in Resources */,
 				1A8C6E5E1ED8B9630082AB44 /* WhyWeBreatheQ3.mp3 in Resources */,
 				56EA213F1EEC7DA900F75239 /* TheBestFarmAwardS2S.mp3 in Resources */,
@@ -23777,6 +23831,7 @@
 				1A8C6E7B1ED8B9630082AB44 /* CWWB0.m4a in Resources */,
 				1A8C6E7C1ED8B9630082AB44 /* CWWB1.m4a in Resources */,
 				1A8C6E7D1ED8B9630082AB44 /* CWWB10.m4a in Resources */,
+				5665353B1F1C46AB008C36D0 /* Story5-The-Wise-Owl-Intro-SO.xhtml in Resources */,
 				1A8C6E7E1ED8B9630082AB44 /* CWWB11.m4a in Resources */,
 				1A8C6E7F1ED8B9630082AB44 /* CWWB12.m4a in Resources */,
 				1A8C6E801ED8B9630082AB44 /* CWWB13.m4a in Resources */,
@@ -24330,6 +24385,7 @@
 				563860EA1F0F79FF00D2661F /* Story4-Words-of-Wisdom-Title.xhtml in Resources */,
 				1A8C70631ED8B9680082AB44 /* old_BFEC7.m4a in Resources */,
 				1A8C70641ED8B9680082AB44 /* old_BFEC8.m4a in Resources */,
+				5665354D1F1C64A7008C36D0 /* Story3-Baby-Brother-Intro-SO.xhtml in Resources */,
 				1A8C70651ED8B9680082AB44 /* old_BFEC9.m4a in Resources */,
 				1A8C70661ED8B9680082AB44 /* TheContestQ1A1S.mp3 in Resources */,
 				1A8C70671ED8B9680082AB44 /* TheContestQ1A2S.mp3 in Resources */,
@@ -24546,6 +24602,7 @@
 				1A8C71201ED8B96A0082AB44 /* TheContestQ6A1.mp3 in Resources */,
 				1A8C71211ED8B96A0082AB44 /* TheContestQ6A2.mp3 in Resources */,
 				1A8C71221ED8B96A0082AB44 /* TheContestQ6A3.mp3 in Resources */,
+				566535441F1C640C008C36D0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml in Resources */,
 				1A8C71231ED8B96A0082AB44 /* TheContestQ6A4.mp3 in Resources */,
 				1A8C71241ED8B96A0082AB44 /* TheContestQ7.mp3 in Resources */,
 				1A8C71251ED8B96A0082AB44 /* TheContestQ7A1.mp3 in Resources */,
@@ -25351,6 +25408,7 @@
 				1A8C73FB1ED8B9730082AB44 /* TheMovingEarthS6S.mp3 in Resources */,
 				1A8C73FC1ED8B9730082AB44 /* TheMovingEarthS7E.mp3 in Resources */,
 				1A8C73FD1ED8B9730082AB44 /* TheMovingEarthS7S.mp3 in Resources */,
+				566535381F1C46AB008C36D0 /* Story2-Getting-Ready-Intro-SO.xhtml in Resources */,
 				1A8C73FE1ED8B9730082AB44 /* TheMovingEarthS8E.mp3 in Resources */,
 				56385FEB1F0F79DE00D2661F /* Story5-The-Wise-Owl-Intro-S.xhtml in Resources */,
 				1A8C73FF1ED8B9730082AB44 /* TheMovingEarthS8S.mp3 in Resources */,
@@ -25733,6 +25791,7 @@
 				1A8C754E1ED8B9770082AB44 /* Flexible_def_S.mp3 in Resources */,
 				1A8C754F1ED8B9770082AB44 /* Frame_def_S.mp3 in Resources */,
 				1A8C75501ED8B9770082AB44 /* Hunted_def_S.mp3 in Resources */,
+				566535421F1C640C008C36D0 /* Story1-How-do-Objects-Move-Intro-SO.xhtml in Resources */,
 				1A8C75511ED8B9770082AB44 /* Modern_def_S.mp3 in Resources */,
 				1A8C75521ED8B9770082AB44 /* Narrow_def_S.mp3 in Resources */,
 				1A8C75531ED8B9770082AB44 /* Plank_def_S.mp3 in Resources */,
@@ -25956,6 +26015,7 @@
 				1A8C76131ED8B97A0082AB44 /* TheNavajoHoganQ3A4.mp3 in Resources */,
 				56385ECB1F0F79B900D2661F /* Areas-MetaData.xml in Resources */,
 				1A8C76141ED8B97A0082AB44 /* TheNavajoHoganQ3A4S.mp3 in Resources */,
+				5665353A1F1C46AB008C36D0 /* Story4-Who-is-the-Best-Animal-Intro-SO.xhtml in Resources */,
 				1A8C76151ED8B97A0082AB44 /* TheNavajoHoganQ3S.mp3 in Resources */,
 				1A8C76161ED8B97A0082AB44 /* TheNavajoHoganQ4.mp3 in Resources */,
 				1A8C76171ED8B97A0082AB44 /* TheNavajoHoganQ4A1.mp3 in Resources */,
@@ -26372,6 +26432,7 @@
 				1A8C778A1ED8B97F0082AB44 /* HowdoObjectsMoveQ3A1.mp3 in Resources */,
 				1A8C778B1ED8B97F0082AB44 /* HowdoObjectsMoveQ3A2.mp3 in Resources */,
 				5638632D1F0F7DE800D2661F /* Story1-How-do-Objects-Move-PM-1S.xhtml in Resources */,
+				5665354C1F1C64A7008C36D0 /* Story2-Magic-Toys-Intro-SO.xhtml in Resources */,
 				1A8C778C1ED8B97F0082AB44 /* HowdoObjectsMoveQ3A3.mp3 in Resources */,
 				1A8C778D1ED8B97F0082AB44 /* HowdoObjectsMoveQ3A4.mp3 in Resources */,
 				563860961F0F79FE00D2661F /* bank_high_res.png in Resources */,
@@ -26442,6 +26503,7 @@
 				1A8C77C81ED8B9800082AB44 /* NewtonsfirstlawQ5.mp3 in Resources */,
 				1A8C77C91ED8B9800082AB44 /* NewtonsfirstlawQ5A1.mp3 in Resources */,
 				1A8C77CA1ED8B9800082AB44 /* NewtonsfirstlawQ5A2.mp3 in Resources */,
+				566535451F1C640C008C36D0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml in Resources */,
 				1A8C77CB1ED8B9800082AB44 /* NewtonsfirstlawQ5A3.mp3 in Resources */,
 				1A8C77CC1ED8B9800082AB44 /* NewtonsfirstlawQ5A4.mp3 in Resources */,
 				1A8C77CD1ED8B9800082AB44 /* NewtonsLawofAccelerationonEarthQ1.mp3 in Resources */,
@@ -26602,6 +26664,7 @@
 				1A8C785A1ED8B9820082AB44 /* HowdoObjectsMoveQ3A2S.mp3 in Resources */,
 				1A8C785B1ED8B9820082AB44 /* HowdoObjectsMoveQ3A3S.mp3 in Resources */,
 				1A8C785C1ED8B9820082AB44 /* HowdoObjectsMoveQ3A4S.mp3 in Resources */,
+				5665353C1F1C46AB008C36D0 /* Story6-Everyone-Helps-Intro-SO.xhtml in Resources */,
 				1A8C785D1ED8B9820082AB44 /* HowdoObjectsMoveQ3S.mp3 in Resources */,
 				1A8C785E1ED8B9820082AB44 /* HowdoObjectsMoveQ4A1S.mp3 in Resources */,
 				1A8C785F1ED8B9820082AB44 /* HowdoObjectsMoveQ4A2S.mp3 in Resources */,
@@ -26675,6 +26738,7 @@
 				1A8C789E1ED8B9830082AB44 /* 49ddbfcef412593f110dea741ada12a4.mp3 in Resources */,
 				1A8C789F1ED8B9830082AB44 /* 4b02071958ce49b033b070001b88eaaf.mp3 in Resources */,
 				1A8C78A01ED8B9830082AB44 /* 4bc4c6bc98728c61b3047396f2acd684.mp3 in Resources */,
+				566535391F1C46AB008C36D0 /* Story3-Cleaning-Up-Intro-SO.xhtml in Resources */,
 				1A8C78A11ED8B9830082AB44 /* 4d6be421d05069a1a590c753a07bd70d.mp3 in Resources */,
 				1A8C78A21ED8B9830082AB44 /* 53426a83b794eddc9c1b5a2a73a9beab.mp3 in Resources */,
 				1A8C78A31ED8B9830082AB44 /* 5406153eaaa402f9dc92866d7498b8ef.mp3 in Resources */,

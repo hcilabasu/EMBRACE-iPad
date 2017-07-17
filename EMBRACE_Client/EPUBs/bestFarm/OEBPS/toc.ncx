@@ -24,7 +24,7 @@
             <navLabel>
                 <text>The Contest - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Contest-Intro-S.xhtml"/>
+            <content src="Text/Story1-The-Contest-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
@@ -48,7 +48,7 @@
             <navLabel>
                 <text>Getting Ready - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Getting-Ready-Intro-S.xhtml"/>
+            <content src="Text/Story2-Getting-Ready-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -72,7 +72,7 @@
             <navLabel>
                 <text>Cleaning Up - Intro</text>
             </navLabel>
-            <content src="Text/Story3-Cleaning-Up-Intro-S.xhtml"/>
+            <content src="Text/Story3-Cleaning-Up-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -96,7 +96,7 @@
             <navLabel>
                 <text>Who is the Best Animal? - Intro</text>
             </navLabel>
-            <content src="Text/Story4-Who-is-the-Best-Animal-Intro-S.xhtml"/>
+            <content src="Text/Story4-Who-is-the-Best-Animal-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -120,7 +120,7 @@
             <navLabel>
                 <text>The Wise Owl - Intro</text>
             </navLabel>
-            <content src="Text/Story5-The-Wise-Owl-Intro-S.xhtml"/>
+            <content src="Text/Story5-The-Wise-Owl-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -144,7 +144,7 @@
             <navLabel>
                 <text>Everyone Helps - Intro</text>
             </navLabel>
-            <content src="Text/Story6-Everyone-Helps-Intro-S.xhtml"/>
+            <content src="Text/Story6-Everyone-Helps-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
 		  <navLabel>
@@ -168,7 +168,7 @@
             <navLabel>
                 <text>The Best Farm Award - Intro</text>
             </navLabel>
-            <content src="Text/Story7-The-Best-Farm-Award-Intro-S.xhtml"/>
+            <content src="Text/Story7-The-Best-Farm-Award-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story7-PM-1">
 		  <navLabel>

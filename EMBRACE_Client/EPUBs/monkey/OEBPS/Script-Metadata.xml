@@ -251,15 +251,15 @@
         
         <story title="The Naughty Monkey" activity_id="story1-PM-3">
             
-            <sentence number="8">
+            <sentence number="88">
                 <embrace>
                     <preAudio>
                         <english>
-                            <audio seq="1">NaughtyMonkey_Script8.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script88.mp3</audio>
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script8.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script88.mp3</audio>
                         </bilingual>
                     </preAudio>
                     

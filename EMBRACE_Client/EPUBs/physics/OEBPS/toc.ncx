@@ -18,7 +18,7 @@
             <navLabel>
                 <text>How do Objects Move? - Intro</text>
             </navLabel>
-            <content src="Text/Story1-How-do-Objects-Move-Intro-S.xhtml"/>
+            <content src="Text/Story1-How-do-Objects-Move-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
@@ -43,7 +43,7 @@
             <navLabel>
                 <text>Newton's First Law - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Newton's-First-Law-Intro-S.xhtml"/>
+            <content src="Text/Story2-Newton's-First-Law-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -124,7 +124,7 @@
             <navLabel>
                 <text>Newton's Law of Acceleration on Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"/>
+            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S).xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -149,7 +149,7 @@
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - Intro</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
             <navLabel>
