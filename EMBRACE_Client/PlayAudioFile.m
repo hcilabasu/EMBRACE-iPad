@@ -30,6 +30,8 @@
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *error;
     
+    /*test changes*/
+    
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&error];
     
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
