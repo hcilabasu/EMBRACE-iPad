@@ -10,13 +10,14 @@
 #import "LibraryViewController.h"
 #import "Progress.h"
 #import "ServerCommunicationController.h"
+#define kOFFSET_FOR_KEYBOARD 120.0
 
 @interface LoginViewController () <UITextFieldDelegate> {
     IBOutlet UITextField *schoolCodeField;
     IBOutlet UITextField *participantCodeField;
     IBOutlet UITextField *studyDayField;
     IBOutlet UITextField *experimenterField;
-    
+    BOOL  isViewMoveUp;
     Student *student;
     Progress *studentProgress;
 }
@@ -34,6 +35,35 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     [participantCodeField setDelegate:self];
     [studyDayField setDelegate:self];
     [experimenterField setDelegate:self];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 - (IBAction)login:(id)sender {
@@ -274,4 +304,54 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     destination.studentProgress = studentProgress;
 }
 
+
+
+
+
+
+/*
+ * checking if the keyboard everlays with the text box
+*/
+-(void)keyboardWillShow {
+    if(isViewMoveUp){
+        return;
+    }
+    [self setViewMovedUp:YES];
+    isViewMoveUp=YES;
+
+}
+
+-(void)keyboardWillHide {
+    if(isViewMoveUp){
+        [self setViewMovedUp:NO];
+        isViewMoveUp=NO;
+    }
+}
+
+
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
 @end
