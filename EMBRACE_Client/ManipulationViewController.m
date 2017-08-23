@@ -3330,8 +3330,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             pressedNextLock = false;
             
-            //Disables the next button for 3 seconds
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            //automatically adjust the wait time based on the current sentence length
+            int currentSenttenceLength= (int)sentenceContext.currentSentenceText.length;
+            int waitSecond=1+currentSenttenceLength/20;
+            if (waitSecond>3){
+                waitSecond=3;
+            }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
                     for(UIView *tmpView in arrSubviews)
                     {
