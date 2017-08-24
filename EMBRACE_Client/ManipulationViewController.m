@@ -3312,7 +3312,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     // Optionally, check button.tag
                     if(tmpView.tag == 4) {
                         //disable the next button
+                        UIButton* nextButton=(UIButton*)tmpView;
+                        //change color to grey when disabled
+                        [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                         [tmpView setUserInteractionEnabled:false];
+                        
                     }
                 }
             }
@@ -3345,6 +3349,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                             // Optionally, check button.tag
                             if(tmpView.tag == 4) {
                                 //reenable the next button
+                                UIButton* nextButton=(UIButton*)tmpView;
+                                //re-color the button
+                                [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                                 [tmpView setUserInteractionEnabled:true];
                             }
                         }
