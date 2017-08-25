@@ -1006,6 +1006,7 @@
                  @"cattle" : @[@"calf", @"cow2", @"cow3", @"cow4", @"cow_bw"],
                  @"champurrado" : @"champoorado",
                  @"corral" : @"corral",
+                 @"herd" : @[@"calf", @"cow2", @"cow3", @"cow4", @"cow_bw"],
                  @"post" : @"post",
                  @"saddle" : @"saddle",
                  @"scale" : @"scale",
