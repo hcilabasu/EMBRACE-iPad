@@ -10,7 +10,7 @@
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+@class ManipulationViewController;
 @interface PlayAudioFile : NSObject
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -19,7 +19,7 @@
 @property (nonatomic, weak) UIViewController *manipulationViewController;
 @property (nonatomic) Float64 audioDuration;
 @property (nonatomic) Float64 audioAfterDuration;
-
+@property ManipulationViewController* parentManipulationViewController;
 - (void)initPlayer:(NSString *)audioFilePath;
 - (void)playWordAudioTimed:(NSTimer *)wordAndLang;
 - (void)playAudioFileTimed:(NSTimer *)path;

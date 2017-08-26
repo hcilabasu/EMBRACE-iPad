@@ -61,6 +61,7 @@ typedef enum InteractionMode {
 @property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, weak) Book *book;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
 @property (nonatomic, weak) UIViewController *libraryViewController;
 @property (nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise

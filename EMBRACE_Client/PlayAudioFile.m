@@ -8,7 +8,7 @@
 
 #import "PlayAudioFile.h"
 #import "ServerCommunicationController.h"
-
+#import "ManipulationViewController.h"
 @interface PlayAudioFile()<AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *audioQueue;
@@ -23,7 +23,7 @@
 @synthesize audioPlayerAfter;
 @synthesize audioDuration;
 @synthesize audioAfterDuration;
-
+@synthesize parentManipulationViewController;
 -(void)initPlayer: (NSString*) audioFilePath
 {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], audioFilePath];
@@ -86,6 +86,8 @@
     if (self.audioPlayer == nil)
     {
         [self.manipulationViewController.view setUserInteractionEnabled:YES];
+      
+        
         return false;
     }
     else
@@ -222,11 +224,17 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [self.manipulationViewController.view setUserInteractionEnabled:YES];
+                  
+                 [parentManipulationViewController.nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    parentManipulationViewController.nextButton.alpha=1.0;
                 });
             }
             else
             {
                 [self.manipulationViewController.view setUserInteractionEnabled:YES];
+                [parentManipulationViewController.nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                parentManipulationViewController.nextButton.alpha=1.0;
+
             }
         }
     }

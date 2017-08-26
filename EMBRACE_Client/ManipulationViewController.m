@@ -122,7 +122,7 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
-
+@synthesize nextButton;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -160,6 +160,7 @@ BOOL wasPathFollowed = false;
     
     self.model = [[InteractionModel alloc]init];
     self.playaudioClass = [[PlayAudioFile alloc] init];
+    playaudioClass.parentManipulationViewController=self;
     
    // syn = [[AVSpeechSynthesizer alloc] init];
     
@@ -3312,9 +3313,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     // Optionally, check button.tag
                     if(tmpView.tag == 4) {
                         //disable the next button
-                        UIButton* nextButton=(UIButton*)tmpView;
+                        UIButton* theNextButton=(UIButton*)tmpView;
                         //change color to grey when disabled
-                        [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                        [theNextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                        theNextButton.alpha=0.7;
                         [tmpView setUserInteractionEnabled:false];
                         
                     }
@@ -3331,9 +3333,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 [self pressedNextStory];
             }
-            
             pressedNextLock = false;
-            
             //automatically adjust the wait time based on the current sentence length
             int currentSenttenceLength= (int)sentenceContext.currentSentenceText.length;
             int waitSecond=1+currentSenttenceLength/20;
@@ -3349,9 +3349,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                             // Optionally, check button.tag
                             if(tmpView.tag == 4) {
                                 //reenable the next button
-                                UIButton* nextButton=(UIButton*)tmpView;
+                                UIButton* theNextButton=(UIButton*)tmpView;
                                 //re-color the button
-                                [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                                [theNextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                                theNextButton.alpha=1.0;
                                 [tmpView setUserInteractionEnabled:true];
                             }
                         }
@@ -3911,6 +3912,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)playCurrentSentenceAudio {
     
     //disable user interactions when preparing to play audio to prevent users from skipping audio
+    [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    nextButton.alpha=0.7;
     [self.view setUserInteractionEnabled:NO];
     
     NSString *sentenceAudioFile = nil;
@@ -4203,6 +4206,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         //there are no audio files to play so allow interactions
+        
+    
         [self.view setUserInteractionEnabled:YES];
     }
 }
