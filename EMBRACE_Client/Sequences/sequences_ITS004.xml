@@ -120,7 +120,7 @@
             <intervention>ITSPM</intervention>
         </mode>
         <mode chapterTitle="The Navajo Hogan" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
+            <reader>User</reader>
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
         </mode>
@@ -189,7 +189,7 @@
             <intervention>ITSPM</intervention>
         </mode>
         <mode chapterTitle="The Moving Earth" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
+            <reader>User</reader>
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
         </mode>
