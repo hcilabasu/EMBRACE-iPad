@@ -75,7 +75,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         self.currentPage = currentPage;
         self.currentSentence = currentSentence;
         self.currentStep = currentStep;
-        
+        numCurrentAttempts=0;
         assessmentContext = [[AssessmentContext alloc] init];
         [self setAssessmentContext];
         
@@ -434,6 +434,27 @@ UIImage *BackgroundImage;   //The background image related to the story
                     tempCell.backgroundView.alpha = .2;
                 }
             }
+        }else{
+            //shang: if NumAttemps>numAttemptsPerQuestion
+            [[ServerCommunicationController sharedInstance] logVerification:true forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+            
+            //Gray out other options
+            for (int i = 0; i < [AnswerOptions count]; i++) {
+                UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:indexPaths[i]];
+                if ([AnswerOptions[i] isEqualToString:correctSelection]) {
+                    UIColor *LightBlueColor = [UIColor colorWithRed:135.0/255.0 green:180.0/255.0 blue:225.0/255.0 alpha:1.0];
+                    tempCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    tempCell.backgroundColor = LightBlueColor;
+                    nextButton.hidden = false;
+                }
+                else {
+                    //Gray out option
+                    AnswerSelection[i] = 1;
+                    tempCell.backgroundColor = [UIColor lightGrayColor];
+                    tempCell.backgroundView.alpha = .2;
+                }
+            }
+
         }
         
     }
