@@ -229,6 +229,14 @@
             
             //Look for alternate sentences that match the idea number and complexity
             for (AlternateSentence *altSent in alternateSentences) {
+                /*
+                int complexityToInt=10;
+                if(EM_Easy==complexity){
+                    complexityToInt=1;
+                }else if (EM_Complex==complexity){
+                    complexityToInt=2;
+                }*/
+                
                 if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
                     foundIdea = true;
                     [sentencesToAdd addObject:altSent];

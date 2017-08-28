@@ -397,6 +397,9 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		56B269E71F529B2400702575 /* glassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E51F529B2400702575 /* glassIcon.png */; };
+		56B269E81F529B2400702575 /* handIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E61F529B2400702575 /* handIcon.png */; };
+		56B269EA1F529B2B00702575 /* thinkIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E91F529B2B00702575 /* thinkIcon.png */; };
 		5C030F8B1C863196006E1BEA /* Award_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */; };
 		5C030F8C1C863196006E1BEA /* Barn_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */; };
 		5C030F8D1C863196006E1BEA /* Bucket_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7C1C863196006E1BEA /* Bucket_def_S.mp3 */; };
@@ -6169,6 +6172,9 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		56B269E51F529B2400702575 /* glassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glassIcon.png; sourceTree = "<group>"; };
+		56B269E61F529B2400702575 /* handIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handIcon.png; sourceTree = "<group>"; };
+		56B269E91F529B2B00702575 /* thinkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinkIcon.png; sourceTree = "<group>"; };
 		5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Award_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Barn_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7C1C863196006E1BEA /* Bucket_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bucket_def_S.mp3; sourceTree = "<group>"; };
@@ -12577,6 +12583,7 @@
 		316CFADF1773A512004216D0 /* Physical Manipulation */ = {
 			isa = PBXGroup;
 			children = (
+				56B269E41F529B0E00702575 /* Pics */,
 				31953E931729EEB800570087 /* ManipulationViewController.h */,
 				31953E941729EEB800570087 /* ManipulationViewController.m */,
 				1ADDE2F51D808CBC002FB71C /* PageController.h */,
@@ -12843,6 +12850,16 @@
 				5CEEBFA71ACA05F4002AACC4 /* Area.m */,
 			);
 			name = "Interaction Model";
+			sourceTree = "<group>";
+		};
+		56B269E41F529B0E00702575 /* Pics */ = {
+			isa = PBXGroup;
+			children = (
+				56B269E91F529B2B00702575 /* thinkIcon.png */,
+				56B269E51F529B2400702575 /* glassIcon.png */,
+				56B269E61F529B2400702575 /* handIcon.png */,
+			);
+			name = Pics;
 			sourceTree = "<group>";
 		};
 		5C030F791C863196006E1BEA /* Spanish */ = {
@@ -18878,6 +18895,7 @@
 				7119395B1E2F3CF8003D7EB5 /* cfc04debda0e94b7b371e4e01f76ef7f.mp3 in Resources */,
 				71D6C9921E5CA86C00AD3E28 /* 144b54a11d30d5b8980a3efdef643185.mp3 in Resources */,
 				5CA5CC841CD1B632002A631F /* TheWiseOwlS7E.mp3 in Resources */,
+				56B269EA1F529B2B00702575 /* thinkIcon.png in Resources */,
 				5D9E34441C590E9500636150 /* old_TheFamilyIsRattledQ5A1.mp3 in Resources */,
 				5C72E7891C72BF1000CE4877 /* NewtonsFirstLawonEarthQ2A4.mp3 in Resources */,
 				1AA6315F1DB04CBA0006B194 /* MariaE.mp3 in Resources */,
@@ -20333,6 +20351,7 @@
 				71193BF91E2FB797003D7EB5 /* c109689bcebd6b44aa8761f4bec108ce.mp3 in Resources */,
 				5C67B1211ED3DB41001465B0 /* GettingMoreOxygenfortheMusclesQ2.mp3 in Resources */,
 				5D9E33F31C590E9500636150 /* MissingKeysQ4A1.mp3 in Resources */,
+				56B269E71F529B2400702575 /* glassIcon.png in Resources */,
 				711939541E2F3CF8003D7EB5 /* be0aa9d469ab74206972f5dce385a94f.mp3 in Resources */,
 				5C8C35601CA1E18800E07A5C /* NaughtyE.mp3 in Resources */,
 				5CA5CC861CD1B632002A631F /* TheWiseOwlS9E.mp3 in Resources */,
@@ -22973,6 +22992,7 @@
 				5C5D09671CA9F6DD00B7C8D9 /* Board-GameE.mp3 in Resources */,
 				5C72E80A1C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ5.mp3 in Resources */,
 				5C0421B11C618C2B001BBE9D /* TheLuckyStoneQ3S.mp3 in Resources */,
+				56B269E81F529B2400702575 /* handIcon.png in Resources */,
 				5CB711591C6C46DF0062AD61 /* NativeIntroQ3A3S.mp3 in Resources */,
 				711939131E2F3CF8003D7EB5 /* 2532559c28bd48af246780c09b38c8ee.mp3 in Resources */,
 				5CAE96071C921DCD00702DB4 /* UprightS.mp3 in Resources */,

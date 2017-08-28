@@ -1221,6 +1221,9 @@ shouldUpdateConnection:(BOOL)updateCon
                     wordToAdd = [wordToAdd stringByReplacingOccurrencesOfString:@"’" withString:@"\\'"];
                 }
                 
+                
+                
+                
                 [words addObject:wordToAdd]; // Add word to list
                 addedWord = true;
                 
@@ -1231,6 +1234,15 @@ shouldUpdateConnection:(BOOL)updateCon
                     currentSplit = [currentSplit stringByAppendingString:firstPart];
                     range = NSMakeRange(0, range.location + range.length);
                 }
+                
+                //Replaces the ' character if it exists in the token
+                if ([currentSplit rangeOfString:@"'"].location != NSNotFound ||
+                    [currentSplit rangeOfString:@"’"].location != NSNotFound ) {
+                    currentSplit = [currentSplit stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                    currentSplit = [currentSplit stringByReplacingOccurrencesOfString:@"’" withString:@"\\'"];
+                }
+                
+                
                 [splitText addObject:currentSplit];
                 
                 // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
@@ -1250,6 +1262,13 @@ shouldUpdateConnection:(BOOL)updateCon
         }
     }
     
+    //Replaces the ' character if it exists in the token
+    if ([currentSplit rangeOfString:@"'"].location != NSNotFound ||
+        [currentSplit rangeOfString:@"’"].location != NSNotFound ) {
+        currentSplit = [currentSplit stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+        currentSplit = [currentSplit stringByReplacingOccurrencesOfString:@"’" withString:@"\\'"];
+    }
+    
     [splitText addObject:currentSplit]; //make sure to add the last split
     
     //Create array strings for vocabulary and split text to send to JS function
@@ -1259,6 +1278,11 @@ shouldUpdateConnection:(BOOL)updateCon
     ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
     //Add alternate sentence to page
     addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'], %@)", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString, conditionSetup.isOnDemandVocabEnabled ? @"true" : @"false"];
+    
+    //addSentenceString=@"addSentence('s2', false, ['It\\'s an ','! Why do ',' happen. '], ['earthquake','earthquakes'], true)" ;
+    
+   // addSentenceString=@"addSentence('s3', false, ['The plates on top of the ',' move, and this movement is called ','. '], ['mantle','plate tectonics'], true)";
+    
     [self.bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
     
 }

@@ -279,7 +279,7 @@
             <idea number="69"/>
             
             
-            <idea number="3">
+            <idea number="70">
                 <step number="30">
                     <shakeOrTap obj1Id="maria" action="getIn" locationId="bottom_quarter"/>
                     <swapImage obj1Id="maria" action="footBack"/>

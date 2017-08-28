@@ -1561,7 +1561,7 @@
             </sentence>            
             <sentence number="2" action="no">                
                 <attributes complexity="10"/>                
-                <text>To get moving, she needs a force (First Law).</text>                
+                <text>To get moving, she needs a force (First Law).</text>
                 <ideas>                    
                     <idea number="69"/>                    
                 </ideas>                
@@ -1575,7 +1575,6 @@
                     <idea number="70"/>                    
                 </ideas>                
                 <solution>
-                    
                 </solution>
             </sentence>            
             <sentence number="4" action="no">                
@@ -1599,7 +1598,7 @@
             </sentence>            
             <sentence number="6" action="no">                
                 <attributes complexity="2"/>                
-                <text>To get moving, she needs a force (First Law).</text>                
+                <text>To get moving, she needs a force (First Law).</text>
                 <ideas>                    
                     <idea number="69"/>                    
                 </ideas>                
@@ -1613,7 +1612,7 @@
                     <idea number="70"/>                    
                 </ideas>                
                 <solution>
-                    
+    
                 </solution>
             </sentence>            
             <sentence number="8" action="no">                

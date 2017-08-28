@@ -256,6 +256,8 @@ BOOL wasPathFollowed = false;
             }
         }
     }
+    
+ 
 }
 
 - (void)dealloc {
@@ -352,6 +354,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     self.manipulationView.bookView = self.bookView;
     [self.manipulationView loadJsFiles];
     [self manipulationViewDidLoad:manipulationView];
+    
+    
+
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
