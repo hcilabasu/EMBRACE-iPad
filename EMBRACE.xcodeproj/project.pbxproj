@@ -89,7 +89,7 @@
 		1A47C27E1E5BCFA10017B5D9 /* PlateS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A47C27C1E5BCFA10017B5D9 /* PlateS.mp3 */; };
 		1A47C27F1E5BCFA10017B5D9 /* BulgeS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A47C27D1E5BCFA10017B5D9 /* BulgeS.mp3 */; };
 		1A4E023D1E3F0DC70050533C /* thereismoreS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */; };
-		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
+		1A5BB0CA1BD327D1002D1AEA /* The Navajo Hoga.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* The Navajo Hoga.epub */; };
 		1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */; };
 		1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
@@ -4981,7 +4981,7 @@
 		1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
-		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
+		1A5BB0741BD327D1002D1AEA /* The Navajo Hoga.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = "The Navajo Hoga.epub"; path = "EPUBs/bottled/The Navajo Hoga.epub"; sourceTree = "<group>"; };
 		1A5DAAE61E3C3FB600665345 /* ITSImagineManipulationActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSImagineManipulationActivity.h; sourceTree = "<group>"; };
 		1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationActivity.m; sourceTree = "<group>"; };
 		1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationSolution.m; sourceTree = "<group>"; };
@@ -12671,7 +12671,7 @@
 				1A631C671C0E4D3900251CB3 /* EPUBs */,
 				5CCAE22C1B4C42C600445020 /* disasters.epub */,
 				1A631D3F1C0E4D3A00251CB3 /* celebration.epub */,
-				1A5BB0741BD327D1002D1AEA /* bottled.epub */,
+				1A5BB0741BD327D1002D1AEA /* The Navajo Hoga.epub */,
 				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
@@ -20848,7 +20848,7 @@
 				5C40E0081CC863FC00D8BC48 /* CorralE.mp3 in Resources */,
 				5C0ED8821C75334200003B5A /* AGiftfortheBrideQ7.mp3 in Resources */,
 				5C72E7B21C72BF1000CE4877 /* NewtonsfirstlawQ5A2.mp3 in Resources */,
-				1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */,
+				1A5BB0CA1BD327D1002D1AEA /* The Navajo Hoga.epub in Resources */,
 				5DED1CA81C765BD200B29369 /* NaughtyMonkey_Script_C2.mp3 in Resources */,
 				036C26B61D9B1B8D003626FC /* sequences_MCD208.xml in Resources */,
 				5C0421991C618C2B001BBE9D /* MagicToysQ6.mp3 in Resources */,
