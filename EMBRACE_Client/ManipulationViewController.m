@@ -378,6 +378,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }else{
         toDoIcon.image=RDIcon;
     }
+    if(conditionSetup.condition==CONTROL){
+        toDoIcon.image=RDIcon;
+    }
     toDoIcon.center=CGPointMake(titleRect.origin.x+titleRect.size.width+30, titleRect.origin.y+titleRect.size.height-12);
     [bookView bringSubviewToFront:toDoIcon];
 }
