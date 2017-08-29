@@ -180,7 +180,6 @@ BOOL wasPathFollowed = false;
     PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(23, 23)];
     IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(23, 23)];
     RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(23, 23)];
-    
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
