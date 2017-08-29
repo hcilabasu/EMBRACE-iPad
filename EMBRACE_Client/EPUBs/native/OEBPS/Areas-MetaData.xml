@@ -15,5 +15,11 @@
             <point x="44.7%" y="100%"/>
             <point x="0%" y="100%"/>
         </area>
+        <area areaId="totempoles" pageId="All_Chapters">
+            <point x="65%" y="0%"/>
+            <point x="72%" y="0%"/>
+            <point x="72%" y="50%"/>
+            <point x="65%" y="50%"/>
+        </area>
     </areas>
 </metadata>
