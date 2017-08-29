@@ -174,6 +174,7 @@
     indicationIcon = [self imageWithImage:indicationIcon scaledToSize:CGSizeMake(20, 20)];
     UIImageView *dot =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
     dot.image=indicationIcon;
+
 //    [self addSubview:dot];
  //   [self bringSubviewToFront:dot];
     

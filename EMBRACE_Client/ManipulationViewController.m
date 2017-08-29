@@ -123,6 +123,10 @@
 @synthesize bookView;
 @synthesize isUserMovingBack;
 @synthesize nextButton;
+@synthesize toDoIcon;
+@synthesize IMIcon;
+@synthesize PMIcon;
+@synthesize RDIcon;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -166,6 +170,16 @@ BOOL wasPathFollowed = false;
     
     self.menuDataSource = [[ContextualMenuDataSource alloc] init];
     
+    //initialize toDo image
+    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
+    toDoIcon.image=nil;
+    [bookView addSubview:toDoIcon];
+    PMIcon= [UIImage imageNamed:@"handIcon"];
+    IMIcon= [UIImage imageNamed:@"thinkIcon"];
+    RDIcon= [UIImage imageNamed:@"glassIcon"];
+    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
+    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(23, 23)];
+    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(23, 23)];
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -355,9 +369,41 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self.manipulationView loadJsFiles];
     [self manipulationViewDidLoad:manipulationView];
     
-    
+    //update the indication icon based on condition setup
+    CGRect titleRect=[self positionOfElementWithId:@"s0"];
+    if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
+        toDoIcon.image=PMIcon;
+    }else if(IM_MODE== conditionSetup.currentMode || ITSIM_MODE== conditionSetup.currentMode){
+        toDoIcon.image=IMIcon;
+    }else{
+        toDoIcon.image=RDIcon;
+    }
+    if(conditionSetup.condition==CONTROL){
+        toDoIcon.image=RDIcon;
+    }
+    toDoIcon.center=CGPointMake(titleRect.origin.x+titleRect.size.width+30, titleRect.origin.y+titleRect.size.height-12);
+    [bookView bringSubviewToFront:toDoIcon];
+}
 
-    
+
+
+- (CGRect)positionOfElementWithId:(NSString *)elementID {
+    NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
+    NSString *result = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, elementID]];
+    CGRect rect = CGRectFromString(result);
+    return rect;
+}
+
+
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

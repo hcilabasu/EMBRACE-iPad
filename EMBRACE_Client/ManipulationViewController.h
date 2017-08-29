@@ -90,6 +90,10 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) ContextualMenuDataSource *menuDataSource;
 @property (nonatomic, assign) EMComplexity currentComplexityLevel;
 @property (nonatomic) BOOL isUserMovingBack;
+@property (nonatomic, strong) UIImageView* toDoIcon;
+@property (nonatomic, strong) UIImage* IMIcon;
+@property (nonatomic, strong) UIImage* PMIcon;
+@property (nonatomic, strong) UIImage* RDIcon;
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;
