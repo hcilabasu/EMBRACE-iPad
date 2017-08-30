@@ -915,7 +915,7 @@
                  @"swamps" : @"swamp",
                  @"teepee" : @[@"teepee", @"teepee2"],
                  @"teepees" : @[@"teepee", @"teepee2"],
-                 @"totem poles" : @"totem poles",
+                 @"totem poles" : @[@"totem poles", @"totempoles"],
                  @"upright" : @"upright",
                  @"wigwam" : @"wigwam",
                  @"wigwams" : @"wigwam",
