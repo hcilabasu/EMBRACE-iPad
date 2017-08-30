@@ -127,6 +127,7 @@
 @synthesize IMIcon;
 @synthesize PMIcon;
 @synthesize RDIcon;
+@synthesize isAudioPlaying;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -143,6 +144,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isAudioPlaying=NO;
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
     
     self.manipulationView.delegate = self;
@@ -2362,7 +2364,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)handleErrorForAction:(NSString *)action {
     allowInteractions = FALSE;
-    [self.view setUserInteractionEnabled:NO];
+    [self disableUserInteraction];
     
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
@@ -2403,14 +2405,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     else {
                         allowInteractions = TRUE;
-                        [self.view setUserInteractionEnabled:YES];
+                        [self enableUserInteraction];
                     }
                 
             });
         }
         else {
             allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
+            [self enableUserInteraction];
         }
     }
 }
@@ -2445,7 +2447,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
     } else {
         allowInteractions = TRUE;
-        [self.view setUserInteractionEnabled:YES];
+        [self enableUserInteraction];
     }
     
 //    if ([errorType isEqualToString:@"vocabulary"]) {
@@ -2488,7 +2490,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 //        }
 //        else {
 //            allowInteractions = TRUE;
-//            [self.view setUserInteractionEnabled:YES];
+//           [self enableUserInteraction];
 //        }
 //        
 //        
@@ -2500,14 +2502,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
-                              [self.view setUserInteractionEnabled:NO];
+                               [self disableUserInteraction];
                               [self animatePerformingStep];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
     }
     else {
-        [self.view setUserInteractionEnabled:NO];
+          [self disableUserInteraction];
         [self animatePerformingStep];
     }
 }
@@ -2547,7 +2549,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
+           [self enableUserInteraction];
         });
     }
     // Highlight correct objects for transference
@@ -2572,7 +2574,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
+               [self enableUserInteraction];
             });
         }
     }
@@ -2591,7 +2593,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
+           [self enableUserInteraction];
         });
     }
     
@@ -3178,7 +3180,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [pc loadNextPage];
     }
     else {
-        [self.view setUserInteractionEnabled:YES];
+       [self enableUserInteraction];
     }
 }
 
@@ -3296,7 +3298,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //Play noise if not all steps have been completed
         [self playNoiseName:MORE_ERROR];
         
-        [self.view setUserInteractionEnabled:YES];
+       [self enableUserInteraction];
     }
 }
 
@@ -3342,7 +3344,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //Expand menu
     [self expandMenu];
     [IMViewMenu bringSubviewToFront:IMinstructions];
-    [self.view setUserInteractionEnabled:YES];
+   [self enableUserInteraction];
 }
 
 /*
@@ -3355,7 +3357,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     @synchronized(self) {
         if (!pressedNextLock && !isLoadPageInProgress) {
             pressedNextLock = true;
-            [self.view setUserInteractionEnabled:NO];
+           [self disableUserInteraction];
             
             NSArray *arrSubviews = [self.view subviews];
             for(UIView *tmpView in arrSubviews)
@@ -3365,13 +3367,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     // Optionally, check button.tag
                     if(tmpView.tag == 4) {
                         //disable the next button
-                        UIButton* theNextButton=(UIButton*)tmpView;
-                        //change color to grey when disabled
-                        [theNextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                        theNextButton.alpha=0.7;
-                        [tmpView setUserInteractionEnabled:false];
-                        
-                    }
+                    [tmpView setUserInteractionEnabled:false];
+                        [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                        nextButton.alpha=0.7;                    }
                 }
             }
             
@@ -3388,10 +3386,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             pressedNextLock = false;
             //automatically adjust the wait time based on the current sentence length
             int currentSenttenceLength= (int)sentenceContext.currentSentenceText.length;
-            int waitSecond=1+currentSenttenceLength/20;
+            float waitSecond=1+currentSenttenceLength/26;
             if (waitSecond>3){
                 waitSecond=3;
             }
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
                     for(UIView *tmpView in arrSubviews)
@@ -3400,11 +3399,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         {
                             // Optionally, check button.tag
                             if(tmpView.tag == 4) {
-                                //reenable the next button
-                                UIButton* theNextButton=(UIButton*)tmpView;
-                                //re-color the button
-                                [theNextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                                theNextButton.alpha=1.0;
+                                if(!isAudioPlaying){
+                                
+                                [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                                nextButton.alpha=1.0;
+                                }
                                 [tmpView setUserInteractionEnabled:true];
                             }
                         }
@@ -3419,7 +3418,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //TODO: Refactor pressedNextLock to pressedBackLock
         if (!pressedBackLock && !isLoadPageInProgress) {
             pressedBackLock = true;
-            [self.view setUserInteractionEnabled:NO];
+            [self disableUserInteraction];
             
             //TODO: Add logging for pressed back
             //[[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
@@ -3551,7 +3550,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     if (stepContext.stepsComplete) {
         allowInteractions = TRUE;
-        [self.view setUserInteractionEnabled:YES];
+       [self enableUserInteraction];
         return;
     }
     else {
@@ -3605,7 +3604,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                 }
                                 else {
                                     allowInteractions = TRUE;
-                                    [self.view setUserInteractionEnabled:YES];
+                                   [self enableUserInteraction];
                                 }
                             });
                         });
@@ -3624,7 +3623,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     else {
                         allowInteractions = TRUE;
-                        [self.view setUserInteractionEnabled:YES];
+                       [self enableUserInteraction];
                     }
                 }
             }
@@ -3645,7 +3644,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 else {
                     allowInteractions = TRUE;
-                    [self.view setUserInteractionEnabled:YES];
+                   [self enableUserInteraction];
                 }
             }
         }
@@ -3727,7 +3726,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         }
                         else {
                             allowInteractions = TRUE;
-                            [self.view setUserInteractionEnabled:YES];
+                           [self enableUserInteraction];
                         }
                         
                         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
@@ -3782,7 +3781,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     else {
                         allowInteractions = TRUE;
-                        [self.view setUserInteractionEnabled:YES];
+                       [self enableUserInteraction];
                     }
                     
                     [self highlightObject:object1Id :2.0];
@@ -3966,7 +3965,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //disable user interactions when preparing to play audio to prevent users from skipping audio
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nextButton.alpha=0.7;
-    [self.view setUserInteractionEnabled:NO];
+   [self disableUserInteraction];
     
     NSString *sentenceAudioFile = nil;
     NSLog(@"sentenceContext.currentSentence %d sentenceContext.currentIdea %d pageContext.currentPageId %@",
@@ -4264,8 +4263,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         //there are no audio files to play so allow interactions
         
-    
         [self.view setUserInteractionEnabled:YES];
+       //[self enableUserInteraction];
     }
 }
 
@@ -4529,5 +4528,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (NSDictionary *)getWordMapping {
     return [model wordMapping];
 }
+
+
+-(void)disableUserInteraction{
+    [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    nextButton.alpha=0.7;
+    [self.view setUserInteractionEnabled:false];
+    
+}
+
+-(void)enableUserInteraction{
+    [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    nextButton.alpha=1.0;
+    [self.view setUserInteractionEnabled:true];
+    
+}
+
 
 @end

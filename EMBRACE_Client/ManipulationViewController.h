@@ -94,6 +94,7 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) UIImage* IMIcon;
 @property (nonatomic, strong) UIImage* PMIcon;
 @property (nonatomic, strong) UIImage* RDIcon;
+@property BOOL isAudioPlaying;
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;
@@ -113,5 +114,7 @@ typedef enum InteractionMode {
 - (void)simulateGroupingMultipleObjects:(NSMutableArray *)objs :(NSMutableArray *)hotspots :(NSMutableDictionary *)images;
 - (CGRect)getBoundingBoxOfImages:(NSMutableArray *)images;
 - (PossibleInteraction *)convertActionStepToPossibleInteraction:(ActionStep *)step;
+-(void)enableUserInteraction;
+-(void)disableUserInteraction;
 
 @end

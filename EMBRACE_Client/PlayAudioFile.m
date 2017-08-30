@@ -70,6 +70,7 @@
     {
         [self.audioPlayer prepareToPlay];
         [self.audioPlayer play];
+        parentManipulationViewController.isAudioPlaying=YES;
     }
 }
 
@@ -77,7 +78,7 @@
 -(BOOL) playAudioFile:(UIViewController*) viewController : (NSString*) path {
     
     self.manipulationViewController = viewController;
-    [viewController.view setUserInteractionEnabled:NO];
+    [parentManipulationViewController disableUserInteraction];
     
     [self initPlayer:path];
     self.audioPlayerAfter = nil;
@@ -85,7 +86,7 @@
     
     if (self.audioPlayer == nil)
     {
-        [self.manipulationViewController.view setUserInteractionEnabled:YES];
+        [parentManipulationViewController enableUserInteraction];
       
         
         return false;
@@ -94,6 +95,8 @@
     {
         [self.audioPlayer prepareToPlay];
         [self.audioPlayer play];
+        parentManipulationViewController.isAudioPlaying=YES;
+
         return true;
     }
 }
@@ -139,20 +142,22 @@
         if (self.audioPlayer == nil) {
             self.audioQueue = nil;
             NSLog(@"Audio error %@",[audioError description]);
-            [self.manipulationViewController.view setUserInteractionEnabled:YES];
+            [parentManipulationViewController enableUserInteraction];
         }
         else {
-            [self.manipulationViewController.view setUserInteractionEnabled:NO];
+            
+            [parentManipulationViewController disableUserInteraction];
             [self.audioPlayer prepareToPlay];
             AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
             self.audioDuration = CMTimeGetSeconds(asset.duration);
             [self.audioPlayer play];
+            parentManipulationViewController.isAudioPlaying=YES;
             [self.audioQueue removeObjectAtIndex:0];
         }
     }
     else
     {
-        [self.manipulationViewController.view setUserInteractionEnabled:YES];
+        [parentManipulationViewController enableUserInteraction];
     }
 }
 
@@ -161,7 +166,7 @@
 -(BOOL) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
    
         self.manipulationViewController = viewController;
-        [self.manipulationViewController.view setUserInteractionEnabled:NO];
+        [parentManipulationViewController disableUserInteraction];
     
         NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -184,7 +189,7 @@
             NSLog(@"%@",[audioError2 description]);
             self.audioPlayer = nil;
             self.audioPlayerAfter = nil;
-            [self.manipulationViewController.view setUserInteractionEnabled:YES];
+            [parentManipulationViewController enableUserInteraction];
             return false;
         }
         else
@@ -198,13 +203,14 @@
             self.audioAfterDuration = CMTimeGetSeconds(asset2.duration);
             
             [self.audioPlayer play];
+            parentManipulationViewController.isAudioPlaying=YES;
             return true;
         }
 }
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
-    
+    parentManipulationViewController.isAudioPlaying=NO;
     if ([self.audioQueue count] > 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,500000000), dispatch_get_main_queue(), ^{
             [self playNextAudio];
@@ -223,17 +229,13 @@
                 [self.audioPlayerAfter play];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.manipulationViewController.view setUserInteractionEnabled:YES];
+                    [parentManipulationViewController enableUserInteraction];
                   
-                 [parentManipulationViewController.nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                    parentManipulationViewController.nextButton.alpha=1.0;
                 });
             }
             else
             {
-                [self.manipulationViewController.view setUserInteractionEnabled:YES];
-                [parentManipulationViewController.nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                parentManipulationViewController.nextButton.alpha=1.0;
+                [parentManipulationViewController enableUserInteraction];
 
             }
         }
