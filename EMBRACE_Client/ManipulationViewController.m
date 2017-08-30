@@ -4090,6 +4090,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
                     sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
                 }
+                
+                if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"]) {
+                    sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
+                }
+                
                 else {
                     sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
                 }
