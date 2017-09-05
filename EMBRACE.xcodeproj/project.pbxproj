@@ -18683,7 +18683,7 @@
 				ORGANIZATIONNAME = "Andreea Danielescu";
 				TargetAttributes = {
 					31953E441729ECC100570087 = {
-						DevelopmentTeam = BWSLUFSJRA;
+						DevelopmentTeam = VT9F7J4Z37;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -23660,7 +23660,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
-				DEVELOPMENT_TEAM = BWSLUFSJRA;
+				DEVELOPMENT_TEAM = VT9F7J4Z37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -23675,6 +23675,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ASU.EMBRACE-DEV";
 				PRODUCT_NAME = "EMBRACE English";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -23687,7 +23688,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
-				DEVELOPMENT_TEAM = BWSLUFSJRA;
+				DEVELOPMENT_TEAM = VT9F7J4Z37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -23702,6 +23703,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ASU.EMBRACE-DEV";
 				PRODUCT_NAME = "Embrace E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

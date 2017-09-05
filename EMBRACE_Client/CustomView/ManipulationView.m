@@ -331,6 +331,7 @@
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber {
     NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%ld)", (long)sentenceNumber];
+    NSString* class=[self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 }
 

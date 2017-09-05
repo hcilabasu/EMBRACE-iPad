@@ -208,7 +208,7 @@ static ITSController *sharedInstance = nil;
     }
     
     //testing purpose
-  // complexity = EM_Medium;
+   // complexity = EM_Medium;
    // _currentComplexity = complexity;
 }
 

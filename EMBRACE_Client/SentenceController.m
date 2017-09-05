@@ -272,7 +272,6 @@
  */
 - (BOOL)isManipulationSentence:(NSInteger)sentenceNumber {
     BOOL isManipulationSentence = false;
-    
     //Get the sentence class
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceNumber];
     if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE))) {

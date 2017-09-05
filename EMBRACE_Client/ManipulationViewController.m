@@ -223,7 +223,8 @@ BOOL wasPathFollowed = false;
     else if (conditionSetup.condition == EMBRACE) {
         allowInteractions = TRUE;
         
-        stepContext.maxAttempts = 5;
+        //Shang: changed maxAttempts to 3
+        stepContext.maxAttempts = 3;
         stepContext.numAttempts = 0;
         
         if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
