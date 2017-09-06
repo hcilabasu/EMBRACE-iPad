@@ -31,6 +31,8 @@
 @property (nonatomic, strong) NSMutableArray* activities;
 @property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) NSMutableDictionary *vocabulary;
+@property (nonatomic, strong) NSMutableArray* contentString;
+
 
 -(void) addActivity:(Activity*)activity; //Add an activity to the chapter.
 

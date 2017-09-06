@@ -46,6 +46,17 @@ typedef enum AnimatedStepCompletion {
     PERSTEP
 } AnimatedStepCompletion;
 
+
+//Differentiates assessment mode
+typedef enum Complexity {
+    ITS_EASY, //manually set the complexity to easy
+    ITS_MEDIUM, //manually set the complexity to medium
+    ITS_COMPLEX, //manually set the complexity to hard
+    ITS_SYSTEM //system automatically updates complexity
+} Complexity;
+
+
+
 @interface ConditionSetup : NSObject
 
 @property (nonatomic) Condition condition;
@@ -54,6 +65,7 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM or ITSPM
 @property (nonatomic) Assessment assessmentMode;
+@property (nonatomic) Complexity ITSComplexity;
 @property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed

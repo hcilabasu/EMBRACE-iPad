@@ -7,7 +7,7 @@
 //
 
 #import "ConditionSetup.h"
-
+#import "ITSController.h"
 @implementation ConditionSetup
 
 @synthesize condition;
@@ -26,7 +26,7 @@
 @synthesize isOnDemandVocabEnabled;
 @synthesize isBackButtonEnabled;
 @synthesize isSpeakerButtonEnabled;
-
+@synthesize ITSComplexity;
 @synthesize allowFileSync;
 
 static ConditionSetup *sharedInstance = nil;
@@ -67,8 +67,11 @@ static ConditionSetup *sharedInstance = nil;
         shouldShowITSMessages = NO;
         
         allowFileSync = YES;
+        
+        ITSComplexity=ITS_COMPLEX;
     }
     
+    [ITSController sharedInstance].condition=self;
     return self;
 }
 

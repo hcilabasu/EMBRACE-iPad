@@ -19,7 +19,7 @@
 @end
 
 @implementation ITSController
-
+@synthesize condition;
 static ITSController *sharedInstance = nil;
 
 + (ITSController *)sharedInstance {
@@ -208,7 +208,13 @@ static ITSController *sharedInstance = nil;
     }
     
     //testing purpose: complex condition
-    complexity = EM_Complex;
+    if(ITS_EASY== condition.ITSComplexity){
+      complexity = EM_Easy;
+    }else if (ITS_MEDIUM == condition.ITSComplexity){
+        complexity = EM_Medium;
+    }else if (ITS_COMPLEX == condition.ITSComplexity){
+        complexity = EM_Complex;
+    }
     _currentComplexity = complexity;
 }
 

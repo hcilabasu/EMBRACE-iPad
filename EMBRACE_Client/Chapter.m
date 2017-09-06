@@ -25,11 +25,12 @@
 @synthesize content;
 @synthesize activities;
 @synthesize pageNum;
-
+@synthesize contentString;
 - (id) init {
     if (self = [super init]) {
         activities = [[NSMutableArray alloc] init];
         content = [[NSMutableArray alloc] init];
+        contentString = [[NSMutableArray alloc] init];
     }
     
     return self;

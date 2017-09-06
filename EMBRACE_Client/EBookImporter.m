@@ -877,7 +877,7 @@
         //Get story title
         NSString *title = [[solution attributeForName:@"title"] stringValue];
         Chapter *chapter = [book getChapterWithTitle:title];
-        
+
         //Get activity id
         NSString *activityId = [[solution attributeForName:@"activity_id"] stringValue];
         
