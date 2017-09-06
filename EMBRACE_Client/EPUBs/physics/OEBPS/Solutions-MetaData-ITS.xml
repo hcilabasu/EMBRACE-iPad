@@ -86,6 +86,7 @@
                     <animate obj1Id="ball" action="moveLeftAndCurve" waypointId="" areaId=""/>
                 </step>
             </idea>
+            
             <idea number="26"/>
             <idea number="27"/>
             <idea number="28"/>
