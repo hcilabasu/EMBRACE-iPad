@@ -220,6 +220,10 @@ BOOL wasPathFollowed = false;
     self.allRelationships = [[NSMutableArray alloc] init];
     self.currentGroupings = [[NSMutableDictionary alloc] init];
     
+    self.navigationItem.rightBarButtonItem = nil;
+    
+
+    
     if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
         
