@@ -1211,7 +1211,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>Maria picks up the ball.</text>
+                <text>Maria picks up the ball. She throws the ball in the air.</text>
                 
                 <ideas>
                     
@@ -1224,22 +1224,6 @@
                 
             </sentence>
             
-            <sentence number="24" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>She throws the ball in the air.</text>
-                
-                <ideas>
-                    
-                    <idea number="25"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
             
         </story>
         

@@ -128,6 +128,7 @@
 @synthesize PMIcon;
 @synthesize RDIcon;
 @synthesize isAudioPlaying;
+@synthesize iconLabel;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -182,6 +183,11 @@ BOOL wasPathFollowed = false;
     PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
     IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(23, 23)];
     RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(23, 23)];
+    iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
+    iconLabel.font=[iconLabel.font fontWithSize:10];
+    iconLabel.textColor= [UIColor darkGrayColor];
+    iconLabel.textAlignment = UITextAlignmentCenter;
+    [bookView addSubview:iconLabel];
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -374,18 +380,29 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //update the indication icon based on condition setup
     CGRect titleRect=[self positionOfElementWithId:@"s0"];
+    if( [chapterTitle isEqualToString:@"The Naughty Monkey"]){
+        titleRect=[self positionOfElementWithId:@"s2"];
+    }
+    
+    
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
         toDoIcon.image=PMIcon;
+        iconLabel.text=@"Move";
     }else if(IM_MODE== conditionSetup.currentMode || ITSIM_MODE== conditionSetup.currentMode){
         toDoIcon.image=IMIcon;
+        iconLabel.text=@"Imagine";
     }else{
         toDoIcon.image=RDIcon;
+        iconLabel.text=@"Read";
     }
     if(conditionSetup.condition==CONTROL){
         toDoIcon.image=RDIcon;
+        iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x+titleRect.size.width+30, titleRect.origin.y+titleRect.size.height-12);
+    toDoIcon.center=CGPointMake(titleRect.origin.x-12, titleRect.origin.y+12);
+    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+20);
     [bookView bringSubviewToFront:toDoIcon];
+    [bookView bringSubviewToFront:iconLabel];
 }
 
 

@@ -94,6 +94,8 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) UIImage* IMIcon;
 @property (nonatomic, strong) UIImage* PMIcon;
 @property (nonatomic, strong) UIImage* RDIcon;
+@property (nonatomic, strong) UILabel* iconLabel;
+
 @property BOOL isAudioPlaying;
 
 - (void)loadFirstPage;
