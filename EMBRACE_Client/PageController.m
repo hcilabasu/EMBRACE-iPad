@@ -169,16 +169,11 @@
         }
     }
     
-    
-    UIImage *indicationIcon = [UIImage imageNamed:@"thinkIcon.png"];
-    indicationIcon = [self imageWithImage:indicationIcon scaledToSize:CGSizeMake(20, 20)];
-    UIImageView *dot =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
-    dot.image=indicationIcon;
 
-//    [self addSubview:dot];
- //   [self bringSubviewToFront:dot];
-    
-    
+    // The indication icon in the Tornado chapter reamains in the second page
+    if([pageContext.currentPageId isEqualToString:@"story5-PM-2"] && [chapterTitle isEqualToString:@"Tornados"] ){
+        [mvc hideIndicationIcon];
+    }
 }
 
 

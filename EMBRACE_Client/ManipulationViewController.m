@@ -381,13 +381,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     self.manipulationView.bookView = self.bookView;
     [self.manipulationView loadJsFiles];
     [self manipulationViewDidLoad:manipulationView];
-    
+    [self updateIcon];
+}
+
+-(void)updateIcon{
     //update the indication icon based on condition setup
     CGRect titleRect=[self positionOfElementWithId:@"s0"];
     if( [chapterTitle isEqualToString:@"The Naughty Monkey"]){
         titleRect=[self positionOfElementWithId:@"s2"];
     }
-    
     
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
         toDoIcon.image=PMIcon;
@@ -410,7 +412,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 
+-(void)hideIndicationIcon{
+    [bookView sendSubviewToBack:toDoIcon];
+    [bookView sendSubviewToBack:iconLabel];
+}
 
+    
 - (CGRect)positionOfElementWithId:(NSString *)elementID {
     NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
     NSString *result = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, elementID]];
@@ -3187,6 +3194,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
         
         [pc loadNextPage];
+       
     }
     else if (sentenceContext.currentSentence == sentenceContext.totalSentences &&
              [bookTitle containsString:@"Introduction to EMBRACE - Unknown"]) {
@@ -3200,11 +3208,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
         
         [pc loadNextPage];
+       
     }
     else {
        [self enableUserInteraction];
     }
 }
+
+
+
+
 
 /*
  *  Handles moving to next sentence, page, IMMenu, or assessment

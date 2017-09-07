@@ -82,12 +82,19 @@
                     <group obj1Id="maria" action="pickUp" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="maria" action="drop" obj2Id="ball"/>
                     <move obj1Id="ball" action="getIn" waypointId="ball_drop"/>
+                   
+                </step>
+            </idea>
+            
+            <idea number="26">
+                <step number="9">
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="ball"/>
                     <swapImage obj1Id="maria" action="throwHandsUp"/>
                     <animate obj1Id="ball" action="moveLeftAndCurve" waypointId="" areaId=""/>
                 </step>
             </idea>
             
-            <idea number="26"/>
+            
             <idea number="27"/>
             <idea number="28"/>
         </story>

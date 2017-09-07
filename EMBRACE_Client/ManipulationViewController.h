@@ -118,5 +118,7 @@ typedef enum InteractionMode {
 - (PossibleInteraction *)convertActionStepToPossibleInteraction:(ActionStep *)step;
 -(void)enableUserInteraction;
 -(void)disableUserInteraction;
+-(void)updateIcon;
+-(void)hideIndicationIcon;
 
 @end
