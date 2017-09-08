@@ -174,18 +174,25 @@ BOOL wasPathFollowed = false;
     self.menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //initialize toDo image
-    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
+    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,26,26)];
     toDoIcon.image=nil;
     [bookView addSubview:toDoIcon];
     PMIcon= [UIImage imageNamed:@"handIcon"];
     IMIcon= [UIImage imageNamed:@"thinkIcon"];
     RDIcon= [UIImage imageNamed:@"glassIcon"];
-    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
-    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(23, 23)];
-    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(23, 23)];
+    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(29, 29)];
+    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(26, 26)];
+    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(26, 26)];
+    
+     if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
+         PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(24, 24)];
+         IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(22, 22)];
+         RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(22, 22)];
+
+     }
     iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
-    iconLabel.font=[iconLabel.font fontWithSize:10];
-    iconLabel.textColor= [UIColor darkGrayColor];
+    iconLabel.font=[iconLabel.font fontWithSize:13];
+   // iconLabel.textColor= [UIColor darkGrayColor];
     iconLabel.textAlignment = UITextAlignmentCenter;
     [bookView addSubview:iconLabel];
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
@@ -386,11 +393,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 -(void)updateIcon{
     //update the indication icon based on condition setup
-    CGRect titleRect=[self positionOfElementWithId:@"s0"];
-    if( [chapterTitle isEqualToString:@"The Naughty Monkey"]){
-        titleRect=[self positionOfElementWithId:@"s2"];
-    }
-    
+    CGRect titleRect=[self positionOfElementWithId:@"t0"];
+
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
         toDoIcon.image=PMIcon;
         iconLabel.text=@"Move";
@@ -405,8 +409,20 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         toDoIcon.image=RDIcon;
         iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x-12, titleRect.origin.y+12);
-    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+20);
+    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-35, titleRect.origin.y+20);
+    if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
+        toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-20, titleRect.origin.y+20);
+    }
+    
+    
+    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+25);
+    toDoIcon.layer.shadowColor = [UIColor redColor].CGColor;
+    toDoIcon.layer.shadowOffset = CGSizeMake(0, 0);
+    toDoIcon.layer.shadowOpacity = 0.8;
+    toDoIcon.layer.shadowRadius = 2.0;
+    toDoIcon.clipsToBounds = NO;
+    
+    
     [bookView bringSubviewToFront:toDoIcon];
     [bookView bringSubviewToFront:iconLabel];
 }
