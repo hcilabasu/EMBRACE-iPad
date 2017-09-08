@@ -28,7 +28,7 @@
 @synthesize isSpeakerButtonEnabled;
 @synthesize ITSComplexity;
 @synthesize allowFileSync;
-
+@synthesize fastSkipSentense;
 static ConditionSetup *sharedInstance = nil;
 
 + (ConditionSetup *)sharedInstance {
@@ -69,6 +69,7 @@ static ConditionSetup *sharedInstance = nil;
         allowFileSync = YES;
         
         ITSComplexity=ITS_SYSTEM;
+
     }
     
     [ITSController sharedInstance].condition=self;

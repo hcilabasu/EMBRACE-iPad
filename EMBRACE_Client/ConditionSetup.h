@@ -66,6 +66,7 @@ typedef enum Complexity {
 @property (nonatomic) Mode currentMode; //PM or IM or ITSPM
 @property (nonatomic) Assessment assessmentMode;
 @property (nonatomic) Complexity ITSComplexity;
+@property (nonatomic) BOOL fastSkipSentense;
 @property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
