@@ -4794,6 +4794,7 @@
 		71F208FB1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71F208FA1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 */; };
 		71F208FD1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */; };
 		B5303A291EE790380057C7C4 /* india_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5303A281EE790380057C7C4 /* india_flip.png */; };
+		B5668E961F62113900616DD0 /* TheContestQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */; };
 		B5BFDF9E1EDCF88D008D571F /* eurasia_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
@@ -6696,7 +6697,6 @@
 		5C0ED6011C752C2F00003B5A /* TheContestQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A1.mp3; sourceTree = "<group>"; };
 		5C0ED6021C752C2F00003B5A /* TheContestQ3A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A2.mp3; sourceTree = "<group>"; };
 		5C0ED6031C752C2F00003B5A /* TheContestQ3A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A3.mp3; sourceTree = "<group>"; };
-		5C0ED6041C752C2F00003B5A /* TheContestQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A4.mp3; sourceTree = "<group>"; };
 		5C0ED6051C752C2F00003B5A /* TheContestQ4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ4.mp3; sourceTree = "<group>"; };
 		5C0ED6061C752C2F00003B5A /* TheContestQ4A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ4A1.mp3; sourceTree = "<group>"; };
 		5C0ED6071C752C2F00003B5A /* TheContestQ4A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ4A2.mp3; sourceTree = "<group>"; };
@@ -10849,6 +10849,7 @@
 		71F208FA1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 74608b10f15a9a95b4fdeea8a5b3e193.mp3; sourceTree = "<group>"; };
 		71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ea16adc67650f47c36595a2acb335cd2.mp3; sourceTree = "<group>"; };
 		B5303A281EE790380057C7C4 /* india_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = india_flip.png; sourceTree = "<group>"; };
+		B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A4.mp3; sourceTree = "<group>"; };
 		B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eurasia_flip.png; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
@@ -13543,7 +13544,7 @@
 				5C0ED6011C752C2F00003B5A /* TheContestQ3A1.mp3 */,
 				5C0ED6021C752C2F00003B5A /* TheContestQ3A2.mp3 */,
 				5C0ED6031C752C2F00003B5A /* TheContestQ3A3.mp3 */,
-				5C0ED6041C752C2F00003B5A /* TheContestQ3A4.mp3 */,
+				B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */,
 				5C0ED6051C752C2F00003B5A /* TheContestQ4.mp3 */,
 				5C0ED6061C752C2F00003B5A /* TheContestQ4A1.mp3 */,
 				5C0ED6071C752C2F00003B5A /* TheContestQ4A2.mp3 */,
@@ -20392,6 +20393,7 @@
 				1AA630EE1DB04C4C0006B194 /* PesosE.mp3 in Resources */,
 				71E424EC1E2D4DAC0029BDEC /* 02c05b0ce6d233ea4e5f713adc4f68d5.mp3 in Resources */,
 				718543901E2DE284002AAD7B /* d8a4c406b3697d9e1084fe794dab0a8f.mp3 in Resources */,
+				B5668E961F62113900616DD0 /* TheContestQ3A4.mp3 in Resources */,
 				5C40AEDE1CBF5C7C00BFEB9F /* PairedS.mp3 in Resources */,
 				5C0421BF1C618C2B001BBE9D /* TheLuckyStoneQ6A4S.mp3 in Resources */,
 				5C1C4D431D238A2800547783 /* CiliaE.mp3 in Resources */,

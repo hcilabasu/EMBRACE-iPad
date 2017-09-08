@@ -68,7 +68,7 @@ static ConditionSetup *sharedInstance = nil;
         
         allowFileSync = YES;
         
-        ITSComplexity=ITS_EASY;
+        ITSComplexity=ITS_SYSTEM;
     }
     
     [ITSController sharedInstance].condition=self;
