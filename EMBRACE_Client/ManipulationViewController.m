@@ -3441,7 +3441,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if (waitSecond>3){
                 waitSecond=3;
             }
-            if(conditionSetup.fastSkipSentense){
+            if(conditionSetup.fastSkipSentence){
                 waitSecond=0.01;
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
