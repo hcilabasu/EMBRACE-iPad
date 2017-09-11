@@ -291,8 +291,18 @@ BOOL wasPathFollowed = false;
         }
     }
     
- 
-}
+    if(ITS_SYSTEM== conditionSetup.ITSComplexity){
+         conditionSetup.ITSComplexity=ITS_SYSTEM;
+    }
+    
+    if( ITSIM_MODE==conditionSetup.currentMode  && ITS_SYSTEM== conditionSetup.ITSComplexity){
+        conditionSetup.ITSComplexity=ITS_MEDIUM;
+    }
+    
+    
+    
+    
+}//end of view did load
 
 - (void)dealloc {
     
