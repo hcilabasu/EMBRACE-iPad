@@ -4795,6 +4795,35 @@
 		71F208FD1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */; };
 		8B5E7F571F6863820042DF25 /* Story1-Spring-Festival-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F551F6863820042DF25 /* Story1-Spring-Festival-PM-4.xhtml */; };
 		8B5E7F581F6863820042DF25 /* Story1-Spring-Festival-PM-4S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F561F6863820042DF25 /* Story1-Spring-Festival-PM-4S.xhtml */; };
+		8B5E7F7A1F68817D0042DF25 /* banner_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F5D1F68817D0042DF25 /* banner_left.png */; };
+		8B5E7F7B1F68817D0042DF25 /* banner_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F5E1F68817D0042DF25 /* banner_right.png */; };
+		8B5E7F7C1F68817D0042DF25 /* banner_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F5F1F68817D0042DF25 /* banner_top.png */; };
+		8B5E7F7D1F68817D0042DF25 /* beans.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F601F68817D0042DF25 /* beans.png */; };
+		8B5E7F7E1F68817D0042DF25 /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F611F68817D0042DF25 /* candy.png */; };
+		8B5E7F7F1F68817D0042DF25 /* dad_lantern_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F621F68817D0042DF25 /* dad_lantern_red.png */; };
+		8B5E7F801F68817D0042DF25 /* daughter_featherduster_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F631F68817D0042DF25 /* daughter_featherduster_red.png */; };
+		8B5E7F811F68817D0042DF25 /* daughter_featherduster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F641F68817D0042DF25 /* daughter_featherduster.png */; };
+		8B5E7F821F68817D0042DF25 /* daughter_firework.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F651F68817D0042DF25 /* daughter_firework.png */; };
+		8B5E7F831F68817D0042DF25 /* daughter_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F661F68817D0042DF25 /* daughter_red.png */; };
+		8B5E7F841F68817D0042DF25 /* daughter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F671F68817D0042DF25 /* daughter.png */; };
+		8B5E7F851F68817D0042DF25 /* farmhouse_example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F681F68817D0042DF25 /* farmhouse_example.png */; };
+		8B5E7F861F68817D0042DF25 /* farmhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F691F68817D0042DF25 /* farmhouse.png */; };
+		8B5E7F871F68817D0042DF25 /* father_featherduster_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6A1F68817D0042DF25 /* father_featherduster_red.png */; };
+		8B5E7F881F68817D0042DF25 /* father_lantern2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6B1F68817D0042DF25 /* father_lantern2.png */; };
+		8B5E7F891F68817D0042DF25 /* father_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6C1F68817D0042DF25 /* father_red.png */; };
+		8B5E7F8A1F68817D0042DF25 /* father2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6D1F68817D0042DF25 /* father2.png */; };
+		8B5E7F8B1F68817D0042DF25 /* kitchen example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6E1F68817D0042DF25 /* kitchen example.png */; };
+		8B5E7F8C1F68817D0042DF25 /* kitchen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F6F1F68817D0042DF25 /* kitchen.png */; };
+		8B5E7F8D1F68817D0042DF25 /* lantern.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F701F68817D0042DF25 /* lantern.png */; };
+		8B5E7F8E1F68817D0042DF25 /* mother_featherduster_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F711F68817D0042DF25 /* mother_featherduster_red.png */; };
+		8B5E7F8F1F68817D0042DF25 /* mother_featherduster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F721F68817D0042DF25 /* mother_featherduster.png */; };
+		8B5E7F901F68817D0042DF25 /* mother_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F731F68817D0042DF25 /* mother_red.png */; };
+		8B5E7F911F68817D0042DF25 /* mother.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F741F68817D0042DF25 /* mother.png */; };
+		8B5E7F921F68817D0042DF25 /* son_featherduster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F751F68817D0042DF25 /* son_featherduster.png */; };
+		8B5E7F931F68817D0042DF25 /* son_fireworks.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F761F68817D0042DF25 /* son_fireworks.png */; };
+		8B5E7F941F68817D0042DF25 /* son.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F771F68817D0042DF25 /* son.png */; };
+		8B5E7F951F68817D0042DF25 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F781F68817D0042DF25 /* water.png */; };
+		8B5E7F961F68817D0042DF25 /* willow_park.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F791F68817D0042DF25 /* willow_park.png */; };
 		B50BE1901F678F1E00DC4227 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1371F678F1E00DC4227 /* container.xml */; };
 		B50BE1911F678F1E00DC4227 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1381F678F1E00DC4227 /* mimetype */; };
 		B50BE1921F678F1E00DC4227 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE13A1F678F1E00DC4227 /* AlternateImages-MetaData.xml */; };
@@ -10916,6 +10945,35 @@
 		71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ea16adc67650f47c36595a2acb335cd2.mp3; sourceTree = "<group>"; };
 		8B5E7F551F6863820042DF25 /* Story1-Spring-Festival-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-4.xhtml"; sourceTree = "<group>"; };
 		8B5E7F561F6863820042DF25 /* Story1-Spring-Festival-PM-4S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-4S.xhtml"; sourceTree = "<group>"; };
+		8B5E7F5D1F68817D0042DF25 /* banner_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_left.png; sourceTree = "<group>"; };
+		8B5E7F5E1F68817D0042DF25 /* banner_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_right.png; sourceTree = "<group>"; };
+		8B5E7F5F1F68817D0042DF25 /* banner_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_top.png; sourceTree = "<group>"; };
+		8B5E7F601F68817D0042DF25 /* beans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beans.png; sourceTree = "<group>"; };
+		8B5E7F611F68817D0042DF25 /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
+		8B5E7F621F68817D0042DF25 /* dad_lantern_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dad_lantern_red.png; sourceTree = "<group>"; };
+		8B5E7F631F68817D0042DF25 /* daughter_featherduster_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daughter_featherduster_red.png; sourceTree = "<group>"; };
+		8B5E7F641F68817D0042DF25 /* daughter_featherduster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daughter_featherduster.png; sourceTree = "<group>"; };
+		8B5E7F651F68817D0042DF25 /* daughter_firework.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daughter_firework.png; sourceTree = "<group>"; };
+		8B5E7F661F68817D0042DF25 /* daughter_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daughter_red.png; sourceTree = "<group>"; };
+		8B5E7F671F68817D0042DF25 /* daughter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daughter.png; sourceTree = "<group>"; };
+		8B5E7F681F68817D0042DF25 /* farmhouse_example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farmhouse_example.png; sourceTree = "<group>"; };
+		8B5E7F691F68817D0042DF25 /* farmhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farmhouse.png; sourceTree = "<group>"; };
+		8B5E7F6A1F68817D0042DF25 /* father_featherduster_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = father_featherduster_red.png; sourceTree = "<group>"; };
+		8B5E7F6B1F68817D0042DF25 /* father_lantern2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = father_lantern2.png; sourceTree = "<group>"; };
+		8B5E7F6C1F68817D0042DF25 /* father_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = father_red.png; sourceTree = "<group>"; };
+		8B5E7F6D1F68817D0042DF25 /* father2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = father2.png; sourceTree = "<group>"; };
+		8B5E7F6E1F68817D0042DF25 /* kitchen example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kitchen example.png"; sourceTree = "<group>"; };
+		8B5E7F6F1F68817D0042DF25 /* kitchen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitchen.png; sourceTree = "<group>"; };
+		8B5E7F701F68817D0042DF25 /* lantern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lantern.png; sourceTree = "<group>"; };
+		8B5E7F711F68817D0042DF25 /* mother_featherduster_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother_featherduster_red.png; sourceTree = "<group>"; };
+		8B5E7F721F68817D0042DF25 /* mother_featherduster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother_featherduster.png; sourceTree = "<group>"; };
+		8B5E7F731F68817D0042DF25 /* mother_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother_red.png; sourceTree = "<group>"; };
+		8B5E7F741F68817D0042DF25 /* mother.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother.png; sourceTree = "<group>"; };
+		8B5E7F751F68817D0042DF25 /* son_featherduster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = son_featherduster.png; sourceTree = "<group>"; };
+		8B5E7F761F68817D0042DF25 /* son_fireworks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = son_fireworks.png; sourceTree = "<group>"; };
+		8B5E7F771F68817D0042DF25 /* son.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = son.png; sourceTree = "<group>"; };
+		8B5E7F781F68817D0042DF25 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		8B5E7F791F68817D0042DF25 /* willow_park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = willow_park.png; sourceTree = "<group>"; };
 		B50BE1371F678F1E00DC4227 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		B50BE1381F678F1E00DC4227 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		B50BE13A1F678F1E00DC4227 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -18825,6 +18883,35 @@
 		B50BE1441F678F1E00DC4227 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8B5E7F5D1F68817D0042DF25 /* banner_left.png */,
+				8B5E7F5E1F68817D0042DF25 /* banner_right.png */,
+				8B5E7F5F1F68817D0042DF25 /* banner_top.png */,
+				8B5E7F601F68817D0042DF25 /* beans.png */,
+				8B5E7F611F68817D0042DF25 /* candy.png */,
+				8B5E7F621F68817D0042DF25 /* dad_lantern_red.png */,
+				8B5E7F631F68817D0042DF25 /* daughter_featherduster_red.png */,
+				8B5E7F641F68817D0042DF25 /* daughter_featherduster.png */,
+				8B5E7F651F68817D0042DF25 /* daughter_firework.png */,
+				8B5E7F661F68817D0042DF25 /* daughter_red.png */,
+				8B5E7F671F68817D0042DF25 /* daughter.png */,
+				8B5E7F681F68817D0042DF25 /* farmhouse_example.png */,
+				8B5E7F691F68817D0042DF25 /* farmhouse.png */,
+				8B5E7F6A1F68817D0042DF25 /* father_featherduster_red.png */,
+				8B5E7F6B1F68817D0042DF25 /* father_lantern2.png */,
+				8B5E7F6C1F68817D0042DF25 /* father_red.png */,
+				8B5E7F6D1F68817D0042DF25 /* father2.png */,
+				8B5E7F6E1F68817D0042DF25 /* kitchen example.png */,
+				8B5E7F6F1F68817D0042DF25 /* kitchen.png */,
+				8B5E7F701F68817D0042DF25 /* lantern.png */,
+				8B5E7F711F68817D0042DF25 /* mother_featherduster_red.png */,
+				8B5E7F721F68817D0042DF25 /* mother_featherduster.png */,
+				8B5E7F731F68817D0042DF25 /* mother_red.png */,
+				8B5E7F741F68817D0042DF25 /* mother.png */,
+				8B5E7F751F68817D0042DF25 /* son_featherduster.png */,
+				8B5E7F761F68817D0042DF25 /* son_fireworks.png */,
+				8B5E7F771F68817D0042DF25 /* son.png */,
+				8B5E7F781F68817D0042DF25 /* water.png */,
+				8B5E7F791F68817D0042DF25 /* willow_park.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -19244,6 +19331,7 @@
 				5C0ED9111C75334200003B5A /* ShoppingattheMarketQ7A3.mp3 in Resources */,
 				5CBA9D481CAB7E7E008DEF04 /* HighchairS.mp3 in Resources */,
 				5CAE95E31C921DCD00702DB4 /* FrameS.mp3 in Resources */,
+				8B5E7F821F68817D0042DF25 /* daughter_firework.png in Resources */,
 				5C72E6411C72A46F00CE4877 /* TheSiouxTeepeeQ4A4.mp3 in Resources */,
 				5C72E6571C72A46F00CE4877 /* TheInuitIglooQ7A2.mp3 in Resources */,
 				71E4252D1E2D4DAD0029BDEC /* 66687a034c8044fae948794440124d36.mp3 in Resources */,
@@ -19298,6 +19386,7 @@
 				71181B751E4B841500DF2FFE /* 2ba019bfb86a26f7e4c8b4078d4db78f.mp3 in Resources */,
 				5CF6CA141CCB2BB50093D3FD /* Hawai'iE.mp3 in Resources */,
 				5C137D111C8A79CC0023901C /* WigwamE.mp3 in Resources */,
+				8B5E7F891F68817D0042DF25 /* father_red.png in Resources */,
 				5C9C07BD1C57385A00702FCD /* BFCS_14.m4a in Resources */,
 				5C0ED6B01C752C2F00003B5A /* GettingReadyQ7.mp3 in Resources */,
 				71E425021E2D4DAC0029BDEC /* 28ac9065ac247669c068b7fbe3c6ba9b.mp3 in Resources */,
@@ -19320,6 +19409,7 @@
 				5CCD8FD51C7405EC00D2EC2B /* VolcanoesQ3A4.mp3 in Resources */,
 				5C9C07C61C57385A00702FCD /* BFCS_8.m4a in Resources */,
 				5C9C07B11C57385A00702FCD /* BFCS1_2A.m4a in Resources */,
+				8B5E7F881F68817D0042DF25 /* father_lantern2.png in Resources */,
 				5C0421CA1C618C2B001BBE9D /* TheLuckyStoneQ8S.mp3 in Resources */,
 				5C9C07C41C57385A00702FCD /* BFCS_5A.m4a in Resources */,
 				5CCD8E6F1C73E73200D2EC2B /* TheMovingEarthQ5A3S.mp3 in Resources */,
@@ -19336,6 +19426,7 @@
 				5C62A90D1C851D1000F28BEB /* Silver_def_E.mp3 in Resources */,
 				718543A21E2DE284002AAD7B /* fc8dcc51e2030bbd6fa19337c73fdf6d.mp3 in Resources */,
 				5D9E34721C590E9500636150 /* TheLopezFamilyQ1A3.mp3 in Resources */,
+				8B5E7F8E1F68817D0042DF25 /* mother_featherduster_red.png in Resources */,
 				5C9B8B641CB5EFC800420053 /* HayloftS.mp3 in Resources */,
 				71E425251E2D4DAD0029BDEC /* 5a5727d67bad1e7449ca685bb284a393.mp3 in Resources */,
 				5D9E34791C590E9500636150 /* TheLopezFamilyQ3.mp3 in Resources */,
@@ -19592,6 +19683,7 @@
 				5CA5CC481CD1A9C7002A631F /* GettingReadyS6E.mp3 in Resources */,
 				5C0421E41C618C2B001BBE9D /* TheLuckyStoneQ6.mp3 in Resources */,
 				5CF7931D1C76986E00216337 /* BFTC6.m4a in Resources */,
+				8B5E7F871F68817D0042DF25 /* father_featherduster_red.png in Resources */,
 				5CAE95D31C921DCD00702DB4 /* BarkS.mp3 in Resources */,
 				5D9E346F1C590E9500636150 /* TheLopezFamilyQ1.mp3 in Resources */,
 				5C72E63E1C72A46F00CE4877 /* TheSiouxTeepeeQ5A2.mp3 in Resources */,
@@ -19679,6 +19771,7 @@
 				5C0ED55A1C75080300003B5A /* KeyIngredientsQ2A2S.mp3 in Resources */,
 				5CCD8F8C1C7405EC00D2EC2B /* TornadosQ3A1.mp3 in Resources */,
 				5C40E01E1CC863FC00D8BC48 /* CalfS.mp3 in Resources */,
+				8B5E7F7B1F68817D0042DF25 /* banner_right.png in Resources */,
 				1A6320D81C0E4D3B00251CB3 /* bg_kitchen.png in Resources */,
 				5C1C4D4A1D238A2800547783 /* PumpsE.mp3 in Resources */,
 				718543551E2DE284002AAD7B /* 5d3581071e6af5e1a4955dde23e727b9.mp3 in Resources */,
@@ -19910,6 +20003,7 @@
 				1AA631391DB04C9F0006B194 /* LadderE.mp3 in Resources */,
 				5C5D09871CA9F6DD00B7C8D9 /* WrappedE.mp3 in Resources */,
 				71E4253B1E2D4DAD0029BDEC /* 816aff791f71467a80f5fe9c34b9668b.mp3 in Resources */,
+				8B5E7F851F68817D0042DF25 /* farmhouse_example.png in Resources */,
 				B50BE1DA1F678F1E00DC4227 /* Story5-Catch-PM-1.xhtml in Resources */,
 				5C0ED65A1C752C2F00003B5A /* CleaningUpQ1A4.mp3 in Resources */,
 				1A63211A1C0E4D3B00251CB3 /* tote_for_scale.png in Resources */,
@@ -19974,6 +20068,7 @@
 				5C0ED8991C75334200003B5A /* HomecomingQ4A3.mp3 in Resources */,
 				1AA631381DB04C9F0006B194 /* HoleE.mp3 in Resources */,
 				5C0422171C618C2B001BBE9D /* WordsOfWisdomQ8A1.mp3 in Resources */,
+				8B5E7F8C1F68817D0042DF25 /* kitchen.png in Resources */,
 				B50BE1B41F678F1E00DC4227 /* metadata.xml in Resources */,
 				1AA631841DB04CD30006B194 /* StoneE.mp3 in Resources */,
 				5C09DF2E1C84EFF300EC4E78 /* Flames_def_E.mp3 in Resources */,
@@ -19982,6 +20077,7 @@
 				5C9C07A51C57385A00702FCD /* BFCE_3.m4a in Resources */,
 				5C67B1151ED3DB41001465B0 /* CigaretteSmokeHurtsYourLungsQ5A3.mp3 in Resources */,
 				71F208FD1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 in Resources */,
+				8B5E7F901F68817D0042DF25 /* mother_red.png in Resources */,
 				71154A9E1E5C3B1C00A33DE5 /* 87c58db4239baa742a9eb825e6afc363.mp3 in Resources */,
 				5C9B8B701CB5EFC800420053 /* PumpkinsS.mp3 in Resources */,
 				5C67B1431ED3DB41001465B0 /* MusclesUseOxygenQ2A4.mp3 in Resources */,
@@ -19999,6 +20095,7 @@
 				5C09DF911C85007900EC4E78 /* Nest_def_E.mp3 in Resources */,
 				7185437D1E2DE284002AAD7B /* bcc850d103ec1873f3a46ade32e727b3.mp3 in Resources */,
 				5CCD8E4C1C73E73200D2EC2B /* IntroductionToNaturalDisastersQ1A3S.mp3 in Resources */,
+				8B5E7F801F68817D0042DF25 /* daughter_featherduster_red.png in Resources */,
 				5D9E343C1C590E9500636150 /* old_MoreIsMissingQ4A3.mp3 in Resources */,
 				71D6C97C1E5CA86C00AD3E28 /* 07f5293122162fa9d8a67c957d8b8375.mp3 in Resources */,
 				5C0ED72E1C752C2F00003B5A /* WhoIsTheBestAnimalQ6A1.mp3 in Resources */,
@@ -20306,6 +20403,7 @@
 				1A0246581E4AD19900772200 /* FarmerS.mp3 in Resources */,
 				5CF6CA1A1CCB2BB50093D3FD /* IslandsE.mp3 in Resources */,
 				5CCD8F681C7405EC00D2EC2B /* TheMovingEarthQ3.mp3 in Resources */,
+				8B5E7F7F1F68817D0042DF25 /* dad_lantern_red.png in Resources */,
 				5C09DF2F1C84EFF300EC4E78 /* Law_def_E.mp3 in Resources */,
 				5C0ED8491C75334200003B5A /* AFriendinNeedQ1A3.mp3 in Resources */,
 				5CAE95E81C921DCD00702DB4 /* HuntedS.mp3 in Resources */,
@@ -20782,6 +20880,7 @@
 				5C9C07981C57385A00702FCD /* BFCE7_1.m4a in Resources */,
 				036C268F1D9B1B74003626FC /* sequences_EEG03.xml in Resources */,
 				7185438C1E2DE284002AAD7B /* d33a411cd1a0cea3352ae8196b144755.mp3 in Resources */,
+				8B5E7F921F68817D0042DF25 /* son_featherduster.png in Resources */,
 				5C0421B61C618C2B001BBE9D /* TheLuckyStoneQ4S.mp3 in Resources */,
 				5CA90E131CC03EB500E0A5F6 /* HogansE.mp3 in Resources */,
 				5C0ED6981C752C2F00003B5A /* GettingReadyQ2A1.mp3 in Resources */,
@@ -21193,6 +21292,7 @@
 				5C04213A1C618C2B001BBE9D /* BabyBrotherQ2.mp3 in Resources */,
 				5CBA9D541CAB7E7E008DEF04 /* PetsS.mp3 in Resources */,
 				1AE88FBB1E47884500B86797 /* Eggs_def_S.mp3 in Resources */,
+				8B5E7F931F68817D0042DF25 /* son_fireworks.png in Resources */,
 				1AA630BD1DB04C100006B194 /* PacoE.mp3 in Resources */,
 				711939701E2F3CF8003D7EB5 /* f81c539a6d946e5b6cfefa85fb0d580d.mp3 in Resources */,
 				71193BC61E2FB797003D7EB5 /* 800d05eefe4e180d4419fc263b73142a.mp3 in Resources */,
@@ -21420,6 +21520,7 @@
 				5CF6CA391CCB2BB50093D3FD /* VolcanoesE.mp3 in Resources */,
 				5C09DFA31C85080900EC4E78 /* Advice_def_E.mp3 in Resources */,
 				5CCD8F721C7405EC00D2EC2B /* TheMovingEarthQ5.mp3 in Resources */,
+				8B5E7F7A1F68817D0042DF25 /* banner_left.png in Resources */,
 				71E425841E2D4DAD0029BDEC /* f45dcecf6659dce5f960eee9afb02164.mp3 in Resources */,
 				1AE88FD11E47885A00B86797 /* HoleS.mp3 in Resources */,
 				5C9C07BA1C57385A00702FCD /* BFCS_10.m4a in Resources */,
@@ -21520,6 +21621,7 @@
 				5C9C07CC1C57385A00702FCD /* BFE_S1.m4a in Resources */,
 				5C72E4F81C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 in Resources */,
 				5C137CF81C8A79CC0023901C /* ModernE.mp3 in Resources */,
+				8B5E7F8D1F68817D0042DF25 /* lantern.png in Resources */,
 				5C9B8B491CB5EFC800420053 /* OwlE.mp3 in Resources */,
 				5C62A9771C854A2200F28BEB /* Arteries_def_S.mp3 in Resources */,
 				5C0421591C618C2B001BBE9D /* BabyBrotherQ8A1.mp3 in Resources */,
@@ -21636,6 +21738,7 @@
 				5C72E7DF1C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ3A2.mp3 in Resources */,
 				5CCD8FAF1C7405EC00D2EC2B /* TsunamisQ2A1.mp3 in Resources */,
 				5C40E0321CC863FC00D8BC48 /* SuccessfulS.mp3 in Resources */,
+				8B5E7F7D1F68817D0042DF25 /* beans.png in Resources */,
 				1AA630A91DB0495E0006B194 /* HorseE.mp3 in Resources */,
 				5C137D0F1C8A79CC0023901C /* TotempolesE.mp3 in Resources */,
 				036C26B71D9B1B8D003626FC /* sequences_MCD209.xml in Resources */,
@@ -22112,7 +22215,9 @@
 				5CF792D71C7694A900216337 /* TheContestQ5A2S.mp3 in Resources */,
 				5C40E0221CC863FC00D8BC48 /* CorralS.mp3 in Resources */,
 				5C72E5011C727E2000CE4877 /* TheNavajoHoganQ5A3.mp3 in Resources */,
+				8B5E7F7E1F68817D0042DF25 /* candy.png in Resources */,
 				5C09DF661C84F7DB00EC4E78 /* Cell_def_E.mp3 in Resources */,
+				8B5E7F831F68817D0042DF25 /* daughter_red.png in Resources */,
 				711939251E2F3CF8003D7EB5 /* 49da1b6e0c5e4641def10de7e62a2b7e.mp3 in Resources */,
 				5D9E33D01C590E9400636150 /* IsPacoAThiefQ5A1.mp3 in Resources */,
 				5C09DF931C85007900EC4E78 /* Purr_def_E.mp3 in Resources */,
@@ -22366,11 +22471,13 @@
 				711939231E2F3CF8003D7EB5 /* 463915ef4a200ccfb053e8a266a88938.mp3 in Resources */,
 				71E4258E1E2D4DAD0029BDEC /* KeyIngredientsS13S.mp3 in Resources */,
 				5C72E7B31C72BF1000CE4877 /* NewtonsfirstlawQ5A3.mp3 in Resources */,
+				8B5E7F911F68817D0042DF25 /* mother.png in Resources */,
 				71F208FB1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 in Resources */,
 				5C72E8311C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ6A4.mp3 in Resources */,
 				5C9C07B31C57385A00702FCD /* BFCS1_4.m4a in Resources */,
 				71193CD91E2FCF4D003D7EB5 /* 38cae1bc42dbca2e1046bb4a1664cd3d.mp3 in Resources */,
 				5C137D0C1C8A79CC0023901C /* SwampsE.mp3 in Resources */,
+				8B5E7F941F68817D0042DF25 /* son.png in Resources */,
 				71193B911E2FB797003D7EB5 /* 3684bc725a67efb351836d14d90c7b0c.mp3 in Resources */,
 				5C0422131C618C2B001BBE9D /* WordsOfWisdomQ7A2.mp3 in Resources */,
 				5CD642B81CC5ED8500211BD4 /* Rocket'sE.mp3 in Resources */,
@@ -22412,6 +22519,7 @@
 				5C030F901C863196006E1BEA /* Farm_def_S.mp3 in Resources */,
 				5C9C07C21C57385A00702FCD /* BFCS_4.m4a in Resources */,
 				5C72E7F41C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ7A3.mp3 in Resources */,
+				8B5E7F8F1F68817D0042DF25 /* mother_featherduster.png in Resources */,
 				5C72E5FC1C72A46F00CE4877 /* TheHaidaPlankHouseQ3A3.mp3 in Resources */,
 				5C0ED8651C75334200003B5A /* AGiftfortheBrideQ1A1.mp3 in Resources */,
 				711939741E2F3CF8003D7EB5 /* HowDoObjectsMoveS1S.mp3 in Resources */,
@@ -22511,6 +22619,7 @@
 				5CF6CA5F1CCB2BB50093D3FD /* SpewS.mp3 in Resources */,
 				71D6C9BB1E5CA86C00AD3E28 /* cabe54249d5f9be2fe92bf011de56f32.mp3 in Resources */,
 				71181B401E4B841500DF2FFE /* 72c250a8fdf9d850ca0367b70d2d2f22.mp3 in Resources */,
+				8B5E7F7C1F68817D0042DF25 /* banner_top.png in Resources */,
 				5C13C8891CCEC0C9005072DB /* EarthquakesE.mp3 in Resources */,
 				1A24DD821E5523D100982F45 /* ListS.mp3 in Resources */,
 				5CCD8FC61C7405EC00D2EC2B /* TsunamisQ6A4.mp3 in Resources */,
@@ -22610,6 +22719,7 @@
 				5C72E6061C72A46F00CE4877 /* TheHaidaPlankHouseQ1A3.mp3 in Resources */,
 				5C72E5241C727E2000CE4877 /* NativeIntroQ1A3.mp3 in Resources */,
 				71193D341E2FCF4D003D7EB5 /* fe9a6b1ab869358c711d5bbb5ae5b0cf.mp3 in Resources */,
+				8B5E7F841F68817D0042DF25 /* daughter.png in Resources */,
 				5C0ED70A1C752C2F00003B5A /* TheWiseOwlQ5.mp3 in Resources */,
 				5C04215E1C618C2B001BBE9D /* CatchQ1A1.mp3 in Resources */,
 				5D9E33CE1C590E9400636150 /* IsPacoAThiefQ4A4.mp3 in Resources */,
@@ -22733,6 +22843,7 @@
 				5C40E01C1CC863FC00D8BC48 /* VaseE.mp3 in Resources */,
 				1AA630EF1DB04C4C0006B194 /* SofiaE.mp3 in Resources */,
 				71154A8D1E5C3B1C00A33DE5 /* 009cccf78fb035ffde171034f1866493.mp3 in Resources */,
+				8B5E7F951F68817D0042DF25 /* water.png in Resources */,
 				1AA6313C1DB04C9F0006B194 /* RockE.mp3 in Resources */,
 				5C9B8B4B1CB5EFC800420053 /* PumpkinE.mp3 in Resources */,
 				1AA631361DB04C9F0006B194 /* AxeE.mp3 in Resources */,
@@ -22766,6 +22877,7 @@
 				5C72E6481C72A46F00CE4877 /* TheSiouxTeepeeQ3A2.mp3 in Resources */,
 				71D6C9901E5CA86C00AD3E28 /* 82a175c8bfb13c99646da7e2860b0d99.mp3 in Resources */,
 				5D9E343F1C590E9500636150 /* old_MoreIsMissingQ6A1.mp3 in Resources */,
+				8B5E7F8A1F68817D0042DF25 /* father2.png in Resources */,
 				5C9B8B711CB5EFC800420053 /* PurrS.mp3 in Resources */,
 				1A0246541E4AD19900772200 /* CatS.mp3 in Resources */,
 				5C0ED8AB1C75334200003B5A /* KeyIngredientsQ1A1.mp3 in Resources */,
@@ -23368,6 +23480,7 @@
 				5C0421C61C618C2B001BBE9D /* TheLuckyStoneQ8A1S.mp3 in Resources */,
 				71193D2B1E2FCF4D003D7EB5 /* dfcfe775a96ed92cc496c388e2d3dfe8.mp3 in Resources */,
 				5C40AEE21CBF5C7C00BFEB9F /* RocketS.mp3 in Resources */,
+				8B5E7F811F68817D0042DF25 /* daughter_featherduster.png in Resources */,
 				5D9E349C1C590E9500636150 /* TheMysteryIsSolvedQ3.mp3 in Resources */,
 				71E4253A1E2D4DAD0029BDEC /* 7ffddc4c16aef4762297897db3487f51.mp3 in Resources */,
 				5C62A95C1C85453F00F28BEB /* Drifted_def_S.mp3 in Resources */,
@@ -23483,6 +23596,7 @@
 				718543891E2DE284002AAD7B /* ce1cd5bb39eeff35b269a65781755878.mp3 in Resources */,
 				71181B3D1E4B841500DF2FFE /* 69069a1e5514bdb10d8f2bf99b476f36.mp3 in Resources */,
 				5CCD8E5C1C73E73200D2EC2B /* TheMovingEarthQ1A4S.mp3 in Resources */,
+				8B5E7F8B1F68817D0042DF25 /* kitchen example.png in Resources */,
 				5C72E7EE1C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ6A2.mp3 in Resources */,
 				71E425441E2D4DAD0029BDEC /* 88588604e0a22e0d460b23a64edb2c35.mp3 in Resources */,
 				5C0ED6C21C752C2F00003B5A /* TheBestFarmAwardQ3A3.mp3 in Resources */,
@@ -23560,6 +23674,7 @@
 				71181B181E4B841400DF2FFE /* 335ab506a34088bee76d84ed226d1f4e.mp3 in Resources */,
 				71E425291E2D4DAD0029BDEC /* 5e54b3d6271852004645171ad18da22d.mp3 in Resources */,
 				7119397A1E2F3CF8003D7EB5 /* HowDoObjectsMoveS7S.mp3 in Resources */,
+				8B5E7F861F68817D0042DF25 /* farmhouse.png in Resources */,
 				711939791E2F3CF8003D7EB5 /* HowDoObjectsMoveS6S.mp3 in Resources */,
 				5C72E7811C72BF1000CE4877 /* NewtonsFirstLawonEarthQ1A1.mp3 in Resources */,
 				5C72E76A1C72BF1000CE4877 /* HowdoObjectsMoveQ1A3.mp3 in Resources */,
@@ -23579,6 +23694,7 @@
 				71193D021E2FCF4D003D7EB5 /* 8660d607e8cc24ab0a614d5e669e2fee.mp3 in Resources */,
 				1A6321131C0E4D3B00251CB3 /* sofia_spoon_up.png in Resources */,
 				71193D0B1E2FCF4D003D7EB5 /* 927ba424218d358bf8749f6c82f4f382.mp3 in Resources */,
+				8B5E7F961F68817D0042DF25 /* willow_park.png in Resources */,
 				5CF793341C76986E00216337 /* BFEC7.m4a in Resources */,
 				5C0ED8F11C75334200003B5A /* ShoppingattheMarketQ1A1.mp3 in Resources */,
 				711939651E2F3CF8003D7EB5 /* e3622c4166e4c138809c76189450cf53.mp3 in Resources */,
