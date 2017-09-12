@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
+    <hotspots>
+           <hotspot objId="mother" action="getIn" role="subject" x="50%" y="50%"/>
+           <hotspot objId="mother" action="reversePickUp" role="subject" x="50%" y="50%"/>
+           <hotspot objId="treats" action="reversePickUp" role="object" x="50%" y="50%"/>
+    </hotspots>
 </metadata>

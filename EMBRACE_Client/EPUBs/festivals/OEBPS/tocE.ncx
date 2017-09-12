@@ -38,7 +38,12 @@
                 </navLabel>
                 <content src="Text/Story1-Spring-Festival-PM-3.xhtml"/>
             </navPoint>
-        
+            <navPoint class="PM_MODE" id="story1-PM-4">
+                <navLabel>
+                    <text>Spring Festival - PM</text>
+                </navLabel>
+                <content src="Text/Story1-Spring-Festival-PM-4.xhtml"/>
+            </navPoint>
 
         
     </navMap>
@@ -57,6 +62,11 @@
         </pageTarget>
         <pageTarget id="p4" type="normal" value="4">
             <navLabel><text>Chapter 1 - Spring Festival - Physical Manipulation 3</text></navLabel>
-            
+            <content src="Text/Story1-Spring-Festival-PM-3.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p5" type="normal" value="5">
+            <navLabel><text>Chapter 1 - Spring Festival - Physical Manipulation 4</text></navLabel>
+            <content src="Text/Story1-Spring-Festival-PM-4.xhtml"/>
+        </pageTarget>
     </pageList>
 </ncx>
