@@ -426,7 +426,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     
     iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+25);
-    toDoIcon.layer.shadowColor = [UIColor redColor].CGColor;
+    toDoIcon.layer.shadowColor = [UIColor blueColor].CGColor;
     toDoIcon.layer.shadowOffset = CGSizeMake(0, 0);
     toDoIcon.layer.shadowOpacity = 0.8;
     toDoIcon.layer.shadowRadius = 2.0;
