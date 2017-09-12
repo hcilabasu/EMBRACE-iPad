@@ -430,7 +430,7 @@
             </sentence>            
             <sentence number="2" action="no">                
                 <attributes complexity="10"/>                
-                <text>Juan added a force to start the ball rolling, but why did it stop.</text>                
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
                 <ideas>                    
                     <idea number="22"/>                    
                 </ideas>                
@@ -467,7 +467,7 @@
             </sentence>            
             <sentence number="6" action="no">                
                 <attributes complexity="2"/>                
-                <text>Juan added a force to start the ball rolling, but why did it stop.</text>                
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
                 <ideas>                    
                     <idea number="22"/>                    
                 </ideas>                
@@ -503,7 +503,7 @@
             </sentence>            
             <sentence number="10" action="no">                
                 <attributes complexity="1"/>                
-                <text>But why did it stop.</text>                
+                <text>But why did it stop?</text>
                 <ideas>                    
                     <idea number="22"/>                    
                 </ideas>                
@@ -562,7 +562,7 @@
             </sentence>            
             <sentence number="16" action="no">                
                 <attributes complexity="10"/>                
-                <text>Why does the ball fall to the ground.</text>                
+                <text>Why does the ball fall to the ground?</text>
                 <ideas>                    
                     <idea number="26"/>                    
                 </ideas>                
@@ -599,7 +599,7 @@
             </sentence>            
             <sentence number="20" action="no">                
                 <attributes complexity="2"/>                
-                <text>Why does the ball fall to the ground.</text>                
+                <text>Why does the ball fall to the ground?</text>
                 <ideas>                    
                     <idea number="26"/>                    
                 </ideas>                
