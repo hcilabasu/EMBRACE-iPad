@@ -3,7 +3,7 @@
     <ActivityAssessment>
         <Questions title= "The Lopez Family">
             <Question number="1">
-                <QuestionText>¿Cuántas mascotas tiene la familia Lopez?</QuestionText>
+                <QuestionText>¿Cuántas mascotas tiene la familia López?</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ1S.mp3</QuestionAudio>
                 <Answer1>Dos mascotas</Answer1>
                 <Answer1Audio>TheLopezFamilyQ1A1S.mp3</Answer1Audio>

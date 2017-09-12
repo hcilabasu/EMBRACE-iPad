@@ -3,7 +3,7 @@
     <ActivityAssessment>
                 <Questions title="The Contest">
                     <Question number="1">
-                        <QuestionText>Cómo se llama el granjero?</QuestionText>
+                        <QuestionText>¿Cómo se llama el granjero?</QuestionText>
                         <QuestionAudio>TheContestQ1S.mp3</QuestionAudio>
                         <Answer1>Manuel</Answer1>
                         <Answer1Audio>TheContestQ1A1S.mp3</Answer1Audio>
@@ -16,7 +16,7 @@
                         <Answer4Audio>TheContestQ1A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="2">
-                        <QuestionText>Qué día viene la juez?</QuestionText>
+                        <QuestionText>¿Qué día viene la juez?</QuestionText>
                         <QuestionAudio>TheContestQ2S.mp3</QuestionAudio>
                         <Answer1>Domingo</Answer1>
                         <Answer1Audio>TheContestQ2A1S.mp3</Answer1Audio>
@@ -29,7 +29,7 @@
                         <Answer4Audio>TheContestQ2A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="3">
-                        <QuestionText>Qué animal saltó a los brazos de Manuel?</QuestionText>
+                        <QuestionText>¿Qué animal saltó a los brazos de Manuel?</QuestionText>
                         <QuestionAudio>TheContestQ3S.mp3</QuestionAudio>
                         <Answer1>La gata</Answer1>
                         <Answer1Audio>TheContestQ3A1S.mp3</Answer1Audio>
@@ -42,7 +42,7 @@
                         <Answer4Audio>TheContestQ3A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="4">
-                        <QuestionText>En qué animal se sentó la gallina?</QuestionText>
+                        <QuestionText>¿En qué animal se sentó la gallina?</QuestionText>
                         <QuestionAudio>TheContestQ4S.mp3</QuestionAudio>
                         <Answer1>La vaca</Answer1>
                         <Answer1Audio>TheContestQ4A1S.mp3</Answer1Audio>
@@ -55,7 +55,7 @@
                         <Answer4Audio>TheContestQ4A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="5">
-                        <QuestionText>Por qué Manuel quiere trabajar duro esta semana?</QuestionText>
+                        <QuestionText>¿Por qué Manuel quiere trabajar duro esta semana?</QuestionText>
                         <QuestionAudio>TheContestQ5S.mp3</QuestionAudio>
                         <Answer1>Para ganar el premio de la mejor granja</Answer1>
                         <Answer1Audio>TheContestQ5A1S.mp3</Answer1Audio>
@@ -68,7 +68,7 @@
                         <Answer4Audio>TheContestQ5A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="6">
-                        <QuestionText>Después de que la cabra se acercó a la vaca, qué otro animal estaba cerca?</QuestionText>
+                        <QuestionText>¿Después de que la cabra se acercó a la vaca, qué otro animal estaba cerca?</QuestionText>
                         <QuestionAudio>TheContestQ6S.mp3</QuestionAudio>
                         <Answer1>El caballo</Answer1>
                         <Answer1Audio>TheContestQ6A1S.mp3</Answer1Audio>
@@ -81,7 +81,7 @@
                         <Answer4Audio>TheContestQ6A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="7">
-                        <QuestionText>Cómo salió la cabra de su cuarto?</QuestionText>
+                        <QuestionText>¿Cómo salió la cabra de su cuarto?</QuestionText>
                         <QuestionAudio>TheContestQ7S.mp3</QuestionAudio>
                         <Answer1>Manuel le abrió</Answer1>
                         <Answer1Audio>TheContestQ7A1S.mp3</Answer1Audio>
