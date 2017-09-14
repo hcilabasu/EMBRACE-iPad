@@ -417,13 +417,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         toDoIcon.image=RDIcon;
         iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-35, titleRect.origin.y+20);
+    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-38, titleRect.origin.y+25);
     if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
-        toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-20, titleRect.origin.y+20);
+        toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-20, titleRect.origin.y+25);
     }
     
     
-    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+25);
+    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+22);
     toDoIcon.layer.shadowColor = [UIColor blueColor].CGColor;
     toDoIcon.layer.shadowOffset = CGSizeMake(0, 0);
     toDoIcon.layer.shadowOpacity = 0.8;
