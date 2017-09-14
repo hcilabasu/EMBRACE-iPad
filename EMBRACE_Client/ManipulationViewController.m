@@ -229,8 +229,6 @@ BOOL wasPathFollowed = false;
     
     self.navigationItem.rightBarButtonItem = nil;
     
-
-    
     if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
         
