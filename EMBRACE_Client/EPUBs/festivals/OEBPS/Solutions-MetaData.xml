@@ -6,11 +6,61 @@
             <sentence number="4">
                 <step number="1">
                     <group obj1Id="mother" action="reversePickUp" obj2Id="treats"/>
-                    <move obj1Id="mother" action="getIn" waypointId="MotherTreat"/>
+                    <move obj1Id="mother" action="getIn" waypointId="motherTreat"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="mother" action="getIn" locationId="kitchenGod"/>
+                    <move obj1Id="mother" action="getIn" waypointId="kitchenGod"/>
                 </step>
             </sentence>
-        
-        
+        </story>
+        <story title="Spring Festival" activity_id="story1-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <shakeOrTap obj1Id="mother" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="mother" action="getIn" waypointId="kitchenGod"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Spring Festival" activity_id="story1-PM-3">
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="father" action="getIn" locationId="door"/>
+                    <ungroup obj1Id="father" action="leave" obj2Id="bannerTop"/>
+                    <move obj1Id="father" action="getIn" waypointId="door"/>
+                    <move obj1Id="bannerTop" action="getIn" waypointId="bannerDoor"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="father" action="hold" obj2Id="lantern"/>
+                    <move obj1Id="father" action="getIn" waypointId="bridge"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="father" action="getIn" locationId="balcony"/>
+                    <swapImage obj1Id="father" action="sliced"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Spring Festival" activity_id="story1-PM-4">
+            <sentence number="4">
+                <step number="1">
+                    <group obj1Id="mother" action="reversePickUp" obj2Id="treats"/>
+                    <move obj1Id="mother" action="getIn" waypointId="motherTreat"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="mother" action="getIn" locationId="kitchenGod"/>
+                    <move obj1Id="mother" action="getIn" waypointId="kitchenGod"/>
+                </step>
+            </sentence>
+        </story>
+
+
+    
+    
+    
+    
+    </solutions>
         
         
         

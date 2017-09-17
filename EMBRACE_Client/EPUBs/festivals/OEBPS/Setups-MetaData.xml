@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <setups>
+        <story title="Spring Festival" page_id="story1-PM-2">
+            <group obj1Id="son" action="connect" obj2Id="daughter"/>
+            <group obj1Id="daughter" action="connect" obj2Id="father"/>
+            <group obj1Id="father" action="connect" obj2Id="mother"/>
+        </story>
+        <story title="Spring Festival" page_id="story1-PM-3">
+            <group obj1Id="father" action="hold" obj2Id="bannerTop"/>
+        </story>
     </setups>
 </metadata>
