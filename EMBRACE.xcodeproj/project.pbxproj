@@ -6267,6 +6267,7 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		562714121F6C504D00CDCCD5 /* festivals.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = festivals.epub; sourceTree = "<group>"; };
 		56B269E51F529B2400702575 /* glassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glassIcon.png; sourceTree = "<group>"; };
 		56B269E61F529B2400702575 /* handIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handIcon.png; sourceTree = "<group>"; };
 		56B269E91F529B2B00702575 /* thinkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinkIcon.png; sourceTree = "<group>"; };
@@ -18828,6 +18829,7 @@
 		B50BE1351F678F1E00DC4227 /* festivals */ = {
 			isa = PBXGroup;
 			children = (
+				562714121F6C504D00CDCCD5 /* festivals.epub */,
 				B50BE1361F678F1E00DC4227 /* META-INF */,
 				B50BE1381F678F1E00DC4227 /* mimetype */,
 				B50BE1391F678F1E00DC4227 /* OEBPS */,
