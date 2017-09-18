@@ -117,6 +117,8 @@
                  @"solve": @"resolver",
                  @"solved": @"resuelto",
                  @"highchair": @"silla alta",
+                 @"baby": @"bebé",
+                 @"martin" : @"martín",
                  @"sniffed": @[@"olfatear", @"olfateó"],
                  @"thief": @"ladrón",
                  @"stealing": @"robar",
@@ -500,6 +502,8 @@
                  @"resolver": @"solve",
                  @"resuelto": @"solved",
                  @"silla alta": @"highchair",
+                 @"bebé": @"baby",
+                @"martín" : @"martin",
                  @"olfatear": @"sniffed",
                  @"olfateó": @"sniffed",
                  @"ladrón": @"thief",
@@ -839,6 +843,7 @@
                  @"ventricle": @[@"ventricle_1", @"ventricle_2"],
                  
                  @"baby": @"baby",
+                 
                  @"car": @"car",
                  @"highchair": @"highchairb",
                  @"hook": @"hook",

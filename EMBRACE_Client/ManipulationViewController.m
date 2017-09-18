@@ -401,13 +401,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
         textRect=[self positionOfElementWithId:@"s3"];
     }
-    
-    
-    
-    int distance=  titleRect.size.height;
 
-    if(distance<10){
-        return;
+    if(titleRect.size.height<10){
+        toDoIcon.alpha=0;
+        iconLabel.alpha=0;
+    }else{
+        toDoIcon.alpha=1;
+        iconLabel.alpha=1;
     }
     
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
