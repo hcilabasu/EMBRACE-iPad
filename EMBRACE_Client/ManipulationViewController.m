@@ -777,7 +777,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script4_S.mp3"];
             }
             else {
+                //dont play NaughtyMonkey_Script5.mp3, it conflicts with "good job"
+                if(![file isEqualToString:@"NaughtyMonkey_Script5.mp3"]){
                 [self.playaudioClass playAudioFile:self :file];
+                }
             }
             
             [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:NULL_TXT ofType:PLAY_SOUND :manipulationContext];
