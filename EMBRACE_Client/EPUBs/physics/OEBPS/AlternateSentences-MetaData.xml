@@ -1243,7 +1243,23 @@
                 
             </sentence>
             
-            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Why does the ball fall to the ground?</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
             
         </story>
         

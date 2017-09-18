@@ -68,7 +68,7 @@ static ConditionSetup *sharedInstance = nil;
         
         allowFileSync = YES;
         
-        ITSComplexity=ITS_SYSTEM;
+        ITSComplexity=ITS_EASY;
         //allow testers to fast skip sentences, change to YES if you want to skip sentences fast
         fastSkipSentence=YES;
     }
