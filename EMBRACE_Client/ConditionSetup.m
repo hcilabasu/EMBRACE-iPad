@@ -64,7 +64,7 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = NO;
+        shouldShowITSMessages = YES;
         
         allowFileSync = YES;
         

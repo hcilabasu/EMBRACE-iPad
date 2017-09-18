@@ -133,6 +133,8 @@
     if ([self.audioQueue count] > 0) {
         
         NSURL *soundFileURL = [self.audioQueue objectAtIndex:0];
+        
+        NSLog(@"\n\n\n\n%@",soundFileURL.absoluteString);
         NSError *audioError;
 
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];

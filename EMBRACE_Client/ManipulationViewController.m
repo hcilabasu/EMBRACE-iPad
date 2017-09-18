@@ -174,22 +174,17 @@ BOOL wasPathFollowed = false;
     self.menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //initialize toDo image
-    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,26,26)];
+    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,24,24)];
     toDoIcon.image=nil;
     [bookView addSubview:toDoIcon];
     PMIcon= [UIImage imageNamed:@"handIcon"];
     IMIcon= [UIImage imageNamed:@"thinkIcon"];
     RDIcon= [UIImage imageNamed:@"glassIcon"];
-    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(29, 29)];
-    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(26, 26)];
-    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(26, 26)];
+    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
+    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(24, 24)];
+    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(24, 24)];
     
-     if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
-         PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(24, 24)];
-         IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(22, 22)];
-         RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(22, 22)];
 
-     }
     iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
     iconLabel.font=[iconLabel.font fontWithSize:13];
    // iconLabel.textColor= [UIColor darkGrayColor];
@@ -402,7 +397,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 -(void)updateIcon{
     //update the indication icon based on condition setup
     CGRect titleRect=[self positionOfElementWithId:@"t0"];
+    CGRect textRect=[self positionOfElementWithId:@"s1"];
+    if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
+        textRect=[self positionOfElementWithId:@"s3"];
+    }
+    
+    
+    
+    int distance=  titleRect.size.height;
 
+    if(distance<10){
+        return;
+    }
+    
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
         toDoIcon.image=PMIcon;
         iconLabel.text=@"Move";
@@ -417,12 +424,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         toDoIcon.image=RDIcon;
         iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-38, titleRect.origin.y+25);
-    if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
-        toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-20, titleRect.origin.y+25);
-    }
-    
-    
+    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-38, textRect.origin.y-27);
+
+        
     iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+22);
     toDoIcon.layer.shadowColor = [UIColor blueColor].CGColor;
     toDoIcon.layer.shadowOffset = CGSizeMake(0, 0);
