@@ -43,14 +43,10 @@
             </sentence>
         </story>
         <story title="Spring Festival" activity_id="story1-PM-4">
-            <sentence number="4">
+            <sentence number="13">
                 <step number="1">
-                    <group obj1Id="mother" action="reversePickUp" obj2Id="treats"/>
-                    <move obj1Id="mother" action="getIn" waypointId="motherTreat"/>
-                </step>
-                <step number="2">
-                    <check obj1Id="mother" action="getIn" locationId="kitchenGod"/>
-                    <move obj1Id="mother" action="getIn" waypointId="kitchenGod"/>
+                    <shakeOrTap obj1Id="daughter" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="daughter" action="getIn" waypointId="riverside"/>
                 </step>
             </sentence>
         </story>

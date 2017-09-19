@@ -3704,6 +3704,7 @@
 		5DED1CAD1C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */; };
 		5DED1CAE1C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */; };
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
+		68B629561F7189A000BB30A9 /* tocC.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 68B629551F7189A000BB30A9 /* tocC.ncx */; };
 		68CC21871F6C70E2007C37E6 /* mother_red_reversed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CC21861F6C70E2007C37E6 /* mother_red_reversed.png */; };
 		68CC21891F6C958A007C37E6 /* farmhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CC21881F6C958A007C37E6 /* farmhouse.png */; };
 		710002601E65021F0041E888 /* IntroReadNextChapter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7100025F1E65021F0041E888 /* IntroReadNextChapter.mp3 */; };
@@ -9847,6 +9848,7 @@
 		5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C7.mp3; sourceTree = "<group>"; };
 		5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C8.mp3; sourceTree = "<group>"; };
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
+		68B629551F7189A000BB30A9 /* tocC.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tocC.ncx; sourceTree = "<group>"; };
 		68CC21861F6C70E2007C37E6 /* mother_red_reversed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother_red_reversed.png; sourceTree = "<group>"; };
 		68CC21881F6C958A007C37E6 /* farmhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farmhouse.png; sourceTree = "<group>"; };
 		7100025F1E65021F0041E888 /* IntroReadNextChapter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroReadNextChapter.mp3; sourceTree = "<group>"; };
@@ -18879,6 +18881,7 @@
 				B50BE1641F678F1E00DC4227 /* Styles */,
 				B50BE1681F678F1E00DC4227 /* Text */,
 				B50BE1891F678F1E00DC4227 /* toc.ncx */,
+				68B629551F7189A000BB30A9 /* tocC.ncx */,
 				B50BE18A1F678F1E00DC4227 /* tocE.ncx */,
 				B50BE18B1F678F1E00DC4227 /* Translations-MetaData.xml */,
 				B50BE18C1F678F1E00DC4227 /* Vocabulary-MetaData.xml */,
@@ -19633,6 +19636,7 @@
 				5CF7933F1C76986E00216337 /* old_BFEC7.m4a in Resources */,
 				5C0ED5651C75080300003B5A /* KeyIngredientsQ4A3S.mp3 in Resources */,
 				5C62A9821C854A2200F28BEB /* Oxygen_def_S.mp3 in Resources */,
+				68B629561F7189A000BB30A9 /* tocC.ncx in Resources */,
 				71193CF31E2FCF4D003D7EB5 /* 6a5811a68c1c288847b72900b83cdf69.mp3 in Resources */,
 				5DA8FD231C872F190056DE7A /* NaughtyMonkey_Script1.mp3 in Resources */,
 				5C72E5D31C72A46F00CE4877 /* TheSeminoleChickeeQ6A1.mp3 in Resources */,
