@@ -6,7 +6,7 @@
         <waypoint waypointId="door" x="50%" y="50%"/>
         <waypoint waypointId="kitchenGod" x="50%" y="50%"/>
         <waypoint waypointId="motherTreat" x="50%" y="50%"/>
+        <waypoint waypointId="riverside" x="50%" y="50%"/>
         
-       
     </waypoints>
 </metadata>

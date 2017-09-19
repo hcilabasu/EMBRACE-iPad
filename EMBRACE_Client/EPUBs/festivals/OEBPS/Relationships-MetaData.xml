@@ -2,6 +2,7 @@
 <metadata>
     <relationships>
         <relationship obj1Id="daughter" can="connect" action="group" obj2Id="father"/>
+        <relationship obj1Id="daughter" can="connect2" action="group" obj2Id="son"/>
         <relationship obj1Id="father" can="connect" action="group" obj2Id="mother"/>
         <relationship obj1Id="father" can="leave" action="ungroup" obj2Id="bannerTop"/>
         <relationship obj1Id="father" can="hold" action="group" obj2Id="bannerTop"/>

@@ -9,5 +9,8 @@
         <story title="Spring Festival" page_id="story1-PM-3">
             <group obj1Id="father" action="hold" obj2Id="bannerTop"/>
         </story>
+        <story title="Spring Festival" page_id="story1-PM-4">
+            <group obj1Id="daughter" action="connect2" obj2Id="son"/>
+        </story>
     </setups>
 </metadata>
