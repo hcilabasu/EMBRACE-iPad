@@ -209,7 +209,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>They even work for the moon, the sun, and the stars!.</text>
+                <text>They even work for the moon, the sun, and the stars!</text>
                 
                 <ideas>
                     
@@ -300,7 +300,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>They even work for the moon, the sun, and the stars!.</text>
+                <text>They even work for the moon, the sun, and the stars!</text>
                 
                 <ideas>
                     
@@ -834,7 +834,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Juan added a force to start the ball rolling, but why did it stop.</text>
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
                 
                 <ideas>
                     
@@ -908,7 +908,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>Juan added a force to start the ball rolling, but why did it stop.</text>
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
                 
                 <ideas>
                     
@@ -976,7 +976,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>But why did it stop.</text>
+                <text>But why did it stop?</text>
                 
                 <ideas>
                     
@@ -1086,7 +1086,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Why does the ball fall to the ground.</text>
+                <text>Why does the ball fall to the ground?</text>
                 
                 <ideas>
                     
@@ -1160,7 +1160,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>Why does the ball fall to the ground.</text>
+                <text>Why does the ball fall to the ground?</text>
                 
                 <ideas>
                     
@@ -1225,7 +1225,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="yes">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1243,7 +1243,23 @@
                 
             </sentence>
             
-            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Why does the ball fall to the ground?</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
             
         </story>
         
@@ -1304,7 +1320,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>So, objects in space, like the moon, keep moving for a very, very long time!.</text>
+                <text>So, objects in space, like the moon, keep moving for a very, very long time!</text>
                 
                 <ideas>
                     
@@ -1378,7 +1394,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>So, objects in space, like the moon, keep moving for a very, very long time!.</text>
+                <text>So, objects in space, like the moon, keep moving for a very, very long time!</text>
                 
                 <ideas>
                     
@@ -2385,7 +2401,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Sara moves forward, but Maria goes backward!.</text>
+                <text>Sara moves forward, but Maria goes backward!</text>
                 
                 <ideas>
                     
@@ -2462,7 +2478,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>Sara moves forward, but Maria goes backward!.</text>
+                <text>Sara moves forward, but Maria goes backward!</text>
                 
                 <ideas>
                     
@@ -2484,7 +2500,7 @@
                 
                 <attributes complexity="3"/>
                 
-                <text>When Maria pushes Sara,  Sara moves forward, but Maria goes backward!.</text>
+                <text>When Maria pushes Sara,  Sara moves forward, but Maria goes backward!</text>
                 
                 <ideas>
                     
@@ -2578,7 +2594,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#160;&#160;The water moves backward, but the boat moves forward!.</text>
+                <text>&#160;&#160;The water moves backward, but the boat moves forward!</text>
                 
                 <ideas>
                     
@@ -2671,7 +2687,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#160;&#160;The water moves backward, but the boat moves forward!.</text>
+                <text>&#160;&#160;The water moves backward, but the boat moves forward!</text>
                 
                 <ideas>
                     

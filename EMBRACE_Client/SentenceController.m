@@ -103,7 +103,7 @@
     }
     
     //If it is an action sentence, perform its solution steps if necessary
-    if ([self.manipulationView isActionSentence:sentenceContext.currentSentence]) {
+    if ([self.manipulationView isActionSentence:sentenceContext.currentSentence] ||  ([chapterTitle isEqualToString:@"Newton's First Law on Earth"]&& [pageContext.currentPageId isEqualToString:@"story3-PM-2"])  ) {
         [mvc performAutomaticSteps];
     }
     else {

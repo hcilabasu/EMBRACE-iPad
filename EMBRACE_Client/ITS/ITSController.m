@@ -216,6 +216,9 @@ static ITSController *sharedInstance = nil;
         complexity = EM_Complex;
     }
     _currentComplexity = complexity;
+    
+
+    
 }
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {

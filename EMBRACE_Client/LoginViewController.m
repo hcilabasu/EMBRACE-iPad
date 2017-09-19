@@ -64,6 +64,9 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+    
+    isViewMoveUp=NO;
+    [self.view endEditing:YES];
 }
 
 - (IBAction)login:(id)sender {

@@ -174,18 +174,20 @@ BOOL wasPathFollowed = false;
     self.menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //initialize toDo image
-    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
+    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,24,24)];
     toDoIcon.image=nil;
     [bookView addSubview:toDoIcon];
     PMIcon= [UIImage imageNamed:@"handIcon"];
     IMIcon= [UIImage imageNamed:@"thinkIcon"];
     RDIcon= [UIImage imageNamed:@"glassIcon"];
     PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
-    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(23, 23)];
-    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(23, 23)];
+    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(24, 24)];
+    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(24, 24)];
+    
+
     iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
-    iconLabel.font=[iconLabel.font fontWithSize:10];
-    iconLabel.textColor= [UIColor darkGrayColor];
+    iconLabel.font=[iconLabel.font fontWithSize:13];
+   // iconLabel.textColor= [UIColor darkGrayColor];
     iconLabel.textAlignment = UITextAlignmentCenter;
     [bookView addSubview:iconLabel];
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
@@ -221,8 +223,6 @@ BOOL wasPathFollowed = false;
     self.currentGroupings = [[NSMutableDictionary alloc] init];
     
     self.navigationItem.rightBarButtonItem = nil;
-    
-
     
     if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
@@ -284,8 +284,18 @@ BOOL wasPathFollowed = false;
         }
     }
     
- 
-}
+    if(ITS_SYSTEM== conditionSetup.ITSComplexity){
+         conditionSetup.ITSComplexity=ITS_SYSTEM;
+    }
+    
+    if( ITSIM_MODE==conditionSetup.currentMode  && ITS_SYSTEM== conditionSetup.ITSComplexity){
+        conditionSetup.ITSComplexity=ITS_MEDIUM;
+    }
+    
+    
+    
+    
+}//end of view did load
 
 - (void)dealloc {
     
@@ -386,9 +396,18 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 -(void)updateIcon{
     //update the indication icon based on condition setup
-    CGRect titleRect=[self positionOfElementWithId:@"s0"];
-    if( [chapterTitle isEqualToString:@"The Naughty Monkey"]){
-        titleRect=[self positionOfElementWithId:@"s2"];
+    CGRect titleRect=[self positionOfElementWithId:@"t0"];
+    CGRect textRect=[self positionOfElementWithId:@"s1"];
+    if([chapterTitle isEqualToString:@"The Naughty Monkey"]){
+        textRect=[self positionOfElementWithId:@"s3"];
+    }
+
+    if(titleRect.size.height<10){
+        toDoIcon.alpha=0;
+        iconLabel.alpha=0;
+    }else{
+        toDoIcon.alpha=1;
+        iconLabel.alpha=1;
     }
     
     if(PM_MODE== conditionSetup.currentMode || ITSPM_MODE== conditionSetup.currentMode ){
@@ -405,8 +424,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         toDoIcon.image=RDIcon;
         iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x-12, titleRect.origin.y+12);
-    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+20);
+    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-38, textRect.origin.y-27);
+
+        
+    iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+22);
+    toDoIcon.layer.shadowColor = [UIColor blueColor].CGColor;
+    toDoIcon.layer.shadowOffset = CGSizeMake(0, 0);
+    toDoIcon.layer.shadowOpacity = 0.8;
+    toDoIcon.layer.shadowRadius = 2.0;
+    toDoIcon.clipsToBounds = NO;
+    
+    
     [bookView bringSubviewToFront:toDoIcon];
     [bookView bringSubviewToFront:iconLabel];
 }
@@ -749,7 +777,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script4_S.mp3"];
             }
             else {
+                //dont play NaughtyMonkey_Script5.mp3, it conflicts with "good job"
+                if(![file isEqualToString:@"NaughtyMonkey_Script5.mp3"]){
                 [self.playaudioClass playAudioFile:self :file];
+                }
             }
             
             [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:NULL_TXT ofType:PLAY_SOUND :manipulationContext];
@@ -3425,7 +3456,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if (waitSecond>3){
                 waitSecond=3;
             }
-            
+            if(conditionSetup.fastSkipSentence){
+                waitSecond=0.01;
+            }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
                     for(UIView *tmpView in arrSubviews)

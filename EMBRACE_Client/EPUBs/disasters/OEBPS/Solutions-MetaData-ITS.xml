@@ -15,6 +15,7 @@
                 <step number="1">
                     <check obj1Id="africa" action="getIn" locationId="africa_away"/>
                     <move obj1Id="africa" action="getIn" waypointId="africa_away"/>
+                    <swapImage obj1Id="eurasia" action="flip"/>
                 </step>
             </idea>
             <idea number="3"/>
@@ -26,14 +27,13 @@
             <idea number="7"/>
             <idea number="8">
                 <step number="2">
-                    <ungroup obj1Id="india" action="leave" obj2Id="africa"/>
-                    <ungroup obj1Id="india" action="leave" obj2Id="australia"/>
-                    <move obj1Id="india" action="getIn" waypointId="india_ungrouped"/>
+                    <ungroupAndStay obj1Id="india" action="leave" obj2Id="africa"/>
+                    <ungroupAndStay obj1Id="india" action="leave" obj2Id="australia"/>
                 </step>
                 <step number="3">
                     <group obj1Id="india" action="hit" obj2Id="eurasia"/>
                     <ungroup obj1Id="india" action="leave" obj2Id="eurasia"/>
-                    <move obj1Id="india" action="getIn" waypointId="india_near_eurasia"/>
+                    <swapImage obj1Id="india" action="flip"/>
                 </step>
             </idea>
             <idea number="9">
