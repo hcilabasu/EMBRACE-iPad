@@ -1302,6 +1302,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if ([pageContext.currentPageId containsString:INTRO]) {
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         [self.playaudioClass stopPlayAudioFile];
+        
+        sentenceContext.currentSentence = 1;
+        manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+        manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+        manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
         [pc loadNextPage];
     }
     //Perform steps only if they exist for the sentence and have not been completed
