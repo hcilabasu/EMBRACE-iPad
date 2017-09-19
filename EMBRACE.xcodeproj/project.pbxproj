@@ -4890,6 +4890,7 @@
 		B50BE1E21F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18D1F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml */; };
 		B50BE1E31F678F1E00DC4227 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18E1F678F1E00DC4227 /* Waypoints-MetaData.xml */; };
 		B50BE1E41F678F1E00DC4227 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18F1F678F1E00DC4227 /* WordMapping.xml */; };
+		8BD8E6BD1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */; };
 		B5303A291EE790380057C7C4 /* india_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5303A281EE790380057C7C4 /* india_flip.png */; };
 		B5668E961F62113900616DD0 /* TheContestQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */; };
 		B5BFDF9E1EDCF88D008D571F /* eurasia_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */; };
@@ -11042,6 +11043,7 @@
 		B50BE18D1F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		B50BE18E1F678F1E00DC4227 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
 		B50BE18F1F678F1E00DC4227 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ3A1.mp3; sourceTree = "<group>"; };
 		B5303A281EE790380057C7C4 /* india_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = india_flip.png; sourceTree = "<group>"; };
 		B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A4.mp3; sourceTree = "<group>"; };
 		B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eurasia_flip.png; sourceTree = "<group>"; };
