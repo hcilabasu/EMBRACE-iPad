@@ -45,7 +45,6 @@
                 <content src="Text/Story1-Spring-Festival-PM-4.xhtml"/>
             </navPoint>
 
-        
     </navMap>
     <pageList>
         <pageTarget id="p1" type="normal" value="1">
