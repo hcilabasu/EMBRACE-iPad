@@ -3705,6 +3705,11 @@
 		5DED1CAE1C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */; };
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
 		68B629561F7189A000BB30A9 /* tocC.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 68B629551F7189A000BB30A9 /* tocC.ncx */; };
+		68B629581F73455000BB30A9 /* Story1-Spring-Festival-Intro-C.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 68B629571F73455000BB30A9 /* Story1-Spring-Festival-Intro-C.xhtml */; };
+		68B6295A1F73456200BB30A9 /* Story1-Spring-Festival-PM-1C.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 68B629591F73456200BB30A9 /* Story1-Spring-Festival-PM-1C.xhtml */; };
+		68B6295C1F73457100BB30A9 /* Story1-Spring-Festival-PM-2C.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 68B6295B1F73457100BB30A9 /* Story1-Spring-Festival-PM-2C.xhtml */; };
+		68B6295E1F73457B00BB30A9 /* Story1-Spring-Festival-PM-3C.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 68B6295D1F73457B00BB30A9 /* Story1-Spring-Festival-PM-3C.xhtml */; };
+		68B629601F73458600BB30A9 /* Story1-Spring-Festival-PM-4C.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 68B6295F1F73458600BB30A9 /* Story1-Spring-Festival-PM-4C.xhtml */; };
 		68CC21871F6C70E2007C37E6 /* mother_red_reversed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CC21861F6C70E2007C37E6 /* mother_red_reversed.png */; };
 		68CC21891F6C958A007C37E6 /* farmhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CC21881F6C958A007C37E6 /* farmhouse.png */; };
 		710002601E65021F0041E888 /* IntroReadNextChapter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7100025F1E65021F0041E888 /* IntroReadNextChapter.mp3 */; };
@@ -9849,6 +9854,11 @@
 		5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C8.mp3; sourceTree = "<group>"; };
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
 		68B629551F7189A000BB30A9 /* tocC.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tocC.ncx; sourceTree = "<group>"; };
+		68B629571F73455000BB30A9 /* Story1-Spring-Festival-Intro-C.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-Intro-C.xhtml"; sourceTree = "<group>"; };
+		68B629591F73456200BB30A9 /* Story1-Spring-Festival-PM-1C.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-1C.xhtml"; sourceTree = "<group>"; };
+		68B6295B1F73457100BB30A9 /* Story1-Spring-Festival-PM-2C.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-2C.xhtml"; sourceTree = "<group>"; };
+		68B6295D1F73457B00BB30A9 /* Story1-Spring-Festival-PM-3C.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-3C.xhtml"; sourceTree = "<group>"; };
+		68B6295F1F73458600BB30A9 /* Story1-Spring-Festival-PM-4C.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Spring-Festival-PM-4C.xhtml"; sourceTree = "<group>"; };
 		68CC21861F6C70E2007C37E6 /* mother_red_reversed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mother_red_reversed.png; sourceTree = "<group>"; };
 		68CC21881F6C958A007C37E6 /* farmhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farmhouse.png; sourceTree = "<group>"; };
 		7100025F1E65021F0041E888 /* IntroReadNextChapter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroReadNextChapter.mp3; sourceTree = "<group>"; };
@@ -18943,14 +18953,19 @@
 			isa = PBXGroup;
 			children = (
 				B50BE1691F678F1E00DC4227 /* Story1-Spring-Festival-Intro-E.xhtml */,
+				68B629571F73455000BB30A9 /* Story1-Spring-Festival-Intro-C.xhtml */,
 				B50BE16A1F678F1E00DC4227 /* Story1-Spring-Festival-Intro-S.xhtml */,
 				B50BE16B1F678F1E00DC4227 /* Story1-Spring-Festival-PM-1.xhtml */,
+				68B629591F73456200BB30A9 /* Story1-Spring-Festival-PM-1C.xhtml */,
 				B50BE16C1F678F1E00DC4227 /* Story1-Spring-Festival-PM-1S.xhtml */,
 				B50BE16D1F678F1E00DC4227 /* Story1-Spring-Festival-PM-2.xhtml */,
+				68B6295B1F73457100BB30A9 /* Story1-Spring-Festival-PM-2C.xhtml */,
 				B50BE16E1F678F1E00DC4227 /* Story1-Spring-Festival-PM-2S.xhtml */,
 				B50BE16F1F678F1E00DC4227 /* Story1-Spring-Festival-PM-3.xhtml */,
+				68B6295D1F73457B00BB30A9 /* Story1-Spring-Festival-PM-3C.xhtml */,
 				B50BE1701F678F1E00DC4227 /* Story1-Spring-Festival-PM-3S.xhtml */,
 				8B5E7F551F6863820042DF25 /* Story1-Spring-Festival-PM-4.xhtml */,
+				68B6295F1F73458600BB30A9 /* Story1-Spring-Festival-PM-4C.xhtml */,
 				8B5E7F561F6863820042DF25 /* Story1-Spring-Festival-PM-4S.xhtml */,
 				B50BE1711F678F1E00DC4227 /* Story1-Spring-Festival-Title.xhtml */,
 				B50BE1721F678F1E00DC4227 /* Story2-Magic-Toys-Intro-E.xhtml */,
@@ -20312,6 +20327,7 @@
 				5C0421EB1C618C2B001BBE9D /* TheLuckyStoneQ7A2.mp3 in Resources */,
 				5C0ED6831C752C2F00003B5A /* EveryoneHelpsQ4.mp3 in Resources */,
 				5C72E8391C72BF1000CE4877 /* HowdoObjectsMoveQ1A3S.mp3 in Resources */,
+				68B629601F73458600BB30A9 /* Story1-Spring-Festival-PM-4C.xhtml in Resources */,
 				5CBA9D451CAB7E7E008DEF04 /* HeroE.mp3 in Resources */,
 				5CA90E111CC03E1300E0A5F6 /* HogansS.mp3 in Resources */,
 				5C67B0FF1ED3DB40001465B0 /* CigaretteSmokeHurtsYourLungsQ1A1.mp3 in Resources */,
@@ -20936,6 +20952,7 @@
 				5CF6CA3A1CCB2BB50093D3FD /* WindsE.mp3 in Resources */,
 				7185433C1E2DE284002AAD7B /* 3244f85296a389c83c38424144be165c.mp3 in Resources */,
 				5C0ED8471C75334200003B5A /* AFriendinNeedQ1A1.mp3 in Resources */,
+				68B6295A1F73456200BB30A9 /* Story1-Spring-Festival-PM-1C.xhtml in Resources */,
 				711939461E2F3CF8003D7EB5 /* 9984a3ee450bcd7edab700dc23398708.mp3 in Resources */,
 				71193CE81E2FCF4D003D7EB5 /* 56ed3327fdf422d20eab332aea7496e7.mp3 in Resources */,
 				71193C3C1E2FB7AC003D7EB5 /* TheNavajoHoganS6S.mp3 in Resources */,
@@ -22633,6 +22650,7 @@
 				5C9F28B21C5C6B2E008ACE48 /* TheLopezFamilyQ1A2S.mp3 in Resources */,
 				5CF792CE1C7694A900216337 /* TheContestQ3A3S.mp3 in Resources */,
 				5C0421A51C618C2B001BBE9D /* TheLuckyStoneQ1A3S.mp3 in Resources */,
+				68B629581F73455000BB30A9 /* Story1-Spring-Festival-Intro-C.xhtml in Resources */,
 				71181B2E1E4B841500DF2FFE /* 53e236cf5a7e05f9a03f73f99a5d4dc3.mp3 in Resources */,
 				5C9D5FF41C811959002EC986 /* Flexible_def_S.mp3 in Resources */,
 				5CF6CA5F1CCB2BB50093D3FD /* SpewS.mp3 in Resources */,
@@ -22906,6 +22924,7 @@
 				5C0ED6EB1C752C2F00003B5A /* TheContestQ5A4.mp3 in Resources */,
 				5C1C4D521D238A2800547783 /* ValveE.mp3 in Resources */,
 				71193B891E2FB797003D7EB5 /* 29126b1a25c645558d488c684ab40551.mp3 in Resources */,
+				68B6295C1F73457100BB30A9 /* Story1-Spring-Festival-PM-2C.xhtml in Resources */,
 				1A6320E51C0E4D3B00251CB3 /* cow_bw.png in Resources */,
 				5CCD8F371C7405EC00D2EC2B /* EarthquakesQ1A1.mp3 in Resources */,
 				718543481E2DE284002AAD7B /* 49ddbfcef412593f110dea741ada12a4.mp3 in Resources */,
@@ -22946,6 +22965,7 @@
 				5C0421CB1C618C2B001BBE9D /* TheLuckyStoneQ1.mp3 in Resources */,
 				5C04216F1C618C2B001BBE9D /* CatchQ4A3.mp3 in Resources */,
 				5C72E5081C727E2000CE4877 /* TheNavajoHoganQ4A1.mp3 in Resources */,
+				68B6295E1F73457B00BB30A9 /* Story1-Spring-Festival-PM-3C.xhtml in Resources */,
 				71193B8A1E2FB797003D7EB5 /* 2a35e529581fd762f9e716d94a22a783.mp3 in Resources */,
 				71E425091E2D4DAC0029BDEC /* 2e771ca92bf20612c68cb1e646623192.mp3 in Resources */,
 				5D9E34631C590E9500636150 /* TheFamilyIsRattledQ4A3.mp3 in Resources */,
