@@ -300,7 +300,7 @@
     
     //Separate TOC files depending on language
     if (language == BILINGUAL) {
-        filepath = [[book mainContentPath] stringByAppendingString:@"tocC.ncx"];
+        filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     }
     else if( language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
@@ -490,9 +490,9 @@
     
     //Separate Assessment metadata files depending on language
     [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]: ENGLISH:ENDOFCHAPTER];
-    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesMandarin-MetaData.xml"]:BILINGUAL:ENDOFCHAPTER];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]:BILINGUAL:ENDOFCHAPTER];
     [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOB-MetaData.xml"]:ENGLISH:ENDOFBOOK];
-    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBMandarin-MetaData.xml"]:BILINGUAL:ENDOFBOOK];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]:BILINGUAL:ENDOFBOOK];
     
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]:ENGLISH];
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]:BILINGUAL];
