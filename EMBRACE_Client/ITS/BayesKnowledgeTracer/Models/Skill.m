@@ -11,7 +11,8 @@
 #import "SyntaxSkill.h"
 #import "UsabilitySkill.h"
 
-#define DEFAULT_INITIAL_VALUE 0.15
+//changed from 0.15 to 0.51
+#define DEFAULT_INITIAL_VALUE 0.51
 
 @interface Skill ()
 

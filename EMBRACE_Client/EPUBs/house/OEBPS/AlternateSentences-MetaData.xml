@@ -795,10 +795,10 @@
                 <solution>
                 </solution>
             </sentence>
-
-
-
-
+            
+            
+            
+            
             
             
             <sentence number="5" action="yes">
@@ -1205,8 +1205,8 @@
                 <attributes complexity="3"/>
                 <text>She looked in the living room, but when she couldn't find her rattle there, the baby started to cry.</text>
                 <ideas>
-                   <idea number="41"/>
-                   <idea number="42"/>
+                    <idea number="41"/>
+                    <idea number="42"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
@@ -1472,9 +1472,9 @@
                     <step number="44"/>
                 </solution>
             </sentence>
-
-
-
+            
+            
+            
             <sentence number="5" action="yes">
                 <attributes complexity="2"/>
                 <text>Martin drove home and put his keys on the hook.</text>

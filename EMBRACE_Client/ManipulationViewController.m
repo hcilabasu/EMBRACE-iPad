@@ -794,6 +794,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * animateObject based on current animation step
  */
 - (void)animateObject {
+
     //Check solution only if it exists for the sentence
     if (stepContext.numSteps > 0) {
         //Get steps for current sentence
@@ -839,6 +840,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:action context:manipulationContext];
         }
     }
+    
 }
 
 /*
@@ -3261,7 +3263,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)pressedNextStory{
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
-    
+     BOOL iscomplete=stepContext.stepsComplete;
     if (isUserMovingBack){
         if([self isMostForwardProgress]) {
             stepContext.currentStep = (-1*forwardProgress.stepNumber);
@@ -3332,6 +3334,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
+
     else if (stepContext.stepsComplete ||
              stepContext.numSteps == 0 ||
              (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) ||
@@ -4313,7 +4316,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [array addObjectsFromArray:preAudio];
         
         for (NSString *preAudioFile in preAudio) {
-            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:PRESENTENCE_SCRIPT_AUDIO :manipulationContext];
+            //Shang
+            /*
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:PRESENTENCE_SCRIPT_AUDIO :manipulationContext];*/
         }
     }
     
