@@ -300,7 +300,7 @@
     
     //Separate TOC files depending on language
     if (language == BILINGUAL) {
-        filepath = [[book mainContentPath] stringByAppendingString:@"tocC.ncx"];
+        filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     }
     else if( language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];

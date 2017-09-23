@@ -3,17 +3,17 @@
     <ActivityAssessment>
         <Questions title= "The Naughty Monkey">
             <Question number="1">
-                <QuestionText>¿Qué hizo Lisa para llenar de agua el bebedero?</QuestionText>
+                <QuestionText>Lisa是怎样给水槽加满水的？</QuestionText>
                 <QuestionAudio>TheNaughtyMonkeyQ1S.mp3</QuestionAudio>
-                <Answer1>Levantar la manija</Answer1>
+                <Answer1>提了把手</Answer1>
                 <Answer1Audio>TheNaughtyMonkeyQ1A1S.mp3</Answer1Audio>
-                <Answer2>Apretar la manija</Answer2>
+                <Answer2>挤了把手</Answer2>
                 <Answer2Audio>TheNaughtyMonkeyQ1A2S.mp3</Answer2Audio>
-                <Answer3>Girar la manija</Answer3>
+                <Answer3>转了把手</Answer3>
                 <Answer3Audio>TheNaughtyMonkeyQ1A3S.mp3</Answer3Audio>
-                <Answer4>Sacar la manija</Answer4>
+                <Answer4>拉出了把手</Answer4>
                 <Answer4Audio>TheNaughtyMonkeyQ1A4S.mp3</Answer4Audio>
-                <expectedSelection>Levantar la manija</expectedSelection>
+                <expectedSelection>提了把手</expectedSelection>
             </Question>
             
             <Question number="2">

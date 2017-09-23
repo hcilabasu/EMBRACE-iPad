@@ -4833,6 +4833,7 @@
 		8B5E7F941F68817D0042DF25 /* son.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F771F68817D0042DF25 /* son.png */; };
 		8B5E7F951F68817D0042DF25 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F781F68817D0042DF25 /* water.png */; };
 		8B5E7F961F68817D0042DF25 /* willow_park.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F791F68817D0042DF25 /* willow_park.png */; };
+		8BD8E6BD1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */; };
 		B50BE1901F678F1E00DC4227 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1371F678F1E00DC4227 /* container.xml */; };
 		B50BE1911F678F1E00DC4227 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1381F678F1E00DC4227 /* mimetype */; };
 		B50BE1921F678F1E00DC4227 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE13A1F678F1E00DC4227 /* AlternateImages-MetaData.xml */; };
@@ -4893,7 +4894,6 @@
 		B50BE1E21F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18D1F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml */; };
 		B50BE1E31F678F1E00DC4227 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18E1F678F1E00DC4227 /* Waypoints-MetaData.xml */; };
 		B50BE1E41F678F1E00DC4227 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE18F1F678F1E00DC4227 /* WordMapping.xml */; };
-		8BD8E6BD1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */; };
 		B5303A291EE790380057C7C4 /* india_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5303A281EE790380057C7C4 /* india_flip.png */; };
 		B5668E961F62113900616DD0 /* TheContestQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */; };
 		B5BFDF9E1EDCF88D008D571F /* eurasia_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */; };
@@ -10989,6 +10989,7 @@
 		8B5E7F771F68817D0042DF25 /* son.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = son.png; sourceTree = "<group>"; };
 		8B5E7F781F68817D0042DF25 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		8B5E7F791F68817D0042DF25 /* willow_park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = willow_park.png; sourceTree = "<group>"; };
+		8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ3A1.mp3; sourceTree = "<group>"; };
 		B50BE1371F678F1E00DC4227 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		B50BE1381F678F1E00DC4227 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		B50BE13A1F678F1E00DC4227 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -11049,7 +11050,6 @@
 		B50BE18D1F678F1E00DC4227 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		B50BE18E1F678F1E00DC4227 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
 		B50BE18F1F678F1E00DC4227 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
-		8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ3A1.mp3; sourceTree = "<group>"; };
 		B5303A281EE790380057C7C4 /* india_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = india_flip.png; sourceTree = "<group>"; };
 		B5668E951F62113900616DD0 /* TheContestQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ3A4.mp3; sourceTree = "<group>"; };
 		B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eurasia_flip.png; sourceTree = "<group>"; };
@@ -16006,8 +16006,8 @@
 		5CA955561C3237690038FB56 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-PM-1S.xhtml */,
 				5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-PM-1.xhtml */,
+				5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-PM-1S.xhtml */,
 				5CA955571C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-2.xhtml */,
 				5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-2S.xhtml */,
 				5CA955581C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-3.xhtml */,
