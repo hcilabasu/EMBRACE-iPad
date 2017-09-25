@@ -120,5 +120,5 @@ typedef enum InteractionMode {
 -(void)disableUserInteraction;
 -(void)updateIcon;
 -(void)hideIndicationIcon;
-
+-(void)SkipIntro;
 @end

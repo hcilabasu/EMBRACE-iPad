@@ -257,7 +257,7 @@
  */
 - (void)createVocabSolutionsForPage {
     Chapter *chapter = [mvc.book getChapterWithTitle:mvc.chapterTitle];
-    
+    BOOL shouldSkip=NO;
     NSMutableSet *newVocab = [[NSMutableSet alloc] init];
     NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
@@ -277,9 +277,17 @@
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
+
+    BOOL isExtraIntropage= [newVocab containsObject:@"testintroword"];
+
+
     if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![mvc.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
         [vocabToAdd minusSet:newVocab];
+        if (isExtraIntropage&& 0==[vocabToAdd count]){
+            shouldSkip=YES;
+        }
+        
         [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];
         
         for (NSString *vocab in vocabToAdd) {
@@ -338,6 +346,11 @@
         ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE];
         [ITSIMActivity addITSIMSolution:stepContext.ITSIMSolution forActivityId:pageContext.currentPageId];
     }
+    
+    if(shouldSkip){
+        [mvc SkipIntro];
+    }
+    
 }
 
 /*

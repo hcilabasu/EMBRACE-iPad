@@ -400,6 +400,8 @@
 		56B269E71F529B2400702575 /* glassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E51F529B2400702575 /* glassIcon.png */; };
 		56B269E81F529B2400702575 /* handIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E61F529B2400702575 /* handIcon.png */; };
 		56B269EA1F529B2B00702575 /* thinkIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E91F529B2B00702575 /* thinkIcon.png */; };
+		56DDAE3B1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE391F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */; };
+		56DDAE3C1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE3A1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */; };
 		56F644431F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56F644421F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 */; };
 		5C030F8B1C863196006E1BEA /* Award_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */; };
 		5C030F8C1C863196006E1BEA /* Barn_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */; };
@@ -6178,6 +6180,8 @@
 		56B269E51F529B2400702575 /* glassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glassIcon.png; sourceTree = "<group>"; };
 		56B269E61F529B2400702575 /* handIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handIcon.png; sourceTree = "<group>"; };
 		56B269E91F529B2B00702575 /* thinkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinkIcon.png; sourceTree = "<group>"; };
+		56DDAE391F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE3A1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
 		56F644421F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 6dd929672c7983f8fa8f7446df1ae8cf.mp3; sourceTree = "<group>"; };
 		5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Award_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Barn_def_S.mp3; sourceTree = "<group>"; };
@@ -12414,6 +12418,8 @@
 				1A631FDD1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-PM-2.xhtml */,
 				1A631FDE1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-PM-3.xhtml */,
 				1A631FDF1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-Title.xhtml */,
+				56DDAE391F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */,
+				56DDAE3A1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */,
 				1A631FE11C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-1.xhtml */,
 				1A631FE21C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-2.xhtml */,
 				1A631FE31C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-3.xhtml */,
@@ -18743,6 +18749,7 @@
 				5C62A9861C854A2200F28BEB /* Stiff_def_S.mp3 in Resources */,
 				5C137CE51C8A79CC0023901C /* CanoesE.mp3 in Resources */,
 				5C0ED8A31C75334200003B5A /* HomecomingQ6A3.mp3 in Resources */,
+				56DDAE3B1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml in Resources */,
 				1AE88FB81E47884500B86797 /* Comb_def_S.mp3 in Resources */,
 				5C72E62F1C72A46F00CE4877 /* TheAlgonquianWigwamQ2A2.mp3 in Resources */,
 				C34CC36A1C43578D0075B58E /* library_header1.png in Resources */,
@@ -22425,6 +22432,7 @@
 				5C72E6301C72A46F00CE4877 /* TheAlgonquianWigwamQ2A1.mp3 in Resources */,
 				5C9C07911C57385A00702FCD /* BFCE3_7.m4a in Resources */,
 				5C030F961C863196006E1BEA /* Nest_def_S.mp3 in Resources */,
+				56DDAE3C1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */,
 				71181B311E4B841500DF2FFE /* 9283aecbdef4fe984f42680d742db5aa.mp3 in Resources */,
 				71D6C98D1E5CA86C00AD3E28 /* 70e3d61f76c9024e5629fcbe29e83216.mp3 in Resources */,
 				5CCD8F581C7405EC00D2EC2B /* IntroductionToNaturalDisastersQ2A4.mp3 in Resources */,

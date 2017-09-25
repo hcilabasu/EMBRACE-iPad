@@ -353,7 +353,7 @@ BOOL wasPathFollowed = false;
                                                        delegate:self
                                               cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     [alertView show];
-    alertView = nil;
+    //alertView = nil;
     
 }
 
@@ -1300,8 +1300,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * by performing it automatically according to the solution.
  */
 - (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    
     //Emergency swipe to bypass the vocab intros
     if ([pageContext.currentPageId containsString:INTRO]) {
+        
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         [self.playaudioClass stopPlayAudioFile];
         
@@ -1362,6 +1364,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self pressedNext:self];
         }
     }
+    
 }
 
 /*
@@ -4621,6 +4624,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     nextButton.alpha=1.0;
     [self.view setUserInteractionEnabled:true];
     
+}
+-(void)SkipIntro{
+    [self.playaudioClass stopPlayAudioFile];
+    
+    sentenceContext.currentSentence = 1;
+    manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+    manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+    manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+    manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+    [pc loadNextPage];
 }
 
 

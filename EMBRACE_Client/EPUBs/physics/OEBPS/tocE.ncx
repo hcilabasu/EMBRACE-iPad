@@ -70,6 +70,14 @@
                 <text>Newton's First Law on Earth</text>
             </navLabel>
             <content src="Text/Story3-Newton's-First-Law-on-Earth-Title.xhtml"/>
+            
+            <navPoint class="PM_MODE" id="story3-Intro">
+                <navLabel>
+                    <text>Newton's First Law - Intro</text>
+                </navLabel>
+                <content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"/>
+            </navPoint>
+            
             <navPoint class="PM_MODE" id="story3-PM-1">
                 <navLabel>
                     <text>Newton's First Law on Earth - PM</text>
