@@ -190,6 +190,14 @@
                 <text>The Three Laws Work Together</text>
             </navLabel>
             <content src="Text/Story7-The-Three-Laws-Work-Together-Title.xhtml"/>
+            
+            <navPoint class="PM_MODE" id="story7-Intro">
+                <navLabel>
+                    <text>Newton's First Law - Intro</text>
+                </navLabel>
+                <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml"/>
+            </navPoint>
+            
             <navPoint class="PM_MODE" id="story7-PM-1">
                 <navLabel>
                     <text>The Three Laws Work Together - PM</text>

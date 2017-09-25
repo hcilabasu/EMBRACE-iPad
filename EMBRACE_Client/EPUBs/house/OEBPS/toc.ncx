@@ -140,6 +140,14 @@
 			<text>The Mystery is Solved</text>
 		</navLabel>
 		<content src="Text/Story6-The-Mystery-is-Solved-Title.xhtml"/>
+        
+        <navPoint class="PM_MODE" id="story6-Intro">
+            <navLabel>
+                <text>The Mystery is Solved - Intro</text>
+            </navLabel>
+            <content src="Text/Story6-The-Mystery-is-Solved-Intro-S.xhtml"/>
+        </navPoint>
+        
         <navPoint class="PM_MODE" id="story6-PM-1">
 		  <navLabel>
     		<text>The Mystery is Solved - PM</text>

@@ -91,6 +91,14 @@
 			<text>Muscles Use Oxygen</text>
 		</navLabel>
 		<content src="Text/Story3-Muscles-Use-Oxygen-Title.xhtml"/>
+        
+        <navPoint class="PM_MODE" id="story3-Intro">
+            <navLabel>
+                <text>Muscles Use Oxygen - Intro</text>
+            </navLabel>
+            <content src="Text/Story3-Muscles-Use-Oxygen-Intro-E.xhtml"/>
+        </navPoint>
+        
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
     		<text>Muscles Use Oxygen - PM</text>
@@ -116,6 +124,14 @@
 			<text>Getting More Oxygen for the Muscles</text>
 		</navLabel>
 		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml"/>
+        
+        <navPoint class="PM_MODE" id="story4-Intro">
+            <navLabel>
+                <text>Getting More Oxygen for the Muscles - Intro</text>
+            </navLabel>
+            <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"/>
+        </navPoint>
+        
    <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
     		<text>Getting More Oxygen for the Muscles - PM</text>

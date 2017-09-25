@@ -402,6 +402,20 @@
 		56B269EA1F529B2B00702575 /* thinkIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B269E91F529B2B00702575 /* thinkIcon.png */; };
 		56DDAE3B1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE391F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */; };
 		56DDAE3C1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE3A1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */; };
+		56DDAE3F1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE3D1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml */; };
+		56DDAE401F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE3E1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */; };
+		56DDAE431F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE411F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml */; };
+		56DDAE441F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE421F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml */; };
+		56DDAE471F79B04F00519EED /* Story2-Earthquakes-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE451F79B04F00519EED /* Story2-Earthquakes-Intro-E.xhtml */; };
+		56DDAE481F79B04F00519EED /* Story2-Earthquakes-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE461F79B04F00519EED /* Story2-Earthquakes-Intro-S.xhtml */; };
+		56DDAE4B1F79B07900519EED /* Story3-Tsunamis-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE491F79B07900519EED /* Story3-Tsunamis-Intro-E.xhtml */; };
+		56DDAE4C1F79B07900519EED /* Story3-Tsunamis-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE4A1F79B07900519EED /* Story3-Tsunamis-Intro-S.xhtml */; };
+		56DDAE4F1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE4D1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */; };
+		56DDAE501F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE4E1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-S.xhtml */; };
+		56DDAE531F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE511F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
+		56DDAE541F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE521F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-S.xhtml */; };
+		56DDAE571F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE551F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */; };
+		56DDAE581F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56DDAE561F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml */; };
 		56F644431F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56F644421F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 */; };
 		5C030F8B1C863196006E1BEA /* Award_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */; };
 		5C030F8C1C863196006E1BEA /* Barn_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */; };
@@ -6182,6 +6196,20 @@
 		56B269E91F529B2B00702575 /* thinkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinkIcon.png; sourceTree = "<group>"; };
 		56DDAE391F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"; sourceTree = "<group>"; };
 		56DDAE3A1F79AA4E00519EED /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE3D1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE3E1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE411F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE421F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE451F79B04F00519EED /* Story2-Earthquakes-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Earthquakes-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE461F79B04F00519EED /* Story2-Earthquakes-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Earthquakes-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE491F79B07900519EED /* Story3-Tsunamis-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Tsunamis-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE4A1F79B07900519EED /* Story3-Tsunamis-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Tsunamis-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE4D1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE4E1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE511F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE521F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-S.xhtml"; sourceTree = "<group>"; };
+		56DDAE551F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
+		56DDAE561F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml"; sourceTree = "<group>"; };
 		56F644421F6859410078D26B /* 6dd929672c7983f8fa8f7446df1ae8cf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 6dd929672c7983f8fa8f7446df1ae8cf.mp3; sourceTree = "<group>"; };
 		5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Award_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Barn_def_S.mp3; sourceTree = "<group>"; };
@@ -11807,12 +11835,16 @@
 				1A631E281C0E4D3A00251CB3 /* Story2-The-Amazing-Heart-PM-3.xhtml */,
 				1A631E291C0E4D3A00251CB3 /* Story2-The-Amazing-Heart-PM-4.xhtml */,
 				1A631E2A1C0E4D3A00251CB3 /* Story2-The-Amazing-Heart-Title.xhtml */,
+				56DDAE511F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */,
+				56DDAE521F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-S.xhtml */,
 				1A631E2B1C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-IM-1.xhtml */,
 				1A631E2C1C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-IM-2.xhtml */,
 				1A631E2F1C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-PM-1.xhtml */,
 				1A631E301C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-PM-2.xhtml */,
 				1A631E311C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-PM-3.xhtml */,
 				1A631E321C0E4D3A00251CB3 /* Story3-Muscles-Use-Oxygen-Title.xhtml */,
+				56DDAE551F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */,
+				56DDAE561F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml */,
 				1A631E331C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml */,
 				1A631E341C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml */,
 				1A631E371C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml */,
@@ -12072,11 +12104,17 @@
 				1A631EED1C0E4D3A00251CB3 /* Story2-Earthquakes-PM-2.xhtml */,
 				1A631EEE1C0E4D3A00251CB3 /* Story2-Earthquakes-PM-3.xhtml */,
 				1A631EEF1C0E4D3A00251CB3 /* Story2-Earthquakes-Title.xhtml */,
+				56DDAE451F79B04F00519EED /* Story2-Earthquakes-Intro-E.xhtml */,
+				56DDAE461F79B04F00519EED /* Story2-Earthquakes-Intro-S.xhtml */,
+				56DDAE491F79B07900519EED /* Story3-Tsunamis-Intro-E.xhtml */,
+				56DDAE4A1F79B07900519EED /* Story3-Tsunamis-Intro-S.xhtml */,
 				1A631EF11C0E4D3A00251CB3 /* Story3-Tsunamis-PM-1.xhtml */,
 				1A631EF21C0E4D3A00251CB3 /* Story3-Tsunamis-PM-2.xhtml */,
 				1A631EF31C0E4D3A00251CB3 /* Story3-Tsunamis-PM-3.xhtml */,
 				1A631EF41C0E4D3A00251CB3 /* Story3-Tsunamis-PM-4.xhtml */,
 				1A631EF51C0E4D3A00251CB3 /* Story3-Tsunamis-Title.xhtml */,
+				56DDAE411F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml */,
+				56DDAE421F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml */,
 				1A631EF71C0E4D3A00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml */,
 				1A631EF81C0E4D3A00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml */,
 				1A631EF91C0E4D3A00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml */,
@@ -12260,6 +12298,8 @@
 				1A631F7A1C0E4D3A00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */,
 				1A631F7B1C0E4D3A00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */,
 				1A631F7C1C0E4D3A00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */,
+				56DDAE4D1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */,
+				56DDAE4E1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-S.xhtml */,
 				1A631F811C0E4D3A00251CB3 /* Story6-The-Mystery-is-Solved-PM-1.xhtml */,
 				1A631F821C0E4D3A00251CB3 /* Story6-The-Mystery-is-Solved-PM-2.xhtml */,
 				1A631F831C0E4D3A00251CB3 /* Story6-The-Mystery-is-Solved-Title.xhtml */,
@@ -12440,6 +12480,8 @@
 				1A631FF11C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */,
 				1A631FF21C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */,
 				1A631FF31C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml */,
+				56DDAE3D1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml */,
+				56DDAE3E1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */,
 				1A631FF51C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-1.xhtml */,
 				1A631FF61C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-2.xhtml */,
 				1A631FF71C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */,
@@ -18871,6 +18913,7 @@
 				5C0421551C618C2B001BBE9D /* BabyBrotherQ7A2.mp3 in Resources */,
 				5C72E6661C72A46F00CE4877 /* TheInuitIglooQ4A2.mp3 in Resources */,
 				71181B581E4B841500DF2FFE /* 9b8f99f2d1046eebff1d55c2eb6bf44f.mp3 in Resources */,
+				56DDAE501F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-S.xhtml in Resources */,
 				5C0ED6A51C752C2F00003B5A /* GettingReadyQ4A4.mp3 in Resources */,
 				5CAE95CF1C921DCD00702DB4 /* AlgonquianS.mp3 in Resources */,
 				71181B561E4B841500DF2FFE /* 99ff0bd712733390fd1381672f9e739f.mp3 in Resources */,
@@ -18917,6 +18960,7 @@
 				5C67B12B1ED3DB41001465B0 /* GettingMoreOxygenfortheMusclesQ4.mp3 in Resources */,
 				1AA630A61DB0495E0006B194 /* EggsE.mp3 in Resources */,
 				5C72E60B1C72A46F00CE4877 /* TheAlgonquianWigwamQ9A3.mp3 in Resources */,
+				56DDAE571F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml in Resources */,
 				5D9E34AB1C590E9600636150 /* TheMysteryIsSolvedQ6.mp3 in Resources */,
 				5C1C4CFF1D2386AD00547783 /* DirtS.mp3 in Resources */,
 				71AAEE8C1E318D9D00DFCF08 /* 5eb807940a7a9addbfdbf677d4714770.mp3 in Resources */,
@@ -19055,6 +19099,7 @@
 				1AE88FE81E47888800B86797 /* Garlic_def_S.mp3 in Resources */,
 				5C72E6631C72A46F00CE4877 /* TheInuitIglooQ5.mp3 in Resources */,
 				5C9D5FFD1C811959002EC986 /* Swamps_def_S.mp3 in Resources */,
+				56DDAE481F79B04F00519EED /* Story2-Earthquakes-Intro-S.xhtml in Resources */,
 				5C67B1681ED3DB41001465B0 /* TheAmazingHeartQ5A1.mp3 in Resources */,
 				71181B751E4B841500DF2FFE /* 2ba019bfb86a26f7e4c8b4078d4db78f.mp3 in Resources */,
 				5CF6CA141CCB2BB50093D3FD /* Hawai'iE.mp3 in Resources */,
@@ -19806,6 +19851,7 @@
 				5C67B1501ED3DB41001465B0 /* MusclesUseOxygenQ5A2.mp3 in Resources */,
 				5C0ED71E1C752C2F00003B5A /* WhoIsTheBestAnimalQ3.mp3 in Resources */,
 				5C72E7C91C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ5.mp3 in Resources */,
+				56DDAE3F1F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml in Resources */,
 				7119396F1E2F3CF8003D7EB5 /* f575dc8ad2eda70824a895cad1c48523.mp3 in Resources */,
 				71E425901E2D4DAD0029BDEC /* KeyIngredientsS1S.mp3 in Resources */,
 				5CF793391C76986E00216337 /* old_BFEC10.m4a in Resources */,
@@ -20088,6 +20134,7 @@
 				5C1C4CFE1D2386AD00547783 /* CiliaS.mp3 in Resources */,
 				71181B051E4B841400DF2FFE /* 1c71b0e6badede65ea855b80fa1dcf07.mp3 in Resources */,
 				71181B131E4B841400DF2FFE /* 2feeeef8f433d23e1af59668a7382f1c.mp3 in Resources */,
+				56DDAE4F1F79B1CF00519EED /* Story6-The-Mystery-is-Solved-Intro-E.xhtml in Resources */,
 				5C40AE791CBF591A00BFEB9F /* DependsE.mp3 in Resources */,
 				71154A9D1E5C3B1C00A33DE5 /* 871f8711565dff889478e7309c535d73.mp3 in Resources */,
 				5C0ED67C1C752C2F00003B5A /* EveryoneHelpsQ2A3.mp3 in Resources */,
@@ -20565,6 +20612,7 @@
 				7185433C1E2DE284002AAD7B /* 3244f85296a389c83c38424144be165c.mp3 in Resources */,
 				5C0ED8471C75334200003B5A /* AFriendinNeedQ1A1.mp3 in Resources */,
 				711939461E2F3CF8003D7EB5 /* 9984a3ee450bcd7edab700dc23398708.mp3 in Resources */,
+				56DDAE401F79AE8800519EED /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml in Resources */,
 				71193CE81E2FCF4D003D7EB5 /* 56ed3327fdf422d20eab332aea7496e7.mp3 in Resources */,
 				71193C3C1E2FB7AC003D7EB5 /* TheNavajoHoganS6S.mp3 in Resources */,
 				5C0ED8981C75334200003B5A /* HomecomingQ4A2.mp3 in Resources */,
@@ -20641,6 +20689,7 @@
 				718543221E2DE284002AAD7B /* 013401e8ea3bd27a40a43bf0e14ed973.mp3 in Resources */,
 				5C0ED8971C75334200003B5A /* HomecomingQ4A1.mp3 in Resources */,
 				5C9C07CB1C57385A00702FCD /* BFE_CH1.m4a in Resources */,
+				56DDAE4B1F79B07900519EED /* Story3-Tsunamis-Intro-E.xhtml in Resources */,
 				1A2425541C6AD271002CBB13 /* backgroundGate_closed.png in Resources */,
 				5C72E7A91C72BF1000CE4877 /* NewtonsfirstlawQ3A3.mp3 in Resources */,
 				5D9E33E61C590E9500636150 /* MissingKeysQ1A3.mp3 in Resources */,
@@ -20829,6 +20878,7 @@
 				5CCD8F9F1C7405EC00D2EC2B /* TornadosQ8.mp3 in Resources */,
 				5C40AE961CBF591A00BFEB9F /* SpaceE.mp3 in Resources */,
 				71193BAC1E2FB797003D7EB5 /* 5959a222696401c01e7981c507194752.mp3 in Resources */,
+				56DDAE471F79B04F00519EED /* Story2-Earthquakes-Intro-E.xhtml in Resources */,
 				5C09DF941C85007900EC4E78 /* Trophy_def_E.mp3 in Resources */,
 				71181B391E4B841500DF2FFE /* f3ecf7bcf20f289a7d222ff9bee84c16.mp3 in Resources */,
 				5C72E7F31C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ7A2.mp3 in Resources */,
@@ -21311,6 +21361,7 @@
 				7185433F1E2DE284002AAD7B /* 3afae3a1642614f31c479955f041640a.mp3 in Resources */,
 				71E4250A1E2D4DAC0029BDEC /* 30c4c232e6706d4d67a6ee0660776f16.mp3 in Resources */,
 				1AA630BB1DB04C100006B194 /* LolaE.mp3 in Resources */,
+				56DDAE581F79B3C900519EED /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml in Resources */,
 				5C0ED8501C75334200003B5A /* AFriendinNeedQ3.mp3 in Resources */,
 				5C72E6491C72A46F00CE4877 /* TheSiouxTeepeeQ3A1.mp3 in Resources */,
 				71E425241E2D4DAD0029BDEC /* 5956ec4714e7c4cacdc699463882f7b8.mp3 in Resources */,
@@ -21658,6 +21709,7 @@
 				5C0ED9021C75334200003B5A /* ShoppingattheMarketQ4A3.mp3 in Resources */,
 				5CB711741C6C46DF0062AD61 /* TheNavajoHoganQ5S.mp3 in Resources */,
 				5C40AE831CBF591A00BFEB9F /* HeavyE.mp3 in Resources */,
+				56DDAE531F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */,
 				5C0421F71C618C2B001BBE9D /* WordsOfWisdomQ1A4.mp3 in Resources */,
 				711939171E2F3CF8003D7EB5 /* 2ed1e936c18a7c76648f3b845adafbaa.mp3 in Resources */,
 				5C0421A91C618C2B001BBE9D /* TheLuckyStoneQ2A2S.mp3 in Resources */,
@@ -22358,6 +22410,7 @@
 				1A6322FA1C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5C40AE991CBF591A00BFEB9F /* StoppedE.mp3 in Resources */,
 				1AE88FEF1E47888800B86797 /* Notebook_def_S.mp3 in Resources */,
+				56DDAE4C1F79B07900519EED /* Story3-Tsunamis-Intro-S.xhtml in Resources */,
 				5C40AEE01CBF5C7C00BFEB9F /* PilesS.mp3 in Resources */,
 				5C09DF471C84F33E00EC4E78 /* Nature_def_E.mp3 in Resources */,
 				5DBC031A1C5121AE0030072B /* (null) in Resources */,
@@ -22617,6 +22670,7 @@
 				718543621E2DE284002AAD7B /* 739a733ea8ebb3c8ff851944e389ebd9.mp3 in Resources */,
 				5C0ED8551C75334200003B5A /* AFriendinNeedQ4.mp3 in Resources */,
 				5C0421BC1C618C2B001BBE9D /* TheLuckyStoneQ6A1S.mp3 in Resources */,
+				56DDAE541F79B3BD00519EED /* Story3-Muscles-Use-Oxygen-Intro-S.xhtml in Resources */,
 				5CB7116A1C6C46DF0062AD61 /* TheNavajoHoganQ3S.mp3 in Resources */,
 				71193D011E2FCF4D003D7EB5 /* 863dcd53b8014347f529e7f902702e94.mp3 in Resources */,
 				5CCD8F8D1C7405EC00D2EC2B /* TornadosQ3A2.mp3 in Resources */,
@@ -23018,6 +23072,7 @@
 				5C0ED6F51C752C2F00003B5A /* TheContestQ7A4.mp3 in Resources */,
 				5C40E0031CC863FC00D8BC48 /* BridleE.mp3 in Resources */,
 				5CCD8F391C7405EC00D2EC2B /* EarthquakesQ1A3.mp3 in Resources */,
+				56DDAE441F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-S.xhtml in Resources */,
 				5CB711001C6C292B0062AD61 /* old_CPQR14.m4a in Resources */,
 				5CB711701C6C46DF0062AD61 /* TheNavajoHoganQ5A1S.mp3 in Resources */,
 				5D9E34AA1C590E9600636150 /* TheMysteryIsSolvedQ5A4.mp3 in Resources */,
@@ -23338,6 +23393,7 @@
 				1A6320F81C0E4D3B00251CB3 /* mancha_equiped.png in Resources */,
 				5C5D09341CA9F55800B7C8D9 /* TossedS.mp3 in Resources */,
 				5C0421541C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 in Resources */,
+				56DDAE431F79B03F00519EED /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml in Resources */,
 				1A6320001C0E4D3B00251CB3 /* container.xml in Resources */,
 				5C9B8B7D1CB6038C00420053 /* Purr_type1S.mp3 in Resources */,
 				5C72E83D1C72BF1000CE4877 /* HowdoObjectsMoveQ2A3S.mp3 in Resources */,
