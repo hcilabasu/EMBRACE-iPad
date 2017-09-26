@@ -262,7 +262,9 @@ static ITSController *sharedInstance = nil;
     NSMutableArray *vocabularyStrings = [[NSMutableArray alloc] init];
     NSMutableArray *vocabularySkills = [[NSMutableArray alloc] init];
     
-    for (NSString *vocabulary in potentialVocabulary) {
+   // for (NSString *vocabulary in potentialVocabulary) {
+    //Shang: check all vocabs for skill value
+    for (NSString *vocabulary in allowedVocabularyToRequest) {
         double s = [self.manipulationAnalyser vocabSkillForWord:vocabulary];
         
         // Do not include vocabulary with skills above the threshold
