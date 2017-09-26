@@ -99,7 +99,7 @@
     
     // MANDARIN Study sequence
     else if ([participantCode rangeOfString:@"MAN"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"MAN"][1] length] == 3) {
-        numSequences = 4;
+        numSequences = 2;
         
         //Get number at end of participant code and match it to appropriate sequence
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"MAN"][1] integerValue] % numSequences;
