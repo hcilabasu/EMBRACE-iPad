@@ -115,8 +115,14 @@
             //Get the PM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-            stepContext.PMSolution = [[[PMActivity PMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get PM solution
+            if([[[PMActivity PMSolutions] objectForKey:pageContext.currentPageId] count]>0){
+            
+                stepContext.PMSolution = [[[PMActivity PMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get PM solution
+            }
+            
+            if( [[stepContext.PMSolution solutionSteps] count]>0){
             sentenceContext.currentIdea = [[[stepContext.PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            }
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
         }
         else if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && (([pageContext.currentPageId rangeOfString:PM1].location != NSNotFound)|| ([pageContext.currentPageId rangeOfString:PM3].location != NSNotFound)) && conditionSetup.condition == CONTROL))
@@ -134,8 +140,14 @@
             //Get the PM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            
+            if( [[[PMActivity PMSolutions] objectForKey:pageContext.currentPageId] count]>0 ){
             stepContext.PMSolution = [[[PMActivity PMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get PM solution
+            }
+            
+            if([[stepContext.PMSolution solutionSteps] count]>0){
             sentenceContext.currentIdea = [[[stepContext.PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            }
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
         }
         else if (conditionSetup.currentMode == ITSPM_MODE) {
@@ -149,22 +161,36 @@
             //Get the PM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity from chapter
+    
+            if([[ITSPMActivity ITSPMSolutions] count]>0){
             stepContext.ITSPMSolution = [[[ITSPMActivity ITSPMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get ITSPM solution
+            }
+            if([[stepContext.ITSPMSolution solutionSteps] count]>0){
             sentenceContext.currentIdea = [[[stepContext.ITSPMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            }
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
         }
         else if (conditionSetup.currentMode == IM_MODE) {
             //Get the IM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
+            if([[[IMActivity IMSolutions] objectForKey:pageContext.currentPageId] count]>0){
             stepContext.IMSolution = [[[IMActivity IMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get IM solution
+            }
         }
         else if (conditionSetup.currentMode == ITSIM_MODE) {
             //Get the IM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get IM Activity from chapter
+          
+   
+            
+          if([[[ITSIMActivity ITSIMSolutions] objectForKey:pageContext.currentPageId] count]>0){
             stepContext.ITSIMSolution = [[[ITSIMActivity ITSIMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get IM solution
+            }
+            if([[stepContext.ITSIMSolution solutionSteps] count]>0){
             sentenceContext.currentIdea = [[[stepContext.ITSIMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            }
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
         }
     }

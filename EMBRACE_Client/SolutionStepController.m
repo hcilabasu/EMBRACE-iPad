@@ -272,15 +272,18 @@
         }
         
         [newVocab addObject:vocabText];
-        
-        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
-        [vocabSolutionSteps addObject:vocabSolutionStep];
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+            [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
 
-    BOOL isExtraIntropage= [newVocab containsObject:@"testintroword"];
-
-
+    BOOL isExtraIntropage=NO;
+    if(0==[newVocab count]){
+        isExtraIntropage=YES;
+    }
+    
+    
+    
     if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![mvc.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
         [vocabToAdd minusSet:newVocab];
@@ -319,6 +322,7 @@
     }
     
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
+        shouldSkip=YES;
         stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
         stepContext.PMSolution.solutionSteps = vocabSolutionSteps;
         
@@ -333,6 +337,7 @@
         [ITSPMActivity addITSPMSolution:stepContext.ITSPMSolution forActivityId:pageContext.currentPageId];
     }
     else if (conditionSetup.currentMode == IM_MODE) {
+          shouldSkip=YES;
         stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
         stepContext.IMSolution.solutionSteps = vocabSolutionSteps;
         

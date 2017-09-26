@@ -101,6 +101,10 @@
 - (NSInteger)getIdForSentence:(NSInteger)sentenceNumber {
     NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%ld].id", (long)sentenceNumber];
     NSString *lastSentenceId = [self.bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    if([lastSentenceId isEqualToString:@""]){
+        return 0;
+    }
+    
     NSInteger lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
     return lastSentenceIdNumber;
 }

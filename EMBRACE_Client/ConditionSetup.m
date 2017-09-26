@@ -64,13 +64,13 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = NO;
+        shouldShowITSMessages = YES;
         
         allowFileSync = YES;
         
-        ITSComplexity=ITS_COMPLEX;
+        ITSComplexity=ITS_SYSTEM;
         //allow testers to fast skip sentences, change to YES if you want to skip sentences fast
-        fastSkipSentence=NO;
+        fastSkipSentence=YES;
     }
     
     [ITSController sharedInstance].condition=self;
