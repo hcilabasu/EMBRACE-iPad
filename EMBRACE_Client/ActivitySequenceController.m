@@ -97,6 +97,21 @@
         }
     }
     
+    // MANDARIN Study sequence
+    else if ([participantCode rangeOfString:@"MAN"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"MAN"][1] length] == 3) {
+        numSequences = 4;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"MAN"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MAN004"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MAN00%d", sequenceNumber];
+        }
+    }
+    
     return adjustedParticipantCode;
 }
 
