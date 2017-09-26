@@ -4833,6 +4833,7 @@
 		8B5E7F941F68817D0042DF25 /* son.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F771F68817D0042DF25 /* son.png */; };
 		8B5E7F951F68817D0042DF25 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F781F68817D0042DF25 /* water.png */; };
 		8B5E7F961F68817D0042DF25 /* willow_park.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E7F791F68817D0042DF25 /* willow_park.png */; };
+		8BAF5FBC1F7B100C00953BD1 /* BrushingS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BAF5FBB1F7B100C00953BD1 /* BrushingS.mp3 */; };
 		8BD8E6BD1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */; };
 		B50BE1901F678F1E00DC4227 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1371F678F1E00DC4227 /* container.xml */; };
 		B50BE1911F678F1E00DC4227 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = B50BE1381F678F1E00DC4227 /* mimetype */; };
@@ -10989,6 +10990,7 @@
 		8B5E7F771F68817D0042DF25 /* son.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = son.png; sourceTree = "<group>"; };
 		8B5E7F781F68817D0042DF25 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		8B5E7F791F68817D0042DF25 /* willow_park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = willow_park.png; sourceTree = "<group>"; };
+		8BAF5FBB1F7B100C00953BD1 /* BrushingS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BrushingS.mp3; sourceTree = "<group>"; };
 		8BD8E6BC1F6758AC001C5832 /* HowdoObjectsMoveQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ3A1.mp3; sourceTree = "<group>"; };
 		B50BE1371F678F1E00DC4227 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		B50BE1381F678F1E00DC4227 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -15606,6 +15608,7 @@
 				1A02464D1E4AD19900772200 /* FarmerS.mp3 */,
 				5C9B8B0E1CB5EFC800420053 /* BrushedS.mp3 */,
 				5C9B8B781CB6030900420053 /* Brushed_type1S.mp3 */,
+				8BAF5FBB1F7B100C00953BD1 /* BrushingS.mp3 */,
 				5C9B8B0F1CB5EFC800420053 /* BucketS.mp3 */,
 				5C9B8B101CB5EFC800420053 /* CannotS.mp3 */,
 				5C9B8B7A1CB6032500420053 /* Cannot_type1S.mp3 */,
@@ -20696,6 +20699,7 @@
 				5C72E6281C72A46F00CE4877 /* TheAlgonquianWigwamQ3A4.mp3 in Resources */,
 				718543591E2DE284002AAD7B /* 64aa9ec20c008a51710f3bdc4686ed5b.mp3 in Resources */,
 				5CB710FA1C6C292B0062AD61 /* old_CPQR0.m4a in Resources */,
+				8BAF5FBC1F7B100C00953BD1 /* BrushingS.mp3 in Resources */,
 				71154A991E5C3B1C00A33DE5 /* 5e4158061b195f8178551fc460d7d342.mp3 in Resources */,
 				5C8C35741CA1E60C00E07A5C /* LisaS.mp3 in Resources */,
 				5C0ED6E21C752C2F00003B5A /* TheContestQ4.mp3 in Resources */,
