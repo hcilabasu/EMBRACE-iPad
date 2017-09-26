@@ -105,7 +105,7 @@
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"MAN"][1] integerValue] % numSequences;
         
         if (sequenceNumber == 0) {
-            adjustedParticipantCode = [NSString stringWithFormat:@"MAN004"];
+            adjustedParticipantCode = [NSString stringWithFormat:@"MAN002"];
         }
         else {
             adjustedParticipantCode = [NSString stringWithFormat:@"MAN00%d", sequenceNumber];
