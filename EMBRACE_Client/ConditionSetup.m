@@ -70,7 +70,7 @@ static ConditionSetup *sharedInstance = nil;
         
         ITSComplexity=ITS_SYSTEM;
         //allow testers to fast skip sentences, change to YES if you want to skip sentences fast
-        fastSkipSentence=YES;
+        fastSkipSentence=NO;
     }
     
     [ITSController sharedInstance].condition=self;
