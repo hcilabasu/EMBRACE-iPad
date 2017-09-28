@@ -3,95 +3,95 @@
     <ActivityAssessment>
         <Questions title= "The Lopez Family">
             <Question number="1">
-                <QuestionText>¿Cuántas mascotas tiene la familia López?</QuestionText>
+                <QuestionText>洛佩兹家有多少只宠物？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ1S.mp3</QuestionAudio>
-                <Answer1>Dos mascotas</Answer1>
+                <Answer1>两只宠物</Answer1>
                 <Answer1Audio>TheLopezFamilyQ1A1S.mp3</Answer1Audio>
-                <Answer2>Una mascota</Answer2>
+                <Answer2>一只宠物</Answer2>
                 <Answer2Audio>TheLopezFamilyQ1A2S.mp3</Answer2Audio>
-                <Answer3>Cuatro mascotas</Answer3>
+                <Answer3>四只宠物</Answer3>
                 <Answer3Audio>TheLopezFamilyQ1A3S.mp3</Answer3Audio>
-                <Answer4>Media mascota</Answer4>
+                <Answer4>半只宠物</Answer4>
                 <Answer4Audio>TheLopezFamilyQ1A4S.mp3</Answer4Audio>
-                <expectedSelection>Dos mascotas</expectedSelection>
+                <expectedSelection>两只宠物</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>¿Qué agarra Martín de la cocina?</QuestionText>
+                <QuestionText>马丁从厨房里拿了什么？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ2S.mp3</QuestionAudio>
-                <Answer1>Sus llaves</Answer1>
+                <Answer1>他的钥匙</Answer1>
                 <Answer1Audio>TheLopezFamilyQ2A1S.mp3</Answer1Audio>
-                <Answer2>La bebé</Answer2>
+                <Answer2>小宝宝</Answer2>
                 <Answer2Audio>TheLopezFamilyQ2A2S.mp3</Answer2Audio>
-                <Answer3>Su almuerzo</Answer3>
+                <Answer3>工作午餐</Answer3>
                 <Answer3Audio>TheLopezFamilyQ2A3S.mp3</Answer3Audio>
-                <Answer4>Su varita mágica</Answer4>
+                <Answer4>他的魔杖</Answer4>
                 <Answer4Audio>TheLopezFamilyQ2A4S.mp3</Answer4Audio>
-                <expectedSelection>Sus llaves</expectedSelection>
+                <expectedSelection>他的钥匙</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>¿Quién visita a la bebé?</QuestionText>
+                <QuestionText>去探望小宝宝的是谁？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ3S.mp3</QuestionAudio>
-                <Answer1>Lola, la coneja</Answer1>
+                <Answer1>兔子萝拉</Answer1>
                 <Answer1Audio>TheLopezFamilyQ3A1S.mp3</Answer1Audio>
-                <Answer2>Paco, el perro</Answer2>
+                <Answer2>小狗帕克</Answer2>
                 <Answer2Audio>TheLopezFamilyQ3A2S.mp3</Answer2Audio>
-                <Answer3>Rosa, su mamá</Answer3>
+                <Answer3>妈妈罗莎</Answer3>
                 <Answer3Audio>TheLopezFamilyQ3A3S.mp3</Answer3Audio>
-                <Answer4>El coco</Answer4>
+                <Answer4>怪物</Answer4>
                 <Answer4Audio>TheLopezFamilyQ3A4S.mp3</Answer4Audio>
-                <expectedSelection>Lola, la coneja</expectedSelection>
+                <expectedSelection>兔子萝拉</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>¿Hacia dónde maneja Martín?</QuestionText>
+                <QuestionText>马丁开车到哪里？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ4S.mp3</QuestionAudio>
-                <Answer1>Hacia el frente de la casa</Answer1>
+                <Answer1>房子的前面</Answer1>
                 <Answer1Audio>TheLopezFamilyQ4A1S.mp3</Answer1Audio>
-                <Answer2>Al mercado</Answer2>
+                <Answer2>商店</Answer2>
                 <Answer2Audio>TheLopezFamilyQ4A2S.mp3</Answer2Audio>
-                <Answer3>Por el barrio</Answer3>
+                <Answer3>街道附近</Answer3>
                 <Answer3Audio>TheLopezFamilyQ4A3S.mp3</Answer3Audio>
-                <Answer4>Al espacio exterior</Answer4>
+                <Answer4>外太空</Answer4>
                 <Answer4Audio>TheLopezFamilyQ4A4S.mp3</Answer4Audio>
-                <expectedSelection>Hacia el frente de la casa</expectedSelection>
+                <expectedSelection>房子的前面</expectedSelection>
             </Question>
             <Question number="5">
-                <QuestionText>¿Qué va a estar haciendo la familia pronto?</QuestionText>
+                <QuestionText>这家人不久将要做什么？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ5S.mp3</QuestionAudio>
-                <Answer1>Resolviendo un misterio</Answer1>
+                <Answer1>解开一个谜团</Answer1>
                 <Answer1Audio>TheLopezFamilyQ5A1S.mp3</Answer1Audio>
-                <Answer2>Yendo al parque</Answer2>
+                <Answer2>去公园</Answer2>
                 <Answer2Audio>TheLopezFamilyQ5A2S.mp3</Answer2Audio>
-                <Answer3>Jugando un juego</Answer3>
+                <Answer3>玩游戏</Answer3>
                 <Answer3Audio>TheLopezFamilyQ5A3S.mp3</Answer3Audio>
-                <Answer4>Nadando con tiburones</Answer4>
+                <Answer4>与鲨鱼游泳</Answer4>
                 <Answer4Audio>TheLopezFamilyQ5A4S.mp3</Answer4Audio>
-                <expectedSelection>Resolviendo un misterio</expectedSelection>
+                <expectedSelection>解开一个谜团</expectedSelection>
             </Question>
             <Question number="6">
-                <QuestionText>¿Por qué agarró Martín sus llaves?</QuestionText>
+                <QuestionText>马丁为什么要取他的钥匙？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ6S.mp3</QuestionAudio>
-                <Answer1>Para manejar su coche</Answer1>
+                <Answer1>为了开车</Answer1>
                 <Answer1Audio>TheLopezFamilyQ6A1S.mp3</Answer1Audio>
-                <Answer2>Para abrir la puerta principal</Answer2>
+                <Answer2>打开房子前门</Answer2>
                 <Answer2Audio>TheLopezFamilyQ6A2S.mp3</Answer2Audio>
-                <Answer3>Para dejar que la bebé juegue con ellas</Answer3>
+                <Answer3>让小宝宝和他们一起玩</Answer3>
                 <Answer3Audio>TheLopezFamilyQ6A3S.mp3</Answer3Audio>
-                <Answer4>Para escribir en su computador</Answer4>
+                <Answer4>在他的电脑上打字</Answer4>
                 <Answer4Audio>TheLopezFamilyQ6A4S.mp3</Answer4Audio>
-                <expectedSelection>Para manejar su coche</expectedSelection>
+                <expectedSelection>为了开车</expectedSelection>
             </Question>
             <Question number="7">
-                <QuestionText>¿Por qué trabaja Rosa desde la casa?</QuestionText>
+                <QuestionText>罗莎为什么在家工作？</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ7S.mp3</QuestionAudio>
-                <Answer1>Para cuidar a la bebé</Answer1>
+                <Answer1>照顾小宝宝</Answer1>
                 <Answer1Audio>TheLopezFamilyQ7A1S.mp3</Answer1Audio>
-                <Answer2>Para cuidar a Paco</Answer2>
+                <Answer2>照顾帕克</Answer2>
                 <Answer2Audio>TheLopezFamilyQ7A2S.mp3</Answer2Audio>
-                <Answer3>Porque su trabajo queda muy lejos</Answer3>
+                <Answer3>因为她的工作太远</Answer3>
                 <Answer3Audio>TheLopezFamilyQ7A3S.mp3</Answer3Audio>
-                <Answer4>Porque su jefe huele mal</Answer4>
+                <Answer4>因为她的老板太坏</Answer4>
                 <Answer4Audio>TheLopezFamilyQ7A4S.mp3</Answer4Audio>
-                <expectedSelection>Para cuidar a la bebé</expectedSelection>
+                <expectedSelection>照顾小宝宝</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "Missing Keys">
