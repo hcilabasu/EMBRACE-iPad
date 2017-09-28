@@ -266,7 +266,7 @@ static ITSController *sharedInstance = nil;
     //Shang: check all vocabs for skill value
     for (NSString *vocabulary in allowedVocabularyToRequest) {
         double s = [self.manipulationAnalyser vocabSkillForWord:vocabulary];
-        
+        BOOL shouldAdd=YES;
         // Do not include vocabulary with skills above the threshold
         if (s < HIGH_VOCABULARY_SKILL_THRESHOLD) {
             NSNumber *skill = [NSNumber numberWithDouble:s];
@@ -276,8 +276,14 @@ static ITSController *sharedInstance = nil;
                 return [obj1 compare:obj2];
             }];
             
-            [vocabularyStrings insertObject:vocabulary atIndex:index];
-            [vocabularySkills insertObject:skill atIndex:index];
+            if( [vocabulary isEqualToString:@"rockets"] ){
+                shouldAdd=NO;;
+            }
+            
+            if(shouldAdd){
+                [vocabularyStrings insertObject:vocabulary atIndex:index];
+                [vocabularySkills insertObject:skill atIndex:index];
+            }
         }
     }
     
