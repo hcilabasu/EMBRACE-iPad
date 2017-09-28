@@ -10,12 +10,12 @@
 #import "Activity.h"
 #import "ConditionSetup.h"
 
-@class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint,AlternateSentence;
+@class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint,AlternateSentence, ManipulationViewController;
 
 @protocol ManipulationViewDelegate;
 
 @interface ManipulationView : UIView
-
+@property ManipulationViewController* parentManipulationViewController;
 @property (nonatomic, weak) id <ManipulationViewDelegate> delegate;
 @property (nonatomic, weak) UIWebView *bookView;
 

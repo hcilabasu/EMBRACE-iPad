@@ -13,14 +13,14 @@
 #import "MenuItemImage.h"
 #import "ITSController.h"
 #import "Translation.h"
-
+#import "ManipulationViewController.h"
 @interface ManipulationView()<UIScrollViewDelegate, UIWebViewDelegate>
 
 @end
 
 @implementation ManipulationView
 @synthesize bookView;
-
+@synthesize parentManipulationViewController;
 - (instancetype)initWithFrameAndView:(CGRect)frame : (UIWebView *) bv{
     self = [super initWithFrame:frame];
     if (self) {
@@ -803,10 +803,25 @@
                action:(NSString *)action
                areaId:(NSString *)areaId{
     
+    [parentManipulationViewController disableUserInteraction];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self
+                                   selector:@selector(enableParentMVCInteraction)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    
     
     NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')",
                          objectId, fromPos.x, fromPos.y, toPos.x, toPos.y, action, areaId];
     [self.bookView stringByEvaluatingJavaScriptFromString:animate];
+}
+
+
+-(void)enableParentMVCInteraction{
+    [parentManipulationViewController enableUserInteraction];
 }
 
 - (void)simulateUngrouping:(NSString *)obj1
