@@ -147,7 +147,7 @@ BOOL wasPathFollowed = false;
     [super viewDidLoad];
     isAudioPlaying=NO;
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
-    
+    self.manipulationView.parentManipulationViewController=self;
     self.manipulationView.delegate = self;
     
     //hides the default navigation bar to add custom back button
@@ -1275,7 +1275,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         imageHighlighted = (NSString *)valueImage;
-        [self highlightObject:imageHighlighted:1.5];
+        if(![imageHighlighted isEqualToString:@"forward"]){
+            [self highlightObject:imageHighlighted:1.5];
+        }
     }
 }
 
@@ -2487,6 +2489,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
 }
+
 
 // TODO: Change error type NSString to enum
 - (void)provideFeedback:( ErrorFeedback *)feedback {
@@ -3861,11 +3864,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     else {
                         allowInteractions = TRUE;
-                       [self enableUserInteraction];
+                     //  [self enableUserInteraction];
                     }
                     
                     [self highlightObject:object1Id :2.0];
                 });
+                
             });
         }
     }
