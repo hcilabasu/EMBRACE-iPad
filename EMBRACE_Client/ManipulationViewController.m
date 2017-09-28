@@ -1275,7 +1275,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         imageHighlighted = (NSString *)valueImage;
-        [self highlightObject:imageHighlighted:1.5];
+        if(![imageHighlighted isEqualToString:@"forward"]){
+            [self highlightObject:imageHighlighted:1.5];
+        }
     }
 }
 
