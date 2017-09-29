@@ -3,94 +3,94 @@
     <ActivityAssessment>
                 <Questions title="The Contest">
                     <Question number="1">
-                        <QuestionText>¿Cómo se llama el granjero?</QuestionText>
+                        <QuestionText>农夫叫什么名字？</QuestionText>
                         <QuestionAudio>TheContestQ1S.mp3</QuestionAudio>
-                        <Answer1>Manuel</Answer1>
+                        <Answer1>曼努埃尔</Answer1>
                         <Answer1Audio>TheContestQ1A1S.mp3</Answer1Audio>
-                        <expectedSelection>Manuel</expectedSelection>
-                        <Answer2>Ben</Answer2>
+                        <expectedSelection>曼努埃尔</expectedSelection>
+                        <Answer2>本</Answer2>
                         <Answer2Audio>TheContestQ1A2S.mp3</Answer2Audio>
-                        <Answer3>David</Answer3>
+                        <Answer3>大卫</Answer3>
                         <Answer3Audio>TheContestQ1A3S.mp3</Answer3Audio>
-                        <Answer4>Betty</Answer4>
+                        <Answer4>贝蒂</Answer4>
                         <Answer4Audio>TheContestQ1A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="2">
-                        <QuestionText>¿Qué día viene la juez?</QuestionText>
+                        <QuestionText>检查官什么时候来？</QuestionText>
                         <QuestionAudio>TheContestQ2S.mp3</QuestionAudio>
-                        <Answer1>Domingo</Answer1>
+                        <Answer1>星期天</Answer1>
                         <Answer1Audio>TheContestQ2A1S.mp3</Answer1Audio>
-                        <expectedSelection>Domingo</expectedSelection>
-                        <Answer2>Lunes</Answer2>
+                        <expectedSelection>星期天</expectedSelection>
+                        <Answer2>星期一</Answer2>
                         <Answer2Audio>TheContestQ2A2S.mp3</Answer2Audio>
-                        <Answer3>Martes</Answer3>
+                        <Answer3>星期二</Answer3>
                         <Answer3Audio>TheContestQ2A3S.mp3</Answer3Audio>
-                        <Answer4>En Navidad</Answer4>
+                        <Answer4>圣诞节</Answer4>
                         <Answer4Audio>TheContestQ2A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="3">
-                        <QuestionText>¿Qué animal saltó a los brazos de Manuel?</QuestionText>
+                        <QuestionText>哪只动物跳到了曼努埃尔的怀里？</QuestionText>
                         <QuestionAudio>TheContestQ3S.mp3</QuestionAudio>
-                        <Answer1>La gata</Answer1>
+                        <Answer1>猫</Answer1>
                         <Answer1Audio>TheContestQ3A1S.mp3</Answer1Audio>
-                        <expectedSelection>La gata</expectedSelection>
-                        <Answer2>La gallina</Answer2>
+                        <expectedSelection>猫</expectedSelection>
+                        <Answer2>鸡</Answer2>
                         <Answer2Audio>TheContestQ3A2S.mp3</Answer2Audio>
-                        <Answer3>El búho</Answer3>
+                        <Answer3>猫头鹰</Answer3>
                         <Answer3Audio>TheContestQ3A3S.mp3</Answer3Audio>
-                        <Answer4>El hipopótamo</Answer4>
+                        <Answer4>河马</Answer4>
                         <Answer4Audio>TheContestQ3A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="4">
-                        <QuestionText>¿En qué animal se sentó la gallina?</QuestionText>
+                        <QuestionText>鸡坐在哪种动物的身上？</QuestionText>
                         <QuestionAudio>TheContestQ4S.mp3</QuestionAudio>
-                        <Answer1>La vaca</Answer1>
+                        <Answer1>奶牛</Answer1>
                         <Answer1Audio>TheContestQ4A1S.mp3</Answer1Audio>
-                        <expectedSelection>La vaca</expectedSelection>
-                        <Answer2>La cabra</Answer2>
+                        <expectedSelection>奶牛</expectedSelection>
+                        <Answer2>山羊</Answer2>
                         <Answer2Audio>TheContestQ4A2S.mp3</Answer2Audio>
-                        <Answer3>El caballo</Answer3>
+                        <Answer3>马</Answer3>
                         <Answer3Audio>TheContestQ4A3S.mp3</Answer3Audio>
-                        <Answer4>El bicho</Answer4>
+                        <Answer4>臭虫</Answer4>
                         <Answer4Audio>TheContestQ4A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="5">
-                        <QuestionText>¿Por qué Manuel quiere trabajar duro esta semana?</QuestionText>
+                        <QuestionText>这个星期曼努埃尔为什么要努力工作？</QuestionText>
                         <QuestionAudio>TheContestQ5S.mp3</QuestionAudio>
-                        <Answer1>Para ganar el premio de la mejor granja</Answer1>
+                        <Answer1>赢得最好农场的奖励</Answer1>
                         <Answer1Audio>TheContestQ5A1S.mp3</Answer1Audio>
-                        <expectedSelection>Para ganar el premio de la mejor granja</expectedSelection>
-                        <Answer2>Para hacer un picnic</Answer2>
+                        <expectedSelection>赢得最好农场的奖励</expectedSelection>
+                        <Answer2>野餐</Answer2>
                         <Answer2Audio>TheContestQ5A2S.mp3</Answer2Audio>
-                        <Answer3>Para ganar dinero</Answer3>
+                        <Answer3>赚钱</Answer3>
                         <Answer3Audio>TheContestQ5A3S.mp3</Answer3Audio>
-                        <Answer4>Porque su papá le dijo</Answer4>
+                        <Answer4>因为他爸爸告诉他要这样做</Answer4>
                         <Answer4Audio>TheContestQ5A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="6">
-                        <QuestionText>¿Después de que la cabra se acercó a la vaca, qué otro animal estaba cerca?</QuestionText>
+                        <QuestionText>山羊走向奶牛，附近还有什么动物？</QuestionText>
                         <QuestionAudio>TheContestQ6S.mp3</QuestionAudio>
-                        <Answer1>El caballo</Answer1>
+                        <Answer1>马</Answer1>
                         <Answer1Audio>TheContestQ6A1S.mp3</Answer1Audio>
-                        <expectedSelection>El caballo</expectedSelection>
-                        <Answer2>El cerdo</Answer2>
+                        <expectedSelection>马</expectedSelection>
+                        <Answer2>猪</Answer2>
                         <Answer2Audio>TheContestQ6A2S.mp3</Answer2Audio>
-                        <Answer3>El búho</Answer3>
+                        <Answer3>猫头鹰</Answer3>
                         <Answer3Audio>TheContestQ6A3S.mp3</Answer3Audio>
-                        <Answer4>La cebra</Answer4>
+                        <Answer4>斑马</Answer4>
                         <Answer4Audio>TheContestQ6A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="7">
-                        <QuestionText>¿Cómo salió la cabra de su cuarto?</QuestionText>
+                        <QuestionText>山羊是怎样从它的栅栏里出来的？</QuestionText>
                         <QuestionAudio>TheContestQ7S.mp3</QuestionAudio>
-                        <Answer1>Manuel le abrió</Answer1>
+                        <Answer1>农夫曼努埃尔打开了栅栏门</Answer1>
                         <Answer1Audio>TheContestQ7A1S.mp3</Answer1Audio>
-                        <expectedSelection>Manuel le abrió</expectedSelection>
-                        <Answer2>La cabra salió saltando</Answer2>
+                        <expectedSelection>农夫曼努埃尔打开了栅栏门</expectedSelection>
+                        <Answer2>山羊跳出来的</Answer2>
                         <Answer2Audio>TheContestQ7A2S.mp3</Answer2Audio>
-                        <Answer3>La gallina le abrió</Answer3>
+                        <Answer3>鸡打开了栅栏门</Answer3>
                         <Answer3Audio>TheContestQ7A3S.mp3</Answer3Audio>
-                        <Answer4>El cuarto se desapareció</Answer4>
+                        <Answer4>栅栏消失了</Answer4>
                         <Answer4Audio>TheContestQ7A4S.mp3</Answer4Audio>
                     </Question>
                 </Questions>
