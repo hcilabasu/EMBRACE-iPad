@@ -290,7 +290,7 @@
                  @"cattle" : @"ganado",
                  @"celebration" : @"celebración",
                  @"champurrado" : @"champurrado",
-                 @"corral" : @"corral",
+                 @"corral" : @"畜栏",
                  @"dairy" : @"lácteos",
                  @"dozen" : @"docena",
                  @"enthusiastically" : @"con entusiasmo",
