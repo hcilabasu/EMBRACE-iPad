@@ -219,6 +219,7 @@
     }
     
     sentenceContext.pageSentences = [NSMutableArray array];
+    sentenceContext.sentenceComplexityList= [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {
         if ([ideaNum intValue] > previousIdeaNum) {
@@ -241,6 +242,14 @@
                     foundIdea = true;
                     [sentencesToAdd addObject:altSent];
                     previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                    
+                    if(complexity==EM_Complex){
+                        [sentenceContext.sentenceComplexityList addObject:@"COMPLEX"];
+                    }
+                    if(complexity==EM_Easy){
+                        [sentenceContext.sentenceComplexityList addObject:@"EASY"];
+                    }
+                    
                 }
             }
             
@@ -252,6 +261,7 @@
                         foundIdea = true;
                         [sentencesToAdd addObject:altSent];
                         previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                         [sentenceContext.sentenceComplexityList addObject:@"MEDIUM"];
                     }
                 }
             }

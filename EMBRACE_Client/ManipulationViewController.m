@@ -129,6 +129,9 @@
 @synthesize RDIcon;
 @synthesize isAudioPlaying;
 @synthesize iconLabel;
+@synthesize skipButton;
+@synthesize skipAlert;
+@synthesize isSkipOn;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -138,6 +141,10 @@ BOOL wasPathFollowed = false;
     [super viewWillAppear:animated];
     
     bookView.frame = self.view.bounds;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [bookView bringSubviewToFront:skipButton];
 }
 
 /*  Initial view setup after webview loads. Adds manipulationView as a subview and adds view constraints
@@ -291,22 +298,107 @@ BOOL wasPathFollowed = false;
         conditionSetup.ITSComplexity=ITS_MEDIUM;
     }
     
-    UIButton *someButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    someButton.titleLabel.text=@"Skip";
-    someButton.alpha=0.001;
-    [self.bookView addSubview:someButton];
+    skipButton = [[UIButton alloc] initWithFrame:CGRectMake(0, bookView.frame.size.height-180, 120, 180)];
+    skipButton.backgroundColor=[UIColor clearColor];
+    [bookView addSubview:skipButton];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlelongPress:)];
-    [someButton addGestureRecognizer:longPress];
+    [skipButton addGestureRecognizer:longPress];
 
     
 }//end of view did load
 
 
+
 - (void)handlelongPress:(UITapGestureRecognizer *)recognizer
 {
-  
+    if (recognizer.state == UIGestureRecognizerStateBegan){
+        
+        if(isSkipOn){
+             self.navigationItem.rightBarButtonItem = nil;
+            isSkipOn=NO;
+        }else{
+        
+        skipAlert = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        skipAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+        [skipAlert show];
+        }
+
+    }
+    
 }
+
+
+
+
+-(void)skipCurrentStep{
+    //Emergency swipe to bypass the vocab intros
+    if ([pageContext.currentPageId containsString:INTRO]) {
+        
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        [self.playaudioClass stopPlayAudioFile];
+        
+        sentenceContext.currentSentence = 1;
+        manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+        manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+        manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+        [pc loadNextPage];
+    }
+    //Perform steps only if they exist for the sentence and have not been completed
+    else if (
+             (stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE &&
+              (conditionSetup.currentMode == PM_MODE ||conditionSetup.currentMode == ITSPM_MODE)) ||
+             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        
+        //Get steps for current sentence
+        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
+        
+        //Check and tap steps will trigger automatic steps, just increment steps
+        if ([stepType isEqualToString:CHECK] ||
+            [stepType isEqualToString:CHECKLEFT] ||
+            [stepType isEqualToString:CHECKRIGHT] ||
+            [stepType isEqualToString:CHECKUP] ||
+            [stepType isEqualToString:CHECKDOWN] ||
+            [stepType isEqualToString:CHECKANDSWAP] ||
+            [stepType isEqualToString:TAPTOANIMATE] ||
+            [stepType isEqualToString:CHECKPATH] ||
+            [stepType isEqualToString:SHAKEORTAP] ||
+            [stepType isEqualToString:TAPWORD] ) {
+            
+            if ([stepType isEqualToString:CHECKANDSWAP]) {
+                [self swapObjectImage];
+            }
+            
+            [ssc incrementCurrentStep];
+        }
+        //Current step is either group, ungroup, disappear, or transference
+        else {
+            //Get the interaction to be performed
+            PossibleInteraction *interaction = [pic getCorrectInteraction];
+            
+            //Perform the interaction and increment the step
+            [pic performInteraction:interaction];
+            [ssc incrementCurrentStep];
+            
+            if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                [ssc incrementCurrentStep];
+            }
+        }
+        
+        if (stepContext.stepsComplete) {
+            [self pressedNext:self];
+        }
+    }
+    
+
+}
+
 
 - (void)dealloc {
     
@@ -551,6 +643,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[[alertView textFieldAtIndex:0] text] isEqualToString:@"hello"]) {
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Skip"
+                                                                        style:UIBarButtonItemStyleDone target:self action:@selector(skipCurrentStep)];
+        self.navigationItem.rightBarButtonItem = rightButton;
+        isSkipOn=YES;
+    }
+
+    
+    
+    
     if ([[alertView title] isEqualToString:RETURN_TO_LIBRARY]) {
         //Get title of pressed alert button
         NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -1308,77 +1410,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
 
-/*
- * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
- * by performing it automatically according to the solution.
- */
-- (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    
-    //Emergency swipe to bypass the vocab intros
-    if ([pageContext.currentPageId containsString:INTRO]) {
-        
-        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
-        [self.playaudioClass stopPlayAudioFile];
-        
-        sentenceContext.currentSentence = 1;
-        manipulationContext.sentenceNumber = sentenceContext.currentSentence;
-        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
-        manipulationContext.sentenceText = sentenceContext.currentSentenceText;
-        manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-        [pc loadNextPage];
-    }
-    //Perform steps only if they exist for the sentence and have not been completed
-    else if (
-             (stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE &&
-              (conditionSetup.currentMode == PM_MODE ||conditionSetup.currentMode == ITSPM_MODE)) ||
-             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
-        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
-        
-        //Get steps for current sentence
-        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-        
-        //Get current step to be completed
-        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-        NSString *stepType = [currSolStep stepType];
-        
-        //Check and tap steps will trigger automatic steps, just increment steps
-        if ([stepType isEqualToString:CHECK] ||
-            [stepType isEqualToString:CHECKLEFT] ||
-            [stepType isEqualToString:CHECKRIGHT] ||
-            [stepType isEqualToString:CHECKUP] ||
-            [stepType isEqualToString:CHECKDOWN] ||
-            [stepType isEqualToString:CHECKANDSWAP] ||
-            [stepType isEqualToString:TAPTOANIMATE] ||
-            [stepType isEqualToString:CHECKPATH] ||
-            [stepType isEqualToString:SHAKEORTAP] ||
-            [stepType isEqualToString:TAPWORD] ) {
-            
-            if ([stepType isEqualToString:CHECKANDSWAP]) {
-                [self swapObjectImage];
-            }
-            
-            [ssc incrementCurrentStep];
-        }
-        //Current step is either group, ungroup, disappear, or transference
-        else {
-            //Get the interaction to be performed
-            PossibleInteraction *interaction = [pic getCorrectInteraction];
-            
-            //Perform the interaction and increment the step
-            [pic performInteraction:interaction];
-            [ssc incrementCurrentStep];
-            
-            if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-                [ssc incrementCurrentStep];
-            }
-        }
-        
-        if (stepContext.stepsComplete) {
-            [self pressedNext:self];
-        }
-    }
-    
-}
 
 /*
  * Pinch gesture. Used to ungroup two images from each other.

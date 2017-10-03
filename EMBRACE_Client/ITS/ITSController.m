@@ -20,6 +20,7 @@
 
 @implementation ITSController
 @synthesize condition;
+@synthesize sentencecontext;
 static ITSController *sharedInstance = nil;
 
 + (ITSController *)sharedInstance {
@@ -40,6 +41,7 @@ static ITSController *sharedInstance = nil;
     if (self) {
         _manipulationAnalyser = [[ManipulationAnalyser alloc] init];
         _manipulationAnalyser.conditionsetup=condition;
+        //_manipulationAnalyser.sentencecontext
         _currentComplexity = EM_Medium;
     }
     

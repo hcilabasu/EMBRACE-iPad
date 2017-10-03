@@ -12,6 +12,7 @@
 #import "Book.h"
 #import "ErrorFeedback.h"
 #import "ConditionSetup.h"
+#import "SentenceContext.h"
 @class SkillSet;
 
 typedef NS_ENUM(NSInteger, EMComplexity) {
@@ -23,6 +24,7 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 @interface ITSController : NSObject
 @property ConditionSetup* condition;
+@property SentenceContext* sentencecontext;
 + (ITSController *)sharedInstance;
 + (void)resetSharedInstance;
 

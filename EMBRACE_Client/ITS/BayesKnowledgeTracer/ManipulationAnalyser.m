@@ -40,6 +40,7 @@
 
 @implementation ManipulationAnalyser
 @synthesize conditionsetup;
+@synthesize sentencecontext;
 - (instancetype)init {
     self = [super init];
     

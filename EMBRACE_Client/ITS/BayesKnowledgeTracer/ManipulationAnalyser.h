@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ITSController.h"
 #import "ConditionSetup.h"
+#import "SentenceContext.h"
 @class SkillSet;
 @class UserAction, ActionStep;
 @class ManipulationContext;
@@ -18,6 +19,8 @@
 
 @property (nonatomic, weak) id <ManipulationAnalyserProtocol> delegate;
 @property (nonatomic, strong) ConditionSetup* conditionsetup;
+@property (nonatomic, strong) SentenceContext* sentencecontext;
+
 - (SkillSet *)getSkillSet;
 - (void)setSkillSet:(SkillSet *)skillSet;
 

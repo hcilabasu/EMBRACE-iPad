@@ -246,7 +246,7 @@
 - (double)getGuessForSkillType:(SkillType)type {
     double guess = DEFAULT_GUESS;
     //adjust guess value based on different conditions
-    float adjustGuessVlaue=0.1;
+    float adjustGuessVlaue=0;
     EMComplexity currentComplexity = [[ITSController sharedInstance] getCurrentComplexity];
     switch (type) {
         case SkillType_Usability:
@@ -263,21 +263,9 @@
             break;
         case SkillType_Vocab:
             guess = DEFAULT_VOCAB_GUESS;
-            if(EM_Easy==currentComplexity){
-                guess=guess+adjustGuessVlaue;
-            }
-            if(EM_Complex==currentComplexity){
-                guess=guess-adjustGuessVlaue;
-            }
             break;
         case SkillType_Prev_Vocab:
-            guess = PREVIEW_VOCAB_GUESS;
-            if(EM_Easy==currentComplexity){
-                guess=guess+adjustGuessVlaue;
-            }
-            if(EM_Complex==currentComplexity){
-                guess=guess-adjustGuessVlaue;
-            }
+
             break;
         default:
             break;
