@@ -184,7 +184,6 @@ BOOL wasPathFollowed = false;
     IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(24, 24)];
     RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(24, 24)];
     
-
     iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
     iconLabel.font=[iconLabel.font fontWithSize:13];
    // iconLabel.textColor= [UIColor darkGrayColor];
@@ -222,7 +221,7 @@ BOOL wasPathFollowed = false;
     self.allRelationships = [[NSMutableArray alloc] init];
     self.currentGroupings = [[NSMutableDictionary alloc] init];
     
-    self.navigationItem.rightBarButtonItem = nil;
+   self.navigationItem.rightBarButtonItem = nil;
     
     if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
@@ -292,10 +291,22 @@ BOOL wasPathFollowed = false;
         conditionSetup.ITSComplexity=ITS_MEDIUM;
     }
     
+    UIButton *someButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    someButton.titleLabel.text=@"Skip";
+    someButton.alpha=0.001;
+    [self.bookView addSubview:someButton];
     
-    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlelongPress:)];
+    [someButton addGestureRecognizer:longPress];
+
     
 }//end of view did load
+
+
+- (void)handlelongPress:(UITapGestureRecognizer *)recognizer
+{
+  
+}
 
 - (void)dealloc {
     

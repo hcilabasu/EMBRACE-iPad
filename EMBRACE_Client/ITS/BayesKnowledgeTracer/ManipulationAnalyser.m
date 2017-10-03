@@ -39,12 +39,13 @@
 @end
 
 @implementation ManipulationAnalyser
-
+@synthesize conditionsetup;
 - (instancetype)init {
     self = [super init];
     
     if (self) {
         _knowledgeTracer = [[KnowledgeTracer alloc] init];
+        _knowledgeTracer.conditionsetup=conditionsetup;
         _booksDict = [[NSMutableDictionary alloc] init];
         _playWords = [[NSMutableSet alloc] init];
     }
@@ -377,7 +378,7 @@
     // Moved to incorrect destination
     else if (![destinationIDs containsObject:correctDestinationID]) {
         // Vocabulary or syntax error
-        if (![self isDestDistanceBelowThreshold:destinationIDs :correctDestinationID]) {
+
             double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
             
             // Vocabulary error
@@ -406,17 +407,7 @@
                                                                 isVerified:NO
                                                                    context:context];
             }
-        }
-        // Usability error
-        else {
-            // Decrease usability skill
-          //  usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
-            
-            //Shang: combine usabilit skill with syntax skill for study
-            syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
-                                                     isVerified:NO
-                                                        context:context];
-        }
+        
     }
     // Moved to correct destination
     else {

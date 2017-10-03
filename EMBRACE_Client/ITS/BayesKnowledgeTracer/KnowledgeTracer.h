@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ITSController.h"
-
+#import "ConditionSetup.h"
 @class UserAction, Skill, SkillSet;
 
 @interface KnowledgeTracer : NSObject
-
+@property (nonatomic, strong) ConditionSetup* conditionsetup;
 - (SkillSet *)getSkillSet;
 - (void)setSkillSet:(SkillSet *)skillSet;
 

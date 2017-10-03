@@ -12,7 +12,7 @@
 #import "ActionStep.h"
 #import "WordSkill.h"
 #import "ServerCommunicationController.h"
-
+#import "ITSController.h"
 // Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
 
@@ -46,6 +46,7 @@
 @end
 
 @implementation KnowledgeTracer
+@synthesize conditionsetup;
 
 - (instancetype)init {
     self = [super init];
@@ -53,6 +54,7 @@
     if (self) {
         _skillSet = [[SkillSet alloc] init];
         _dampenValue = 1.0;
+
     }
     
     return self;
@@ -243,19 +245,39 @@
 
 - (double)getGuessForSkillType:(SkillType)type {
     double guess = DEFAULT_GUESS;
-    
+    //adjust guess value based on different conditions
+    float adjustGuessVlaue=0.1;
+    EMComplexity currentComplexity = [[ITSController sharedInstance] getCurrentComplexity];
     switch (type) {
         case SkillType_Usability:
             guess = DEFAULT_USABILITY_GUESS;
             break;
         case SkillType_Syntax:
             guess = DEFAULT_SYNTAX_GUESS;
+            if(EM_Easy==currentComplexity){
+                guess=guess+adjustGuessVlaue;
+            }
+            if(EM_Complex==currentComplexity){
+                guess=guess-adjustGuessVlaue;
+            }
             break;
         case SkillType_Vocab:
             guess = DEFAULT_VOCAB_GUESS;
+            if(EM_Easy==currentComplexity){
+                guess=guess+adjustGuessVlaue;
+            }
+            if(EM_Complex==currentComplexity){
+                guess=guess-adjustGuessVlaue;
+            }
             break;
         case SkillType_Prev_Vocab:
             guess = PREVIEW_VOCAB_GUESS;
+            if(EM_Easy==currentComplexity){
+                guess=guess+adjustGuessVlaue;
+            }
+            if(EM_Complex==currentComplexity){
+                guess=guess-adjustGuessVlaue;
+            }
             break;
         default:
             break;

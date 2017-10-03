@@ -39,6 +39,7 @@ static ITSController *sharedInstance = nil;
     
     if (self) {
         _manipulationAnalyser = [[ManipulationAnalyser alloc] init];
+        _manipulationAnalyser.conditionsetup=condition;
         _currentComplexity = EM_Medium;
     }
     
