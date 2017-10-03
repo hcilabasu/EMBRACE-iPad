@@ -410,7 +410,12 @@
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
+          //  usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
+            
+            //Shang: combine usabilit skill with syntax skill for study
+            syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                     isVerified:NO
+                                                        context:context];
         }
     }
     // Moved to correct destination
@@ -493,7 +498,12 @@
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
+          //  usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
+            syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                     isVerified:NO
+                                                        context:context];
+            
+            
         }
     }
     // Moved correct object
@@ -729,8 +739,8 @@
             feedbackObjc.skillType = SkillType_Vocab;
         }
         
-        
-    } else if ([mostProbError isEqualToString:@"syntax"]) {
+        //Shang: combining Usability error with syntax for study
+    } else if ([mostProbError isEqualToString:@"syntax"] ||[mostProbError isEqualToString:@"usability"]) {
         
         self.currentSentenceStatus.numOfSyntaxErrors++;
         if (self.currentSentenceStatus.numOfSyntaxErrors == 1) {
@@ -744,12 +754,13 @@
         
         
     } else if ([mostProbError isEqualToString:@"usability"]) {
-        
+        //Shang: Disable Usability error for study
+        /*
         self.currentSentenceStatus.numOfUsabilityErrors++;
         if (self.currentSentenceStatus.numOfUsabilityErrors > 1) {
             feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
             feedbackObjc.skillType = SkillType_Usability;
-        }
+        }*/
         
     } else {
         
