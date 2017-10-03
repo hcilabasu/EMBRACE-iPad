@@ -70,7 +70,7 @@
                  @"breathe" : @"inhalamos",
                  @"breathed" : @"exhalado",
                  @"breathing" : @"respirando",
-                 @"cannot" : @"no puede",
+                 @"cannot" : @"没有办法",
                  @"carbon dioxide" : @"dióxido de carbono",
                  @"cell" : @"célula",
                  @"cells" : @"células",
