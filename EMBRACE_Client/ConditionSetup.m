@@ -64,11 +64,11 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = NO;
         
         allowFileSync = YES;
         
-        ITSComplexity=ITS_COMPLEX;
+        ITSComplexity=ITS_SYSTEM;
         //allow testers to fast skip sentences, change to YES if you want to skip sentences fast
         fastSkipSentence=NO;
     }
