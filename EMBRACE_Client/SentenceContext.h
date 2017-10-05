@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *currentSentenceText; //Text of current sentence
 @property (nonatomic) NSUInteger totalSentences; //Total number of sentences on this page
 @property (nonatomic, strong) NSMutableArray *pageSentences; //AlternateSentences on current page
-
+@property (nonatomic, strong) NSMutableArray *sentenceComplexityList;
 @property (nonatomic) NSInteger currentIdea; //Current idea number to be completed
 
 @end
