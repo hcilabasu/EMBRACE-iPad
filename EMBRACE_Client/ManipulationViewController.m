@@ -527,7 +527,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         toDoIcon.image=RDIcon;
         iconLabel.text=@"Read";
     }
-    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-38, textRect.origin.y-27);
+   // titleRect=[self positionOfElementWithId:@"s2"];
+    toDoIcon.center=CGPointMake(titleRect.origin.x + titleRect.size.width-50, 40);
 
         
     iconLabel.center=CGPointMake(toDoIcon.center.x, toDoIcon.center.y+22);

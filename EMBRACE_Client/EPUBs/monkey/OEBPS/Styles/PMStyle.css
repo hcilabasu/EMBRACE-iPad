@@ -42,6 +42,14 @@ p {
 	display:inline;
 }
 
+p.title {
+    display:inline-block;
+    padding-right:60px;
+    margin-top: -7px;
+    margin-bottom: -5 px;
+}
+
+
 body {
 	background-repeat: no-repeat;
 	padding: 0px 0px 0px 0px;
