@@ -845,6 +845,28 @@
                     
                 </solution>
             </sentence>
+            
+            <sentence number="1" action="yes">
+                <attributes complexity="1"/>
+                <text>The chicken flew to her nest.</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            <sentence number="2" action="yes">
+                <attributes complexity="1"/>
+                <text> Then counted her eggs.</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
             <sentence number="2" action="no">
                 <attributes complexity="10"/>
                 <text>The chicken said, \"I cannot be the best animal with only one egg.\"</text>
