@@ -985,22 +985,6 @@
                 
             </sentence>
             
-            <sentence number="22" action="no">
-                
-                <attributes complexity="3"/>
-                
-                <text>But the plates still push on each other, which makes them build pressure.</text>
-                
-                <ideas>
-                    
-                    <idea number="21"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
             
         </story>
         
@@ -1820,24 +1804,7 @@
             
             
             
-            
-            
-            <sentence number="33" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>But all of that extra water forms a huge wave.</text>
-                
-                <ideas>
-                    
-                    <idea number="35"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
+
             
             <sentence number="34" action="yes">
                 
@@ -1927,6 +1894,25 @@
                 
             </sentence>
             
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>But all of that extra water forms a huge wave.</text>
+                
+                <ideas>
+                    
+                    <idea number="35"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+
+
             <sentence number="39" action="yes">
                 
                 <attributes complexity="3"/>
@@ -1935,7 +1921,7 @@
                 
                 <ideas>
                     
-                    <idea number="36"/>
+                    <idea number="35"/>
                     
                 </ideas>
                 
