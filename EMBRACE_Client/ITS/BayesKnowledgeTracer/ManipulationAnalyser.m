@@ -722,11 +722,11 @@
     
     if ([mostProbError isEqualToString:@"vocabulary"]) {
         self.currentSentenceStatus.numOfVocabErrors++;
-        if (self.currentSentenceStatus.numOfVocabErrors == 1) {
+        if (self.currentSentenceStatus.numOfVocabErrors == 2) {
             feedbackObjc.feedbackType = EMFeedbackType_Highlight;
             feedbackObjc.skillType = SkillType_Vocab;
             
-        } else if (self.currentSentenceStatus.numOfVocabErrors > 1) {
+        } else if (self.currentSentenceStatus.numOfVocabErrors > 2) {
             feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
             feedbackObjc.skillType = SkillType_Vocab;
         }
@@ -735,11 +735,11 @@
     } else if ([mostProbError isEqualToString:@"syntax"] ||[mostProbError isEqualToString:@"usability"]) {
         
         self.currentSentenceStatus.numOfSyntaxErrors++;
-        if (self.currentSentenceStatus.numOfSyntaxErrors == 1) {
+        if (self.currentSentenceStatus.numOfSyntaxErrors == 2) {
             feedbackObjc.feedbackType = EMFeedbackType_ReadSentence;
             feedbackObjc.skillType = SkillType_Syntax;
             
-        } else if (self.currentSentenceStatus.numOfSyntaxErrors > 1) {
+        } else if (self.currentSentenceStatus.numOfSyntaxErrors > 2) {
             feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
             feedbackObjc.skillType = SkillType_Syntax;
         }

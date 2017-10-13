@@ -75,6 +75,9 @@
 - (void)logPressLibrary:(ManipulationContext *)context;
 - (void)logCompleteManipulation:(ManipulationContext *)context;
 - (void)createNewLogFile;
+- (void)logActivateSkipButton:(ManipulationContext *)context;
+- (void)logHideSkipButton:(ManipulationContext *)context;
+- (void)logLongpressButton:(ManipulationContext *)context;
 
 # pragma mark - Logging (Assessment)
 

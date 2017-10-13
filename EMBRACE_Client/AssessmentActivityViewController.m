@@ -267,6 +267,11 @@ UIImage *BackgroundImage;   //The background image related to the story
     [self NextButtonPressed:self];
 }
 
+
+
+
+
+
 /*
  * Increments the next question, resets the visual aspects of the question and answer options,
  */

@@ -317,13 +317,14 @@ BOOL wasPathFollowed = false;
         if(isSkipOn){
              self.navigationItem.rightBarButtonItem = nil;
             isSkipOn=NO;
+             [[ServerCommunicationController sharedInstance] logHideSkipButton:manipulationContext];
         }else{
         
         skipAlert = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
         skipAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+        [[ServerCommunicationController sharedInstance] logLongpressButton:manipulationContext];
         [skipAlert show];
         }
-
     }
     
 }
@@ -649,6 +650,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                                         style:UIBarButtonItemStyleDone target:self action:@selector(skipCurrentStep)];
         self.navigationItem.rightBarButtonItem = rightButton;
         isSkipOn=YES;
+        [[ServerCommunicationController sharedInstance] logActivateSkipButton:manipulationContext];
     }
 
     
