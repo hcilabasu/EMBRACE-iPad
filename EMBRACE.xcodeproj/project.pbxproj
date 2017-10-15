@@ -18748,7 +18748,7 @@
 				ORGANIZATIONNAME = "Andreea Danielescu";
 				TargetAttributes = {
 					31953E441729ECC100570087 = {
-						DevelopmentTeam = VT9F7J4Z37;
+						DevelopmentTeam = BWSLUFSJRA;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -23748,7 +23748,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
-				DEVELOPMENT_TEAM = VT9F7J4Z37;
+				DEVELOPMENT_TEAM = BWSLUFSJRA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -23776,7 +23776,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
-				DEVELOPMENT_TEAM = VT9F7J4Z37;
+				DEVELOPMENT_TEAM = BWSLUFSJRA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
