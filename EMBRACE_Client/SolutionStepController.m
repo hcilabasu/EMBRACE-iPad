@@ -322,7 +322,7 @@
     }
     
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-        shouldSkip=YES;
+
         stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
         stepContext.PMSolution.solutionSteps = vocabSolutionSteps;
         
@@ -330,6 +330,7 @@
         [PMActivity addPMSolution:stepContext.PMSolution forActivityId:pageContext.currentPageId];
     }
     else if (conditionSetup.currentMode == ITSPM_MODE) {
+        
         stepContext.ITSPMSolution = [[ITSPhysicalManipulationSolution alloc] init];
         stepContext.ITSPMSolution.solutionSteps = vocabSolutionSteps;
         
@@ -337,7 +338,6 @@
         [ITSPMActivity addITSPMSolution:stepContext.ITSPMSolution forActivityId:pageContext.currentPageId];
     }
     else if (conditionSetup.currentMode == IM_MODE) {
-          shouldSkip=YES;
         stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
         stepContext.IMSolution.solutionSteps = vocabSolutionSteps;
         
@@ -352,6 +352,11 @@
         [ITSIMActivity addITSIMSolution:stepContext.ITSIMSolution forActivityId:pageContext.currentPageId];
     }
     
+    NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
+    [vocabToAdd minusSet:newVocab];
+    if (isExtraIntropage&& 0==[vocabToAdd count]){
+        shouldSkip=YES;
+    }
     if(shouldSkip){
         [mvc SkipIntro];
     }

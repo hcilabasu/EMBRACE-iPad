@@ -3440,12 +3440,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     for (ActionStep *currSolStep in currSolSteps) {
         interaction = [self convertActionStepToPossibleInteraction:currSolStep];
+        if(!interaction){
+            continue;
+        }
         [interactions addObject:interaction];
         Relationship *relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
         [allRelationships addObject:relationshipBetweenObjects];
     }
     
     interactions = [self shuffleMenuOptions: interactions];
+    
+    /*
+    if(interactions.count<1){
+        [self enableUserInteraction];
+        return;
+    }*/
     
     //Populate the menu data source and expand the menu.
     [self populateMenuDataSource:interactions :allRelationships];
@@ -3471,6 +3480,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self expandMenu];
     [IMViewMenu bringSubviewToFront:IMinstructions];
    [self enableUserInteraction];
+    
+    
+    
+    
 }
 
 /*
