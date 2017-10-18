@@ -3351,9 +3351,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //Get steps for current sentence
         NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-        
-        if (currSolSteps.count != 0 && !didSelectCorrectMenuOption) {
-            [self createIMMenuPage];
+       //skip menu if it's a vocab solution
+        ActionStep *step=nil;
+        if (currSolSteps.count>0){
+            step=[currSolSteps objectAtIndex:0];
+        }
+        if (currSolSteps.count != 0 && !didSelectCorrectMenuOption && ![step.stepType isEqualToString:@"tapWord"]) {
+                 [self createIMMenuPage];
         }
         else {
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
