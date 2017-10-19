@@ -24,6 +24,7 @@
 @synthesize manipulationView;
 @synthesize animatingObjects;
 
+
 -(id)initWithController:(ManipulationViewController *) superMvc {
     self = [super init];
     

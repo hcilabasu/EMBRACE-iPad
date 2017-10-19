@@ -329,11 +329,24 @@
                                     <action selector="showPasswordPrompt:" destination="e9p-ZO-asL" eventType="touchUpInside" id="JcV-dS-ejz"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zv9-3L-Z3o">
+                                <rect key="frame" x="684" y="255" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXh-cy-HvO">
+                                <rect key="frame" x="730" y="260" width="196" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="y87-aq-9jP"/>
                     <connections>
+                        <outlet property="conditionIcon" destination="Zv9-3L-Z3o" id="L8O-fF-nsB"/>
+                        <outlet property="conditionLabel" destination="OXh-cy-HvO" id="vwW-5B-6SR"/>
                         <outlet property="experimenterField" destination="Adj-CD-O2S" id="5wG-YA-rEA"/>
                         <outlet property="participantCodeField" destination="kqd-k5-FuV" id="fCu-LI-nRW"/>
                         <outlet property="schoolCodeField" destination="Z07-gu-DJb" id="aoY-Jl-QUs"/>

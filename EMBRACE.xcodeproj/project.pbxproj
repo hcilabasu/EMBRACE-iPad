@@ -398,6 +398,8 @@
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
 		5685DE171F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5685DE161F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 */; };
+		568CFDE91F995B71004422C7 /* correctIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 568CFDE71F995B71004422C7 /* correctIcon.png */; };
+		568CFDEA1F995B71004422C7 /* warningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 568CFDE81F995B71004422C7 /* warningIcon.png */; };
 		56AAB98F1F837C600037D9DB /* 54bce8bb7e36086efbb07431aab367e8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56AAB98E1F837C600037D9DB /* 54bce8bb7e36086efbb07431aab367e8.mp3 */; };
 		56AAB9911F837E090037D9DB /* 212c15e8c035accc4a0089b00f56f5a3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56AAB9901F837E090037D9DB /* 212c15e8c035accc4a0089b00f56f5a3.mp3 */; };
 		56AAB9931F837F020037D9DB /* e2d4467fa2b2a31a59da2eb77ec59401.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56AAB9921F837F020037D9DB /* e2d4467fa2b2a31a59da2eb77ec59401.mp3 */; };
@@ -6196,6 +6198,8 @@
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		5685DE161F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fe9356fe3527ed89dc7be6e115a013bd.mp3; sourceTree = "<group>"; };
+		568CFDE71F995B71004422C7 /* correctIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correctIcon.png; sourceTree = "<group>"; };
+		568CFDE81F995B71004422C7 /* warningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningIcon.png; sourceTree = "<group>"; };
 		56AAB98E1F837C600037D9DB /* 54bce8bb7e36086efbb07431aab367e8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 54bce8bb7e36086efbb07431aab367e8.mp3; sourceTree = "<group>"; };
 		56AAB9901F837E090037D9DB /* 212c15e8c035accc4a0089b00f56f5a3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 212c15e8c035accc4a0089b00f56f5a3.mp3; sourceTree = "<group>"; };
 		56AAB9921F837F020037D9DB /* e2d4467fa2b2a31a59da2eb77ec59401.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = e2d4467fa2b2a31a59da2eb77ec59401.mp3; sourceTree = "<group>"; };
@@ -12728,6 +12732,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				568CFDE61F995B62004422C7 /* Icons */,
 				1A631C671C0E4D3900251CB3 /* EPUBs */,
 				5CCAE22C1B4C42C600445020 /* disasters.epub */,
 				1A631D3F1C0E4D3A00251CB3 /* celebration.epub */,
@@ -12910,6 +12915,15 @@
 				5CEEBFA71ACA05F4002AACC4 /* Area.m */,
 			);
 			name = "Interaction Model";
+			sourceTree = "<group>";
+		};
+		568CFDE61F995B62004422C7 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				568CFDE71F995B71004422C7 /* correctIcon.png */,
+				568CFDE81F995B71004422C7 /* warningIcon.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		56B269E41F529B0E00702575 /* Pics */ = {
@@ -19384,6 +19398,7 @@
 				5C40E0331CC863FC00D8BC48 /* SuppliesS.mp3 in Resources */,
 				5C7264DF1EC3A315003B7029 /* CPQR7.m4a in Resources */,
 				5C9C07F01C57385A00702FCD /* BFES_10.m4a in Resources */,
+				568CFDEA1F995B71004422C7 /* warningIcon.png in Resources */,
 				5C9C07C81C57385A00702FCD /* BFCS_8B.m4a in Resources */,
 				5C62A9851C854A2200F28BEB /* Squeezes_def_S.mp3 in Resources */,
 				5C40AE971CBF591A00BFEB9F /* SpeedE.mp3 in Resources */,
@@ -20999,6 +21014,7 @@
 				711939701E2F3CF8003D7EB5 /* f81c539a6d946e5b6cfefa85fb0d580d.mp3 in Resources */,
 				71193BC61E2FB797003D7EB5 /* 800d05eefe4e180d4419fc263b73142a.mp3 in Resources */,
 				5C09DFCD1C85116B00EC4E78 /* Mole_def_E.mp3 in Resources */,
+				568CFDE91F995B71004422C7 /* correctIcon.png in Resources */,
 				711939271E2F3CF8003D7EB5 /* 4d917f7db55b58b5dbc9b28e0e878e70.mp3 in Resources */,
 				5C72E6101C72A46F00CE4877 /* TheAlgonquianWigwamQ8A3.mp3 in Resources */,
 				7119397B1E2F3CF8003D7EB5 /* HowDoObjectsMoveS8S.mp3 in Resources */,

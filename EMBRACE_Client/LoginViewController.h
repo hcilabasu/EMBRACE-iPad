@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *conditionIcon;
+@property (weak, nonatomic) IBOutlet UILabel *conditionLabel;
 
 @end

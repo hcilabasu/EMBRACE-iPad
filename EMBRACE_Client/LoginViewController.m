@@ -25,7 +25,8 @@
 @end
 
 @implementation LoginViewController
-
+@synthesize conditionIcon;
+@synthesize conditionLabel;
 NSString* const DROPBOX_PASSWORD_UNLOCKED = @"hello"; //used to set locked books/chapters to in progress
 NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books/chapters to completed
 
@@ -35,6 +36,8 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     [participantCodeField setDelegate:self];
     [studyDayField setDelegate:self];
     [experimenterField setDelegate:self];
+    participantCodeField.tag=1;
+    conditionLabel.text=@"";
 }
 
 
@@ -295,6 +298,57 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     //Trim whitespace from textfield input
     textField.text = [[textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if(1==textField.tag){
+        BOOL isCorrect= [self isConditionInputCorrect:textField];
+        UIImage * img = [UIImage imageNamed: @"warningIcon.png"];
+        if(isCorrect){
+            img = [UIImage imageNamed: @"correctIcon"];
+        }
+        img=[self imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+        conditionIcon.image=img;
+    }
+}
+
+
+
+-(BOOL)isConditionInputCorrect:(UITextField *)textField {
+    NSString* textString=textField.text;
+    textString=textField.text = [textString stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceCharacterSet]];
+    
+    int numSequences = 4;
+    
+    NSString* ITSstring=  [textString substringToIndex:3];
+    ITSstring= [ITSstring uppercaseString];
+    if(![ITSstring isEqualToString:@"ITS"]){
+        return NO;
+    }
+    
+    NSArray* ary=[textString componentsSeparatedByString:@"ITS"];
+    
+    if([textString componentsSeparatedByString:@"ITS"].count>0){
+        NSInteger sequenceNumber = [[textString componentsSeparatedByString:@"ITS"][1] integerValue] % numSequences;
+        if(sequenceNumber>0){
+            return YES;
+        }else{
+            return NO;
+        }
+
+    }else{
+        return 0;
+    }
+}
+
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 /*
