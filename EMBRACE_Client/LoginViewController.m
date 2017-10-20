@@ -304,8 +304,10 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
         UIImage * img = [UIImage imageNamed: @"warningIcon.png"];
         if(isCorrect){
             img = [UIImage imageNamed: @"correctIcon"];
+        }else{
+            conditionLabel.text=@"Please check your condition";
         }
-        img=[self imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+        img=[self imageWithImage:img scaledToSize:CGSizeMake(28, 28)];
         conditionIcon.image=img;
     }
 }
@@ -328,15 +330,18 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     NSArray* ary=[textString componentsSeparatedByString:@"ITS"];
     
     if([textString componentsSeparatedByString:@"ITS"].count>0){
-        NSInteger sequenceNumber = [[textString componentsSeparatedByString:@"ITS"][1] integerValue] % numSequences;
+        NSInteger sequenceNumber = [[textString componentsSeparatedByString:@"ITS"][1] integerValue];
         if(sequenceNumber>0){
+            int condition=sequenceNumber%4;
+            conditionLabel.text=[[NSString alloc]initWithFormat:@"Condition: %d",condition+1 ];
+            
             return YES;
         }else{
             return NO;
         }
 
     }else{
-        return 0;
+        return NO;
     }
 }
 
