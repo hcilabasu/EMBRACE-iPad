@@ -333,7 +333,10 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
         NSInteger sequenceNumber = [[textString componentsSeparatedByString:@"ITS"][1] integerValue];
         if(sequenceNumber>0){
             int condition=sequenceNumber%4;
-            conditionLabel.text=[[NSString alloc]initWithFormat:@"Condition: %d",condition+1 ];
+            if(0==condition){
+                condition=4;
+            }
+            conditionLabel.text=[[NSString alloc]initWithFormat:@"Condition: %d",condition ];
             
             return YES;
         }else{
