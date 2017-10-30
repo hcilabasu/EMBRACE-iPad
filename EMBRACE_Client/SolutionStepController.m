@@ -357,6 +357,9 @@
     if (isExtraIntropage&& 0==[vocabToAdd count]){
         shouldSkip=YES;
     }
+    if( Study== conditionSetup.appMode){
+        shouldSkip=YES;
+    }
     if(shouldSkip){
         [mvc SkipIntro];
     }
