@@ -322,7 +322,6 @@
     }
     
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-
         stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
         stepContext.PMSolution.solutionSteps = vocabSolutionSteps;
         
@@ -357,7 +356,7 @@
     if (isExtraIntropage&& 0==[vocabToAdd count]){
         shouldSkip=YES;
     }
-    if( Study== conditionSetup.appMode){
+    if( Study== conditionSetup.appMode && isExtraIntropage){
         shouldSkip=YES;
     }
     if(shouldSkip){
