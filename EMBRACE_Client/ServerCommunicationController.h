@@ -103,6 +103,8 @@
 - (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context;
 - (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context;
 
+- (void)logPressNextWhenDisabled:(ManipulationContext *)context;
+
 #pragma mark - Saving/loading progress files
 
 - (Progress *)loadProgress:(Student *)student;

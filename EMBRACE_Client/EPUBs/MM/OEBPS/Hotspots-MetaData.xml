@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+        
+        <hotspot objId="banana" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="banana" action="grab" role="object" x="35.6%" y="61.2%"/>
+        <hotspot objId="banana" action="grab2" role="object" x="55.5%" y="1%"/>
+        <hotspot objId="lisa" action="fill" role="subject" x="0%" y="100%"/>
+        <hotspot objId="lisa" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="lisa" action="grab" role="subject" x="14.45%" y="17.1%"/>
+        <hotspot objId="lisa" action="standOn" role="subject" x="50%" y="100%"/>
+        <hotspot objId="monkey" action="getIn" role="object" x="22.3%" y="61.7%"/>
+        <hotspot objId="monkey" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="monkey" action="grab2" role="subject" x="23%" y="95%"/>
+        <hotspot objId="trough" action="fill" role="object" x="90%" y="100%"/>
+        <hotspot objId="trough" action="standOn" role="object" x="30%" y="25%"/>
+        
+    </hotspots>
+</metadata>
+

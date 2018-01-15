@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:f0fe710e-44d7-4626-8b59-20cd5fe9699f</dc:identifier>
+        <dc:date opf:event="modification">2015-07-06</dc:date>
+        <meta content="0.7.2" name="Sigil version" />
+        <dc:title>Introduction to EMBRACE</dc:title>
+    </metadata>
+  <manifest>
+    <item href="Images/banana_container.png" id="banana_container.png" media-type="image/png" />
+    <item href="Images/banana_peel.png" id="banana_peel.png" media-type="image/png" />
+    <item href="Images/banana.png" id="banana.png" media-type="image/png" />
+    <item href="Images/lisa_frowning.png" id="lisa_frowning.png" media-type="image/png" />
+    <item href="Images/lisa.png" id="lisa.png" media-type="image/png" />
+    <item href="Images/monkey_background.png" id="monkey_background.png" media-type="image/png" />
+    <item href="Images/monkey_ground.png" id="monkey_ground.png" media-type="image/png" />
+    <item href="Images/monkey_tree.png" id="monkey_tree.png" media-type="image/png" />
+    <item href="Images/naughty_monkey_updatedicon.png" id="naughty_monkey_updatedicon.png" media-type="image/png" />
+    <item href="Images/trough_empty.png" id="trough_empty.png" media-type="image/png" />
+    <item href="Images/trough_filled.png" id="trough_filled.png" media-type="image/png" />
+    <item href="Images/trough_handle_up.png" id="trough_handle_up.png" media-type="image/png" />
+    <item href="Images/zebra.png" id="zebra.png" media-type="image/png" />
+    
+    
+    
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+    <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
+    <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />
+    <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css" />
+    
+    
+    <item href="Text/Story1-The-Naughty-Monkey-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Naughty-Monkey-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Naughty-Monkey-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
+    
+    
+  </manifest>
+  
+  <spine toc="ncx">
+      <itemref idref="Chapter1Title" />
+      <itemref idref="story1-PM-1" />
+      <itemref idref="story1-PM-2" />
+  </spine>
+  <guide/>
+</package>

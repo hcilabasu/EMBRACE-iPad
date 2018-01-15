@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+          <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+          <location locationId="balcony" x="0%" y="0%" height="100%" width="100%"/>
+          <location locationId="door" x="0%" y="0%" height="100%" width="100%"/>
+          <location locationId="kitchenGod" x="0%" y="0%" height="100%" width="100%"/>
+    </locations>
+</metadata>

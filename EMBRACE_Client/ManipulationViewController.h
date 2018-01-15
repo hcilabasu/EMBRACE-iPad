@@ -99,6 +99,7 @@ typedef enum InteractionMode {
 @property UIAlertView* skipAlert;
 @property BOOL isSkipOn;
 @property BOOL isAudioPlaying;
+@property  (nonatomic, strong) UIView* overlayView;
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;

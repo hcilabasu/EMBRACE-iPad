@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+           <hotspot objId="bannerTop" action="hold" role="object" x="50%" y="50%"/>
+           <hotspot objId="bannerTop" action="getIn" role="subject" x="50%" y="50%"/>
+           <hotspot objId="mother" action="getIn" role="subject" x="50%" y="50%"/>
+           <hotspot objId="mother" action="reversePickUp" role="subject" x="50%" y="50%"/>
+           <hotspot objId="treats" action="reversePickUp" role="object" x="50%" y="50%"/>
+           <hotspot objId="son" action="connect2" role="object" x="50%" y="50%"/>
+           <hotspot objId="son" action="connect" role="subject" x="50%" y="50%"/>
+           <hotspot objId="daughter" action="connect" role="object" x="50%" y="50%"/>
+           <hotspot objId="daughter" action="connect" role="subject" x="50%" y="50%"/>
+           <hotspot objId="daughter" action="connect2" role="subject" x="50%" y="50%"/>
+           <hotspot objId="daughter" action="getIn" role="subject" x="50%" y="50%"/>
+           <hotspot objId="father" action="connect" role="object" x="50%" y="50%"/>
+           <hotspot objId="father" action="connect" role="subject" x="50%" y="50%"/>
+           <hotspot objId="father" action="getIn" role="subject" x="50%" y="50%"/>
+           <hotspot objId="father" action="hold" role="subject" x="50%" y="50%"/>
+           <hotspot objId="lantern" action="hold" role="object" x="50%" y="50%"/>
+           <hotspot objId="mother" action="connect" role="object" x="50%" y="50%"/>
+           
+    </hotspots>
+</metadata>

@@ -132,6 +132,7 @@
 @synthesize skipButton;
 @synthesize skipAlert;
 @synthesize isSkipOn;
+@synthesize overlayView;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -298,16 +299,31 @@ BOOL wasPathFollowed = false;
         conditionSetup.ITSComplexity=ITS_MEDIUM;
     }
     
-    skipButton = [[UIButton alloc] initWithFrame:CGRectMake(0, bookView.frame.size.height-180, 120, 180)];
+    skipButton = [[UIButton alloc] initWithFrame:CGRectMake(0, bookView.frame.size.height-180, 120, 120)];
     skipButton.backgroundColor=[UIColor clearColor];
     [bookView addSubview:skipButton];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlelongPress:)];
     [skipButton addGestureRecognizer:longPress];
 
+    //add NextButton Overlay to capture press next to skip
+
+    overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
+    overlayView.backgroundColor=[UIColor redColor];
+    overlayView.alpha=1.0;
+    [self.view addSubview:overlayView];
+    [self.view sendSubviewToBack:overlayView];
+    
+    
     
 }//end of view did load
 
+
+
+- (void)SkipNext:(UIButton*)button
+{
+    NSLog(@"Button  clicked.");
+}
 
 
 - (void)handlelongPress:(UITapGestureRecognizer *)recognizer
@@ -3536,6 +3552,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if(conditionSetup.fastSkipSentence){
                 waitSecond=0.01;
             }
+            
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
                     for(UIView *tmpView in arrSubviews)
@@ -3545,11 +3563,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                             // Optionally, check button.tag
                             if(tmpView.tag == 4) {
                                 if(!isAudioPlaying){
-                                
                                 [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                                 nextButton.alpha=1.0;
                                 }
+                                [self.view sendSubviewToBack:overlayView];
                                 [tmpView setUserInteractionEnabled:true];
+                            
                             }
                         }
                     }
@@ -4681,7 +4700,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 -(void)disableUserInteraction{
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nextButton.alpha=0.7;
+    
+    [self.view bringSubviewToFront:overlayView];
+    
     [self.view setUserInteractionEnabled:false];
+    
+    
+    
     
 }
 
@@ -4689,6 +4714,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     nextButton.alpha=1.0;
     [self.view setUserInteractionEnabled:true];
+    
+    [self.view sendSubviewToBack:overlayView];
     
 }
 -(void)SkipIntro{
