@@ -310,19 +310,23 @@ BOOL wasPathFollowed = false;
 
     overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
     overlayView.backgroundColor=[UIColor redColor];
-    overlayView.alpha=1.0;
+    overlayView.alpha=0.4;
     [self.view addSubview:overlayView];
     [self.view sendSubviewToBack:overlayView];
-    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSkipTap:)];
+    [overlayView addGestureRecognizer:singleFingerTap];
     
     
 }//end of view did load
 
 
 
-- (void)SkipNext:(UIButton*)button
+- (void)handleSkipTap:(UIButton*)button
 {
-    NSLog(@"Button  clicked.");
+    NSLog(@"Skip clicked.");
+    [[ServerCommunicationController sharedInstance] logPressNextWhenDisabled: manipulationContext];
 }
 
 
@@ -3527,6 +3531,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     if(tmpView.tag == 4) {
                         //disable the next button
                     [tmpView setUserInteractionEnabled:false];
+                    [self.view bringSubviewToFront:overlayView];
                         [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                         nextButton.alpha=0.7;                    }
                 }
@@ -4700,9 +4705,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 -(void)disableUserInteraction{
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nextButton.alpha=0.7;
-    
-    [self.view bringSubviewToFront:overlayView];
-    
     [self.view setUserInteractionEnabled:false];
     
     
@@ -4714,8 +4716,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     nextButton.alpha=1.0;
     [self.view setUserInteractionEnabled:true];
-    
-    [self.view sendSubviewToBack:overlayView];
+
     
 }
 -(void)SkipIntro{
