@@ -326,7 +326,7 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
     }
     
     NSString* ITSstring=  [textString substringToIndex:3];
-    ITSstring= [ITSstring uppercaseString];
+    //ITSstring= [ITSstring uppercaseString];
     if(![ITSstring isEqualToString:@"ITS"]){
         return NO;
     }
