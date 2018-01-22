@@ -133,6 +133,8 @@
 @synthesize skipAlert;
 @synthesize isSkipOn;
 @synthesize overlayView;
+@synthesize isUserInteractiondisabled;
+
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -309,9 +311,12 @@ BOOL wasPathFollowed = false;
     //add NextButton Overlay to capture press next to skip
 
     overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
-    overlayView.backgroundColor=[UIColor redColor];
-    overlayView.alpha=0.4;
+    overlayView.backgroundColor=[UIColor clearColor];
+   // overlayView.alpha=1.0;
     [self.view addSubview:overlayView];
+    
+    
+
     [self.view sendSubviewToBack:overlayView];
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -3448,7 +3453,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //Play noise if not all steps have been completed
         [self playNoiseName:MORE_ERROR];
         
-       [self enableUserInteraction];
+       //[self enableUserInteraction];
     }
 }
 
@@ -3522,6 +3527,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             pressedNextLock = true;
            [self disableUserInteraction];
             
+            
             NSArray *arrSubviews = [self.view subviews];
             for(UIView *tmpView in arrSubviews)
             {
@@ -3532,6 +3538,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         //disable the next button
                     [tmpView setUserInteractionEnabled:false];
                     [self.view bringSubviewToFront:overlayView];
+                        [overlayView becomeFirstResponder];
                         [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                         nextButton.alpha=0.7;                    }
                 }
@@ -3561,6 +3568,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
+                if(!isUserInteractiondisabled){
+                
                     for(UIView *tmpView in arrSubviews)
                     {
                         if([tmpView isMemberOfClass:[UIButton class]])
@@ -3577,6 +3586,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                             }
                         }
                     }
+                }
             });
         }
     }
@@ -4134,6 +4144,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //disable user interactions when preparing to play audio to prevent users from skipping audio
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:overlayView];
+    [overlayView becomeFirstResponder];
     nextButton.alpha=0.7;
    [self disableUserInteraction];
     
@@ -4703,22 +4715,62 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 
 -(void)disableUserInteraction{
+    isUserInteractiondisabled=YES;
+    /*
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nextButton.alpha=0.7;
     [self.view setUserInteractionEnabled:false];
+    */
     
-    
-    
-    
+    NSArray *arrSubviews = [self.view subviews];
+    for(UIView *tmpView in arrSubviews)
+    {
+        if([tmpView isMemberOfClass:[UIButton class]])
+        {
+            // Optionally, check button.tag
+            if(tmpView.tag == 4) {
+                //disable the next button
+                [tmpView setUserInteractionEnabled:false];
+                [self.view bringSubviewToFront:overlayView];
+                [overlayView becomeFirstResponder];
+                [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                nextButton.alpha=0.7;                    }
+        }
+    }
+   
 }
 
 -(void)enableUserInteraction{
+    isUserInteractiondisabled=NO;
+    /*
     [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     nextButton.alpha=1.0;
-    [self.view setUserInteractionEnabled:true];
+    [self.view setUserInteractionEnabled:true];*/
 
     
+    
+    NSArray *arrSubviews = [self.view subviews];
+    for(UIView *tmpView in arrSubviews)
+    {
+        if([tmpView isMemberOfClass:[UIButton class]])
+        {
+            // Optionally, check button.tag
+            if(tmpView.tag == 4) {
+                if(!isAudioPlaying){
+                    [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    nextButton.alpha=1.0;
+                }
+                [self.view sendSubviewToBack:overlayView];
+                [tmpView setUserInteractionEnabled:true];
+                
+            }
+        }
+    }
+  
 }
+
+
+
 -(void)SkipIntro{
     [self.playaudioClass stopPlayAudioFile];
     
