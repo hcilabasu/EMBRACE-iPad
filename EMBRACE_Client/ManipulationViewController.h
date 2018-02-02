@@ -101,7 +101,7 @@ typedef enum InteractionMode {
 @property BOOL isAudioPlaying;
 @property  (nonatomic, strong) UIView* overlayView;
 @property BOOL isUserInteractiondisabled;
-
+@property BOOL shouldPlayInstructionAudio;
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;

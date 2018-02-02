@@ -99,11 +99,23 @@
 }
 
 - (NSInteger)getIdForSentence:(NSInteger)sentenceNumber {
+    
+    parentManipulationViewController.shouldPlayInstructionAudio=NO;
+    
     NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%ld].id", (long)sentenceNumber];
     NSString *lastSentenceId = [self.bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
     if([lastSentenceId isEqualToString:@""]){
         return 0;
     }
+    
+    NSString *getTitleIDHRMLcode = [NSString stringWithFormat:@"document.getElementsByClassName('title')[0].id"];
+    NSString *TitleID = [self.bookView stringByEvaluatingJavaScriptFromString:getTitleIDHRMLcode];
+    
+    if([TitleID isEqualToString:@"s0"]){
+        parentManipulationViewController.shouldPlayInstructionAudio=YES;
+    }
+    
+
     
     NSInteger lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
     return lastSentenceIdNumber;

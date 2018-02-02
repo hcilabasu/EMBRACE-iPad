@@ -134,6 +134,7 @@
 @synthesize isSkipOn;
 @synthesize overlayView;
 @synthesize isUserInteractiondisabled;
+@synthesize shouldPlayInstructionAudio;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -311,18 +312,15 @@ BOOL wasPathFollowed = false;
     //add NextButton Overlay to capture press next to skip
 
     overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
-    overlayView.backgroundColor=[UIColor clearColor];
-   // overlayView.alpha=1.0;
+    overlayView.backgroundColor=[UIColor redColor];
+    overlayView.alpha=0.6;
     [self.view addSubview:overlayView];
-    
-    
 
     [self.view sendSubviewToBack:overlayView];
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSkipTap:)];
     [overlayView addGestureRecognizer:singleFingerTap];
-    
     
 }//end of view did load
 
@@ -3568,8 +3566,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
-                if(!isUserInteractiondisabled){
-                
+                //if(!isUserInteractiondisabled){
+                if(1){
                     for(UIView *tmpView in arrSubviews)
                     {
                         if([tmpView isMemberOfClass:[UIButton class]])
@@ -3582,6 +3580,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                 }
                                 [self.view sendSubviewToBack:overlayView];
                                 [tmpView setUserInteractionEnabled:true];
+                                [self enableUserInteraction];
                             
                             }
                         }
@@ -4353,6 +4352,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)sentenceContext.currentSentence]];
     }
+    //Shang: if it's first sentence of chapter, load instruction script
+    if(shouldPlayInstructionAudio &&  1==sentenceContext.currentSentence){
+        
+        if ([ConditionSetup sharedInstance].condition == EMBRACE) {
+            script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%d", 0]];
+        }
+        else {
+            script = [chapter controlScriptFor:[NSString stringWithFormat:@"%d", 0]];
+        }
+        
+        
+    }
+    
+    
+    
     
     if (conditionSetup.newInstructions) {
         NSLog(@"New instructions should be played");
@@ -4715,7 +4729,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 
 -(void)disableUserInteraction{
-    isUserInteractiondisabled=YES;
     /*
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nextButton.alpha=0.7;
@@ -4737,11 +4750,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 nextButton.alpha=0.7;                    }
         }
     }
-   
+    isUserInteractiondisabled=YES;
 }
 
 -(void)enableUserInteraction{
-    isUserInteractiondisabled=NO;
     /*
     [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     nextButton.alpha=1.0;
@@ -4766,7 +4778,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
-  
+      isUserInteractiondisabled=NO;
 }
 
 
