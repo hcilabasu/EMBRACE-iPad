@@ -3523,8 +3523,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     @synchronized(self) {
         if (!pressedNextLock && !isLoadPageInProgress) {
             pressedNextLock = true;
-           [self disableUserInteraction];
             
+           [self disableUserInteraction];
             
             NSArray *arrSubviews = [self.view subviews];
             for(UIView *tmpView in arrSubviews)
@@ -3566,8 +3566,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     NSArray *arrSubviews = [self.view subviews];
-                //if(!isUserInteractiondisabled){
-                if(1){
+                if(!isUserInteractiondisabled){
+                //if(1){
                     for(UIView *tmpView in arrSubviews)
                     {
                         if([tmpView isMemberOfClass:[UIButton class]])
@@ -4462,7 +4462,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //there are no audio files to play so allow interactions
         
         [self.view setUserInteractionEnabled:YES];
-       //[self enableUserInteraction];
+       [self enableUserInteraction];
     }
 }
 
