@@ -87,6 +87,7 @@
     if (self.audioPlayer == nil)
     {
         [parentManipulationViewController enableUserInteraction];
+        parentManipulationViewController.isAudioPlaying=NO;
       
         
         return false;
@@ -107,6 +108,7 @@
     [self.audioPlayerAfter stop];
     self.audioPlayer = nil;
     self.audioPlayerAfter = nil;
+    parentManipulationViewController.isAudioPlaying=NO;
 }
 
 
@@ -145,6 +147,7 @@
             self.audioQueue = nil;
             NSLog(@"Audio error %@",[audioError description]);
             [parentManipulationViewController enableUserInteraction];
+            parentManipulationViewController.isAudioPlaying=NO;
         }
         else {
             
@@ -160,6 +163,7 @@
     else
     {
         [parentManipulationViewController enableUserInteraction];
+        parentManipulationViewController.isAudioPlaying=NO;
     }
 }
 
@@ -192,6 +196,7 @@
             self.audioPlayer = nil;
             self.audioPlayerAfter = nil;
             [parentManipulationViewController enableUserInteraction];
+            parentManipulationViewController.isAudioPlaying=NO;
             return false;
         }
         else
@@ -232,12 +237,14 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [parentManipulationViewController enableUserInteraction];
+                    parentManipulationViewController.isAudioPlaying=NO;
                   
                 });
             }
             else
             {
                 [parentManipulationViewController enableUserInteraction];
+                parentManipulationViewController.isAudioPlaying=NO;
 
             }
         }

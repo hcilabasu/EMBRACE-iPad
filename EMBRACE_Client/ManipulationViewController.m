@@ -135,7 +135,8 @@
 @synthesize overlayView;
 @synthesize isUserInteractiondisabled;
 @synthesize shouldPlayInstructionAudio;
-
+@synthesize isSentenceDelayON;
+    
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -3524,7 +3525,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if (!pressedNextLock && !isLoadPageInProgress) {
             pressedNextLock = true;
             
-           [self disableUserInteraction];
+          // [self disableUserInteraction];
             
             NSArray *arrSubviews = [self.view subviews];
             for(UIView *tmpView in arrSubviews)
@@ -3562,11 +3563,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if(conditionSetup.fastSkipSentence){
                 waitSecond=0.01;
             }
-            
+            isSentenceDelayON=YES;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,waitSecond * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                 isSentenceDelayON=NO;
                     NSArray *arrSubviews = [self.view subviews];
-                if(!isUserInteractiondisabled){
+                if(!isAudioPlaying){
                 //if(1){
                     for(UIView *tmpView in arrSubviews)
                     {
@@ -3574,6 +3576,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         {
                             // Optionally, check button.tag
                             if(tmpView.tag == 4) {
+                               
                                 if(!isAudioPlaying){
                                 [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                                 nextButton.alpha=1.0;
@@ -4147,7 +4150,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [overlayView becomeFirstResponder];
     nextButton.alpha=0.7;
    [self disableUserInteraction];
-    
+    isAudioPlaying=YES;
     NSString *sentenceAudioFile = nil;
     NSLog(@"sentenceContext.currentSentence %d sentenceContext.currentIdea %d pageContext.currentPageId %@",
           sentenceContext.currentSentence,sentenceContext.currentIdea,pageContext.currentPageId);
@@ -4463,6 +4466,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [self.view setUserInteractionEnabled:YES];
        [self enableUserInteraction];
+        isAudioPlaying=NO;
     }
 }
 
@@ -4754,12 +4758,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 -(void)enableUserInteraction{
-    /*
-    [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    nextButton.alpha=1.0;
-    [self.view setUserInteractionEnabled:true];*/
-
     
+    if (isSentenceDelayON){
+        return;
+    }
     
     NSArray *arrSubviews = [self.view subviews];
     for(UIView *tmpView in arrSubviews)
@@ -4785,7 +4787,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 -(void)SkipIntro{
     [self.playaudioClass stopPlayAudioFile];
-    
     sentenceContext.currentSentence = 1;
     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
     manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
