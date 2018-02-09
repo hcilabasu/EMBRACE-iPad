@@ -313,8 +313,8 @@ BOOL wasPathFollowed = false;
     //add NextButton Overlay to capture press next to skip
 
     overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
-    overlayView.backgroundColor=[UIColor redColor];
-    overlayView.alpha=0.6;
+    overlayView.backgroundColor=[UIColor clearColor];
+    //overlayView.alpha=0.6;
     [self.view addSubview:overlayView];
 
     [self.view sendSubviewToBack:overlayView];
