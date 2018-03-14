@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class LibraryViewController;
 //Student's current status on a book or chapter
 typedef enum Status {
     COMPLETED,
@@ -22,6 +22,7 @@ typedef enum Status {
 @property (nonatomic, strong) NSMutableDictionary *chaptersCompleted;
 @property (nonatomic, strong) NSMutableDictionary *chaptersInProgress;
 @property (nonatomic, strong) NSMutableDictionary *chaptersIncomplete;
+@property (nonatomic,strong) LibraryViewController *parentLibraryViewCtr;
 
 @property (nonatomic, strong) NSString *sequenceId; //identifier for sequence
 @property (nonatomic, assign) NSInteger currentSequence; //index of current sequence

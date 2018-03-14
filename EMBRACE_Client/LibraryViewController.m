@@ -188,6 +188,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     //Create new progress for student if needed
     if (studentProgress == nil) {
         studentProgress = [[Progress alloc] init];
+        studentProgress.parentLibraryViewCtr=self;
         [studentProgress loadBooks:books];
         
         //Hardcoding progress for second Introduction to EMBRACE

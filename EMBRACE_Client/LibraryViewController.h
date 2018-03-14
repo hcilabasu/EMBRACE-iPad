@@ -24,5 +24,5 @@
 @property (nonatomic, strong) Student *student;
 @property (nonatomic, strong) Progress *studentProgress;
 @property (nonatomic, strong) ActivitySequenceController *sequenceController;
-
+- (void)updateProgress;
 @end

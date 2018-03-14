@@ -8,7 +8,7 @@
 
 #import "Progress.h"
 #import "Book.h"
-
+#import "LibraryViewController.h"
 @interface Progress() {
     ConditionSetup *conditionSetup;
 }
@@ -22,7 +22,7 @@
 @synthesize chaptersIncomplete;
 @synthesize currentSequence;
 @synthesize sequenceId;
-
+@synthesize parentLibraryViewCtr;
 - (id)init {
     self = [super init];
     chaptersCompleted = [[NSMutableDictionary alloc] init];
@@ -195,6 +195,9 @@
     else if (status == INCOMPLETE) {
         [[chaptersIncomplete objectForKey:bookTitle] addObject:chapterTitle];
     }
+    
+    [parentLibraryViewCtr updateProgress];
+    
 }
 
 /*
