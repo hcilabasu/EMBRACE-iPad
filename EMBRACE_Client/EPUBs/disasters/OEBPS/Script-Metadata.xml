@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <scriptAudio>
+        
+        <story title="Introduction to Natural Disasters" activity_id="story1-PM">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        
+        <story title="The Moving Earth" activity_id="story1-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Earthquakes" activity_id="story2-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Tsunamis" activity_id="story3-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Tornados" activity_id="story5-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+    </scriptAudio>
+</metadata>

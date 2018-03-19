@@ -1,0 +1,47 @@
+<metadata>
+  <vocabulary>
+    <story title="Missing Keys">
+      <vocabulary introWord="false">hook</vocabulary>
+      <vocabulary introWord="true">highchair</vocabulary>
+      <vocabulary introWord="true">sniffed</vocabulary>
+      <vocabulary introWord="false">breakfast</vocabulary>
+      <vocabulary introWord="false">kitchen</vocabulary>
+    </story>
+    <story title="Is Paco a Thief?">
+      <vocabulary introWord="false">suddenly</vocabulary>
+      <vocabulary introWord="false">toward</vocabulary>
+      <vocabulary introWord="false">sniffed</vocabulary>
+      <vocabulary introWord="true">thief</vocabulary>
+      <vocabulary introWord="true">stealing</vocabulary>
+    </story>
+    <story title="More is Missing!">
+      <vocabulary introWord="false">pancakes</vocabulary>
+      <vocabulary introWord="false">stealing</vocabulary>
+      <vocabulary introWord="true">silver</vocabulary>
+      <vocabulary introWord="false">kitchen</vocabulary>
+    </story>
+    <story title="The Lopez Family">
+      <vocabulary introWord="true">mystery</vocabulary>
+      <vocabulary introWord="false">pets</vocabulary>
+      <vocabulary introWord="false">policeman</vocabulary>
+      <vocabulary introWord="true">hook</vocabulary>
+      <vocabulary introWord="true">solve</vocabulary>
+      <vocabulary introWord="true">lawyer</vocabulary>
+      <vocabulary introWord="false">kitchen</vocabulary>
+    </story>
+    <story title="The Baby's Rattle is Gone, Too!">
+      <vocabulary introWord="true">rattle</vocabulary>
+      <vocabulary introWord="true">comfort</vocabulary>
+    </story>
+    <story title="The Mystery is Solved">
+      <vocabulary introWord="false">mystery</vocabulary>
+      <vocabulary introWord="false">hero</vocabulary>
+      <vocabulary introWord="false">hook</vocabulary>
+      <vocabulary introWord="false">thief</vocabulary>
+      <vocabulary introWord="false">solved</vocabulary>
+      <vocabulary introWord="false">drove</vocabulary>
+      <vocabulary introWord="false">shiny</vocabulary>
+      <vocabulary introWord="false">kitchen</vocabulary>
+    </story>
+  </vocabulary>
+</metadata>

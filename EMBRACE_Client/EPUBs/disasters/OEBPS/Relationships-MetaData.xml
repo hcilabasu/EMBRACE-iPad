@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="africa" can="touch" action="group" obj2Id="india"/>
+        <relationship obj1Id="air_blue" can="touch" action="group" obj2Id="droplet_group"/>
+        <relationship obj1Id="air_red" can="touch" action="group" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="australia" can="touch" action="group" obj2Id="antartica"/>
+        <relationship obj1Id="california" can="touch" action="group" obj2Id="north_america"/>
+        <relationship obj1Id="dirt_move" can="leave" action="ungroup" obj2Id="air_red"/>
+        <relationship obj1Id="dirt_move" can="pull" action="group" obj2Id="air_red"/>
+        <relationship obj1Id="dirt_tornado" can="pull" action="group" obj2Id="house_roof2"/>
+        <relationship obj1Id="droplet_group" can="touch2" action="group" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="house_roof2" can="leave" action="ungroup" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="india" can="hit" action="group" obj2Id="eurasia"/>
+        <relationship obj1Id="india" can="leave" action="ungroup" obj2Id="eurasia"/>
+        <relationship obj1Id="india" can="touch" action="group" obj2Id="australia"/>
+        <relationship obj1Id="kauai" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai2" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai3" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="label_hawaii" can="label" action="group" obj2Id="hawaii"/>
+        <relationship obj1Id="label_kauai" can="label" action="group" obj2Id="kauai"/>
+        <relationship obj1Id="label_kauai" can="label" action="group" obj2Id="lava"/>
+        <relationship obj1Id="label_molokai" can="label" action="group" obj2Id="molokai"/>
+        <relationship obj1Id="label_oahu" can="label" action="group" obj2Id="lava"/>
+        <relationship obj1Id="label_oahu" can="label" action="group" obj2Id="oahu"/>
+        <relationship obj1Id="lava" can="getIn" action="group" obj2Id="hawaii"/>
+        <relationship obj1Id="lava" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="lava" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="north_america" can="leave" action="ungroup" obj2Id="california"/>
+        <relationship obj1Id="oahu" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="oahu" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
+        
+        <relationship obj1Id="waterByShoreIM" can="cover" action="group" obj2Id="waterByShoreIM"/>
+        <relationship obj1Id="waterAwayShoreIM" can="away" action="group" obj2Id="waterAwayShoreIM"/>
+        
+        <relationship obj1Id="waveIM" can="cover" action="group" obj2Id="buildingsIM"/>
+        <relationship obj1Id="buildingsIM" can="with" action="group" obj2Id="buildingsIM"/>
+        
+        <relationship obj1Id="kauai_leftIM" can="getInLeft" action="group" obj2Id="kauai_leftIM"/>
+        <relationship obj1Id="kauai_rightIM" can="getInRight" action="group" obj2Id="kauai_rightIM"/>
+        
+        <relationship obj1Id="oahu_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_oahuIM"/>
+        <relationship obj1Id="hawaii_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_hawaiiIM"/>
+        
+        <relationship obj1Id="oahu_lavaIM" can="getIn" action="group" obj2Id="oahu_lavaIM"/>
+        <relationship obj1Id="hawaii_lavaIM" can="getIn" action="group" obj2Id="hawaii_lavaIM"/>
+        
+        <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="rainIM"/>
+        <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="houseIM"/>
+        
+        <relationship obj1Id="houseDamageIM" can="damage" action="group" obj2Id="roofDamageIM"/>
+        <relationship obj1Id="roofDamageIM" can="nextTo" action="group" obj2Id="houseDamageIM"/>
+        <relationship obj1Id="houseWholeIM" can="getWith" action="group" obj2Id="houseWholeIM"/>
+        
+    </relationships>
+</metadata>

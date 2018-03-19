@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="bed" x="14.3%" y="14.9%" height="24.5%" width="26.2%"/>
+        <location locationId="bedroom" x="7.7%" y="4.2%" height="45%" width="60%"/>
+        <location locationId="bench" x="35.4%" y="47.5%" height="28.3%" width="27.7%"/>
+        <location locationId="bush" x="54%" y="47.5%" height="28.1%" width="31.2%"/>
+        <location locationId="chair" x="16.2%" y="70.6%" height="18.1%" width="27.7%"/>
+        <location locationId="livingRoom" x="7.9%" y="52%" height="45.6%" width="45.2%"/>
+        <location locationId="nearHouse" x="30.7%" y="8.3%" height="32.2%" width="37%"/>
+        <location locationId="riverSide" x="0%" y="50%" height="50%" width="100%"/>
+    </locations>
+</metadata>

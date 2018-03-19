@@ -1,0 +1,112 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:title>The Circulatory System</dc:title>
+    <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:d9d9c6fb-2e89-4066-80f4-977d1bfa4355</dc:identifier>
+    <dc:date opf:event="modification">2014-07-31</dc:date>
+    <dc:language>en</dc:language>
+    <dc:identifier opf:scheme="calibre">73f99e5e-69d6-4153-93e5-6c26294433bf</dc:identifier>
+    <meta content="0.7.4" name="Sigil version"/>
+  </metadata>
+  
+  
+  
+  <manifest>
+    <item href="Text/Introduction-to-Circulatory-Characters-Title.xhtml" id="Introduction-to-Circulatory-Characters-Title.xhtml" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-PM-3.xhtml" id="story2-PM-3" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-PM-4.xhtml" id="story2-PM-4" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml" id="story4-PM-5" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-4.xhtml" id="story5-PM-4" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-IM-1.xhtml" id="story1-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-IM-2.xhtml" id="story1-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-IM-1.xhtml" id="story2-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-IM-2.xhtml" id="story2-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-IM-1.xhtml" id="story3-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-IM-2.xhtml" id="story3-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml" id="story4-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml" id="story4-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml" id="story5-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml" id="story5-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-Why-We-Breathe-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-The-Amazing-Heart-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Muscles-Use-Oxygen-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+    <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css"/>
+    <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css"/>
+    <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css"/>
+    <item href="Images/background_1.png" id="background_1.png" media-type="image/png"/>
+    <item href="Images/background_2.png" id="background_2.png" media-type="image/png"/>
+    <item href="Images/background_3.png" id="background_3.png" media-type="image/png"/>
+    <item href="Images/bloodcell_select_oxygenated.png" id="bloodcell_select_oxygenated.png" media-type="image/png"/>
+    <item href="Images/bloodcell_select.png" id="bloodcell_select.png" media-type="image/png"/>
+    <item href="Images/CO2_select.png" id="CO2_select.png" media-type="image/png"/>
+    <item href="Images/dirt.png" id="dirt.png" media-type="image/png"/>
+    <item href="Images/handle_close.png" id="handle_close.png" media-type="image/png"/>
+    <item href="Images/handle_open.png" id="handle_open.png" media-type="image/png"/>
+    <item href="Images/O2_select.png" id="O2_select.png" media-type="image/png"/>
+    <item href="Images/p1.png" id="p1.png" media-type="image/png"/>
+    <item href="Images/p2_damaged.png" id="p2_damaged.png" media-type="image/png"/>
+    <item href="Images/p2_healthy_cilia.png" id="p2_healthy_cilia.png" media-type="image/png"/>
+    <item href="Images/p3_Lsqueeze.png" id="p3_Lsqueeze.png" media-type="image/png"/>
+    <item href="Images/p3_Lsqueeze_with_valve.png" id="p3_Lsqueeze_with_valve.png" media-type="image/png"/>
+    <item href="Images/p3_nosqueeze.png" id="p3_nosqueeze.png" media-type="image/png"/>
+    <item href="Images/p3_Rsqueeze.png" id="p3_Rsqueeze.png" media-type="image/png"/>
+    <item href="Images/p4.png" id="p4.png" media-type="image/png"/>
+    <item href="Images/ch5_icon.png" id="ch5_icon.png" media-type="image/png"/>
+    <item href="Images/ch4_icon.png" id="ch4_select_icon.png" media-type="image/png"/>
+    <item href="Images/ch3_icon.png" id="ch3_select_icon.png" media-type="image/png"/>
+    <item href="Images/ch2_icon.png" id="ch2_icon.png" media-type="image/png"/>
+    <item href="Images/ch1_icon.png" id="ch1_icon.png" media-type="image/png"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="Introduction-to-Circulatory-Characters-Title.xhtml"/>
+    <itemref idref="story1-PM-1"/>
+    <itemref idref="story1-PM-2"/>
+    <itemref idref="story1-PM-3"/>
+    <itemref idref="story2-PM-1"/>
+    <itemref idref="story2-PM-2"/>
+    <itemref idref="story2-PM-3"/>
+    <itemref idref="story2-PM-4"/>
+    <itemref idref="story3-PM-1"/>
+    <itemref idref="story3-PM-2"/>
+    <itemref idref="story3-PM-3"/>
+    <itemref idref="story4-PM-1"/>
+    <itemref idref="story4-PM-2"/>
+    <itemref idref="story4-PM-3"/>
+    <itemref idref="story4-PM-4"/>
+    <itemref idref="story4-PM-5"/>
+    <itemref idref="story5-PM-1"/>
+    <itemref idref="story5-PM-2"/>
+    <itemref idref="story5-PM-3"/>
+    <itemref idref="story5-PM-4"/>
+    <itemref idref="story1-IM-1"/>
+    <itemref idref="story1-IM-2"/>
+    <itemref idref="story2-IM-1"/>
+    <itemref idref="story2-IM-2"/>
+    <itemref idref="story3-IM-1"/>
+    <itemref idref="story3-IM-2"/>
+    <itemref idref="story4-IM-1"/>
+    <itemref idref="story4-IM-2"/>
+    <itemref idref="story5-IM-1"/>
+    <itemref idref="story5-IM-2"/>
+  </spine>
+  <guide/>
+</package>

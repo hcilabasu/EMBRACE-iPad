@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="How do Objects Move?" activity_id="story1-PM-1">
+            <idea number="1"/>
+            <idea number="2"/>
+            <idea number="3"/>
+            <idea number="4">
+            </idea>
+        </story>
+        <story title="How do Objects Move?" activity_id="story1-PM-2">
+            <idea number="5">
+            </idea>
+            <idea number="6"/>
+            <idea number="7"/>
+            <idea number="8"/>
+            <idea number="9"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-1">
+            <idea number="10"/>
+            <idea number="11"/>
+            <idea number="12"/>
+            <idea number="13"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-2">
+            <idea number="14">
+                
+            </idea>
+            <idea number="15">
+                
+            </idea>
+            <idea number="16">
+                
+            </idea>
+            <idea number="17"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-3">
+            <idea number="18"/>
+            <idea number="19"/>
+            <idea number="20"/>
+        </story>
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-1">
+            <idea number="21">
+                            </idea>
+            <idea number="22"/>
+            <idea number="23"/>
+            <idea number="24"/>
+        </story>
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-2">
+            <idea number="25">
+                
+            </idea>
+            <idea number="26"/>
+            <idea number="27"/>
+            <idea number="28"/>
+        </story>
+        
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-3">
+            <idea number="29"/>
+            <idea number="30"/>
+            <idea number="31"/>
+            <idea number="32"/>
+        </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-1">
+            <idea number="33"/>
+            <idea number="34"/>
+            <idea number="35"/>
+        </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
+            <idea number="36">
+                <step number="1">
+                    <group obj1Id="smallrocket_IM" action="getIn" obj2Id="smallrocket_IM"/>
+                    <group obj1Id="ball_IM" action="getIn" obj2Id="ball_IM"/>
+                </step>
+            </idea>
+            <idea number="37"/>
+            <idea number="38">
+                
+            </idea>
+        </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-3">
+            <idea number="39"/>
+            <idea number="40">
+                
+            </idea>
+            <idea number="41">
+                <step number="2">
+                    <group obj1Id="smallrocket_IM" action="sameSpeed" obj2Id="bigrocket_IM"/>
+                    <group obj1Id="smallrocketMin_IM" action="fasterSpeed" obj2Id="bigrocketUp_IM"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
+            <idea number="42">
+            </idea>
+            <idea number="43">
+                <step number="3">
+                    <group obj1Id="dog_IM" action="toward" obj2Id="maria_IM"/>
+                    <group obj1Id="dog_IM" action="flip" obj2Id="maria_IM"/>
+                </step>
+            </idea>
+            <idea number="44"/>
+            <idea number="45">
+                
+            </idea>
+            <idea number="46"/>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-2">
+            <idea number="47">
+                
+            </idea>
+            <idea number="48">
+                <step number="4">
+                    <group obj1Id="horse_IM" action="flip" obj2Id="horse_IM"/>
+                    <group obj1Id="dog_IM" action="getIn" obj2Id="dog_IM"/>
+                </step>
+            </idea>
+            <idea number="49"/>
+            <idea number="50"/>
+            <idea number="51"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-1">
+            <idea number="52"/>
+            <idea number="53">
+                <step number="5">
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="paddle_IM"/>
+                </step>
+            </idea>
+            <idea number="54">
+                
+            </idea>
+            <idea number="55"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-2">
+            <idea number="56"/>
+            <idea number="57"/>
+            <idea number="58">
+                <step number="6">
+                    <group obj1Id="juanInBoat_IM" action="getIn" obj2Id="juanInBoat_IM"/>
+                    <group obj1Id="juan_IM" action="getOut" obj2Id="boat_IM"/>
+                </step>
+            </idea>
+            <idea number="59">
+                
+            </idea>
+            <idea number="60"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-3">
+            <idea number="61"/>
+            <idea number="62"/>
+            <idea number="63"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-4">
+            <idea number="64"/>
+            <idea number="65">
+                
+            </idea>
+            <idea number="66"/>
+            <idea number="67"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-1">
+            <idea number="68">
+                <step number="7">
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
+                    <group obj1Id="maria_IM" action="getOff" obj2Id="skateboard_IM"/>
+                </step>
+            </idea>
+            <idea number="69"/>
+            
+            
+            <idea number="70"/>
+            
+            <idea number="71"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-2">
+            <idea number="72">
+                
+            </idea>
+            <idea number="73"/>
+            <idea number="74">
+                <step number="8">
+                    <group obj1Id="car_IM" action="getWith" obj2Id="road_IM"/>
+                    <group obj1Id="rocket_IM" action="getWith" obj2Id="road_IM"/>
+                </step>
+            </idea>
+            <idea number="75"/>
+            <idea number="76"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-3">
+            <idea number="77"/>
+            <idea number="78"/>
+            <idea number="79"/>
+            <idea number="80"/>
+        </story>
+    </solutions>
+</metadata>
