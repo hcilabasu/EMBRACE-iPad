@@ -496,6 +496,8 @@
 		5637C5B3200BDD8300AB5C67 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5637C550200BDD8200AB5C67 /* AlternateSentences-MetaData.xml */; };
 		5637C5B4200BDD8300AB5C67 /* toc.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 5637C551200BDD8200AB5C67 /* toc.ncx */; };
 		5637C5B5200BDD8300AB5C67 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5637C552200BDD8200AB5C67 /* AssessmentActivities-MetaData.xml */; };
+		5643B9AA206045B9004A798B /* HotSpotHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643B9A9206045B9004A798B /* HotSpotHandler.m */; };
+		5643B9AD20604FC3004A798B /* AudioHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643B9AC20604FC3004A798B /* AudioHandler.m */; };
 		56520EF7200C316F00D5AF57 /* MM.epub in Resources */ = {isa = PBXBuildFile; fileRef = 56520EC0200C316F00D5AF57 /* MM.epub */; };
 		56520EF8200C316F00D5AF57 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56520EC2200C316F00D5AF57 /* container.xml */; };
 		56520EF9200C316F00D5AF57 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 56520EC3200C316F00D5AF57 /* mimetype */; };
@@ -6445,6 +6447,10 @@
 		5637C550200BDD8200AB5C67 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
 		5637C551200BDD8200AB5C67 /* toc.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc.ncx; sourceTree = "<group>"; };
 		5637C552200BDD8200AB5C67 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
+		5643B9A8206045B9004A798B /* HotSpotHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotSpotHandler.h; sourceTree = "<group>"; };
+		5643B9A9206045B9004A798B /* HotSpotHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotSpotHandler.m; sourceTree = "<group>"; };
+		5643B9AB20604FC3004A798B /* AudioHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioHandler.h; sourceTree = "<group>"; };
+		5643B9AC20604FC3004A798B /* AudioHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioHandler.m; sourceTree = "<group>"; };
 		56520EC0200C316F00D5AF57 /* MM.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = MM.epub; sourceTree = "<group>"; };
 		56520EC2200C316F00D5AF57 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		56520EC3200C316F00D5AF57 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -12947,6 +12953,7 @@
 		316CFADF1773A512004216D0 /* Physical Manipulation */ = {
 			isa = PBXGroup;
 			children = (
+				5643B9A7205F94F5004A798B /* Event Handlers */,
 				56B269E41F529B0E00702575 /* Pics */,
 				31953E931729EEB800570087 /* ManipulationViewController.h */,
 				31953E941729EEB800570087 /* ManipulationViewController.m */,
@@ -13015,13 +13022,11 @@
 		31953E4E1729ECC100570087 /* EMBRACE_iPad */ = {
 			isa = PBXGroup;
 			children = (
-				71DB3BF81E2C008900D7A16B /* Helpers */,
+				317FF1731742C02D00F1F160 /* JavaScript Event Handling */,
 				5DB14E411D2E08B6006EEFCF /* CustomView */,
-				31109700174AB35D00B02BF7 /* Images */,
 				31953E651729ED4500570087 /* External Libraries */,
 				31953E7C1729ED8300570087 /* Model */,
 				31953E7E1729ED8D00570087 /* Controller */,
-				317FF1731742C02D00F1F160 /* JavaScript Event Handling */,
 				31953E7D1729ED8800570087 /* View */,
 				31953E4F1729ECC100570087 /* Supporting Files */,
 			);
@@ -13032,6 +13037,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				31109700174AB35D00B02BF7 /* Images */,
 				568CFDE61F995B62004422C7 /* Icons */,
 				1A631C671C0E4D3900251CB3 /* EPUBs */,
 				5CCAE22C1B4C42C600445020 /* disasters.epub */,
@@ -13056,6 +13062,7 @@
 		31953E651729ED4500570087 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				71DB3BF81E2C008900D7A16B /* Helpers */,
 				03A4011D1C9B7A4F00FBE6D2 /* NSString+HTML Parser */,
 				31953E7A1729ED6000570087 /* GData XML Parser */,
 				31953E7B1729ED6C00570087 /* Unzip Library */,
@@ -13136,29 +13143,12 @@
 		31953E7E1729ED8D00570087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1AFC9BDE1DAC485A00189CD2 /* ITS */,
+				561760C4205DE0A5008F22FD /* Login View */,
+				561760C3205DE07B008F22FD /* Library View */,
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
-				1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */,
-				1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */,
-				1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */,
-				1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */,
-				311646B41760209200B483F0 /* IMViewController.h */,
-				311646B61760209200B483F0 /* IMViewController.m */,
-				31953E851729EE5800570087 /* LibraryViewController.h */,
-				31953E861729EE5800570087 /* LibraryViewController.m */,
-				31937538174185E000782C2B /* NavigationController.h */,
-				31937539174185E000782C2B /* NavigationController.m */,
-				3193753B1741A76E00782C2B /* HelpViewController.h */,
-				3193753C1741A76E00782C2B /* HelpViewController.m */,
-				31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */,
-				31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */,
-				31953E571729ECC100570087 /* AppDelegate.h */,
-				31953E581729ECC100570087 /* AppDelegate.m */,
-				C680520B197ECD42002A5249 /* ServerCommunicationController.h */,
-				C680520C197ECD43002A5249 /* ServerCommunicationController.m */,
-				1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */,
-				1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */,
-				1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */,
+				561760C6205DE0E0008F22FD /* Imagine Manipulation */,
+				561760C5205DE0B9008F22FD /* Assessment View */,
+				561760C9205DE129008F22FD /* Delegate */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -13215,6 +13205,79 @@
 				5CEEBFA71ACA05F4002AACC4 /* Area.m */,
 			);
 			name = "Interaction Model";
+			sourceTree = "<group>";
+		};
+		561760C3205DE07B008F22FD /* Library View */ = {
+			isa = PBXGroup;
+			children = (
+				31953E851729EE5800570087 /* LibraryViewController.h */,
+				31953E861729EE5800570087 /* LibraryViewController.m */,
+			);
+			path = "Library View";
+			sourceTree = "<group>";
+		};
+		561760C4205DE0A5008F22FD /* Login View */ = {
+			isa = PBXGroup;
+			children = (
+				31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */,
+				31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */,
+			);
+			path = "Login View";
+			sourceTree = "<group>";
+		};
+		561760C5205DE0B9008F22FD /* Assessment View */ = {
+			isa = PBXGroup;
+			children = (
+				1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */,
+				1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */,
+				1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */,
+			);
+			path = "Assessment View";
+			sourceTree = "<group>";
+		};
+		561760C6205DE0E0008F22FD /* Imagine Manipulation */ = {
+			isa = PBXGroup;
+			children = (
+				311646B41760209200B483F0 /* IMViewController.h */,
+				311646B61760209200B483F0 /* IMViewController.m */,
+			);
+			path = "Imagine Manipulation";
+			sourceTree = "<group>";
+		};
+		561760C7205DE0ED008F22FD /* Navi&Log */ = {
+			isa = PBXGroup;
+			children = (
+				31937538174185E000782C2B /* NavigationController.h */,
+				31937539174185E000782C2B /* NavigationController.m */,
+				C680520B197ECD42002A5249 /* ServerCommunicationController.h */,
+				C680520C197ECD43002A5249 /* ServerCommunicationController.m */,
+			);
+			path = "Navi&Log";
+			sourceTree = "<group>";
+		};
+		561760C8205DE118008F22FD /* Audio Control */ = {
+			isa = PBXGroup;
+			children = (
+				1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */,
+				1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */,
+			);
+			path = "Audio Control";
+			sourceTree = "<group>";
+		};
+		561760C9205DE129008F22FD /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC9BDE1DAC485A00189CD2 /* ITS */,
+				561760C7205DE0ED008F22FD /* Navi&Log */,
+				561760C8205DE118008F22FD /* Audio Control */,
+				1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */,
+				1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */,
+				3193753B1741A76E00782C2B /* HelpViewController.h */,
+				3193753C1741A76E00782C2B /* HelpViewController.m */,
+				31953E571729ECC100570087 /* AppDelegate.h */,
+				31953E581729ECC100570087 /* AppDelegate.m */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		5637C4EA200BDD8200AB5C67 /* festivals */ = {
@@ -13361,6 +13424,17 @@
 				5637C54E200BDD8200AB5C67 /* Story5-Catch-PM-3.xhtml */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		5643B9A7205F94F5004A798B /* Event Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				5643B9A8206045B9004A798B /* HotSpotHandler.h */,
+				5643B9A9206045B9004A798B /* HotSpotHandler.m */,
+				5643B9AB20604FC3004A798B /* AudioHandler.h */,
+				5643B9AC20604FC3004A798B /* AudioHandler.m */,
+			);
+			name = "Event Handlers";
 			sourceTree = "<group>";
 		};
 		56520EBF200C316F00D5AF57 /* MM */ = {
@@ -24310,7 +24384,9 @@
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
+				5643B9AD20604FC3004A798B /* AudioHandler.m in Sources */,
 				C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */,
+				5643B9AA206045B9004A798B /* HotSpotHandler.m in Sources */,
 				31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */,
 				71DB3BFB1E2C019D00D7A16B /* NSString+MD5.m in Sources */,
 				1AAF05EC1D82295F005BB457 /* SolutionStepController.m in Sources */,
