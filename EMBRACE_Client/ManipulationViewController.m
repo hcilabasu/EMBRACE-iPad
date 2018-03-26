@@ -48,32 +48,25 @@
     //BOOL stepsComplete; //True if all steps have been completed for a sentence
     //TODO: Determine what I can delete from previous todo to here
     
-    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
-    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
+  
     
-    NSString *movingObjectId; //Object currently being moved
-    NSString *collisionObjectId; //Object the moving object was moved to
-    NSString *separatingObjectId; //Object identified when pinch gesture performed
+
     BOOL containsAnimatingObject;
-    BOOL movingObject; //True if an object is currently being moved
+   
     BOOL separatingObject; //True if two objects are currently being ungrouped
     
-    BOOL panning;
-    BOOL pinching;
-    BOOL pinchToUngroup; //True if pinch gesture is used to ungroup
+
     
     BOOL replenishSupply; //True if object should reappear after disappearing
-    BOOL allowSnapback; //True if objects should snap back to original location upon error
+
     BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
     BOOL pressedBackLock; //True is user pressed back, and false after back button function finishes execution
     BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
     
-    CGPoint endLocation; // ending location of an object after it is moved
-    CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
+   
     
-    PieContextualMenu *menu;
     UIView *IMViewMenu;
-    BOOL menuExpanded;
+
     
     NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
@@ -137,10 +130,24 @@
 @synthesize shouldPlayInstructionAudio;
 @synthesize isSentenceDelayON;
 @synthesize hotSpotHandler;
+@synthesize menu;
+@synthesize allowSnapback;
+@synthesize movingObjectId;
+@synthesize collisionObjectId;
+@synthesize separatingObjectId;
+@synthesize movingObject;
+
+@synthesize panning;
+@synthesize pinching;
+@synthesize pinchToUngroup;
+@synthesize useSubject;
+@synthesize useObject;
+@synthesize menuExpanded;
+@synthesize wasPathFollowed;
+@synthesize endLocation;
+@synthesize delta;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
-
-BOOL wasPathFollowed = false;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -157,6 +164,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    wasPathFollowed=NO;
     isAudioPlaying=NO;
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
     self.manipulationView.parentManipulationViewController=self;

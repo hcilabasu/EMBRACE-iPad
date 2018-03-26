@@ -587,7 +587,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             [libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //load chapters
             
             [booksButton setEnabled:TRUE];
-            
             [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle];
         }
         else {
@@ -729,9 +728,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     else {
         edgeInsets = (self.view.frame.size.width - (maxCellsPerRow * cellWidth)) / 2;
     }
-    
     return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets);
 }
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableview = nil;
@@ -744,7 +743,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         //Books
         if (showBooks) {
             title = @"Books";
-            
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header1"];
         }
         //Chapters

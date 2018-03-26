@@ -29,6 +29,7 @@
 #import "StepContext.h"
 #import "ContextualMenuDataSource.h"
 #import "ITSController.h"
+#import "PieContextualMenu.h"
 #import "HotSpotHandler.h"
 @class PageController;
 @class SentenceController;
@@ -105,7 +106,24 @@ typedef enum InteractionMode {
 @property BOOL isUserInteractiondisabled;
 @property BOOL shouldPlayInstructionAudio;
 @property BOOL isSentenceDelayON;
-    
+@property NSString *movingObjectId; //Object currently being moved
+@property NSString *collisionObjectId; //Object the moving object was moved to
+@property NSString *separatingObjectId; //Object identified when pinch gesture performed
+@property BOOL movingObject; //True if an object is currently being moved
+@property BOOL panning;
+@property BOOL pinching;
+@property BOOL pinchToUngroup; //True if pinch gesture is used to ungroup
+
+@property   PieContextualMenu *menu;
+@property BOOL allowSnapback;//True if objects should snap back to original location upon error
+
+@property InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
+@property InteractionRestriction useObject; //Determines which objects the user can interact with as the object
+@property BOOL menuExpanded;
+@property BOOL wasPathFollowed;
+@property CGPoint endLocation; // ending location of an object after it is moved
+@property CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
+
 - (void)loadFirstPage;
 - (void)setManipulationContext;
 - (UIImage *)getBackgroundImage;
@@ -130,4 +148,18 @@ typedef enum InteractionMode {
 -(void)hideIndicationIcon;
 -(void)SkipIntro;
 - (int)currentSentenceAudioIndex;
+- (void)checkSolutionForInteraction:(PossibleInteraction *)interaction;
+- (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep;
+- (void)playAudioForVocabWord:(NSString *)englishSentenceText :(NSString *)spanishExt;
+- (NSString *)getObjectAtPoint:(CGPoint) location ofType:(NSString *)class;
+- (void)swapObjectImage;
+- (NSArray *)getObjectsGroupedWithObject:(NSString *)object;
+- (void)populateMenuDataSource:(NSMutableArray *)possibleInteractions :(NSMutableArray *)relationships;
+- (CGPoint)calculateDeltaForMovingObjectAtPointWithCenter:(NSString *)object :(CGPoint)location;
+- (CGPoint)calculateDeltaForMovingObjectAtPoint:(CGPoint)location;
+- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object;
+- (void)handleErrorForAction:(NSString *)action;
+- (void)resetObjectLocation;
+- (NSMutableArray *)getPossibleInteractions:(BOOL)useProximity;
+- (NSMutableArray *)shuffleMenuOptions: (NSMutableArray *) interactions;
 @end

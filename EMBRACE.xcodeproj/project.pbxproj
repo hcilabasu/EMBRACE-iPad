@@ -397,6 +397,9 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		56342840206071EE00E5DB85 /* GestureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5634283F206071EE00E5DB85 /* GestureHandler.m */; };
+		563428432060720500E5DB85 /* ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 563428422060720500E5DB85 /* ImageHandler.m */; };
+		56342846206074C700E5DB85 /* LibraryHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 56342845206074C700E5DB85 /* LibraryHandlers.m */; };
 		5637C553200BDD8300AB5C67 /* festivals.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5637C4EB200BDD8200AB5C67 /* festivals.epub */; };
 		5637C554200BDD8300AB5C67 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5637C4ED200BDD8200AB5C67 /* container.xml */; };
 		5637C555200BDD8300AB5C67 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5637C4EE200BDD8200AB5C67 /* mimetype */; };
@@ -6348,6 +6351,12 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		5634283E206071EE00E5DB85 /* GestureHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureHandler.h; sourceTree = "<group>"; };
+		5634283F206071EE00E5DB85 /* GestureHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestureHandler.m; sourceTree = "<group>"; };
+		563428412060720500E5DB85 /* ImageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageHandler.h; sourceTree = "<group>"; };
+		563428422060720500E5DB85 /* ImageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageHandler.m; sourceTree = "<group>"; };
+		56342844206074C700E5DB85 /* LibraryHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryHandlers.h; sourceTree = "<group>"; };
+		56342845206074C700E5DB85 /* LibraryHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryHandlers.m; sourceTree = "<group>"; };
 		5637C4EB200BDD8200AB5C67 /* festivals.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = festivals.epub; sourceTree = "<group>"; };
 		5637C4ED200BDD8200AB5C67 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5637C4EE200BDD8200AB5C67 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -13212,6 +13221,8 @@
 			children = (
 				31953E851729EE5800570087 /* LibraryViewController.h */,
 				31953E861729EE5800570087 /* LibraryViewController.m */,
+				56342844206074C700E5DB85 /* LibraryHandlers.h */,
+				56342845206074C700E5DB85 /* LibraryHandlers.m */,
 			);
 			path = "Library View";
 			sourceTree = "<group>";
@@ -13433,6 +13444,10 @@
 				5643B9A9206045B9004A798B /* HotSpotHandler.m */,
 				5643B9AB20604FC3004A798B /* AudioHandler.h */,
 				5643B9AC20604FC3004A798B /* AudioHandler.m */,
+				5634283E206071EE00E5DB85 /* GestureHandler.h */,
+				5634283F206071EE00E5DB85 /* GestureHandler.m */,
+				563428412060720500E5DB85 /* ImageHandler.h */,
+				563428422060720500E5DB85 /* ImageHandler.m */,
 			);
 			name = "Event Handlers";
 			sourceTree = "<group>";
@@ -24327,6 +24342,7 @@
 				5DB14E441D2E08C5006EEFCF /* ManipulationView.m in Sources */,
 				5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */,
 				03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */,
+				563428432060720500E5DB85 /* ImageHandler.m in Sources */,
 				31953E551729ECC100570087 /* main.m in Sources */,
 				C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
@@ -24340,6 +24356,7 @@
 				1ADDE3001D80933E002FB71C /* SentenceContext.m in Sources */,
 				038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */,
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
+				56342840206071EE00E5DB85 /* GestureHandler.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
 				C32DA0E11BF92A52006C2418 /* Progress.m in Sources */,
@@ -24369,6 +24386,7 @@
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
 				038BECE21C88CC6000ECFE28 /* AssessmentContext.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
+				56342846206074C700E5DB85 /* LibraryHandlers.m in Sources */,
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
 				3154982A174EAA22004521B1 /* Student.m in Sources */,
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,

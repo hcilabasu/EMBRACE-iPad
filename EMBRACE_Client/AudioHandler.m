@@ -50,7 +50,6 @@
         }
     }
     
-    
     //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
     if ([parentManipulaitonCtr.chapterTitle isEqualToString:@"The Naughty Monkey"] && ([parentManipulaitonCtr.pageContext.currentPageId containsString:PM1] || [parentManipulaitonCtr.pageContext.currentPageId containsString:PM2] || [parentManipulaitonCtr.pageContext.currentPageId containsString:PM3]) && parentManipulaitonCtr.sentenceContext.currentSentence != 1) {
         if (parentManipulaitonCtr.conditionSetup.language == BILINGUAL && parentManipulaitonCtr.sentenceContext.currentSentence < 8) {
