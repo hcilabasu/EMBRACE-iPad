@@ -21,7 +21,7 @@
 #import "PossibleInteractionController.h"
 #import "ManipulationAnalyser.h"
 #import "NSString+MD5.h"
-
+#import "GestureHandler.h"
 @interface ManipulationViewController ()<ManipulationViewDelegate> {
     NSString *chapterTitle;
     NSString *bookTitle;
@@ -335,6 +335,15 @@ float const groupingProximity = 20.0;
     
     hotSpotHandler=[[HotSpotHandler alloc] init];
     hotSpotHandler.parentManipulaitonCtr=self;
+    
+    GestureHandler* gestureHandler= [[GestureHandler alloc]init];
+    UITapGestureRecognizer *oneFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:gestureHandler
+                                            action:@selector(tapGesturePerformed:)];
+    [self.manipulationView addGestureRecognizer:oneFingerTap];
+    oneFingerTap.delegate=gestureHandler;
+    
+
 }//end of view did load
 
 

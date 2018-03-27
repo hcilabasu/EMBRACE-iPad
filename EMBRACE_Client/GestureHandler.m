@@ -28,6 +28,7 @@
 /*
  * Tap gesture handles taps on parentManipulaitonCtr.menus, words, images
  */
+
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:parentManipulaitonCtr.view];
     

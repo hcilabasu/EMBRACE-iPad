@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ServerCommunicationController.h"
 @class ManipulationViewController;
-@interface GestureHandler : NSObject
+@interface GestureHandler : NSObject <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) ManipulationViewController* parentManipulaitonCtr;
 
 @end
