@@ -31,6 +31,7 @@
 #import "ITSController.h"
 #import "PieContextualMenu.h"
 #import "HotSpotHandler.h"
+#import "GestureHandler.h"
 @class PageController;
 @class SentenceController;
 @class SolutionStepController;
@@ -61,6 +62,12 @@ typedef enum InteractionMode {
 @property (nonatomic, copy) NSString *bookTitle;
 @property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, weak) Book *book;
+
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
+@property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGesture;
+
+
+@property (strong,nonatomic)   GestureHandler* gestureHandler;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;

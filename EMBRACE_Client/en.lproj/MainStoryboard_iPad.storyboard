@@ -171,6 +171,7 @@
                     <connections>
                         <outlet property="bookView" destination="chF-4H-yn4" id="Jxw-wO-SkX"/>
                         <outlet property="nextButton" destination="u4R-ML-16W" id="KUA-Ki-0To"/>
+                        <outlet property="pinchGesture" destination="IG0-TB-X5w" id="def-kT-6jy"/>
                         <outlet property="tapRecognizer" destination="6LS-gR-BKA" id="Rdy-ac-T01"/>
                         <outlet property="view" destination="erm-JD-CyO" id="O9j-oO-dyD"/>
                     </connections>
@@ -187,7 +188,6 @@
                             <connections>
                                 <outlet property="delegate" destination="NLI-lb-tHz" id="PNa-Ph-0NJ"/>
                                 <outletCollection property="gestureRecognizers" destination="6LS-gR-BKA" appends="YES" id="Roi-Ni-wnj"/>
-                                <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="0zK-EJ-z8G"/>
                                 <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="Dhj-H6-iHL"/>
                             </connections>
                         </webView>
@@ -233,18 +233,7 @@
                         <constraint firstItem="chF-4H-yn4" firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" constant="14" id="zhc-gk-xQJ" userLabel="Next.bottom = Book View.bottom"/>
                     </constraints>
                 </view>
-                <tapGestureRecognizer id="6LS-gR-BKA">
-                    <connections>
-                        <action selector="tapGesturePerformed:" destination="NLI-lb-tHz" id="huz-7O-zPt"/>
-                        <outlet property="delegate" destination="NLI-lb-tHz" id="NTW-aL-OUH"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="iaN-Wz-vgI">
-                    <connections>
-                        <action selector="panGesturePerformed:" destination="NLI-lb-tHz" id="kNT-SK-UW1"/>
-                        <outlet property="delegate" destination="NLI-lb-tHz" id="AE8-We-mHD"/>
-                    </connections>
-                </panGestureRecognizer>
+                <tapGestureRecognizer id="6LS-gR-BKA"/>
                 <pinchGestureRecognizer id="IG0-TB-X5w">
                     <connections>
                         <action selector="pinchGesturePerformed:" destination="NLI-lb-tHz" id="1Jv-eU-KDA"/>

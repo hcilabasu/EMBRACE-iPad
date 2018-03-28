@@ -24,12 +24,37 @@
 #import "NSString+MD5.h"
 
 @implementation GestureHandler
+
+@synthesize panGesture;
+@synthesize pinchGesture;
+@synthesize tapGesture;
 @synthesize parentManipulaitonCtr;
 /*
  * Tap gesture handles taps on parentManipulaitonCtr.menus, words, images
  */
+- (id) init
+{
+    if (self = [super init])
+    {
+      
+        panGesture=[[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                           action:@selector(panGesturePerformed:)];
+        panGesture.delegate=self;
+        
+        tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                           action:@selector(tapGesturePerformed:)];
+        tapGesture.delegate=self;
+        
+        pinchGesture=[[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                             action:@selector(pinchGesturePerformed:)];
+        pinchGesture.delegate=self;
+        
+        
+    }
+    return self;
+}
 
-- (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
+-(IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:parentManipulaitonCtr.view];
     
     if ((parentManipulaitonCtr.conditionSetup.condition == EMBRACE && (parentManipulaitonCtr.conditionSetup.currentMode == IM_MODE || parentManipulaitonCtr.conditionSetup.currentMode == ITSIM_MODE)) && !parentManipulaitonCtr.allowInteractions) {
@@ -735,5 +760,6 @@
         }
     }
 }
+
 
 @end
