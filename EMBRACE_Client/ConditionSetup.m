@@ -29,6 +29,8 @@
 @synthesize ITSComplexity;
 @synthesize allowFileSync;
 @synthesize fastSkipSentence;
+@synthesize targetLanguage;
+@synthesize nativeLanguage;
 static ConditionSetup *sharedInstance = nil;
 
 + (ConditionSetup *)sharedInstance {
@@ -50,7 +52,10 @@ static ConditionSetup *sharedInstance = nil;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
-
+        
+        nativeLanguage=SPANISH;
+        targetLanguage=ENGLISH;
+        
         newInstructions = NO;
         isVocabPageEnabled = YES;
         isAssessmentPageEnabled = YES;

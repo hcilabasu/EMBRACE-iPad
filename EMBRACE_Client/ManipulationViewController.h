@@ -32,6 +32,7 @@
 #import "PieContextualMenu.h"
 #import "HotSpotHandler.h"
 #import "GestureHandler.h"
+#import "AudioHandler.h"
 @class PageController;
 @class SentenceController;
 @class SolutionStepController;
@@ -68,6 +69,7 @@ typedef enum InteractionMode {
 
 
 @property (strong,nonatomic)   GestureHandler* gestureHandler;
+@property (strong,nonatomic)   AudioHandler* audioHandler;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;

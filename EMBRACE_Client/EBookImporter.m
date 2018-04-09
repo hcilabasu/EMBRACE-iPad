@@ -299,12 +299,17 @@
     NSString *filepath = nil;
     
     //Separate TOC files depending on language
-    if (language == BILINGUAL) {
+    //if (language == BILINGUAL) {
+    if (conditionSetup.nativeLanguage==SPANISH && conditionSetup.targetLanguage==ENGLISH ) {
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     }
-    else if( language == ENGLISH) {
+    else if( conditionSetup.nativeLanguage==ENGLISH && conditionSetup.targetLanguage==ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
     }
+    else if (conditionSetup.nativeLanguage==MANDRAIN && conditionSetup.targetLanguage==ENGLISH){
+        filepath = [[book mainContentPath] stringByAppendingString:@"tocM.ncx"];
+    }
+    
     
     //Get xml data of the toc file
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];

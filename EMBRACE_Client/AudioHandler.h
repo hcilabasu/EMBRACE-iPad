@@ -11,4 +11,6 @@
 @class ActivitySequenceController;
 @interface AudioHandler : NSObject
 @property (nonatomic, strong) ManipulationViewController* parentManipulaitonCtr;
+- (NSString *)fileNameForCurrentSentence;
+- (void)playCurrentSentenceAudio;
 @end

@@ -18,6 +18,8 @@ typedef enum Condition {
 //Language of text/audio
 typedef enum Language {
     ENGLISH,
+    SPANISH,
+    MANDRAIN,
     BILINGUAL //English + Spanish
 } Language;
 
@@ -55,7 +57,19 @@ typedef enum Complexity {
     ITS_SYSTEM //system automatically updates complexity
 } Complexity;
 
+//Target language, indicating what language students are learning
+typedef enum Target_Language {
+    TARGET_ENGLISH,
+    TARGET_MANDRAIN,
+    TARGET_SPANISH
+} Target_Language;
 
+//Native language of the student
+typedef enum NATIVE_Language {
+    NATIVE_ENGLISH,
+    NATIVE_MANDRAIN,
+    NATIVE_SPANISH
+} NATIVE_Language;
 
 @interface ConditionSetup : NSObject
 
@@ -68,6 +82,11 @@ typedef enum Complexity {
 @property (nonatomic) Complexity ITSComplexity;
 @property (nonatomic) BOOL fastSkipSentence;
 @property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
+
+@property (nonatomic) Language nativeLanguage;
+@property (nonatomic) Language targetLanguage;
+
+
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed
