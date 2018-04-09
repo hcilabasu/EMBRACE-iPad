@@ -33,11 +33,13 @@
 #import "HotSpotHandler.h"
 #import "GestureHandler.h"
 #import "AudioHandler.h"
+#import "InitializationHandler.h"
 @class PageController;
 @class SentenceController;
 @class SolutionStepController;
 @class PossibleInteractionController;
 @class HotSpotHandler;
+@class InitializationHandler;
 typedef enum InteractionRestriction {
     ALL_ENTITIES, //Any object can be used
     ONLY_CORRECT, //Only the correct object can be used
@@ -70,6 +72,8 @@ typedef enum InteractionMode {
 
 @property (strong,nonatomic)   GestureHandler* gestureHandler;
 @property (strong,nonatomic)   AudioHandler* audioHandler;
+@property (strong,nonatomic)   InitializationHandler* initializationHandler;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
@@ -133,6 +137,14 @@ typedef enum InteractionMode {
 @property CGPoint endLocation; // ending location of an object after it is moved
 @property CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
 
+
+
+@property BOOL replenishSupply; //True if object should reappear after disappearing
+
+@property BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
+@property BOOL pressedBackLock; //True is user pressed back, and false after back button function finishes execution
+@property BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
+
 - (void)loadFirstPage;
 - (void)setManipulationContext;
 - (UIImage *)getBackgroundImage;
@@ -171,4 +183,5 @@ typedef enum InteractionMode {
 - (void)resetObjectLocation;
 - (NSMutableArray *)getPossibleInteractions:(BOOL)useProximity;
 - (NSMutableArray *)shuffleMenuOptions: (NSMutableArray *) interactions;
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 @end

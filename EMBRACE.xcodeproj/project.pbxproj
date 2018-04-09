@@ -551,6 +551,7 @@
 		56520F26200C316F00D5AF57 /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56520EF4200C316F00D5AF57 /* Areas-MetaData.xml */; };
 		56520F27200C316F00D5AF57 /* toc.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 56520EF5200C316F00D5AF57 /* toc.ncx */; };
 		56520F28200C316F00D5AF57 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56520EF6200C316F00D5AF57 /* AssessmentActivities-MetaData.xml */; };
+		565542DF207BFD6D0087E434 /* InitializationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 565542DE207BFD6D0087E434 /* InitializationHandler.m */; };
 		5685DE171F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5685DE161F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 */; };
 		568CFDE91F995B71004422C7 /* correctIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 568CFDE71F995B71004422C7 /* correctIcon.png */; };
 		568CFDEA1F995B71004422C7 /* warningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 568CFDE81F995B71004422C7 /* warningIcon.png */; };
@@ -6510,6 +6511,8 @@
 		56520EF4200C316F00D5AF57 /* Areas-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Areas-MetaData.xml"; sourceTree = "<group>"; };
 		56520EF5200C316F00D5AF57 /* toc.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc.ncx; sourceTree = "<group>"; };
 		56520EF6200C316F00D5AF57 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
+		565542DD207BFD6D0087E434 /* InitializationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitializationHandler.h; sourceTree = "<group>"; };
+		565542DE207BFD6D0087E434 /* InitializationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitializationHandler.m; sourceTree = "<group>"; };
 		5685DE161F7CC656005AA680 /* fe9356fe3527ed89dc7be6e115a013bd.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fe9356fe3527ed89dc7be6e115a013bd.mp3; sourceTree = "<group>"; };
 		568CFDE71F995B71004422C7 /* correctIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correctIcon.png; sourceTree = "<group>"; };
 		568CFDE81F995B71004422C7 /* warningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningIcon.png; sourceTree = "<group>"; };
@@ -13448,6 +13451,8 @@
 				5634283F206071EE00E5DB85 /* GestureHandler.m */,
 				563428412060720500E5DB85 /* ImageHandler.h */,
 				563428422060720500E5DB85 /* ImageHandler.m */,
+				565542DD207BFD6D0087E434 /* InitializationHandler.h */,
+				565542DE207BFD6D0087E434 /* InitializationHandler.m */,
 			);
 			name = "Event Handlers";
 			sourceTree = "<group>";
@@ -24368,6 +24373,7 @@
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				1AFC9BFB1DAC485A00189CD2 /* Skill.m in Sources */,
+				565542DF207BFD6D0087E434 /* InitializationHandler.m in Sources */,
 				1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AFC9C011DAC485A00189CD2 /* ITSController.m in Sources */,

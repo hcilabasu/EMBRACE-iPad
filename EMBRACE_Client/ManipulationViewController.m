@@ -51,11 +51,7 @@
    
     BOOL separatingObject; //True if two objects are currently being ungrouped
   
-    BOOL replenishSupply; //True if object should reappear after disappearing
 
-    BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
-    BOOL pressedBackLock; //True is user pressed back, and false after back button function finishes execution
-    BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
     
     UIView *IMViewMenu;
 
@@ -140,6 +136,12 @@
 @synthesize tapRecognizer;
 @synthesize gestureHandler;
 @synthesize audioHandler;
+@synthesize initializationHandler;
+
+@synthesize replenishSupply; //True if object should reappear after disappearing
+@synthesize pressedNextLock; // True if user pressed next, and false after next function finishes execution
+@synthesize pressedBackLock; //True is user pressed back, and false after back button function finishes execution
+@synthesize didSelectCorrectMenuOption;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -158,188 +160,33 @@ float const groupingProximity = 20.0;
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    wasPathFollowed=NO;
-    isAudioPlaying=NO;
+    initializationHandler=[[InitializationHandler alloc]init];
+    initializationHandler.parentManipulaitonCtr=self;
+    [initializationHandler initlizeManipulaitonCtr];
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
     self.manipulationView.parentManipulationViewController=self;
     self.manipulationView.delegate = self;
-    
-    //hides the default navigation bar to add custom back button
-    self.navigationItem.hidesBackButton = YES;
-    
     //custom back button to show confirmation alert
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: LIBRARY style: UIBarButtonItemStyleBordered target: self action: @selector(backButtonPressed:)];
-    //Sets leftBarButtonItem to the custom back button in place of default back button
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: LIBRARY style: UIBarButtonItemStylePlain target: self action: @selector(backButtonPressed:)];
     self.navigationItem.leftBarButtonItem = backButton;
-    
-    self.conditionSetup = [ConditionSetup sharedInstance];
-    self.manipulationContext = [[ManipulationContext alloc] init];
-    self.forwardProgress = [[ForwardProgress alloc] init];
-    self.pageContext = [[PageContext alloc] init];
-    self.sentenceContext = [[SentenceContext alloc] init];
-    self.stepContext = [[StepContext alloc] init];
-    
-    self.model = [[InteractionModel alloc]init];
-    self.playaudioClass = [[PlayAudioFile alloc] init];
-    playaudioClass.parentManipulationViewController=self;
-    
-   // syn = [[AVSpeechSynthesizer alloc] init];
-    
-    self.menuDataSource = [[ContextualMenuDataSource alloc] init];
-    
-    //initialize toDo image
-    toDoIcon =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,24,24)];
-    toDoIcon.image=nil;
-    [bookView addSubview:toDoIcon];
-    PMIcon= [UIImage imageNamed:@"handIcon"];
-    IMIcon= [UIImage imageNamed:@"thinkIcon"];
-    RDIcon= [UIImage imageNamed:@"glassIcon"];
-    PMIcon = [self imageWithImage:PMIcon scaledToSize:CGSizeMake(26, 26)];
-    IMIcon = [self imageWithImage:IMIcon scaledToSize:CGSizeMake(24, 24)];
-    RDIcon = [self imageWithImage:RDIcon scaledToSize:CGSizeMake(24, 24)];
-    
-    iconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
-    iconLabel.font=[iconLabel.font fontWithSize:13];
-    iconLabel.textAlignment = UITextAlignmentCenter;
-    [bookView addSubview:iconLabel];
-    //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    manipulationView.bookView.scalesPageToFit = YES;
-    manipulationView.bookView.scrollView.delegate = self;
-    
-    [[manipulationView.bookView scrollView] setBounces: NO];
-    [[manipulationView.bookView scrollView] setScrollEnabled:NO];
-    
-    pageContext.currentPage = nil;
-    
-    pinching = FALSE;
-    pinchToUngroup = FALSE;
-    replenishSupply = FALSE;
-    allowSnapback = TRUE;
-    pressedNextLock = false;
-    isLoadPageInProgress = false;
-    isUserMovingBack = false;
-    didSelectCorrectMenuOption = false;
-    
-    movingObject = FALSE;
-    movingObjectId = nil;
-    collisionObjectId = nil;
-    separatingObjectId = nil;
-    lastRelationship = nil;
-    self.allRelationships = [[NSMutableArray alloc] init];
-    self.currentGroupings = [[NSMutableDictionary alloc] init];
-    
-   self.navigationItem.rightBarButtonItem = nil;
-    
-    if (conditionSetup.condition == CONTROL) {
-        allowInteractions = FALSE;
-        
-        useSubject = NO_ENTITIES;
-        useObject = NO_ENTITIES;
-    }
-    else if (conditionSetup.condition == EMBRACE) {
-        allowInteractions = TRUE;
-        
-        //Shang: changed maxAttempts to 3
-        stepContext.maxAttempts = 3;
-        stepContext.numAttempts = 0;
-        
-        if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
-            useSubject = ALL_ENTITIES;
-            useObject = ONLY_CORRECT;
-        }
-        else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
-            useSubject = NO_ENTITIES;
-            useObject = NO_ENTITIES;
-        }
-        
-        if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
-            [[ITSController sharedInstance] setAnalyzerDelegate:self];
-            stepContext.numSyntaxErrors = 0;
-            stepContext.numVocabErrors = 0;
-            stepContext.numUsabilityErrors = 0;
-        }
-    }
-    
-    if(conditionSetup.reader == USER || !conditionSetup.isSpeakerButtonEnabled){
-        NSArray *arrSubviews = [self.view subviews];
-        for(UIView *tmpView in arrSubviews)
-        {
-            if([tmpView isMemberOfClass:[UIButton class]])
-            {
-                // Optionally, check button.tag
-                if(tmpView.tag == 2) {
-                    //hide the Speaker Icon
-                    [tmpView setHidden: true];
-                }
-            }
-        }
-    }
-    
-    if(!conditionSetup.isBackButtonEnabled){
-        NSArray *arrSubviews = [self.view subviews];
-        for(UIView *tmpView in arrSubviews)
-        {
-            if([tmpView isMemberOfClass:[UIButton class]])
-            {
-                // Optionally, check button.tag
-                if(tmpView.tag == 3) {
-                    //hide the Speaker Icon
-                    [tmpView setHidden: true];
-                }
-            }
-        }
-    }
-    
-    if(ITS_SYSTEM== conditionSetup.ITSComplexity){
-         conditionSetup.ITSComplexity=ITS_SYSTEM;
-    }
-    
-    if( ITSIM_MODE==conditionSetup.currentMode  && ITS_SYSTEM== conditionSetup.ITSComplexity){
-        conditionSetup.ITSComplexity=ITS_MEDIUM;
-    }
-    
-    skipButton = [[UIButton alloc] initWithFrame:CGRectMake(0, bookView.frame.size.height-180, 120, 120)];
-    skipButton.backgroundColor=[UIColor clearColor];
-    [bookView addSubview:skipButton];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlelongPress:)];
     [skipButton addGestureRecognizer:longPress];
-
-    //add NextButton Overlay to capture press next to skip
-
-    overlayView=[[UIView alloc]initWithFrame:CGRectMake(bookView.frame.size.width-120, bookView.frame.size.height-150, 120, 150)];
-    overlayView.backgroundColor=[UIColor clearColor];
-    //overlayView.alpha=0.6;
-    [self.view addSubview:overlayView];
-
     [self.view sendSubviewToBack:overlayView];
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSkipTap:)];
     [overlayView addGestureRecognizer:singleFingerTap];
-    
-
     //initialize event handlers
-    
     hotSpotHandler=[[HotSpotHandler alloc] init];
     hotSpotHandler.parentManipulaitonCtr=self;
     gestureHandler= [[GestureHandler alloc]init];
     gestureHandler.parentManipulaitonCtr=self;
     audioHandler= [[AudioHandler alloc]init];
     audioHandler.parentManipulaitonCtr=self;
-    
     [tapRecognizer setDelegate:self];
     [tapRecognizer addTarget:self action:@selector(tapGesturePerformed:)];
-
     [self.view addGestureRecognizer:gestureHandler.panGesture];
-
-
 }//end of view did load
 
 
@@ -637,20 +484,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
-    
-    //TODO: remove hard coded draw areas and move to new setup draw area function
-    //Draw area (hard-coded for now)
-    //[self drawArea:@"outside":@"The Lopez Family"];
-    //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
-    //[self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
-    //[self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
-    //[self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
-    //[self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
-    //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
-    //[self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
-    //[self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
-    //[self drawArea:@"veinPath":@"Muscles Use Oxygen":@"story3-PM-3"];
-    //[self drawArea:@"aortaPath":@"Muscles Use Oxygen":@"story3-PM-1"];
+
 }
 
 /*
