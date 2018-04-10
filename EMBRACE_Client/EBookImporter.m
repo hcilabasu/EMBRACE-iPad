@@ -309,8 +309,11 @@
     else if (conditionSetup.nativeLanguage==MANDRAIN && conditionSetup.targetLanguage==ENGLISH){
         filepath = [[book mainContentPath] stringByAppendingString:@"tocM.ncx"];
     }
+    if (conditionSetup.nativeLanguage==SPANISH && conditionSetup.targetLanguage==SPANISH ) {
+        filepath = [[book mainContentPath] stringByAppendingString:@"tocS.ncx"];
+    }
     
-    
+    filepath = [[book mainContentPath] stringByAppendingString:@"tocS.ncx"];
     //Get xml data of the toc file
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     

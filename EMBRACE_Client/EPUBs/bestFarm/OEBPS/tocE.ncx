@@ -30,13 +30,13 @@
 		  <navLabel>
     		<text>The Contest - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Contest-PM-1.xhtml"/>
+		  <content src="Text/Story1-The-Contest-PM-1M.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>The Contest - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Contest-PM-2.xhtml"/>
+		  <content src="Text/Story1-The-Contest-PM-2M.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">

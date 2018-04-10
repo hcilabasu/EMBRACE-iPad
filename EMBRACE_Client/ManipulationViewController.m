@@ -190,7 +190,6 @@ float const groupingProximity = 20.0;
 }//end of view did load
 
 
-
 - (void)handleSkipTap:(UIButton*)button
 {
     NSLog(@"Skip clicked.");
@@ -214,19 +213,14 @@ float const groupingProximity = 20.0;
         [skipAlert show];
         }
     }
-    
 }
-
-
 
 
 -(void)skipCurrentStep{
     //Emergency swipe to bypass the vocab intros
     if ([pageContext.currentPageId containsString:INTRO]) {
-        
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         [self.playaudioClass stopPlayAudioFile];
-        
         sentenceContext.currentSentence = 1;
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
         manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
