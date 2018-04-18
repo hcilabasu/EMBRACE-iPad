@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <alternateSentences>
+        <story title="The Lopez Family" page_id="story1-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="10"/>
+                <text>The Lopez family lives in a nice house.</text>
+                <ideas>
+                    <idea number="1"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>Martin is the father, and he is a policeman.</text>
+                <ideas>
+                    <idea number="2"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="10"/>
+                <text>He works every day.</text>
+                <ideas>
+                    <idea number="3"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>In the morning, Martin leaves for work.</text>
+                <ideas>
+                    <idea number="4"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="10"/>
+                <text>He takes his keys from the hook in the kitchen and gets into his car.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="1"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="10"/>
+                <text>He drives to the front of the house and waves goodbye to the family from the car.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>The Lopez family lives in a nice house.</text>
+                <ideas>
+                    <idea number="1"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>Martin is the father, and he is a policeman.</text>
+                <ideas>
+                    <idea number="2"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>He works every day.</text>
+                <ideas>
+                    <idea number="3"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="2"/>
+                <text>In the morning, Martin leaves for work.</text>
+                <ideas>
+                    <idea number="4"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="2"/>
+                <text>He takes his keys from the hook in the kitchen and gets into his car.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="1"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="2"/>
+                <text>He drives to the front of the house and waves goodbye to the family from the car.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Lopez Family" page_id="story1-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Rosa, the mother, comes out to say goodbye.</text>
+                <ideas>
+                    <idea number="7"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>Rosa is a lawyer, but she works from home to take care of the baby.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="10"/>
+                <text>The Lopez family has two pets.</text>
+                <ideas>
+                    <idea number="9"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="10"/>
+                <text>The bunny, whose name is Lola, jumps up to visit the baby.</text>
+                <ideas>
+                    <idea number="10"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco the dog runs outside to lick Martin goodbye.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+                <solution>
+                    <step number="2"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="10"/>
+                <text>Soon, the whole Lopez family will have a mystery to solve!</text>
+                <ideas>
+                    <idea number="12"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Rosa, the mother, comes out to say goodbye.</text>
+                <ideas>
+                    <idea number="7"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>Rosa is a lawyer, but she works from home to take care of the baby.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>The Lopez family has two pets.</text>
+                <ideas>
+                    <idea number="9"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>The bunny, whose name is Lola, jumps up to visit the baby.</text>
+                <ideas>
+                    <idea number="10"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco the dog runs outside to lick Martin goodbye.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+                <solution>
+                    <step number="2"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="no">
+                <attributes complexity="2"/>
+                <text>Soon, the whole Lopez family will have a mystery to solve!</text>
+                <ideas>
+                    <idea number="12"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+        </story>
+        <story title="Missing Keys" page_id="story2-PM-1">
+            
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>The next day, Martin woke up and washed his face in the bathroom.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>Then, he brought the baby down to the kitchen for breakfast and put her into the highchair.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    <step number="3"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>After breakfast, Martin walked over to get his keys from the hook.</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>But, the keys were gone!</text>
+                <ideas>
+                    <idea number="16"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The next day, Martin woke up and washed his face in the bathroom.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Then, he brought the baby down to the kitchen for breakfast and put her into the highchair.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    <step number="3"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>After breakfast, Martin walked over to get his keys from the hook.</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>But, the keys were gone!</text>
+                <ideas>
+                    <idea number="16"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="1"/>
+                <text>The next day, Martin woke up.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="1"/>
+                <text>He washed his face in the bathroom.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="11" action="no">
+                <attributes complexity="1"/>
+                <text>Then, he got the baby for breakfast.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="1"/>
+                <text>He brought the baby down to the kitchen and put her into the highchair.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="3"/>
+                <text>The next day, after Martin woke up, he washed his face in the bathroom.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+        </story>
+        <story title="Missing Keys" page_id="story2-PM-2">
+            
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Martin looked in the living room for the keys.</text>
+                <ideas>
+                    <idea number="17"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco sniffed for the keys outside.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="4"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>Lola the bunny looked for the keys on the top floor where the baby sometimes plays.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>Where were the missing keys?</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Martin looked in the living room for the keys.</text>
+                <ideas>
+                    <idea number="17"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco sniffed for the keys outside.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="4"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Lola the bunny looked for the keys on the top floor where the baby sometimes plays.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>Where were the missing keys?</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Lola the bunny looked for the keys on the top floor.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="1"/>
+                <text>Sometimes the baby plays there.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>In the meantime, Paco sniffed for the keys outside.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="4"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>Lola the bunny looked for the keys on the top floor because the baby plays there sometimes.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+        </story>
+        <story title="Is Paco a Thief?" page_id="story3-PM-1">
+            
+            <sentence number="1" action="no">
+                <attributes complexity="10"/>
+                <text>Paco smelled something.</text>
+                <ideas>
+                    <idea number="21"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>Maybe it was the keys.</text>
+                <ideas>
+                    <idea number="22"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>He ran to the tree and sniffed some more.</text>
+                <ideas>
+                    <idea number="23"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>Then he saw the keys in the tree!</text>
+                <ideas>
+                    <idea number="24"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="10"/>
+                <text>He barked and barked, and suddenly, the keys dropped onto the ground.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+                <solution>
+                    <step number="5"/>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>Paco smelled something.</text>
+                <ideas>
+                    <idea number="21"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>Maybe it was the keys.</text>
+                <ideas>
+                    <idea number="22"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="2"/>
+                <text>He ran to the tree and sniffed some more.</text>
+                <ideas>
+                    <idea number="23"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>Then he saw the keys in the tree!</text>
+                <ideas>
+                    <idea number="24"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>He barked and barked, and suddenly, the keys dropped onto the ground.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+                <solution>
+                    <step number="5"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="1"/>
+                <text>He barked and barked.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+                <solution>
+                    <step number="5"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="1"/>
+                <text>Suddenly, the keys dropped onto the ground.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+                <solution>
+                    <step number="5"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="Is Paco a Thief?" page_id="story3-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco picked up the keys and ran toward the house.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>Martin heard the barking and went outside.</text>
+                <ideas>
+                    <idea number="27"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="10"/>
+                <text>Martin said, \"Paco, you are a bad dog for stealing my keys! You will have to stay outside all day.\"</text>
+                <ideas>
+                    <idea number="28"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>Paco was very sad.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco picked up the keys and ran toward the house.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Martin heard the barking and went outside.</text>
+                <ideas>
+                    <idea number="27"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>Martin said, \"Paco, you are a bad dog for stealing my keys! You will have to stay outside all day.\"</text>
+                <ideas>
+                    <idea number="28"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>Paco was very sad.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Paco picked up the keys.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="1"/>
+                <text>Then he ran toward the house.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>After Paco picked up the keys, he ran toward the house.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>When Martin heard the barking, he went outside.</text>
+                <ideas>
+                    <idea number="27"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="13" action="no">
+                <attributes complexity="3"/>
+                <text>Martin told Paco he was a bad dog and would have to stay outside all day for stealing the keys.</text>
+                <ideas>
+                    <idea number="28"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+        </story>
+        <story title="More is Missing!" page_id="story4-PM-1">
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>The next morning, Rosa got up early and went to the kitchen.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>She was going to make pancakes for the whole family.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>She walked to the sink to get her silver spoon for stirring.</text>
+                <ideas>
+                    <idea number="32"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>But the spoon was missing!</text>
+                <ideas>
+                    <idea number="33"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+
+
+
+
+            
+            
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The next morning, Rosa got up early and went to the kitchen.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>She was going to make pancakes for the whole family.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>She walked to the sink to get her silver spoon for stirring.</text>
+                <ideas>
+                    <idea number="32"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>But the spoon was missing!</text>
+                <ideas>
+                    <idea number="33"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="1"/>
+                <text>The next morning, Rosa got up early.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="1"/>
+                <text>She went to the kitchen.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>The next morning, Rosa got up early, and then she went to the kitchen.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>She was going to make pancakes for the whole family, and so she walked to the sink to get her silver spoon for stirring.</text>
+                <ideas>
+                    <idea number="31"/>
+                    <idea number="32"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+        </story>
+        <story title="More is Missing!" page_id="story4-PM-2">
+            
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Rosa went to the living room and said, \"Paco, did you take the silver spoon?\"</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco ran out to the tree and barked.</text>
+                <ideas>
+                    <idea number="35"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>He barked and barked, and the silver spoon dropped to the ground!</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco picked up the spoon and carried it to Rosa.</text>
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="no">
+                <attributes complexity="10"/>
+                <text>Rosa said, \"Paco, you are a bad dog for stealing my silver spoon. You will have to stay outside all day.\"</text>
+                <ideas>
+                    <idea number="38"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Rosa went to the living room and said, \"Paco, did you take the silver spoon?\"</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco ran out to the tree and barked.</text>
+                <ideas>
+                    <idea number="35"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="2"/>
+                <text>He barked and barked, and the silver spoon dropped to the ground!</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco picked up the spoon and carried it to Rosa.</text>
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="2"/>
+                <text>Rosa said, \"Paco, you are a bad dog for stealing my silver spoon. You will have to stay outside all day.\"</text>
+                <ideas>
+                    <idea number="38"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="1"/>
+                <text>Rosa went to the living room.</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="no">
+                <attributes complexity="1"/>
+                <text>\"Paco, did you take the silver spoon?\" she asked.</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="1"/>
+                <text>He barked and barked.</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="14" action="yes">
+                <attributes complexity="1"/>
+                <text>Then the silver spoon dropped to the ground!</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="15" action="yes">
+                <attributes complexity="3"/>
+                <text>Rosa went to the living room and asked Paco if he had taken the silver spoon.</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="16" action="yes">
+                <attributes complexity="3"/>
+                <text>Paco ran out to the tree, where he barked.</text>
+                <ideas>
+                    <idea number="35"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="17" action="yes">
+                <attributes complexity="3"/>
+                <text>While Paco barked and barked, the silver spoon dropped to the ground!</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="18" action="yes">
+                <attributes complexity="3"/>
+                <text>After Paco picked up the spoon, he carried it to Rosa.</text>
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                </solution>
+            </sentence>
+            <sentence number="19" action="no">
+                <attributes complexity="3"/>
+                <text>Rosa told Paco he was a bad dog for stealing her silver spoon and he would have to stay outside all day.</text>
+                <ideas>
+                    <idea number="38"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-1">
+            
+            <sentence number="1" action="no">
+                <attributes complexity="10"/>
+                <text>Later in the day, the baby wanted to play with her rattle.</text>
+                <ideas>
+                    <idea number="39"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>She looked in her crib, but it wasn't there.</text>
+                <ideas>
+                    <idea number="40"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>She looked in the living room, but she couldn't find her rattle there either.</text>
+                <ideas>
+                    <idea number="41"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>The baby started to cry.</text>
+                <ideas>
+                    <idea number="42"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="10"/>
+                <text>Lola the bunny jumped into the baby's lap to comfort her.</text>
+                <ideas>
+                    <idea number="43"/>
+                </ideas>
+                <solution>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>Later in the day, the baby wanted to play with her rattle.</text>
+                <ideas>
+                    <idea number="39"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>She looked in her crib, but it wasn't there.</text>
+                <ideas>
+                    <idea number="40"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="2"/>
+                <text>She looked in the living room, but she couldn't find her rattle there either.</text>
+                <ideas>
+                    <idea number="41"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>The baby started to cry.</text>
+                <ideas>
+                    <idea number="42"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>Lola the bunny jumped into the baby's lap to comfort her.</text>
+                <ideas>
+                    <idea number="43"/>
+                </ideas>
+                <solution>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="1"/>
+                <text>The baby looked in the living room.</text>
+                <ideas>
+                    <idea number="41"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="12" action="no">
+                <attributes complexity="1"/>
+                <text>She couldn't find her rattle there either.</text>
+                <ideas>
+                    <idea number="41"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="3"/>
+                <text>She looked in the living room, but when she couldn't find her rattle there, the baby started to cry.</text>
+                <ideas>
+                   <idea number="41"/>
+                   <idea number="42"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="14" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, Lola the bunny jumped into the baby's lap to comfort her.</text>
+                <ideas>
+                    <idea number="43"/>
+                </ideas>
+                <solution>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Rosa went into the living room when she heard the baby cry.</text>
+                <ideas>
+                    <idea number="44"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>Paco heard the baby cry, too.</text>
+                <ideas>
+                    <idea number="45"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="10"/>
+                <text>He looked up in the tree and there was the baby's rattle!</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco barked and barked, and the rattle dropped to the ground.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="10"/>
+                <text>Rosa picked up the baby and went out to see why Paco was barking.</text>
+                <ideas>
+                    <idea number="48"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="10"/>
+                <text>Lola went out, too.</text>
+                <ideas>
+                    <idea number="49"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Rosa went into the living room when she heard the baby cry.</text>
+                <ideas>
+                    <idea number="44"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>Paco heard the baby cry, too.</text>
+                <ideas>
+                    <idea number="45"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>He looked up in the tree and there was the baby's rattle!</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco barked and barked, and the rattle dropped to the ground.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="2"/>
+                <text>Rosa picked up the baby and went out to see why Paco was barking.</text>
+                <ideas>
+                    <idea number="48"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="2"/>
+                <text>Lola went out, too.</text>
+                <ideas>
+                    <idea number="49"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            
+            <sentence number="13" action="no">
+                <attributes complexity="1"/>
+                <text>Rosa heard the baby cry.</text>
+                <ideas>
+                    <idea number="44"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="14" action="yes">
+                <attributes complexity="1"/>
+                <text>She went into the living room.</text>
+                <ideas>
+                    <idea number="44"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="15" action="no">
+                <attributes complexity="1"/>
+                <text>He looked up in the tree.</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="16" action="no">
+                <attributes complexity="1"/>
+                <text>There was the baby's rattle!</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="17" action="yes">
+                <attributes complexity="1"/>
+                <text>Paco barked and barked.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="18" action="yes">
+                <attributes complexity="1"/>
+                <text>Then the rattle dropped to the ground.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="19" action="no">
+                <attributes complexity="3"/>
+                <text>He looked up in the tree where he saw the baby's rattle!</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="20" action="yes">
+                <attributes complexity="3"/>
+                <text>As Paco barked and barked, the rattle dropped to the ground.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-1">
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Martin drove home and put his keys on the hook.</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco, Rosa, Lola and the baby were by the tree, and Martin went out to join them.</text>
+                <ideas>
+                    <idea number="51"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="10"/>
+                <text>Just then, a bird flew out of the tree and into the kitchen.</text>
+                <ideas>
+                    <idea number="52"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="10"/>
+                <text>The bird took the keys and flew to its nest.</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+
+
+
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Martin drove home and put his keys on the hook.</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco, Rosa, Lola and the baby were by the tree, and Martin went out to join them.</text>
+                <ideas>
+                    <idea number="51"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Just then, a bird flew out of the tree and into the kitchen.</text>
+                <ideas>
+                    <idea number="52"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="2"/>
+                <text>The bird took the keys and flew to its nest.</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Martin drove home.</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="1"/>
+                <text>He put his keys on the hook.</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="no">
+                <attributes complexity="1"/>
+                <text>Paco, Rosa, Lola, and the baby were by the tree.</text>
+                <ideas>
+                    <idea number="51"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="1"/>
+                <text>Martin went out to join them.</text>
+                <ideas>
+                    <idea number="51"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="13" action="no">
+                <attributes complexity="1"/>
+                <text>Just then, a bird flew out of the tree.</text>
+                <ideas>
+                    <idea number="52"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="14" action="yes">
+                <attributes complexity="1"/>
+                <text>It flew into the kitchen.</text>
+                <ideas>
+                    <idea number="52"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="15" action="yes">
+                <attributes complexity="1"/>
+                <text>The bird took the keys.</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+            <sentence number="16" action="yes">
+                <attributes complexity="1"/>
+                <text>Then it flew to its nest.</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="17" action="yes">
+                <attributes complexity="3"/>
+                <text>After Martin drove home, he put his keys on the hook.</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="18" action="yes">
+                <attributes complexity="3"/>
+                <text>The bird took the keys, and then it flew to its nest.</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-2">
+            
+            <sentence number="1" action="yes">
+                <attributes complexity="10"/>
+                <text>Paco barked and barked, and the bird dropped the keys to the ground.</text>
+                <ideas>
+                    <idea number="54"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="10"/>
+                <text>Now everyone understood that the bird loved to take shiny things, and the bird was the thief!</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="10"/>
+                <text>So, the mystery was finally solved.</text>
+                <ideas>
+                    <idea number="56"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>And, Paco was a hero!</text>
+                <ideas>
+                    <idea number="57"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="5" action="no">
+                <attributes complexity="10"/>
+                <text>That night, Paco got a big steak dinner for a reward.</text>
+                <ideas>
+                    <idea number="58"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Paco barked and barked, and the bird dropped the keys to the ground.</text>
+                <ideas>
+                    <idea number="54"/>
+                </ideas>
+                <solution>
+                    
+                    
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>Now everyone understood that the bird loved to take shiny things, and the bird was the thief!</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>So, the mystery was finally solved.</text>
+                <ideas>
+                    <idea number="56"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>And, Paco was a hero!</text>
+                <ideas>
+                    <idea number="57"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="2"/>
+                <text>That night, Paco got a big steak dinner for a reward.</text>
+                <ideas>
+                    <idea number="58"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="1"/>
+                <text>Paco barked and barked.</text>
+                <ideas>
+                    <idea number="54"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="1"/>
+                <text>Then the bird dropped the keys to the ground.</text>
+                <ideas>
+                    <idea number="54"/>
+                </ideas>
+                <solution>
+                    
+                </solution>
+            </sentence>
+            <sentence number="13" action="no">
+                <attributes complexity="1"/>
+                <text>Now everyone understood.</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="14" action="no">
+                <attributes complexity="1"/>
+                <text>The bird loved to take shiny things.</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="15" action="no">
+                <attributes complexity="1"/>
+                <text>The bird was the thief!</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="16" action="no">
+                <attributes complexity="3"/>
+                <text>So, the mystery was finally solved, and Paco was a hero!</text>
+                <ideas>
+                    <idea number="56"/>
+                    <idea number="57"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+        </story>
+    </alternateSentences>
+</metadata>

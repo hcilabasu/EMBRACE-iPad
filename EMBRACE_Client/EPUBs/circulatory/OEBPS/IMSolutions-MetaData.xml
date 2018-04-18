@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="CO2_1_IM" action="getIn" obj2Id="bloodcell_IM"/>
+                    <group obj1Id="O2_1_IM" action="getIn" obj2Id="bloodcell_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
+            <sentence number="11">
+                <step number="1">
+                    <group obj1Id="O2_1_IM" action="getIn" obj2Id="bloodcell_IM"/>
+                    <group obj1Id="O2_1_IM" action="getOut" obj2Id="bloodcell_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <group obj1Id="dirt_1_IM" action="getIn" obj2Id="lungs_IM"/>
+                    <group obj1Id="dirt_1_IM" action="getIn" obj2Id="muscles_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-2">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="cilia_insideIM" action="getIn" obj2Id="cilia_insideIM"/>
+                    <group obj1Id="cilia_outsideIM" action="getOut" obj2Id="cilia_outsideIM"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

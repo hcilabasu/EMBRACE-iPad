@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <setups>
+        <story title="Shopping at the Market" page_id="story4-PM-2">
+            <group obj1Id="sofia_IM" action="nextTo" obj2Id="post_IM"/>
+            <group obj1Id="sofiaOnMancha_IM" action="nextTo" obj2Id="post_IM"/>
+        </story>
+        <story title="Shopping at the Market" page_id="story4-PM-4">
+            <group obj1Id="pesos" action="getIn" obj2Id="sofia"/>
+        </story>
+        <story title="A Gift for the Bride" page_id="story5-PM-4">
+            <group obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+            <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+            <group obj1Id="flowers_IM" action="getIn" obj2Id="flowers2_IM"/>
+        </story>
+        <story title="Homecoming" page_id="story6-PM-2">
+            <group obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+            <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+        </story>
+    </setups>
+</metadata>

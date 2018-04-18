@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="Introduction to Natural Disasters" activity_id="story0-PM">
+            <idea number="68"/>
+            <idea number="69"/>
+            <idea number="70"/>
+            <idea number="71"/>
+            <idea number="72"/>
+            
+        </story>
+        <story title="The Moving Earth" activity_id="story1-PM-1">
+            <idea number="1"/>
+            <idea number="2">
+                <step number="1">
+                    <check obj1Id="africa" action="getIn" locationId="africa_away"/>
+                    <move obj1Id="africa" action="getIn" waypointId="africa_away"/>
+                </step>
+            </idea>
+            <idea number="3"/>
+            <idea number="4"/>
+        </story>
+        <story title="The Moving Earth" activity_id="story1-PM-2">
+            <idea number="5"/>
+            <idea number="6"/>
+            <idea number="7"/>
+            <idea number="8">
+                <step number="2">
+                    <ungroup obj1Id="india" action="leave" obj2Id="africa"/>
+                    <ungroup obj1Id="india" action="leave" obj2Id="australia"/>
+                    <move obj1Id="india" action="getIn" waypointId="india_ungrouped"/>
+                </step>
+                <step number="3">
+                    <group obj1Id="india" action="hit" obj2Id="eurasia"/>
+                    <ungroup obj1Id="india" action="leave" obj2Id="eurasia"/>
+                    <move obj1Id="india" action="getIn" waypointId="india_near_eurasia"/>
+                </step>
+            </idea>
+            <idea number="9">
+                <step number="4">
+                    <group obj1Id="india" action="hit" obj2Id="eurasia"/>
+                </step>
+                <step number="5">
+                    <swapImage obj1Id="india" action="push"/>
+                </step>
+            </idea>
+            <idea number="10"/>
+        </story>
+        <story title="The Moving Earth" activity_id="story1-PM-3">
+            <idea number="11"/>
+            <idea number="12"/>
+            <idea number="13">
+                <step number="6">
+                    <check obj1Id="california" action="getIn" locationId="california_up"/>
+                    <move obj1Id="california" action="getIn" waypointId="california_up"/>
+                </step>
+            </idea>
+            <idea number="14"/>
+        </story>
+        <story title="Earthquakes" activity_id="story2-PM-1">
+            <idea number="15">
+                <step number="7">
+                    <shakeOrTap obj1Id="north_america" action="getIn" locationId="anywhere"/>
+                    <ungroup obj1Id="north_america" action="leave" obj2Id="california"/>
+                    <swapImage obj1Id="north_america" action="crack"/>
+                    <swapImage obj1Id="california" action="crack"/>
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                    <animate obj1Id="north_america" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                </step>
+            </idea>
+            <idea number="16"/>
+            <idea number="17"/>
+            <idea number="18"/>
+        </story>
+        <story title="Earthquakes" activity_id="story2-PM-2">
+            <idea number="19"/>
+            <idea number="20">
+                <step number="8">
+                    <check obj1Id="california" action="getIn" locationId="california_up2"/>
+                    <move obj1Id="california" action="getIn" waypointId="california_up2"/>
+                </step>
+            </idea>
+            <idea number="21"/>
+            <idea number="22"/>
+        </story>
+        <story title="Earthquakes" activity_id="story2-PM-3">
+            <idea number="23">
+                <step number="9">
+                    <check obj1Id="california" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="california" action="getIn" waypointId="california_boom"/>
+                    <playSound fileName="earthquake.wav"/>
+                </step>
+            </idea>
+            <idea number="24"/>
+            <idea number="25">
+                <step number="10">
+                    <shakeOrTap obj1Id="houses" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="houses" action="fall"/>
+                    <move obj1Id="california" action="getIn" waypointId="california_boom"/>
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                    <animate obj1Id="north_america" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                </step>
+            </idea>
+            <idea number="26"/>
+        </story>
+        <story title="Tsunamis" activity_id="story3-PM-1">
+            <idea number="27"/>
+            <idea number="28"/>
+            <idea number="29"/>
+            <idea number="30"/>
+        </story>
+        <story title="Tsunamis" activity_id="story3-PM-2">
+            <idea number="31">
+                <step number="11">
+                    <check obj1Id="plate" action="getIn" locationId="plate_move"/>
+                    <move obj1Id="plate" action="getIn" waypointId="plate_move"/>
+                    <move obj1Id="ocean" action="getIn" waypointId="ocean_down"/>
+                </step>
+            </idea>
+            <idea number="32"/>
+            <idea number="33">
+                <step number="12">
+                    <check obj1Id="bulge" action="getIn" locationId="bulge_left"/>
+                    <swapImage obj1Id="bulge" action="whole"/>
+                </step>
+            </idea>
+            <idea number="34"/>
+        </story>
+        <story title="Tsunamis" activity_id="story3-PM-3">
+           <idea number="35"/>
+           <idea number="36">
+                <step number="13">
+                    <check obj1Id="bulge" action="getIn" locationId="land"/>
+                    <swapImage obj1Id="bulge" action="forms_wave"/>
+                </step>
+            </idea>
+            <idea number="37">
+                <step number="14">
+                    <swapImage obj1Id="bulge" action="forms_bulge"/>
+                    <check obj1Id="bulge" action="getIn" locationId="ocean"/>
+                    <move obj1Id="bulge" action="getIn" waypointId="ocean"/>
+                </step>
+            </idea>
+            <idea number="38"/>
+        </story>
+        <story title="Tsunamis" activity_id="story3-PM-4">
+            <idea number="39">
+                <step number="15">
+                    <check obj1Id="person" action="getIn" locationId="upHill"/>
+                    <move obj1Id="person" action="getIn" waypointId="upHill"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-1">
+            <idea number="40"/>
+            <idea number="41"/>
+            <idea number="42"/>
+            <idea number="43"/>
+            <idea number="44">
+                <step number="16">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <swapImage obj1Id="lava" action="forms_rock"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-2">
+            <idea number="45"/>
+            
+            <idea number="46">
+                <step number="17">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <appear obj1Id="kauai" action="appear"/>
+                    <appear obj1Id="label_kauai" action="appear"/>
+                    <disappearAuto obj1Id="lava_cooled" action="disappear" obj2Id="lava_cooled"/>
+                    <groupAuto obj1Id="label_kauai" action="label" obj2Id="kauai"/>
+                    <groupAuto obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
+                </step>
+            </idea>
+            <idea number="47"/>
+            <idea number="48"/>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
+            <idea number="49">
+                <step number="18">
+                    <check obj1Id="grey_plate_kauai" action="getIn" locationId="left"/>
+                    <ungroup obj1Id="kauai" action="leave" obj2Id="grey_plate_kauai"/>
+                    <swapImage obj1Id="grey_plate_kauai" action="left"/>
+                    <groupAuto obj1Id="kauai" action="touchAsKauai2" obj2Id="grey_plate_kauai"/>
+                </step>
+            </idea>
+            <idea number="50">
+                <step number="19">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <appear obj1Id="oahu" action="appear"/>
+                    <appear obj1Id="label_oahu" action="appear"/>
+                    <groupAuto obj1Id="label_oahu" action="label" obj2Id="oahu"/>
+                    <groupAuto obj1Id="oahu" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
+                </step>
+            </idea>
+            <idea number="51"/>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-4">
+            <idea number="52">
+                <step number="20">
+                    <check obj1Id="grey_plate_kauai" action="getIn" locationId="left"/>
+                    <ungroupAndStay obj1Id="oahu" action="leave" obj2Id="grey_plate_kauai"/>
+                    <ungroupAndStay obj1Id="kauai" action="leave" obj2Id="grey_plate_kauai"/>
+                    <swapImage obj1Id="grey_plate_kauai" action="left2"/>
+                    <move obj1Id="oahu" action="getIn" waypointId="oahu_left"/>
+                    <appear obj1Id="molokai" action="appear"/>
+                    <appear obj1Id="hawaii" action="appear"/>
+                    <appear obj1Id="label_molokai" action="appear"/>
+                    <appear obj1Id="label_hawaii" action="appear"/>
+                    <groupAuto obj1Id="label_molokai" action="label" obj2Id="molokai"/>
+                    <groupAuto obj1Id="label_hawaii" action="label" obj2Id="hawaii"/>
+                    <groupAuto obj1Id="kauai" action="touchAsKauai3" obj2Id="grey_plate_kauai"/>
+                </step>
+            </idea>
+            <idea number="53"/>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-5">
+            <idea number="54">
+                <step number="21">
+                    <group obj1Id="lava" action="getIn" obj2Id="hawaii"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <swapImage obj1Id="hawaii" action="erupts"/>
+                </step>
+            </idea>
+            <idea number="55"/>
+        </story>
+        <story title="Tornados" activity_id="story5-PM-1">
+            <idea number="56"/>
+            <idea number="57"/>
+            <idea number="58">
+                <step number="22">
+                    <shakeOrTap obj1Id="air_blue" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="droplet_group" action="getIn" waypointId="droplet_stay"/>
+                    <animate obj1Id="air_particle" action="airParticle" waypointId="" areaId="blue_air_area"/>
+                </step>
+            </idea>
+            
+            <idea number="59">
+                <step number="23">
+                    <check obj1Id="droplet_group" action="getIn" locationId="rain_down"/>
+                    <move obj1Id="droplet_group" action="getIn" waypointId="rain_down"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Tornados" activity_id="story5-PM-2">
+            <idea number="60">
+                <step number="24">
+                    <check obj1Id="air_red" action="getIn" locationId="air_up"/>
+                    <move obj1Id="air_red" action="getIn" waypointId="air_up"/>
+                </step>
+            </idea>
+            <idea number="61">
+                <step number="25">
+                    <group obj1Id="dirt_move" action="pull" obj2Id="air_red"/>
+                    <ungroupAndStay obj1Id="dirt_move" action="leave" obj2Id="air_red"/>
+                    <appear obj1Id="dirt_tornado" action="appear"/>
+                    <disappearAuto obj1Id="dirt_move" action="disappear" obj2Id="dirt_move"/>
+                    <groupAuto obj1Id="air_red" action="touch" obj2Id="dirt_tornado"/>
+                    <groupAuto obj1Id="droplet_group" action="touch2" obj2Id="dirt_tornado"/>
+                </step>
+            </idea>
+            <idea number="62"/>
+            <idea number="63">
+                <step number="26">
+                    <check obj1Id="dirt_tornado" action="pull" locationId="house"/>
+                    <ungroup obj1Id="house_roof2" action="leave" obj2Id="dirt_tornado"/>
+                    <swapImage obj1Id="house_roof2" action="flip"/>
+                    <move obj1Id="dirt_tornado" action="getIn" waypointId="tornado"/>
+                    <swapImage obj1Id="house_noroof2" action="damage"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Tornados" activity_id="story5-PM-3">
+            <idea number="64">
+                <step number="27">
+                    <check obj1Id="air_blue" action="getIn" locationId="tornado"/>
+                    <swapImage obj1Id="air_blue" action="changeZIndex"/>
+                    <disappearAuto obj1Id="air_red" action="disappear" obj2Id="air_red"/>
+                    <swapImage obj1Id="dirt_tornado" action="shrink"/>
+                </step>
+            </idea>
+            <idea number="65"/>
+            <idea number="66"/>
+            <idea number="67"/>
+        </story>
+    </solutions>
+</metadata>

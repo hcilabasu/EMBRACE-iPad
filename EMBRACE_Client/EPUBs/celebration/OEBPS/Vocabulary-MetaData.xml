@@ -1,0 +1,52 @@
+<metadata>
+  <vocabulary>
+    <story title="A Gift for the Bride">
+      <vocabulary introWord="false">successful</vocabulary>
+      <vocabulary introWord="false">post</vocabulary>
+      <vocabulary introWord="true">dozen</vocabulary>
+    </story>
+    <story title="Key Ingredients">
+      <vocabulary introWord="false">evening</vocabulary>
+      <vocabulary introWord="false">tote</vocabulary>
+      <vocabulary introWord="true">champurrado</vocabulary>
+      <vocabulary introWord="true">ingredients</vocabulary>
+      <vocabulary introWord="true">grind</vocabulary>
+      <vocabulary introWord="true">enthusiastically</vocabulary>
+      <vocabulary introWord="true">supplies</vocabulary>
+      <vocabulary introWord="true">mole</vocabulary>
+      <vocabulary introWord="true">celebration</vocabulary>
+    </story>
+    <story title="Shopping at the Market">
+      <vocabulary introWord="false">tote</vocabulary>
+      <vocabulary introWord="true">produce</vocabulary>
+      <vocabulary introWord="true">dairy</vocabulary>
+      <vocabulary introWord="false">cattle</vocabulary>
+      <vocabulary introWord="true">post</vocabulary>
+      <vocabulary introWord="false">tomatillos</vocabulary>
+    </story>
+    <story title="Mancha the Horse">
+      <vocabulary introWord="false">tote</vocabulary>
+      <vocabulary introWord="true">saddle</vocabulary>
+      <vocabulary introWord="false">straps</vocabulary>
+      <vocabulary introWord="true">corral</vocabulary>
+      <vocabulary introWord="true">bridle</vocabulary>
+      <vocabulary introWord="false">tomatillos</vocabulary>
+    </story>
+    <story title="A Friend in Need">
+      <vocabulary introWord="false">corral</vocabulary>
+      <vocabulary introWord="true">herd</vocabulary>
+      <vocabulary introWord="true">guide</vocabulary>
+      <vocabulary introWord="true">calf</vocabulary>
+      <vocabulary introWord="true">cattle</vocabulary>
+    </story>
+    <story title="Homecoming">
+      <vocabulary introWord="false">tote</vocabulary>
+      <vocabulary introWord="false">saddle</vocabulary>
+      <vocabulary introWord="false">corral</vocabulary>
+      <vocabulary introWord="false">produce</vocabulary>
+      <vocabulary introWord="false">bridle</vocabulary>
+      <vocabulary introWord="true">vase</vocabulary>
+      <vocabulary introWord="false">celebration</vocabulary>
+    </story>
+  </vocabulary>
+</metadata>

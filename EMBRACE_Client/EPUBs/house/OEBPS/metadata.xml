@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <relationships>
+    <relationship obj1Id="baby" can="getIn" action="group" obj2Id="highchair"/>
+    <relationship obj1Id="baby" can="getOut" action="ungroup" obj2Id="highchair"/>
+    <relationship obj1Id="baby" can="pickUp" action="group" obj2Id="woman"/>
+    <relationship obj1Id="bird" can="pickUp" action="group" obj2Id="keys"/>
+    <relationship obj1Id="bird" can="putDown" action="ungroup" obj2Id="keys"/>
+    <relationship obj1Id="dog" can="leave" action="ungroup" obj2Id="tree"/>
+    <relationship obj1Id="dog" can="pickUp" action="group" obj2Id="keys"/>
+    <relationship obj1Id="dog" can="pickUp" action="group" obj2Id="spoon"/>
+    <relationship obj1Id="dog" can="putDown" action="ungroup" obj2Id="keys"/>
+    <relationship obj1Id="dog" can="putDown" action="ungroup" obj2Id="spoon"/>
+    <relationship obj1Id="dog" can="visit" action="group" obj2Id="tree"/>
+    <relationship obj1Id="man" can="getIn" action="group" obj2Id="car"/>
+    <relationship obj1Id="man" can="getOut" action="ungroup" obj2Id="car"/>
+    <relationship obj1Id="man" can="grab" action="group" obj2Id="keys"/>
+    <relationship obj1Id="man" can="pickUp" action="group" obj2Id="baby"/>
+    <relationship obj1Id="man" can="putDown" action="ungroup" obj2Id="baby"/>
+    <relationship obj1Id="man" can="release" action="ungroup" obj2Id="keys"/>
+    <relationship obj1Id="rabbit" can="leave" action="ungroup" obj2Id="baby"/>
+    <relationship obj1Id="rabbit" can="sit" action="group" obj2Id="baby"/>
+    <relationship obj1Id="rabbit" can="visit" action="group" obj2Id="baby"/>
+    <relationship obj1Id="spoon" can="getIn" action="group" obj2Id="woman"/>
+    <relationship obj1Id="woman" can="moveTo" action="group" obj2Id="table"/>
+    <relationship obj1Id="woman" can="pickUp" action="group" obj2Id="baby"/>
+  </relationships>
+  
+  <constraints>
+    <orderConstraints>
+    </orderConstraints>
+    <movementConstraints>
+    </movementConstraints>
+    <comboConstraints>
+    </comboConstraints>
+  </constraints>
+  
+  <hotspots>
+    <hotspot objId="baby" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="baby" action="pickUp" role="object" x="75%" y="40%"/>
+    <hotspot objId="baby" action="pickUp" role="subject" x="75%" y="40%"/>
+    <hotspot objId="baby" action="sit" role="object" x="25%" y="70%"/>
+    <hotspot objId="bird" action="getIn" role="subject" x="0%" y="0%"/>
+    <hotspot objId="bird" action="pickUp" role="subject" x="5%" y="10%"/>
+    <hotspot objId="car" action="getIn" role="object" x="50%" y="50%"/>
+    <hotspot objId="car" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="dog" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="dog" action="pickUp" role="subject" x="92%" y="16.5%"/>
+    <hotspot objId="dog" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="highchair" action="getIn" role="object" x="50%" y="20%"/>
+    <hotspot objId="keys" action="getIn" role="subject" x="50%" y="1%"/>
+    <hotspot objId="keys" action="grab" role="object" x="42.5%" y="18.3%"/>
+    <hotspot objId="keys" action="grab" role="subject" x="42.5%" y="18.3%"/>
+    <hotspot objId="keys" action="pickUp" role="object" x="42.5%" y="18.3%"/>
+    <hotspot objId="man" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="man" action="grab" role="object" x="85%" y="69%"/>
+    <hotspot objId="man" action="grab" role="subject" x="85%" y="69%"/>
+    <hotspot objId="man" action="pickUp" role="subject" x="50%" y="50%"/>
+    <hotspot objId="rabbit" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="rabbit" action="sit" role="subject" x="50%" y="50%"/>
+    <hotspot objId="rattle" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="spoon" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="spoon" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="table" action="moveTo" role="obbject" x="100%" y="100%"/>
+    <hotspot objId="tree" action="getIn" role="subject" x="0%" y="100%"/>
+    <hotspot objId="tree" action="visit" role="object" x="25%" y="100%"/>
+    <hotspot objId="woman" action="getIn" role="object" x="50%" y="66%"/>
+    <hotspot objId="woman" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
+  </hotspots>
+  
+  <locations>
+    <location locationId="bathroom" x="32%" y="33%" height="26%" width="23%"/>
+    <location locationId="crib" x="23%" y="49%" height="9%" width="8.2%"/>
+    <location locationId="frontHouse" x="1%" y="75%" height="26%" width="60%"/>
+    <location locationId="kitchen" x="8%" y="59%" height="25%" width="24%"/>
+    <location locationId="kitchenSink" x="8%" y="60%" height="26%" width="9%"/>
+    <location locationId="livingRoom" x="32%" y="59%" height="26%" width="23%"/>
+    <location locationId="nearHook" x="16%" y="63%" height="22%" width="10%"/>
+    <location locationId="nearTree" x="65%" y="67%" height="34%" width="35%"/>
+    <location locationId="nest" x="79%" y="50%" height="16%" width="14%"/>
+    <location locationId="outside" x="56%" y="59%" height="39%" width="44%"/>
+    <location locationId="playRoom" x="7%" y="15%" height="17%" width="48%"/>
+  </locations>
+  
+  <waypoints>
+    <waypoint waypointId="crib" x="27%" y="50%"/>
+    <waypoint waypointId="fridge" x="26%" y="60%"/>
+    <waypoint waypointId="frontHouse" x="26%" y="87%"/>
+    <waypoint waypointId="frontHouse2" x="30%" y="90%"/>
+    <waypoint waypointId="frontHouse3" x="14%" y="86%"/>
+    <waypoint waypointId="frontHouse4" x="22%" y="86%"/>
+    <waypoint waypointId="frontHouse5" x="35%" y="85%"/>
+    <waypoint waypointId="ground" x="25%" y="90%"/>
+    <waypoint waypointId="kitchenSink" x="14%" y="75%"/>
+    <waypoint waypointId="livingRoom" x="45%" y="76%"/>
+    <waypoint waypointId="livingRoom2" x="37%" y="78%"/>
+    <waypoint waypointId="livingRoom3" x="39%" y="79.5%"/>
+    <waypoint waypointId="livingRoom4" x="34%" y="81.5%"/>
+    <waypoint waypointId="nearChair" x="14%" y="75%"/>
+    <waypoint waypointId="nearCrib" x="27%" y="47%"/>
+    <waypoint waypointId="nearKeys" x="22%" y="75%"/>
+    <waypoint waypointId="nearKeys2" x="24%" y="75%"/>
+    <waypoint waypointId="nearTree" x="84%" y="88%"/>
+    <waypoint waypointId="nearTree2" x="74%" y="86%"/>
+    <waypoint waypointId="nest" x="83%" y="49.5%"/>
+    <waypoint waypointId="nest2" x="83.5%" y="49.5%"/>
+    <waypoint waypointId="nextToCar" x="8%" y="80%"/>
+    <waypoint waypointId="onHook" x="20.5%" y="65%"/>
+    <waypoint waypointId="parkCar" x="32%" y="88%"/>
+    <waypoint waypointId="playRoom" x="36%" y="28%"/>
+    <waypoint waypointId="rightOfHouse" x="63%" y="79%"/>
+    <waypoint waypointId="rightOfHouse2" x="60%" y="68%"/>
+    <waypoint waypointId="rightOfHouse3" x="71%" y="76%"/>
+    <waypoint waypointId="rightOfHouse4" x="67%" y="63.5%"/>
+    <waypoint waypointId="sink" x="35.5%" y="49%"/>
+    <waypoint waypointId="treePosition" x="68%" y="92%"/>
+  </waypoints>
+  
+  <alternateImages>
+  </alternateImages>
+  
+  <setups>
+    <story title="The Lopez Family" page_id="story1-PM-2">
+      <group obj1Id="man" action="getIn" obj2Id="car"/>
+    </story>
+    <story title="Missing Keys" page_id="story2-PM-2">
+      <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+    </story>  
+    <story title="Is Paco a Thief?" page_id="story3-PM-1">
+      <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+    </story>  
+    <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
+      <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+    </story>
+    <story title="The Mystery is Solved" page_id="story6-PM-1">
+      <group obj1Id="man" action="getIn" obj2Id="car"/>
+      <group obj1Id="keys" action="grab" obj2Id="man"/>
+      <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+    </story>
+    <story title="The Mystery is Solved" page_id="story6-PM-2">
+      <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+    </story>
+  </setups>
+  
+  <solutions>
+    <story title="The Lopez Family" activity_id="story1-PM-1">
+      <sentence number="3">
+        <step number="1">
+              <group obj1Id="man" action="grab" obj2Id="keys"/>
+              <move obj1Id="man" action="getIn" waypointId="nearKeys"/>
+        </step>
+        <step number="2">
+              <group obj1Id="man" action="getIn" obj2Id="car"/>
+        </step>
+      </sentence>
+      <sentence number="4">
+        <step number="1">
+            <check obj1Id="man" action="getIn" locationId="frontHouse"/>
+            <move obj1Id="man" action="getIn" waypointId="frontHouse"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Lopez Family" activity_id="story1-PM-2">
+      <sentence number="5">
+          <step number="1">
+              <check obj1Id="woman" action="getIn" locationId="frontHouse"/>
+              <move obj1Id="woman" action="getIn" waypointId="frontHouse2"/>
+          </step>
+      </sentence>
+      <sentence number="8">
+          <step number="1">
+              <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+          </step>
+      </sentence>
+      <sentence number="9">
+          <step number="1">
+              <check obj1Id="dog" action="getIn" locationId="frontHouse"/>
+              <move obj1Id="dog" action="getIn" waypointId="frontHouse3"/>
+          </step>
+       </sentence>
+    </story>
+    <story title="Missing Keys" activity_id="story2-PM-1">
+        <sentence number="1">
+            <step number="1">
+                <check obj1Id="man" action="getIn" locationId="bathroom"/>
+                <move obj1Id="man" action="getIn" waypointId="sink"/>
+            </step>
+        </sentence>
+        <sentence number="2">
+            <step number="1">
+                <group obj1Id="man" action="pickUp" obj2Id="baby"/>
+                <transferAndGroup obj1Id="man" action="putDown" obj2Id="baby"/>
+                <transferAndGroup obj1Id="baby" action="getIn" obj2Id="highchair"/>
+                <move obj1Id="man" action="getIn" waypointId="nearChair"/>
+             </step>
+         </sentence>
+         <sentence number="3">
+             <step number="1">
+                 <check obj1Id="man" action="getIn" locationId="nearHook"/>
+                 <move obj1Id="man" action="getIn" waypointId="nearKeys"/>
+             </step>
+         </sentence>
+    </story>
+    <story title="Missing Keys" activity_id="story2-PM-2">
+        <sentence number="5">
+            <step number="1">
+                <check obj1Id="man" action="getIn" locationId="livingRoom"/>
+                <move obj1Id="man" action="getIn" waypointId="livingRoom"/>
+            </step>
+        </sentence>
+        <sentence number="6">
+            <step number="1">
+                <check obj1Id="dog" action="getIn" locationId="outside"/>
+                <move obj1Id="dog" action="getIn" waypointId="rightOfHouse"/>
+            </step>
+        </sentence>
+        <sentence number="7">
+            <step number="1">
+                <check obj1Id="rabbit" action="getIn" locationId="playRoom"/>
+                <move obj1Id="rabbit" action="getIn" waypointId="playRoom"/>
+            </step>
+        </sentence>
+    </story>
+    <story title="Is Paco a Thief?" activity_id="story3-PM-1">
+    		 <sentence number="2">
+            <step number="1">
+							 <group obj1Id="dog" action="visit" obj2Id="tree"/>
+            </step>
+       </sentence>
+       <sentence number="4">
+            <step number="1">
+                <check obj1Id="keys" action="getIn" locationId="nearTree"/>
+                <move obj1Id="keys" action="getIn" waypointId="nearTree"/>
+            </step>
+        </sentence>
+    </story>
+    <story title="Is Paco a Thief?" activity_id="story3-PM-2">
+    		 <sentence number="5">
+            <step number="1">
+							 <group obj1Id="dog" action="pickUp" obj2Id="keys"/>
+            </step>
+            <step number="2">
+                <check obj1Id="dog" action="getIn" locationId="frontHouse"/>
+                <move obj1Id="dog" action="getIn" waypointId="frontHouse4"/>
+            </step>
+       </sentence>
+       <sentence number="6">
+            <step number="1">
+							 <ungroup obj1Id="dog" action="putDown" obj2Id="keys"/>
+                <move obj1Id="dog" action="getIn" waypointId="frontHouse4"/>
+                <move obj1Id="keys" action="getIn" waypointId="ground"/>
+            </step>
+            <step number="2">
+                <check obj1Id="man" action="getIn" locationId="frontHouse"/>
+                <move obj1Id="man" action="getIn" waypointId="frontHouse5"/>
+            </step>
+        </sentence>
+    </story>
+    <story title="More is Missing!" activity_id="story4-PM-1">
+    		 <sentence number="1">
+            <step number="1">
+							 <check obj1Id="woman" action="getIn" locationId="kitchen"/>
+                <move obj1Id="woman" action="getIn" waypointId="nearKeys"/>
+            </step>
+       </sentence>
+       <sentence number="3">
+           <step number="1">
+               <check obj1Id="woman" action="getIn" locationId="kitchenSink"/>
+               <move obj1Id="woman" action="getIn" waypointId="kitchenSink"/>
+           </step>
+       </sentence>
+    </story>
+    <story title="More is Missing!" activity_id="story4-PM-2">
+    		 <sentence number="5">
+            <step number="1">
+							 <check obj1Id="woman" action="getIn" locationId="livingRoom"/>
+                <move obj1Id="woman" action="getIn" waypointId="livingRoom"/>
+            </step>
+        </sentence>
+        <sentence number="6">
+            <step number="1">
+							 <group obj1Id="dog" action="visit" obj2Id="tree"/>
+            </step>
+         </sentence>
+         <sentence number="7">
+            <step number="1">
+							 <check obj1Id="spoon" action="getIn" locationId="nearTree"/>
+                <move obj1Id="spoon" action="getIn" waypointId="nearTree"/>
+            </step>
+         </sentence>
+         <sentence number="8">
+             <step number="1">
+							 <ungroup obj1Id="dog" action="leave" obj2Id="tree"/>
+                <move obj1Id="dog" action="getIn" waypointId="nearTree2"/>
+                <move obj1Id="tree" action="getIn" waypointId="treePosition"/>
+            </step>
+            <step number="2">
+							 <group obj1Id="dog" action="pickUp" obj2Id="spoon"/>
+                <transferAndGroup obj1Id="dog" action="putDown" obj2Id="spoon"/>
+                <transferAndGroup obj1Id="spoon" action="getIn" obj2Id="woman"/>
+                <move obj1Id="dog" action="getIn" waypointId="livingRoom2"/>
+            </step>	
+         </sentence>
+    </story>
+    <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
+      <sentence number="2">
+        <step number="1">
+              <check obj1Id="baby" action="getIn" locationId="crib"/>
+              <move obj1Id="baby" action="getIn" waypointId="crib"/>
+        </step>
+      </sentence>
+      <sentence number="3">
+        <step number="1">
+              <move obj1Id="baby" action="getIn" waypointId="nearCrib"/>
+        </step>
+        <step number="2">
+              <check obj1Id="baby" action="getIn" locationId="livingRoom"/>
+              <move obj1Id="baby" action="getIn" waypointId="livingRoom3"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+              <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
+      <sentence number="6">
+        <step number="1">
+              <check obj1Id="woman" action="getIn" locationId="livingRoom"/>
+              <move obj1Id="woman" action="getIn" waypointId="livingRoom"/>
+        </step>
+      </sentence>
+      <sentence number="9">
+        <step number="1">
+              <check obj1Id="rattle" action="getIn" locationId="nearTree"/>
+              <move obj1Id="rattle" action="getIn" waypointId="nearTree"/>
+        </step>
+      </sentence>
+      <sentence number="10">
+       <step number="1">
+              <ungroup obj1Id="rabbit" action="leave" obj2Id="baby"/>
+              <move obj1Id="rabbit" action="getIn" waypointId="livingRoom4"/>
+              <move obj1Id="baby" action="getIn" waypointId="livingRoom3"/>
+        </step>        
+        <step number="2">
+              <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+              <move obj1Id="woman" action="getIn" waypointId="livingRoom"/>
+        </step>
+        <step number="3">
+              <check obj1Id="woman" action="getIn" locationId="outside"/>
+              <move obj1Id="woman" action="getIn" waypointId="rightOfHouse2"/>
+        </step>
+      </sentence>
+      <sentence number="11">
+        <step number="1">
+              <check obj1Id="rabbit" action="getIn" locationId="outside"/>
+              <move obj1Id="rabbit" action="getIn" waypointId="rightOfHouse3"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Mystery is Solved" activity_id="story6-PM-1">
+      <sentence number="1">
+        <step number="1">
+              <check obj1Id="man" action="getIn" locationId="frontHouse"/>
+              <ungroup obj1Id="man" action="getOut" obj2Id="car"/>
+              <move obj1Id="car" action="getIn" waypointId="parkCar"/>
+              <move obj1Id="man" action="getIn" waypointId="nextToCar"/>
+        </step>
+        <step number="2">
+              <check obj1Id="man" action="getIn" locationId="nearHook"/>
+              <ungroup obj1Id="man" action="release" obj2Id="keys"/>
+              <move obj1Id="man" action="getIn" waypointId="nearKeys2"/>
+              <move obj1Id="keys" action="getIn" waypointId="onHook"/>
+        </step>
+      </sentence>
+      <sentence number="2">
+        <step number="1">
+              <check obj1Id="man" action="getIn" locationId="outside"/>
+              <move obj1Id="man" action="getIn" waypointId="rightOfHouse4"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Mystery is Solved" activity_id="story6-PM-2">
+      <sentence number="5">
+        <step number="1">
+              <check obj1Id="bird" action="getIn" locationId="kitchen"/>
+              <move obj1Id="bird" action="getIn" waypointId="fridge"/>
+        </step>
+      </sentence>
+      <sentence number="6">
+        <step number="1">
+              <group obj1Id="bird" action="pickUp" obj2Id="keys"/>
+        </step>
+        <step number="2">
+              <check obj1Id="bird" action="getIn" locationId="nest"/>
+              <ungroup obj1Id="bird" action="release" obj2Id="keys"/>
+              <move obj1Id="bird" action="getIn" waypointId="nest"/>   
+              <move obj1Id="keys" action="getIn" waypointId="nest2"/>   
+        </step>
+      </sentence>
+      <sentence number="7">
+        <step number="1">
+              <check obj1Id="keys" action="getIn" locationId="nearTree"/>
+              <move obj1Id="keys" action="getIn" waypointId="nearTree"/>
+        </step>
+      </sentence>
+    </story>
+  </solutions>
+  
+  <sentenceAnalyses>
+  </sentenceAnalyses>
+  <translations>
+  </translations>
+  <introductions>
+  </introductions>
+  <vocabularyIntroductions>
+  </vocabularyIntroductions>
+</metadata>

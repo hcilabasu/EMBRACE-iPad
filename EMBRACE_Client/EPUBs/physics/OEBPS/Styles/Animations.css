@@ -1,0 +1,128 @@
+@keyframes moveLeft {
+    0% {left:1024px;}
+    100% {left: 0px;}
+}
+
+@keyframes moveLeftAndWrap {
+    0% {left: 1024px;}
+    100% {left: 0px;}
+}
+
+.manipulationObject.center.moveLeftAndWrap {
+    -webkit-animation: moveLeftAndWrap 15s linear infinite;
+    animation: moveLeftAndWrap 15s linear infinite;
+}
+
+@keyframes moveRight {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+@keyframes moveRightSlow {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+@keyframes moveRightSlower {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+@keyframes moveRightAndWrap {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+.manipulationObject.center.moveRightAndWrap {
+    -webkit-animation: moveRightAndWrap 15s linear infinite;
+    animation: moveRightAndWrap 15s linear infinite;
+}
+
+@keyframes moveRightAndWrapSlow {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+.manipulationObject.center.moveRightAndWrapSlow {
+    -webkit-animation: moveRightAndWrap 22s linear infinite;
+    animation: moveRightAndWrap 22s linear infinite;
+}
+
+@keyframes moveRightAndWrapSlower {
+    0% {left: 0px;}
+    100% {left: 1024px;}
+}
+
+.manipulationObject.center.moveRightAndWrapSlower {
+    -webkit-animation: moveRightAndWrap 30s linear infinite;
+    animation: moveRightAndWrap 30s linear infinite;
+}
+
+@keyframes moveTop {
+    0% {top: 704px;}
+    100% {top: 0px;}
+}
+
+@keyframes moveTopAndWrap {
+    0% {top: 704px;}
+    100% {top: 0px;}
+}
+
+.manipulationObject.center.moveTopAndWrap {
+    -webkit-animation: moveTopAndWrap 15s linear infinite;
+    animation: moveTopAndWrap 15s linear infinite;
+}
+
+@keyframes moveDown {
+    0% {top:0px;}
+    100% {top: 704px;}
+}
+
+@keyframes moveDownAndWrap {
+    0% {top: 0px;}
+    100% {top: 704px;}
+}
+
+.manipulationObject.center.moveDownAndWrap {
+    -webkit-animation: moveDownAndWrap 15s linear infinite;
+    animation: moveDownAndWrap 15s linear infinite;
+}
+
+@keyframes move45Degree {
+    0% {
+        top: 704px;
+        left: 0px;
+    }
+    100% {
+        top: 0px;
+        left: 1024px;
+    }
+}
+
+@keyframes move45DegreeAndWrap {
+    0% {
+        top: 300px;
+        left: 0px;
+        }
+    100% {
+        top: 0px;
+        left: 1024px;
+    }
+}
+
+.manipulationObject.center.move45DegreeAndWrap {
+    -webkit-animation: move45DegreeAndWrap 15s linear infinite;
+    animation: move45DegreeAndWrap 15s linear infinite;
+    -webkit-animation-play-state:running;
+}
+
+.manipulationObject.center.move45DegreeAndWrap:hover,  .manipulationObject.center.move45DegreeAndWrap:active{
+    -webkit-animation-play-state:paused;
+    animation-play-state: paused;
+}
+
+.manipulationObject.center.move45DegreeAndWrap.paused{
+    -webkit-animation-play-state:paused;
+    animation-play-state: paused;
+}
+

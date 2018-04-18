@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <vocabularyIntroductions>
+        <vocabularyIntroduction story="Key Ingredients">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="8">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="9">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="10">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="11">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        
+        <vocabularyIntroduction story="Mancha the Horse">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="8">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="9">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="10">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="11">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        
+        <vocabularyIntroduction story="A Friend in Need">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+                <englishWordText>Lawyer</englishWordText>
+                <spanishWordText>Abogado?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>lawyer</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+                <englishWordText>Pets</englishWordText>
+                <spanishWordText>Mascotas</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>pets</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="8">
+                <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+                <englishWordText>Mystery</englishWordText>
+                <spanishWordText>Misterio</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>mystery</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="9">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="10">
+                <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+                <englishWordText>Solve</englishWordText>
+                <spanishWordText>Resolver</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>solve</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="11">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+
+<vocabularyIntroduction story="Shopping at the Market">
+    <vocabularyIntroductionWord number="1">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="2">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="3">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="4">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="5">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="6">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="7">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="8">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="9">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="10">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="11">
+        <englishWordAudio></englishWordAudio>
+        <spanishWordAudio></spanishWordAudio>
+        <englishWordText></englishWordText>
+        <spanishWordText></spanishWordText>
+        <expectedSelection></expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>next</expectedInput>
+    </vocabularyIntroductionWord>
+</vocabularyIntroduction>
+
+<vocabularyIntroduction story="A Gift for the Bride">
+    <vocabularyIntroductionWord number="1">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="2">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="3">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="4">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="5">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="6">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="7">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="8">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="9">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="10">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="11">
+        <englishWordAudio></englishWordAudio>
+        <spanishWordAudio></spanishWordAudio>
+        <englishWordText></englishWordText>
+        <spanishWordText></spanishWordText>
+        <expectedSelection></expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>next</expectedInput>
+    </vocabularyIntroductionWord>
+</vocabularyIntroduction>
+
+<vocabularyIntroduction story="Homecoming">
+    <vocabularyIntroductionWord number="1">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="2">
+        <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
+        <englishWordText>Hook</englishWordText>
+        <spanishWordText>Gancho</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>hook</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="3">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="4">
+        <englishWordAudio>Lawyer_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Lawyer_def_S.mp3</spanishWordAudio>
+        <englishWordText>Lawyer</englishWordText>
+        <spanishWordText>Abogado?</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>lawyer</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="5">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="6">
+        <englishWordAudio>Pets_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Pets_def_S.mp3</spanishWordAudio>
+        <englishWordText>Pets</englishWordText>
+        <spanishWordText>Mascotas</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>pets</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="7">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="8">
+        <englishWordAudio>Mystery_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Mystery_def_S.mp3</spanishWordAudio>
+        <englishWordText>Mystery</englishWordText>
+        <spanishWordText>Misterio</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>mystery</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="9">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="10">
+        <englishWordAudio>Solve_def_E.mp3</englishWordAudio>
+        <spanishWordAudio>Solve_def_S.mp3</spanishWordAudio>
+        <englishWordText>Solve</englishWordText>
+        <spanishWordText>Resolver</spanishWordText>
+        <expectedSelection>word</expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>solve</expectedInput>
+    </vocabularyIntroductionWord>
+    <vocabularyIntroductionWord number="11">
+        <englishWordAudio></englishWordAudio>
+        <spanishWordAudio></spanishWordAudio>
+        <englishWordText></englishWordText>
+        <spanishWordText></spanishWordText>
+        <expectedSelection></expectedSelection>
+        <expectedAction>tap</expectedAction>
+        <expectedInput>next</expectedInput>
+    </vocabularyIntroductionWord>
+</vocabularyIntroduction>
+
+
+
+
+</vocabularyIntroductions>
+</metadata>

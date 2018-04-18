@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <setups>
+        <story title="The Lopez Family" page_id="story1-PM-2">
+            <group obj1Id="man" action="getIn" obj2Id="car"/>
+        </story>
+        <story title="Missing Keys" page_id="story2-PM-1">
+            <group obj1Id="highchairfrontIM" action="getIn" obj2Id="highchairIM"/>
+        </story>
+        <story title="Missing Keys" page_id="story2-PM-2">
+            <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+            <group obj1Id="nest_IM" action="getIn" obj2Id="tree_IM"/>
+        </story>
+        <story title="Is Paco a Thief?" page_id="story3-PM-1">
+            <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+        </story>
+        <story title="Is Paco a Thief?" page_id="story3-PM-2">
+            <group obj1Id="pacoIM" action="getIn" obj2Id="keysIM"/>
+            <group obj1Id="pacoFlipIM" action="getInFlip" obj2Id="keysIM"/>
+        </story>
+        <story title="More is Missing!" page_id="story4-PM-2">
+            <group obj1Id="pacoSpoon_IM" action="getIn" obj2Id="spoon1_IM"/>
+            <group obj1Id="pacoFlipSpoon_IM" action="getInFlip" obj2Id="spoon2_IM"/>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
+            <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+            <group obj1Id="nest_IM" action="getIn" obj2Id="tree_IM"/>
+            <group obj1Id="rattle_IM" action="getIn" obj2Id="tree_IM"/>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-1">
+            <group obj1Id="man" action="getIn" obj2Id="car"/>
+            <group obj1Id="keys" action="grab" obj2Id="man"/>
+            <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-2">
+            <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+        </story>
+    </setups>
+</metadata>

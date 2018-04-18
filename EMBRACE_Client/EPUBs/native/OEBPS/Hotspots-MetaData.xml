@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+        
+        <hotspot objId="axe" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="bark" action="getIn" role="subject" x="50%" y="30%"/>
+        <hotspot objId="bark2" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="boat" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="doorwaycarpet" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="fallen_tree" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="fallen_tree2" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="haida" action="getIn" role="object" x="50%" y="70%"/>
+        <hotspot objId="haida" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="haida" action="grab" role="subject" x="50%" y="50%"/>
+        <hotspot objId="haida" action="roll" role="subject" x="50%" y="100%"/>
+        <hotspot objId="hogancarpet" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="iceknife" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="iceknife" action="grab" role="object" x="12%" y="7.1%"/>
+        <hotspot objId="icewindow" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="inuit" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="inuit" action="grab" role="subject" x="22%" y="68%"/>
+        <hotspot objId="inuit" action="pickUp" role="subject" x="50%" y="50%"/>
+        <hotspot objId="ladder" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="ladder" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="liftingpole" action="grabLeft" role="object" x="25.3%" y="75%"/>
+        <hotspot objId="log1" action="roll" role="object" x="50%" y="20%"/>
+        <hotspot objId="log_ch6" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="man_ch4" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="man_ch4" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="man_ch4" action="grab" role="subject" x="8.5%" y="52%"/>
+        <hotspot objId="man1_ch3" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="man2_ch3" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="man3_ch3" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="mud" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="palm_platform" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="palm_platform" action="grab" role="object" x="97%" y="43%"/>
+        <hotspot objId="palm_roof" action="grab" role="object" x="83.4%" y="14%"/>
+        <hotspot objId="plank" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="pole_ch6" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="pole_ch6" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="pole_pile" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="rock" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="rock" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="ropecoil" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="seminole_dad" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="seminole_dad" action="grab" role="subject" x="79%" y="67.5%"/>
+        <hotspot objId="seminole_dad" action="pickUp" role="subject" x="50%" y="70%"/>
+        <hotspot objId="seminole_kid" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="seminole_mom" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="shovel" action="grab" role="object" x="10.2%" y="5.6%"/>
+        <hotspot objId="snowblock" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="snowblock" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="standing_sioux" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="standing_sioux" action="grab" role="subject" x="10.66%" y="71.9%"/>
+        <hotspot objId="standing_sioux" action="grabLeft" role="subject" x="84.4%" y="71.9%"/>
+        <hotspot objId="standing_sioux" action="pickUp" role="subject" x="50%" y="71.9%"/>
+        <hotspot objId="sun" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="travois_supplies" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="woodpile" action="pickUp" role="object" x="50%" y="50%"/>
+        
+        <hotspot objId="siouxIM" action="tie" role="object" x="50%" y="80%"/>
+        <hotspot objId="polesIM" action="tie" role="subject" x="50%" y="0%"/>
+        <hotspot objId="logsIM" action="tie" role="subject" x="50%" y="0%"/>
+        
+        <hotspot objId="fireIM" action="inside" role="object" x="50%" y="10%"/>
+        <hotspot objId="fireIM" action="outside" role="object" x="0%" y="10%"/>
+        <hotspot objId="teepeeIM" action="inside" role="subject" x="50%" y="50%"/>
+        <hotspot objId="teepeeIM" action="outside" role="subject" x="100%" y="50%"/>
+        
+        <hotspot objId="poleIM" action="inside" role="object" x="50%" y="50%"/>
+        <hotspot objId="poleIM" action="inside" role="subject" x="50%" y="50%"/>
+        <hotspot objId="stoneIM" action="inside" role="object" x="50%" y="50%"/>
+        <hotspot objId="holeIM" action="inside" role="subject" x="0%" y="50%"/>
+        
+        <hotspot objId="barkIM" action="bottom" role="object" x="0%" y="0%"/>
+        <hotspot objId="barkIM" action="top" role="object" x="0%" y="100%"/>
+        <hotspot objId="wigwamIM" action="bottom" role="subject" x="60%" y="60%"/>
+        <hotspot objId="wigwamIM" action="top" role="subject" x="60%" y="60%"/>
+        
+        <hotspot objId="haidaIM" action="with" role="object" x="40%" y="40%"/>
+        <hotspot objId="axeIM" action="with" role="subject" x="100%" y="30%"/>
+        <hotspot objId="canoeIM" action="with" role="subject" x="50%" y="0%"/>
+        
+        <hotspot objId="haidaIM" action="carry" role="object" x="100%" y="50%"/>
+        <hotspot objId="haidaIM" action="standOn" role="object" x="100%" y="0%"/>
+        <hotspot objId="planksIM" action="carry" role="subject" x="50%" y="50%"/>
+        <hotspot objId="planksIM" action="standOn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="logsInGroundIM" action="stuckIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="logsIM" action="pile" role="object" x="50%" y="50%"/>
+        <hotspot objId="logsInGroundIM" action="stuckIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="groundIM" action="pile" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="ladderIM" action="attached" role="object" x="50%" y="50%"/>
+        <hotspot objId="poleIM" action="attached" role="object" x="50%" y="0%"/>
+        <hotspot objId="houseIM" action="attached" role="subject" x="50%" y="100%"/>
+    </hotspots>
+</metadata>
+

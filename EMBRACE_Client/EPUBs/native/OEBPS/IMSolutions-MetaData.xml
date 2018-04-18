@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="The Sioux Teepee" activity_id="story3-PM-3">
+            <sentence number="11">
+                <step number="1">
+                    <group obj1Id="siouxIM" action="tie" obj2Id="polesIM"/>
+                    <group obj1Id="siouxIM" action="tie" obj2Id="logsIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Sioux Teepee" activity_id="story3-PM-5">
+            <sentence number="15">
+                <step number="1">
+                    <group obj1Id="fireIM" action="inside" obj2Id="teepeeIM"/>
+                    <group obj1Id="fireIM" action="outside" obj2Id="teepeeIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Algonquian Wigwam" activity_id="story4-PM-2">
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="poleIM" action="inside" obj2Id="poleIM"/>
+                    <group obj1Id="stoneIM" action="inside" obj2Id="holeIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
+            <sentence number="15">
+                <step number="1">
+                    <group obj1Id="barkIM" action="bottom" obj2Id="wigwamIM"/>
+                    <group obj1Id="barkIM" action="top" obj2Id="wigwamIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Haida Plank House" activity_id="story5-PM-3">
+            <sentence number="5">
+                <step number="1">
+                    <group obj1Id="haidaIM" action="with" obj2Id="axeIM"/>
+                    <group obj1Id="haidaIM" action="with" obj2Id="canoeIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Haida Plank House" activity_id="story5-PM-4">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="haidaIM" action="carry" obj2Id="planksIM"/>
+                    <group obj1Id="haidaIM" action="standOn" obj2Id="planksIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Seminole Chickee" activity_id="story6-PM-3">
+            <sentence number="5">
+                <step number="1">
+                    <group obj1Id="logsInGroundIM" action="stuckIn" obj2Id="logsInGroundIM"/>
+                    <group obj1Id="logsIM" action="pile" obj2Id="groundIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Seminole Chickee" activity_id="story6-PM-4">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="ladderIM" action="attached" obj2Id="houseIM"/>
+                    <group obj1Id="poleIM" action="attached" obj2Id="houseIM"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

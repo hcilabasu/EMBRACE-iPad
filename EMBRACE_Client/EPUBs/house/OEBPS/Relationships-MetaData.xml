@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="baby" can="getIn" action="group" obj2Id="highchair"/>
+        <relationship obj1Id="baby" can="getOut" action="ungroup" obj2Id="highchair"/>
+        <relationship obj1Id="baby" can="pickUp" action="group" obj2Id="woman"/>
+        <relationship obj1Id="bird" can="pickUp" action="group" obj2Id="keys"/>
+        <relationship obj1Id="bird" can="putDown" action="ungroup" obj2Id="keys"/>
+        <relationship obj1Id="dog" can="leave" action="ungroup" obj2Id="tree"/>
+        <relationship obj1Id="dog" can="pickUp" action="group" obj2Id="keys"/>
+        <relationship obj1Id="dog" can="pickUp" action="group" obj2Id="spoon"/>
+        <relationship obj1Id="dog" can="putDown" action="ungroup" obj2Id="keys"/>
+        <relationship obj1Id="dog" can="putDown" action="ungroup" obj2Id="spoon"/>
+        <relationship obj1Id="dog" can="visit" action="group" obj2Id="tree"/>
+        <relationship obj1Id="man" can="getIn" action="group" obj2Id="car"/>
+        <relationship obj1Id="man" can="getOut" action="ungroup" obj2Id="car"/>
+        <relationship obj1Id="man" can="grab" action="group" obj2Id="keys"/>
+        <relationship obj1Id="man" can="pickUp" action="group" obj2Id="baby"/>
+        <relationship obj1Id="man" can="putDown" action="ungroup" obj2Id="baby"/>
+        <relationship obj1Id="man" can="release" action="ungroup" obj2Id="keys"/>
+        <relationship obj1Id="rabbit" can="leave" action="ungroup" obj2Id="baby"/>
+        <relationship obj1Id="rabbit" can="sit" action="group" obj2Id="baby"/>
+        <relationship obj1Id="rabbit" can="visit" action="group" obj2Id="baby"/>
+        <relationship obj1Id="spoon" can="getIn" action="group" obj2Id="woman"/>
+        <relationship obj1Id="woman" can="moveTo" action="group" obj2Id="table"/>
+        <relationship obj1Id="woman" can="pickUp" action="group" obj2Id="baby"/>
+        
+        <relationship obj1Id="rattle_IM" can="getIn" action="group" obj2Id="tree_IM"/>
+        <relationship obj1Id="nest_IM" can="getIn" action="group" obj2Id="tree_IM"/>
+        
+        <relationship obj1Id="martinIM" can="standBy" action="group" obj2Id="carIM"/>
+        <relationship obj1Id="martinInsideIM" can="getIn" action="group" obj2Id="martinInsideCarIM"/>
+        
+        <relationship obj1Id="martinIM" can="standWith" action="group" obj2Id="pacoIM"/>
+        <relationship obj1Id="martinIM" can="standWith" action="group" obj2Id="lolaIM"/>
+        
+        <relationship obj1Id="babyIM" can="inLap" action="group" obj2Id="lola_IM"/>
+        <relationship obj1Id="babyIM" can="onHead" action="group" obj2Id="lola_IM"/>
+        
+        <relationship obj1Id="keysIM" can="layBy" action="group" obj2Id="treeIM"/>
+        
+        <relationship obj1Id="pacoIM" can="getIn" action="group" obj2Id="keysIM"/>
+        <relationship obj1Id="pacoFlipIM" can="getInFlip" action="group" obj2Id="keysIM"/>
+        <relationship obj1Id="pacoIM" can="face" action="group" obj2Id="houseIM"/>
+        <relationship obj1Id="pacoFlipIM" can="faceAway" action="group" obj2Id="houseIM"/>
+        
+        <relationship obj1Id="rosa_IM" can="face" action="group" obj2Id="pacoSpoon_IM"/>
+        <relationship obj1Id="rosa_IM" can="faceAway" action="group" obj2Id="pacoFlipSpoon_IM"/>
+        
+        <relationship obj1Id="rosa_IM" can="holding" action="group" obj2Id="baby_IM"/>
+        <relationship obj1Id="rosa_IM" can="holding" action="group" obj2Id="lola_IM"/>
+        
+        <relationship obj1Id="rosa_IM" can="visit" action="group" obj2Id="paco_IM"/>
+        <relationship obj1Id="rosa_IM" can="visit" action="group" obj2Id="lola_IM"/>
+        
+        <relationship obj1Id="pacoSpoon_IM" can="getIn" action="group" obj2Id="spoon1_IM"/>
+        <relationship obj1Id="pacoFlipSpoon_IM" can="getInFlip" action="group" obj2Id="spoon2_IM"/>
+        
+        <relationship obj1Id="baby_IM" can="getIn" action="group" obj2Id="cribclosed_IM"/>
+        <relationship obj1Id="baby_IM" can="getOut" action="group" obj2Id="crib_IM"/>
+        
+        <relationship obj1Id="highchairfrontIM" can="getIn" action="group" obj2Id="highchairIM"/>
+        
+        <relationship obj1Id="cribclosed_IM" can="closeDoor" action="group" obj2Id="cribdoor_IM"/>
+        
+        <relationship obj1Id="bird_IM" can="pickUp" action="group" obj2Id="keysBird_IM"/>
+        <relationship obj1Id="bird_IM" can="pickUp" action="group" obj2Id="spoon_IM"/>
+        
+        <relationship obj1Id="keys_on_hookIM" can="on" action="group" obj2Id="keys_on_hookIM"/>
+        <relationship obj1Id="keys_IM" can="off" action="group" obj2Id="hook_IM"/>
+        
+        <relationship obj1Id="dog_IM" can="visit" action="group" obj2Id="tree_IM"/>
+        <relationship obj1Id="rabbit_IM" can="visit" action="group" obj2Id="tree_IM"/>
+        
+    </relationships>
+</metadata>

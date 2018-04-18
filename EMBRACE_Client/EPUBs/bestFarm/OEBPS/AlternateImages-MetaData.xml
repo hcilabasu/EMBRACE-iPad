@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<alternateImages>
+    <alternateImage objId="farmer" action="falling" originalSrc="farmer_large.png" alternateSrc="farmer_falling.png" width="125px" x="36%" y="85%" class="manipulationObject" z=""/>
+    <alternateImage objId="egg" action="lay" originalSrc="egg1.png" alternateSrc="egg4.png" width="50px" x="16%" y="32%" class="backgroundObject" z=""/>
+    <alternateImage objId="egg" action="appear" originalSrc="egg1.png" alternateSrc="egg4.png" width="50px" x="16%" y="32%" class="backgroundObject" z="3"/>
+</alternateImages>
+</metadata>
