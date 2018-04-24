@@ -162,7 +162,7 @@
                 NSString *languageString = languageElement.stringValue;
                 
                 Language language;
-                
+                //shang language
                 if ([languageString isEqualToString:@"English"]) {
                     language = ENGLISH;
                 }
@@ -172,7 +172,7 @@
                 else {
                     language = ENGLISH; //default language
                 }
-                
+                language = BILINGUAL;//Spanish version
                 //Get intervention
                 GDataXMLElement *interventionElement = [[modeElement elementsForName:@"intervention"] objectAtIndex:0];
                 NSString *interventionString = interventionElement.stringValue;
