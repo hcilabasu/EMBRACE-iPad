@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="The Wise Owl" activity_id="story5-PM-1">
+            <sentence number="3">
+                <step number="1">
+                    <group obj1Id="owlIM" action="visit" obj2Id="farmerIM"/>
+                    <group obj1Id="chickenIM" action="visit" obj2Id="farmerIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Wise Owl" activity_id="story5-PM-2">
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="pigIM" action="face" obj2Id="owlIM"/>
+                    <group obj1Id="pigFlipIM" action="faceAway" obj2Id="owlIM"/>
+                </step>
+            </sentence>
+        </story>
+        
+        <story title="Everyone Helps" activity_id="story6-PM-2">
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="horseIM" action="face" obj2Id="hayIM"/>
+                    <group obj1Id="horseIM" action="face" obj2Id="pumpkinIM"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="catIM" action="visit" obj2Id="bucketIM"/>
+                    <group obj1Id="catIM" action="flip" obj2Id="bucketIM"/>
+                </step>
+            </sentence>
+        </story>
+        
+        <story title="The Best Farm Award" activity_id="story7-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="judge_rightIM" action="visit" obj2Id="cowIM"/>
+                    <group obj1Id="judge_leftIM" action="visit" obj2Id="cowIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Best Farm Award" activity_id="story7-PM-2">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="horseIM" action="visit" obj2Id="judgeIM"/>
+                    <group obj1Id="horseIM" action="visit" obj2Id="farmerIM"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

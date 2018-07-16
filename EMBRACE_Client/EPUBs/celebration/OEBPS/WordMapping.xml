@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wordMappings>
+    <word keyWord="corral">
+        <mappedWords>
+            <subWord>corral</subWord>
+            <subWord>cowCorral</subWord>
+            <subWord>outCorral</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="post">
+        <mappedWords>
+            <subWord>post</subWord>
+            <subWord>nearPost</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="cow">
+        <mappedWords>
+            <subWord>cow</subWord>
+            <subWord>nearCow</subWord>
+            <subWord>cowAway</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="horse">
+        <mappedWords>
+            <subWord>horse</subWord>
+            <subWord>nearHorse</subWord>
+            <subWord>nearHorse2</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="calf">
+        <mappedWords>
+            <subWord>calf</subWord>
+            <subWord>nearCalf</subWord>
+            <subWord>calfAway</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="flowers">
+        <mappedWords>
+            <subWord>flowers</subWord>
+            <subWord>rosesWhite</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="market">
+        <mappedWords>
+            <subWord>market</subWord>
+            <subWord>inMarket</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="champoorado">
+        <mappedWords>
+            <subWord>champoorado</subWord>
+            <subWord>nearChampoorado</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="tote">
+        <mappedWords>
+            <subWord>tote</subWord>
+            <subWord>nearTote</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="saddlebags">
+        <mappedWords>
+            <subWord>saddlebags</subWord>
+            <subWord>nearSaddleBags</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="dirtRoad">
+        <mappedWords>
+            <subWord>dirtRoad</subWord>
+            <subWord>dirtRoa2</subWord>
+        </mappedWords>
+    </word>
+    
+    <!--
+    cashier
+    counter
+    door
+    gate
+    herd
+    shed
+    sink
+    tomatillos
+    -->
+</wordMappings>

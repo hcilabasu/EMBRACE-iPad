@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<sentenceAnalyses>
+    <story title="At the Barn">
+        <sentence number="1">
+            <text>Ben puts the hay into the cart.</text>
+            <attributes words="7" openClass="4" closedClass="3" prepositions="1" pronouns="0" phrases="4" active="1"/>
+        </sentence>
+        <sentence number="2">
+            <text>He drives the cart into the barn.</text>
+            <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+        </sentence>
+        <sentence number="3">
+            <text>He needs to put the hay away.</text>
+            <attributes words="7" openClass="3" closedClass="4" prepositions="0" pronouns="1" phrases="4" state="1"/>
+        </sentence>
+        <sentence number="4">
+            <text>Later, he will use the hay to feed the animals.</text>
+            <attributes words="10" openClass="4" closedClass="6" prepositions="0" pronouns="1" phrases="5" active="1" future="1"/>
+        </sentence>
+        <sentence number="5">
+            <text>Ben puts the hay into the hayloft.</text>
+            <attributes words="7" openClass="4" closedClass="3" prepositions="1" pronouns="0" phrases="4" active="1"/>
+        </sentence>
+    </story>
+    <story title="Breakfast on the Farm">
+        <sentence number="1">
+            <text>The chicken is in her nest.</text>
+            <attributes words="6" openClass="2" closedClass="4" prepositions="1" pronouns="1" phrases="3" state="1"/>
+        </sentence>
+        <sentence number="2">
+            <text>Ben is in the hayloft.</text>
+            <attributes words="5" openClass="2" closedClass="3" prepositions="1" pronouns="0" phrases="3" state="1"/>
+        </sentence>
+        <sentence number="3">
+            <text>He throws the hay down to the goat.</text>
+            <attributes words="8" openClass="3" closedClass="5" prepositions="1" pronouns="1" phrases="4" active="1"/>
+        </sentence>
+        <sentence number="4">
+            <text>The goat eats the hay.</text>
+            <attributes words="5" openClass="3" closedClass="2" prepositions="0" pronouns="0" phrases="3" active="1"/>
+        </sentence>
+        <sentence number="5">
+            <text>Ben climbs down to the goat.</text>
+            <attributes words="6" openClass="3" closedClass="3" prepositions="1" pronouns="0" phrases="3" active="1"/>
+        </sentence>
+        <sentence number="6">
+            <text>He gives an apple to the sheep.</text>
+            <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+        </sentence>
+        <sentence number="7">
+            <text>He gives the pumpkins to the pig.</text>
+            <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+        </sentence>
+        <sentence number="8">
+            <text>The animals are happy now.</text>
+            <attributes words="5" openClass="2" closedClass="3" prepositions="0" pronouns="0" phrases="3" state="1"/>
+        </sentence>
+    </story>
+</sentenceAnalyses>
+</metadata>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <areas>
+        <area areaId="barnHighlight" pageId="All_Chapters">
+            <point x="6.2%" y="10.9%"/>
+            <point x="68.9%" y="10.9%"/>
+            <point x="68.9%" y="69.5%"/>
+            <point x="6.2%" y="69.5%"/>
+        </area>
+        <area areaId="barnSolution" pageId="All_Chapters">
+            <point x="0%" y="40%"/>
+            <point x="75%" y="40%"/>
+            <point x="75%" y="85%"/>
+            <point x="0%" y="85%"/>
+        </area>
+    </areas>
+</metadata>

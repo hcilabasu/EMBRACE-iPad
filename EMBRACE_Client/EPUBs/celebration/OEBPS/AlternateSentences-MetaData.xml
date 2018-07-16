@@ -1,0 +1,4327 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+    
+    <alternateSentences>
+        
+        <story title="Key Ingredients" page_id="story1-PM-1">
+            
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>It was an early Saturday morning in May, and the house was buzzing with action.</text>
+                
+                <ideas>
+                    
+                    <idea number="1"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Everybody in the Romero family was preparing for the great celebration to take place that evening.</text>
+                
+                <ideas>
+                    
+                    <idea number="2"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia's sister, Olivia, was getting married!</text>
+                
+                <ideas>
+                    
+                    <idea number="3"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia was in the kitchen helping her mom with the main course, which was mole.</text>
+                
+                <ideas>
+                    
+                    <idea number="4"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>It was an early Saturday morning in May, and the house was buzzing with action.</text>
+                
+                <ideas>
+                    
+                    <idea number="1"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Everybody in the Romero family was preparing for the great celebration to take place that evening.</text>
+                
+                <ideas>
+                    
+                    <idea number="2"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia's sister, Olivia, was getting married!</text>
+                
+                <ideas>
+                    
+                    <idea number="3"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia was in the kitchen helping her mom with the main course, which was mole.</text>
+                
+                <ideas>
+                    
+                    <idea number="4"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Key Ingredients" page_id="story1-PM-2">
+            
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia grabbed the bowl with red chilis and gave it to her mother to grind them.</text>
+                
+                <ideas>
+                    
+                    <idea number="5"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="1"/>
+                    <step number="2"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Honey, can you go stir the champurrado, please?&#8221; her mother asked.</text>
+                
+                <ideas>
+                    
+                    <idea number="6"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia walked over to the stove and stirred the chocolaty drink so that it would not stick to the bottom of the pot.</text>
+                
+                <ideas>
+                    
+                    <idea number="7"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="3"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="8"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+
+
+
+
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia grabbed the bowl with red chilis and gave it to her mother to grind them.</text>
+                
+                <ideas>
+                    
+                    <idea number="5"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="1"/>
+                    <step number="2"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Honey, can you go stir the champurrado, please?&#8221; her mother asked.</text>
+                
+                <ideas>
+                    
+                    <idea number="6"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia walked over to the stove and stirred the chocolaty drink so that it would not stick to the bottom of the pot.</text>
+                
+                <ideas>
+                    
+                    <idea number="7"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="3"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="8"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Key Ingredients" page_id="story1-PM-3">
+            
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia ran to get a notepad and pencil, and brought them to her mother.</text>
+                
+                <ideas>
+                    
+                    <idea number="9"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="4"/>
+                    <step number="5"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;I will go fetch the ingredients from the market!&#8221; she said enthusiastically.</text>
+                
+                <ideas>
+                    
+                    <idea number="10"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia's mom put a list of ingredients into a tote bag.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She handed Sofia the tote to carry the supplies.</text>
+                
+                <ideas>
+                    
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;You can buy whatever you want with the change,&#8221; she said to Sofia while handing her forty pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="13"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Thanks!&#8221; Sofia replied as she ran out the door.</text>
+                
+                <ideas>
+                    
+                    <idea number="14"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="27" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia ran to get a notepad and pencil, and brought them to her mother.</text>
+                
+                <ideas>
+                    
+                    <idea number="9"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="4"/>
+                    <step number="5"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;I will go fetch the ingredients from the market!&#8221; she said enthusiastically.</text>
+                
+                <ideas>
+                    
+                    <idea number="10"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia's mom put a list of ingredients into a tote bag.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She handed Sofia the tote to carry the supplies.</text>
+                
+                <ideas>
+                    
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;You can buy whatever you want with the change,&#8221; she said to Sofia while handing her forty pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="13"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Thanks!&#8221; Sofia replied as she ran out the door.</text>
+                
+                <ideas>
+                    
+                    <idea number="14"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Mancha the Horse" page_id="story2-PM-1">
+            
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia walked to the corral to get her pinto horse for the trip to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Her horse's name was Mancha, and he was a gift from her grandpa.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia loved Mancha and also loved riding him places.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+
+
+
+
+            
+            <sentence number="4" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia walked to the corral to get her pinto horse for the trip to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Her horse's name was Mancha, and he was a gift from her grandpa.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia loved Mancha and also loved riding him places.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia walked to the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She got her pinto horse for the trip to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Her horse's name was Mancha.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>He was a gift from her grandpa.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia loved Mancha.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She also loved riding him places.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Mancha the Horse" page_id="story2-PM-2">
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She walked over to the saddle and bridle and picked them up.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She put the saddle on the horse and tied down the straps firmly like her grandpa had taught her.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She also put the bridle on Mancha's head.</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                </solution>
+                
+            </sentence>
+
+
+
+
+
+            
+            <sentence number="16" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She walked over to the saddle and bridle and picked them up.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She put the saddle on the horse and tied down the straps firmly like her grandpa had taught her.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She also put the bridle on Mancha's head.</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She put the saddle on the horse.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She tied down the straps firmly like her grandpa had taught her.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>Next, she put the bridle on Mancha's head.</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Mancha the Horse" page_id="story2-PM-3">
+            
+            <sentence number="22" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Before getting on, Sofia took the grocery list from her tote bag and read it just in case she lost it.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>She needed to buy tomatillos, milk, spinach, garlic, and mangoes.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia grabbed her tote bag, hopped on her horse, and rode out of the corral on her way to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                    <step number="17"/>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Before getting on, Sofia took the grocery list from her tote bag and read it just in case she lost it.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>She needed to buy tomatillos, milk, spinach, garlic, and mangoes.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia grabbed her tote bag, hopped on her horse, and rode out of the corral on her way to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                    <step number="17"/>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia took the grocery list from her tote bag before getting on.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She read it just in case she lost it.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia grabbed her tote bag and hopped on her horse.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                    <step number="17"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She rode out of the corral on her way to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Friend in Need" page_id="story3-PM-1">
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia rode down the dirt road toward the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But she was soon stopped - there was a herd of cattle blocking her path.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A young boy on a horse was trying to move the animals.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>It was her friend Emilio.</text>
+                
+                <ideas>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia rode down the dirt road toward the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>But she was soon stopped - there was a herd of cattle blocking her path.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A young boy on a horse was trying to move the animals.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>It was her friend Emilio.</text>
+                
+                <ideas>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She was soon stopped.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>There was a herd of cattle blocking her path.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>But she was soon stopped because of a herd of cattle blocking her path.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>A young boy on a horse, her friend Emilio, was trying to move the animals.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Friend in Need" page_id="story3-PM-2">
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Sofia! Hi! Can you help me get my cattle into the corral?&#8221; he exclaimed.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Sure, Emilio!&#8221; she replied.</text>
+                
+                <ideas>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia helped her friend by riding her horse back and forth behind the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="20"/>
+                    </solution>
+                    
+                </sentence>
+                
+                <sentence number="16" action="yes">
+                    
+                    <attributes complexity="10"/>
+                    
+                    <text>The black and white cow wandered away from the herd.</text>
+                    
+                    <ideas>
+                        
+                        <idea number="33"/>
+                        
+                    </ideas>
+                    
+                    <solution>
+                        <step number="21"/>
+                    </solution>
+                    
+                </sentence>
+                
+                <sentence number="17" action="yes">
+                    
+                    <attributes complexity="10"/>
+                    
+                    <text>Sofia rode behind the cow to guide it back to the herd.</text>
+                    
+                    <ideas>
+                        
+                        <idea number="34"/>
+                        
+                    </ideas>
+                    
+                    <solution>
+                        <step number="22"/>
+                    </solution>
+                    
+                </sentence>
+                
+                <sentence number="18" action="yes">
+                    
+                    <attributes complexity="10"/>
+                    
+                    <text>The cows entered the corral starting with the black and white one.</text>
+                    
+                    <ideas>
+                        
+                        <idea number="35"/>
+                        
+                    </ideas>
+                    
+                    <solution>
+                        <step number="23"/>
+                    </solution>
+                    
+                </sentence>
+
+
+
+
+
+            <sentence number="19" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Sofia! Hi! Can you help me get my cattle into the corral?&#8221; he exclaimed.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Sure, Emilio!&#8221; she replied.</text>
+                
+                <ideas>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia helped her friend by riding her horse back and forth behind the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="20"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The black and white cow wandered away from the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="33"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia rode behind the cow to guide it back to the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="22"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The cows entered the corral starting with the black and white one.</text>
+                
+                <ideas>
+                    
+                    <idea number="35"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="23"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia rode behind the cow.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="22"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She guided it back to the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>&#8220;Sofia! Hi! Can you help me get my cattle into the corral?&#8221; he exclaimed, to which she replied "Sure, Emilio!"</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>While Sofia was helping Emilio, the black and white cow wandered away from the herd.</text>
+                
+                <ideas>
+                    
+                    <idea number="33"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Friend in Need" page_id="story3-PM-3">
+            
+            
+            <sentence number="29" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Almost all the cows were in the corral when a black calf ran in the opposite direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia acted quickly and rode her horse around the calf.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The calf ran back to the herd and into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Thank you, Sofia!&#8221; Emilio said with a smile on his face.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="35" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>He then got off his horse and closed the corral gate behind his cattle.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="27"/>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Almost all the cows were in the corral when a black calf ran in the opposite direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="37" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia acted quickly and rode her horse around the calf.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="38" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The calf ran back to the herd and into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="39" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Thank you, Sofia!&#8221; Emilio said with a smile on his face.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="40" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="42" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>He then got off his horse and closed the corral gate behind his cattle.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="27"/>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="43" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Almost all the cows were in the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="44" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Then a black calf ran in the opposite direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="45" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia acted quickly! She rode her horse around the calf.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="46" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Emilio smiled.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="47" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>He said, "Sofia, thank you! Without your help, I would still be chasing cows.&#8221;</text>
+                
+                <ideas>
+                    
+                    
+                    
+                    <idea number="39"/>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="49" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>He got off his horse.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="27"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="50" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>He closed the corral gate behind his cattle.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="51" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>The calf ran back to the corral, where the rest of the herd was waiting.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Shopping at the Market" page_id="story4-PM-1">
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>After helping her friend with his cattle, Sofia rode to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="29"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            <sentence number="2" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>After helping her friend with his cattle, Sofia rode to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="29"/>
+                </solution>
+                
+            </sentence>
+
+            
+        </story>
+        
+        <story title="Shopping at the Market" page_id="story4-PM-2">
+            
+            <sentence number="3" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>When Sofia arrived, she hopped off her horse and tied him to a post at the front of the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Mancha leaned over and ate some grass while he waited for his owner.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia took her tote bag to the produce section and put lots of tomatillos into it.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="33"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She put the bag on the scale and saw that it weighed one kilo.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="34"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>When Sofia arrived, she hopped off her horse and tied him to a post at the front of the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Mancha leaned over and ate some grass while he waited for his owner.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia took her tote bag to the produce section and put lots of tomatillos into it.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="33"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She put the bag on the scale and saw that it weighed one kilo.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="34"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia arrived at the front of the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She hopped off her horse and tied him to a post.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Mancha leaned over and ate some grass.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>He was waiting for his owner.</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia took her tote back to the produce section.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She put lots of tomatillos in it.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="33"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She put the bag on the scale.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="34"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She saw that it weighed one kilo.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>While he waited for his owner, Mancha leaned over and ate some grass.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>Sofia went to the produce section where she found lots of tomatillos that she put in her tote bag.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="33"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>When she put the bag on the scale, she saw that it weighed one kilo.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="34"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Shopping at the Market" page_id="story4-PM-3">
+            
+            
+            <sentence number="22" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She also put a bunch of spinach in the tote.</text>
+                
+                <ideas>
+                    
+                    <idea number="48"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="35"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Next, she grabbed a kilo of the ripest mangoes and then a string of garlic.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="36"/>
+                    <step number="37"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Finally, Sofia moved on to the dairy section and grabbed a carton of fresh milk.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="38"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She also put a bunch of spinach in the tote.</text>
+                
+                <ideas>
+                    
+                    <idea number="48"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="35"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Next, she grabbed a kilo of the ripest mangoes and then a string of garlic.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="36"/>
+                    <step number="37"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Finally, Sofia moved on to the dairy section and grabbed a carton of fresh milk.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="38"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" >
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia moved on to the dairy section.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She grabbed a carton of fresh milk.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="38"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Shopping at the Market" page_id="story4-PM-4">
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia walked over to Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She then carried her tote out to Mancha and put it into the blue saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="40"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Now she was ready to go home.</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="34" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia walked over to Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="35" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She then carried her tote out to Mancha and put it into the blue saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="40"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="37" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Now she was ready to go home.</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="38" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia walked over to Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="39" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Pe&#241;a.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="40" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She paid for her groceries.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="41" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The total was 30 pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="42" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She carried her tote out to Mancha.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="43" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She put it into the blue saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="44" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Sofia walked over to Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="45" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>Pe&#241;a who told her the total for her groceries was 30 pesos.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="39"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="46" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Then she paid Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="47" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Pe&#241;a.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Gift for the Bride" page_id="story5-PM-1">
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia got on her horse and rode back down the dirt road toward her house.</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="41"/>
+                    <step number="42"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>She was happy that her outing was so successful, but had a feeling that she was forgetting something.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="3" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia got on her horse and rode back down the dirt road toward her house.</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="41"/>
+                    <step number="42"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>She was happy that her outing was so successful, but had a feeling that she was forgetting something.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia got on her horse.</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="41"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She rode back down the dirt road toward her house.</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="42"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She was happy that her outing was so successful.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>But she had a feeling that she was forgetting something.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>She was happy that her outing was so successful, but, as she was riding back, she had a feeling that she was forgetting something.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Gift for the Bride" page_id="story5-PM-2">
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>And then it hit her that she had wanted to use the rest of the money to buy a wedding present for her older sister, Olivia.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She turned around and rode as fast as she could back to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="58"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="43"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>And then it hit her that she had wanted to use the rest of the money to buy a wedding present for her older sister, Olivia.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She turned around and rode as fast as she could back to the market.</text>
+                
+                <ideas>
+                    
+                    <idea number="58"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="43"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>And then it hit her.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She had wanted to use the rest of the money to buy a wedding present for her older sister, Olivia.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Suddenly it hit her that she had wanted to use the rest of the money to buy Olivia, her older sister, a present for her wedding.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Gift for the Bride" page_id="story5-PM-3">
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She tied up Mancha to the post and ran into the store.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="44"/>
+                    <step number="45"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia walked over to the roses and picked out a dozen pink roses and a dozen white roses.</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="46"/>
+                    <step number="47"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The pink roses showed Sofia's love for Olivia, and the white roses showed the love between the bride and groom.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="20" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She tied up Mancha to the post and ran into the store.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="44"/>
+                    <step number="45"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia walked over to the roses and picked out a dozen pink roses and a dozen white roses.</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="46"/>
+                    <step number="47"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The pink roses showed Sofia's love for Olivia, and the white roses showed the love between the bride and groom.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia walked over to the roses.</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="46"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She picked out a dozen pink roses and a dozen white roses.</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="47"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The pink roses showed Sofia's love for Olivia.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The white roses showed the love between the bride and groom.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>When she arrived, she tied up Mancha to the post and ran into the store.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="44"/>
+                    <step number="45"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Gift for the Bride" page_id="story5-PM-4">
+            
+            <sentence number="28" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She took them to the front to pay.</text>
+                
+                <ideas>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="48"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Pe&#241;a.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia took the flowers and put them into the brown saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="49"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She took them to the front to pay.</text>
+                
+                <ideas>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="48"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="34" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Pe&#241;a.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="35" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia took the flowers and put them into the brown saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="49"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia put the flowers into the brown saddlebag.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="49"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="37" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Mrs.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="49"/>
+                    <step number="49"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="38" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Pe&#241;a told Sofia that Olivia would love the the flowers.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="49"/>
+                    <step number="49"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="A Gift for the Bride" page_id="story5-PM-5">
+            
+            <sentence number="39" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia rode back home, this time knowing that she had bought everything she needed.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="50"/>
+                    <step number="51"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="40" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia rode back home, this time knowing that she had bought everything she needed.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="50"/>
+                    <step number="51"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="41" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia rode back home.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="50"/>
+                    <step number="51"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="42" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>This time she was sure that she had bought everything she needed.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Homecoming" page_id="story6-PM-1">
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia rode the rest of the way home and brought her horse into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="52"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She removed the saddle and placed it back on the hook.</text>
+                
+                <ideas>
+                    
+                    <idea number="68"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="53"/>
+                    <step number="54"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She also removed the bridle and hung it on the other hook.</text>
+                
+                <ideas>
+                    
+                    <idea number="69"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="55"/>
+                    <step number="56"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then she took the groceries and roses out of the saddlebags.</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="57"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia rode the rest of the way home and brought her horse into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="52"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She removed the saddle and placed it back on the hook.</text>
+                
+                <ideas>
+                    
+                    <idea number="68"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="53"/>
+                    <step number="54"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She also removed the bridle and hung it on the other hook.</text>
+                
+                <ideas>
+                    
+                    <idea number="69"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="55"/>
+                    <step number="56"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Then she took the groceries and roses out of the saddlebags.</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="57"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia rode the rest of the way home.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She brought her horse into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="52"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>After Sofia rode the rest of the way home, she brought her horse into the corral.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="52"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Homecoming" page_id="story6-PM-2">
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia walked in the door and greeted her mom cheerfully.</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="58"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia emptied the tote onto the counter and said, &#8220;Here's everything you asked for, Mom.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="59"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia walked in the door and greeted her mom cheerfully.</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="58"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia emptied the tote onto the counter and said, &#8220;Here's everything you asked for, Mom.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="59"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia emptied the tote onto the counter.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                    
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She said, "Here's everything you asked for, Mom.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>I even had enough money to buy Olivia these roses!".</text>
+                
+                <ideas>
+                    
+                    <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Homecoming" page_id="story6-PM-3">
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia's mom walked over to the counter and examined the groceries.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="60"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia decided to do one last thing before joining the party.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia's mom walked over to the counter and examined the groceries.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="60"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.&#8221;</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia decided to do one last thing before joining the party.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia's mom walked over to the counter.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="60"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She examined the groceries.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Before joining the party, Sofia decided to do one last thing.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Homecoming" page_id="story6-PM-4">
+            
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She filled a tall, clear vase with water from the kitchen sink.</text>
+                
+                <ideas>
+                    
+                    <idea number="78"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="61"/>
+                    <step number="62"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She placed the roses in the vase so that Olivia could enjoy them longer.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="63"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="34" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sofia happily ran from the kitchen to join what was to be a celebration to remember!.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="64"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="35" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She filled a tall, clear vase with water from the kitchen sink.</text>
+                
+                <ideas>
+                    
+                    <idea number="78"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="61"/>
+                    <step number="62"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She placed the roses in the vase so that Olivia could enjoy them longer.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="63"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="37" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sofia happily ran from the kitchen to join what was to be a celebration to remember!.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="64"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="38" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Sofia happily ran from the kitchen.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="64"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="39" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She joined what was to be a celebration to remember.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+    </alternateSentences>
+    
+</metadata>
+

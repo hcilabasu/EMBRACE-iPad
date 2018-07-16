@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="barkLocation" x="0%" y="65%" height="100%" width="35%"/>
+        <location locationId="boatArea" x="38%" y="60%" height="22%" width="34%"/>
+        <location locationId="boat2" x="48%" y="65%" height="100%" width="100%"/>
+        <location locationId="boatAcross" x="0%" y="40%" height="47%" width="53%"/>
+        <location locationId="chickeeLocation" x="0%" y="20%" height="40%" width="45%"/>
+        <location locationId="chickeeRoof" x="0%" y="0%" height="30%" width="37%"/>
+        <location locationId="circleLocation" x="33%" y="37%" height="100%" width="100%"/>
+        <location locationId="circleCh4" x="40%" y="50%" height="100%" width="50%"/>
+        <location locationId="clearedArea" x="5%" y="50%" height="100%" width="85%"/>
+        <location locationId="doorway" x="44%" y="47%" height="30%" width="12%"/>
+        <location locationId="hoganLocation" x="24%" y="50%" height="13%" width="10%"/>
+        <location locationId="hogancarpetUp" x="35%" y="0%" height="100%" width="30%"/>
+        <location locationId="iceHole" x="65%" y="35%" height="100%" width="100%"/>
+        <location locationId="logs" x="22%" y="45%" height="27%" width="47%"/>
+        <location locationId="palms" x="9%" y="66%" height="100%" width="25%"/>
+        <location locationId="planks" x="55%" y="44%" height="35%" width="30%"/>
+        <location locationId="planks2" x="48%" y="74%" height="16%" width="15%"/>
+        <location locationId="plankHole" x="55%" y="27%" height="23%" width="12%"/>
+        <location locationId="poles" x="30%" y="53%" height="100%" width="55%"/>
+        <location locationId="poles2" x="56%" y="19%" height="100%" width="100%"/>
+        <location locationId="poles3" x="56%" y="56%" height="100%" width="100%"/>
+        <location locationId="rocks" x="35%" y="50%" height="25%" width="22%"/>
+        <location locationId="siouxForward" x="0%" y="28%" height="100%" width="87%"/>
+        <location locationId="snow" x="15%" y="30%" height="45%" width="35%"/>
+        <location locationId="sticks" x="62%" y="48%" height="30%" width="30%"/>
+        <location locationId="sunUp" x="0%" y="0%" height="27%" width="100%"/>
+        <location locationId="swamp" x="0%" y="16%" height="100%" width="50%"/>
+        <location locationId="travois" x="45%" y="62%" height="100%" width="32%"/>
+    </locations>
+</metadata>

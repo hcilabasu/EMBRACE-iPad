@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <areas>
+        <area areaId="corral" pageId="story2-Intro">
+            <point x="39.8%" y="41.1%"/>
+            <point x="100%" y="41.1%"/>
+            <point x="100%" y="75.8%"/>
+            <point x="39.8%" y="75.8%"/>
+        </area>
+        <area areaId="corral" pageId="story2-PM-1">
+            <point x="39.8%" y="41.1%"/>
+            <point x="100%" y="41.1%"/>
+            <point x="100%" y="75.8%"/>
+            <point x="39.8%" y="75.8%"/>
+        </area>
+        <area areaId="corral" pageId="story2-PM-3">
+            <point x="39.8%" y="41.1%"/>
+            <point x="100%" y="41.1%"/>
+            <point x="100%" y="75.8%"/>
+            <point x="39.8%" y="75.8%"/>
+        </area>
+        <area areaId="corral" pageId="story3-PM-2">
+            <point x="58.1%" y="41.7%"/>
+            <point x="100%" y="41.7%"/>
+            <point x="100%" y="97.3%"/>
+            <point x="58.1%" y="97.3%"/>
+        </area>
+        <area areaId="corral" pageId="story3-PM-3">
+            <point x="58.1%" y="41.7%"/>
+            <point x="100%" y="41.7%"/>
+            <point x="100%" y="97.3%"/>
+            <point x="58.1%" y="97.3%"/>
+        </area>
+        <area areaId="corral" pageId="story6-PM-1">
+            <point x="39.8%" y="41.1%"/>
+            <point x="100%" y="41.1%"/>
+            <point x="100%" y="75.8%"/>
+            <point x="39.8%" y="75.8%"/>
+        </area>
+        <area areaId="post" pageId="story4-Intro">
+            <point x="62.3%" y="21.0%"/>
+            <point x="67.6%" y="21.0%"/>
+            <point x="67.6%" y="29.9%"/>
+            <point x="62.3%" y="29.9%"/>
+        </area>
+        <area areaId="post" pageId="story4-PM-2">
+            <point x="15.4%" y="54.4%"/>
+            <point x="25.4%" y="54.4%"/>
+            <point x="25.4%" y="75.8%"/>
+            <point x="15.4%" y="75.8%"/>
+        </area>
+        <area areaId="post" pageId="story5-PM-3">
+            <point x="15.4%" y="54.4%"/>
+            <point x="25.4%" y="54.4%"/>
+            <point x="25.4%" y="75.8%"/>
+            <point x="15.4%" y="75.8%"/>
+        </area>
+    </areas>
+</metadata>

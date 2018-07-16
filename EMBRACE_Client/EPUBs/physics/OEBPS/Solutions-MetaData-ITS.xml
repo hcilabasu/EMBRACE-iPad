@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="How do Objects Move?" activity_id="story1-PM-1">
+            <idea number="1"/>
+            <idea number="2"/>
+            <idea number="3"/>
+            <idea number="4">
+                <step number="1">
+                    <check obj1Id="boat" action="getIn" locationId="boat_left"/>
+                    <move obj1Id="boat" action="getIn" waypointId="boat_left"/>
+                </step>
+            </idea>
+        </story>
+        <story title="How do Objects Move?" activity_id="story1-PM-2">
+            <idea number="5">
+                <step number="2">
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="6"/>
+            <idea number="7"/>
+            <idea number="8"/>
+            <idea number="9"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-1">
+            <idea number="10">
+                <step number="3">
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="11"/>
+            <idea number="12"/>
+            <idea number="13"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-2">
+            <idea number="14">
+                <step number="4">
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                    <checkUp obj1Id="smallrocket" action="getIn" locationId=""/>
+                    <swapImage obj1Id="smallrocket" action="rotateUp"/>
+                    <animate obj1Id="smallrocket" action="move45DegreeAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="15">
+                <step number="5">
+                    <checkDown obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="smallrocket" action="rotateDown"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="16">
+                <step number="6">
+                    <checkLeft obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="17"/>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-3">
+            <idea number="18"/>
+            <idea number="19"/>
+            <idea number="20"/>
+        </story>
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-1">
+            <idea number="21">
+                <step number="7">
+                    <group obj1Id="juan" action="kick" obj2Id="ball"/>
+                    <ungroupAndStay obj1Id="juan" action="leave" obj2Id="ball"/>
+                    <swapImage obj1Id="juan" action="withKick"/>
+                    <animate obj1Id="ball" action="kickBall" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="22"/>
+            <idea number="23"/>
+            <idea number="24"/>
+        </story>
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-2">
+            <idea number="25">
+                <step number="8">
+                    <group obj1Id="maria" action="pickUp" obj2Id="ball"/>
+                    <ungroupAndStay obj1Id="maria" action="drop" obj2Id="ball"/>
+                    <move obj1Id="ball" action="getIn" waypointId="ball_drop"/>
+                    <swapImage obj1Id="maria" action="throwHandsUp"/>
+                    <animate obj1Id="ball" action="moveLeftAndCurve" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="26"/>
+            <idea number="27"/>
+            <idea number="28"/>
+        </story>
+        
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-3">
+            <idea number="29"/>
+            <idea number="30"/>
+            <idea number="31"/>
+            <idea number="32"/>
+            </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-1">
+            <idea number="33"/>
+            <idea number="34"/>
+            <idea number="35"/>
+            </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
+            <idea number="36">
+                <step number="9">
+                    <checkRight obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="37"/>
+            <idea number="38">
+                <step number="10">
+                    <checkRight obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
+                </step>
+            </idea>
+        </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-3">
+            <idea number="39"/>
+            <idea number="40">
+                <step number="11">
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
+                </step>
+                <step number="12">
+                    <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlow" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="41">
+                <step number="13">
+                    <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
+            <idea number="42">
+                <step number="14">
+                    <group obj1Id="juan" action="lead" obj2Id="dog"/>
+                </step>
+                <step number="15">
+                    <check obj1Id="juan" action="getIn" locationId="near_cart"/>
+                    <ungroupAndStay obj1Id="juan" action="leave" obj2Id="dog"/>
+                    <move obj1Id="juan" action="getIn" waypointId="near_cart"/>
+                    <disappearAuto obj1Id="cart" action="disappear" obj2Id="cart"/>
+                    <swapImage obj1Id="dog" action="withCart"/>
+                </step>
+            </idea>
+            <idea number="43">
+                <step number="16">
+                    <check obj1Id="dog" action="getIn" locationId="near_maria"/>
+                    <move obj1Id="dog" action="getIn" waypointId="near_maria"/>
+                </step>
+            </idea>
+            <idea number="44"/>
+            <idea number="45">
+                <step number="17">
+                    <group obj1Id="maria" action="pickUp" obj2Id="wood"/>
+                </step>
+                <step number="18">
+                    <transferAndGroup obj1Id="maria" action="drop" obj2Id="wood"/>
+                    <transferAndGroup obj1Id="wood" action="getIn" obj2Id="dog"/>
+                    <move obj1Id="maria" action="getIn" waypointId="maria_near_cart"/>
+                    <ungroupAndStay obj1Id="wood" action="getOut" obj2Id="dog"/>
+                    <disappearAuto obj1Id="wood" action="disappear" obj2Id="wood"/>
+                    <swapImage obj1Id="dog" action="withWood"/>
+                </step>
+            </idea>
+            <idea number="46"/>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-2">
+            <idea number="47">
+                <step number="19">
+                    <group obj1Id="maria" action="unties" obj2Id="dog"/>
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="dog"/>
+                    <move obj1Id="maria" action="getIn" waypointId="after_untie"/>
+                    <swapImage obj1Id="dog" action="withoutCart"/>
+                    <appear obj1Id="cart" action="appear"/>
+                </step>
+                <step number="20">
+                    <group obj1Id="maria" action="lead" obj2Id="horse"/>
+                </step>
+                <step number="21">
+                    <check obj1Id="maria" action="getIn" locationId="near_cart2"/>
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="horse"/>
+                    <move obj1Id="maria" action="getIn" waypointId="after_horse_tie"/>
+                    <disappearAuto obj1Id="cart" action="disappear" obj2Id="cart"/>
+                    <swapImage obj1Id="horse" action="withCart"/>
+                </step>
+            </idea>
+            <idea number="48">
+                <step number="22">
+                    <group obj1Id="horse" action="visit" obj2Id="juan"/>
+                    <ungroupAndStay obj1Id="horse" action="leave" obj2Id="juan"/>
+                    <move obj1Id="horse" action="getIn" waypointId="near_juan"/>
+                </step>
+            </idea>
+            <idea number="49"/>
+            <idea number="50"/>
+            <idea number="51"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-1">
+            <idea number="52"/>
+            <idea number="53">
+                <step number="23">
+                    <group obj1Id="maria" action="getOn" obj2Id="skateboard_maria"/>
+                    <ungroupAndStay obj1Id="maria" action="getOff" obj2Id="skateboard_maria"/>
+                    <swapImage obj1Id="maria" action="withSkateboard"/>
+                    <disappearAuto obj1Id="skateboard_maria" action="disappear" obj2Id="skateboard_maria"/>
+                </step>
+                <step number="24">
+                    <group obj1Id="sara" action="getOn" obj2Id="skateboard_sara"/>
+                    <ungroupAndStay obj1Id="sara" action="getOff" obj2Id="skateboard_sara"/>
+                    <swapImage obj1Id="sara" action="withSkateboard"/>
+                    <disappearAuto obj1Id="skateboard_sara" action="disappear" obj2Id="skateboard_sara"/>
+                </step>
+            </idea>
+            <idea number="54">
+                <step number="25">
+                    <group obj1Id="maria" action="push" obj2Id="sara"/>
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="sara"/>
+                    <animate obj1Id="maria" action="skateBackward" waypointId="" areaId=""/>
+                    <animate obj1Id="sara" action="skateForward" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="55"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-2">
+            <idea number="56"/>
+            <idea number="57"/>
+            <idea number="58">
+                <step number="26">
+                    <group obj1Id="juan" action="getIn" obj2Id="boat"/>
+                    <ungroupAndStay obj1Id="juan" action="getOut" obj2Id="boat"/>
+                    <disappearAuto obj1Id="boat" action="disappear" obj2Id="boat"/>
+                    <disappearAuto obj1Id="juan" action="disappear" obj2Id="juan"/>
+                    <appear obj1Id="juan_rowing" action="appear"/>
+                </step>
+            </idea>
+            <idea number="59">
+                <step number="27">
+                    <shakeOrTap obj1Id="juan_rowing" action="getIn" locationId="water"/>
+                    <swapImage obj1Id="juan_rowing" action="pushBack"/>
+                    <animate obj1Id="juan_rowing" action="rowForward" waypointId="" areaId=""/>
+                    <animate obj1Id="wave" action="moveBackward" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="60"/>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-3">
+            <idea number="61"/>
+            <idea number="62"/>
+            <idea number="63"/>
+            </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-4">
+            <idea number="64"/>
+            <idea number="65">
+                <step number="28">
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="smallrocket" action="shootFlame"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </idea>
+            <idea number="66"/>
+            <idea number="67"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-1">
+            <idea number="68">
+                <step number="29">
+                    <group obj1Id="maria" action="getOn" obj2Id="skateboard_maria"/>
+                    <ungroupAndStay obj1Id="maria" action="getOff" obj2Id="skateboard_maria"/>
+                    <swapImage obj1Id="maria" action="footOnGround"/>
+                    <disappearAuto obj1Id="skateboard_maria" action="disappear" obj2Id="skateboard_maria"/>
+                </step>
+            </idea>
+            <idea number="69"/>
+            
+            
+            <idea number="3">
+                <step number="30">
+                    <shakeOrTap obj1Id="maria" action="getIn" locationId="bottom_quarter"/>
+                    <swapImage obj1Id="maria" action="footBack"/>
+                </step>
+            </idea>
+            <idea number="71"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-2">
+            <idea number="72">
+                <step number="31">
+                    <check obj1Id="maria" action="getIn" locationId="hill"/>
+                    <move obj1Id="maria" action="getIn" waypointId="hill"/>
+                </step>
+            </idea>
+            <idea number="73"/>
+            <idea number="74">
+                <step number="32">
+                    <check obj1Id="toycar" action="getIn" areaId="road"/>
+                    <move obj1Id="toycar" action="getIn" waypointId="road"/>
+                    <swapImage obj1Id="maria" action="fall"/>
+                    <appear obj1Id="skateboard_maria" action="appear"/>
+                </step>
+            </idea>
+            <idea number="75"/>
+            <idea number="76"/>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-3">
+            <idea number="77"/>
+            <idea number="78"/>
+            <idea number="79"/>
+            <idea number="80"/>
+        </story>
+    </solutions>
+</metadata>
+
+
+
+
+
+
+

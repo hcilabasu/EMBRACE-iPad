@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+    <head>
+        <meta content="urn:uuid:eece7575-28d0-4489-9868-0084485e93e6" name="dtb:uid"/>
+        <meta content="0" name="dtb:depth"/>
+        <meta content="0" name="dtb:totalPageCount"/>
+        <meta content="0" name="dtb:maxPageNumber"/>
+    </head>
+    <docTitle>
+        <text>Intro to Natural Disasters</text>
+    </docTitle>
+    <navMap>
+        <navPoint class="bookTitle" id="bookTitle">
+            <navLabel>
+                <text>Introduction to Natural Disasters</text>
+            </navLabel>
+            <content src="Text/Introduction-to-Natural-Disasters-Title.xhtml"/>
+        </navPoint>
+        <navPoint class="ChapterTitle" id="Chapter0Title" playOrder="0">
+            <navLabel>
+                <text>Introduction to Natural Disasters</text>
+            </navLabel>
+            <content src="Text/Introduction-to-Natural-Disasters-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story0-Intro">
+                <navLabel>
+                    <text>Introduction to Natural Disasters - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-Intro-E.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story0-PM">
+                <navLabel>
+                    <text>Introduction to Natural Disasters - PM</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-PM.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
+            <navLabel>
+                <text>The Moving Earth</text>
+            </navLabel>
+            <content src="Text/Story1-The-Moving-Earth-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story1-Intro">
+                <navLabel>
+                    <text>The Moving Earth - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-The-Moving-Earth-Intro-E.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-1">
+                <navLabel>
+                    <text>The Moving Earth - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Moving-Earth-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-2">
+                <navLabel>
+                    <text>The Moving Earth - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Moving-Earth-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-3">
+                <navLabel>
+                    <text>The Moving Earth - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Moving-Earth-PM-3.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
+            <navLabel>
+                <text>Earthquakes</text>
+            </navLabel>
+            <content src="Text/Story2-Earthquakes-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story2-Intro">
+                <navLabel>
+                    <text>Earthquakes - Intro</text>
+                </navLabel>
+                <content src="Text/Story2-Earthquakes-Intro-E.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-1">
+                <navLabel>
+                    <text>Earthquakes - PM</text>
+                </navLabel>
+                <content src="Text/Story2-Earthquakes-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-2">
+                <navLabel>
+                    <text>Earthquakes - PM</text>
+                </navLabel>
+                <content src="Text/Story2-Earthquakes-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-3">
+                <navLabel>
+                    <text>Earthquakes - PM</text>
+                </navLabel>
+                <content src="Text/Story2-Earthquakes-PM-3.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
+            <navLabel>
+                <text>Tsunamis</text>
+            </navLabel>
+            <content src="Text/Story3-Tsunamis-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story3-PM-1">
+                <navLabel>
+                    <text>Tsunamis - PM</text>
+                </navLabel>
+                <content src="Text/Story3-Tsunamis-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-2">
+                <navLabel>
+                    <text>Tsunamis - PM</text>
+                </navLabel>
+                <content src="Text/Story3-Tsunamis-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-3">
+                <navLabel>
+                    <text>Tsunamis - PM</text>
+                </navLabel>
+                <content src="Text/Story3-Tsunamis-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-4">
+                <navLabel>
+                    <text>Tsunamis - PM</text>
+                </navLabel>
+                <content src="Text/Story3-Tsunamis-PM-4.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
+            <navLabel>
+                <text>Volcanoes and the Making of Hawaii</text>
+            </navLabel>
+            <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story4-PM-1">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-2">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-3">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-4">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-5">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
+            <navLabel>
+                <text>Tornados</text>
+            </navLabel>
+            <content src="Text/Story5-Tornados-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story5-Intro">
+                <navLabel>
+                    <text>Tornados - Intro</text>
+                </navLabel>
+                <content src="Text/Story5-Tornados-Intro-E.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-1">
+                <navLabel>
+                    <text>Tornados - PM</text>
+                </navLabel>
+                <content src="Text/Story5-Tornados-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-2">
+                <navLabel>
+                    <text>Tornados - PM</text>
+                </navLabel>
+                <content src="Text/Story5-Tornados-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-3">
+                <navLabel>
+                    <text>Tornados - PM</text>
+                </navLabel>
+                <content src="Text/Story5-Tornados-PM-3.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+    </navMap>
+    <pageList>
+    </pageList>
+</ncx>

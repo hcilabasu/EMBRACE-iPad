@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="The Lopez Family" activity_id="story1-PM-1">
+            <idea number="1"/>
+            <idea number="2"/>
+            <idea number="3"/>
+            <idea number="4"/>
+            <idea number="5">
+                <step number="1">
+                    <group obj1Id="martinInsideCarIM" action="getIn" obj2Id="martinInsideCarIM"/>
+                    <group obj1Id="martinIM" action="standBy" obj2Id="carIM"/>
+                </step>
+            </idea>
+            <idea number="6"/>
+        </story>
+        <story title="The Lopez Family" activity_id="story1-PM-2">
+            <idea number="7"/>
+            <idea number="8"/>
+            <idea number="9"/>
+            <idea number="10"/>
+            <idea number="11">
+                <step number="2">
+                    <group obj1Id="martinIM" action="standWith" obj2Id="pacoIM"/>
+                    <group obj1Id="martinIM" action="standWith" obj2Id="lolaIM"/>
+                </step>
+            </idea>
+            <idea number="12"/>
+        </story>
+        <story title="Missing Keys" activity_id="story2-PM-1">
+            <idea number="13"/>
+            <idea number="14">
+                <step number="3">
+                    <group obj1Id="babyIM" action="sitIn" obj2Id="highchairIM"/>
+                    <group obj1Id="babyIM" action="standBy" obj2Id="highchairIM"/>
+                </step>
+            </idea>
+            <idea number="15"/>
+            <idea number="16"/>
+        </story>
+        <story title="Missing Keys" activity_id="story2-PM-2">
+            <idea number="17"/>
+            <idea number="18">
+                <step number="4">
+                    <group obj1Id="dog_IM" action="visit" obj2Id="tree_IM"/>
+                    <group obj1Id="rabbit_IM" action="visit" obj2Id="tree_IM"/>
+                </step>
+            </idea>
+            <idea number="19"/>
+            <idea number="20"/>
+        </story>
+        <story title="Is Paco a Thief?" activity_id="story3-PM-1">
+            <idea number="21"/>
+            <idea number="22"/>
+            <idea number="23"/>
+            <idea number="24"/>
+            <idea number="25">
+                <step number="5">
+                    <group obj1Id="keysIM" action="layBy" obj2Id="treeIM"/>
+                    <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
+                </step>
+            </idea>
+        </story>
+        <story title="Is Paco a Thief?" activity_id="story3-PM-2">
+            <idea number="26">
+                <step number="6">
+                    <group obj1Id="pacoFlipIM" action="faceAway" obj2Id="houseIM"/>
+                    <group obj1Id="pacoIM" action="face" obj2Id="houseIM"/>
+                </step>
+            </idea>
+            <idea number="27"/>
+            <idea number="28"/>
+            <idea number="29"/>
+        </story>
+        <story title="More is Missing!" activity_id="story4-PM-1">
+            <idea number="30"/>
+            <idea number="31"/>
+            <idea number="32"/>
+            <idea number="33"/>
+        </story>
+        <story title="More is Missing!" activity_id="story4-PM-2">
+            <idea number="34">
+                <step number="7">
+                    <group obj1Id="rosa_IM" action="visit" obj2Id="paco_IM"/>
+                    <group obj1Id="rosa_IM" action="visit" obj2Id="lola_IM"/>
+                </step>
+            </idea>
+            <idea number="35"/>
+            <idea number="36"/>
+            <idea number="37">
+                <step number="8">
+                    <group obj1Id="rosa_IM" action="face" obj2Id="pacoSpoon_IM"/>
+                    <group obj1Id="rosa_IM" action="faceAway" obj2Id="pacoFlipSpoon_IM"/>
+                </step>
+            </idea>
+            <idea number="38"/>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
+            <idea number="39"/>
+            <idea number="40"/>
+            <idea number="41"/>
+            <idea number="42"/>
+            <idea number="43">
+                <step number="9">
+                    <group obj1Id="baby_IM" action="inLap" obj2Id="lola_IM"/>
+                    <group obj1Id="baby_IM" action="onHead" obj2Id="lola_IM"/>
+                </step>
+            </idea>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
+            <idea number="44"/>
+            <idea number="45"/>
+            <idea number="46"/>
+            <idea number="47"/>
+            <idea number="48">
+                <step number="10">
+                    <group obj1Id="rosa_IM" action="holding" obj2Id="baby_IM"/>
+                    <group obj1Id="rosa_IM" action="holding" obj2Id="lola_IM"/>
+                </step>
+            </idea>
+            <idea number="49"/>
+        </story>
+        <story title="The Mystery is Solved" activity_id="story6-PM-1">
+            <idea number="50">
+                <step number="11">
+                    <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
+                    <group obj1Id="keys_IM" action="off" obj2Id="hook_IM"/>
+                </step>
+            </idea>
+            <idea number="51"/>
+            <idea number="52"/>
+            <idea number="53">
+                <step number="12">
+                    <group obj1Id="bird_IM" action="pickUp" obj2Id="keysBird_IM"/>
+                    <group obj1Id="bird_IM" action="pickUp" obj2Id="spoon_IM"/>
+                </step>
+            </idea>
+        </story>
+        <story title="The Mystery is Solved" activity_id="story6-PM-2">
+            <idea number="54"/>
+            <idea number="55"/>
+            <idea number="56"/>
+            <idea number="57"/>
+            <idea number="58"/>
+        </story>
+    </solutions>
+</metadata>

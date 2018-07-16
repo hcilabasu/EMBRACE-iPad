@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <alternateImages>
+        <alternateImage objId="air_blue" action="changeZIndex" originalSrc="air_blue.png" alternateSrc="air_blue.png" width="200px" x="47%" y="40%" class="manipulationObject" z="4"/>
+        <alternateImage objId="bulge" action="appear" originalSrc="bulge.png" alternateSrc="bulge.png" width="363px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="bulge" action="forms_bulge" originalSrc="ocean_wave_move.png" alternateSrc="bulge.png" width="363px" x="50%" y="60%" class="manipulationObject" z=""/>
+        <alternateImage objId="bulge" action="forms_wave" originalSrc="bulge.png" alternateSrc="ocean_wave_move.png" width="520px" x="50%" y="31%" class="manipulationObject" z=""/>
+        <alternateImage objId="bulge" action="whole" originalSrc="ocean_bulge2.png" alternateSrc="bulge.png" width="263px" x="3.808594%" y="62%" class="manipulationObject" z="2"/>
+        <alternateImage objId="california" action="crack" originalSrc="california_nofault.png" alternateSrc="california_fault.png" width="120px" x="6%" y="35.227272%" class="manipulationObject" z=""/>
+        <alternateImage objId="dirt_tornado" action="appear" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="289px" height="598px" x="71.777344%" y="11.505682%" class="manipulationObject" z="1"/>
+        <alternateImage objId="dirt_tornado" action="shrink" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="200px" x="43.5%" y="26%" class="manipulationObject" z="1"/>
+        <alternateImage objId="grey_plate_kauai" action="left" originalSrc="scene1.png" alternateSrc="scene2.png" width="786.94px" x="23.242188%" y="54.048294%" class="manipulationObject" z="1"/>
+        <alternateImage objId="grey_plate_kauai" action="left2" originalSrc="scene2.png" alternateSrc="scene3.png" width="1012.34px" x="1.171875%" y="53.764206%" class="manipulationObject" z="1"/>
+        <alternateImage objId="hawaii" action="erupts" originalSrc="island_Hawaii.png" alternateSrc="island_lava_Hawaii2.png" width="400px" x="60.942188%" y="34.019886%" class="manipulationObject" z="4"/>
+        <alternateImage objId="hawaii" action="appear" originalSrc="island_Hawaii.png" alternateSrc="island_Hawaii.png" width="400px" height="146px" x="60.937500%" y="34.019886%" class="manipulationObject" z="2"/>
+        <alternateImage objId="house_noroof2" action="damage" originalSrc="house_noroof2.png" alternateSrc="house_noroof2_damaged.png" width="201px" x="25.244141%" y="83.238640%" class="manipulationObject" z="2"/>
+        <alternateImage objId="house_roof2" action="flip" originalSrc="house_roof2.png" alternateSrc="house_roof2_damaged.png" width="237px" x="44.873047%" y="74.005684%" class="manipulationObject" z="3"/>
+        <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_burn.png" width="80px" x="12.5%" y="46%" class="manipulationObject" z=""/>
+        <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="44.335938%" y="29.119318%" class="manipulationObject" z=""/>
+        <alternateImage objId="kauai" action="appear" originalSrc="island_Kauai.png" alternateSrc="island_Kauai.png" width="225px" height="104px" x="56%" y="45%" class="manipulationObject" z="2"/>
+        <alternateImage objId="label_hawaii" action="appear" originalSrc="Hawaii.png" alternateSrc="Hawaii.png" width="77px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
+        <alternateImage objId="label_kauai" action="appear" originalSrc="Kauai.png" alternateSrc="Kauai.png" width="65px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
+        <alternateImage objId="label_molokai" action="appear" originalSrc="Molokai.png" alternateSrc="Molokai.png" width="90px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
+        <alternateImage objId="label_oahu" action="appear" originalSrc="Oahu.png" alternateSrc="Oahu.png" width="62px" height="19px" x="50%" y="10%" class="manipulationObject" z="5"/>
+        <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="79.345703%" y="48.366478%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_rock_Hawaii" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="molokai" action="appear" originalSrc="island_Molokai.png" alternateSrc="island_Molokai.png" width="350px" height="125.6px" x="39.843750%" y="36.789772%" class="manipulationObject" z="2"/>
+        <alternateImage objId="north_america" action="crack" originalSrc="north_america_nofault.png" alternateSrc="north_america_fault.png" width="495px" x="6.396484%" y="0.000000%" class="manipulationObject" z=""/>
+        <alternateImage objId="oahu" action="appear" originalSrc="island_Oahu.png" alternateSrc="island_Oahu.png" width="225px" height="94px" x="50%" y="50%" class="manipulationObject" z="2"/>
+    </alternateImages>
+</metadata>

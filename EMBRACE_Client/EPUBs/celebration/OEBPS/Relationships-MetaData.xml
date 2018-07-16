@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="chili" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="list" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="list" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="list" can="getOut" action="ungroup" obj2Id="mom"/>
+        <relationship obj1Id="list" can="getOut" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="mom" can="drop" action="ungroup" obj2Id="bag"/>
+        <relationship obj1Id="mom" can="drop" action="ungroup" obj2Id="pesos"/>
+        <relationship obj1Id="mom" can="grabLeft" action="group" obj2Id="bag"/>
+        <relationship obj1Id="mom" can="grabLeft" action="group" obj2Id="pesos"/>
+        <relationship obj1Id="mom" can="leave" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="mom" can="moveTo" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="notebook" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="notebook" can="getOut" action="ungroup" obj2Id="mom"/>
+        <relationship obj1Id="pesos" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="pesos" can="getOut" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="roses_white" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="roses_white" can="getOut" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="saddle" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="saddle" can="leave" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="bridle"/>
+        <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="garlic"/>
+        <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="mangos"/>
+        <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="spinach"/>
+        <relationship obj1Id="sofia" can="getIn" action="group" obj2Id="scale"/>
+        <relationship obj1Id="sofia" can="getOut" action="ungroup" obj2Id="scale"/>
+        <relationship obj1Id="sofia" can="grabFist" action="group" obj2Id="bridle"/>
+        <relationship obj1Id="sofia" can="grabHigh" action="group" obj2Id="garlic"/>
+        <relationship obj1Id="sofia" can="grabHigh" action="group" obj2Id="mangos"/>
+        <relationship obj1Id="sofia" can="grabHigh" action="group" obj2Id="milk"/>
+        <relationship obj1Id="sofia" can="grabHigh" action="group" obj2Id="spinach"/>
+        <relationship obj1Id="sofia" can="grabLeft" action="group" obj2Id="notebook"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="champoorado"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="chili"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="vase"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="roses_pink"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="chili"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="notebook"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="roses_pink"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="vase"/>
+        <relationship obj1Id="tomatillos" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="tomatillos" can="getOut" action="ungroup" obj2Id="sofia"/>
+        
+        <relationship obj1Id="cow_IM" can="enter" action="group" obj2Id="corral_IM"/>
+        <relationship obj1Id="cowFlipped_IM" can="leave" action="group" obj2Id="corral_IM"/>
+        
+        <relationship obj1Id="emilio_IM" can="standBy" action="group" obj2Id="corralGate_IM"/>
+        <relationship obj1Id="sofia_IM" can="standBy" action="group" obj2Id="corralGate_IM"/>
+     
+        <relationship obj1Id="sofia_IM" can="standWith" action="group" obj2Id="mancha_IM"/>
+        <relationship obj1Id="sofiaOnMancha_IM" can="sitOn" action="group" obj2Id="sofiaOnMancha_IM"/>
+        
+        <relationship obj1Id="sofia_IM" can="nextTo" action="group" obj2Id="post_IM"/>
+        <relationship obj1Id="sofiaOnMancha_IM" can="nextTo" action="group" obj2Id="post_IM"/>
+     
+        <relationship obj1Id="sofiaWithTote_IM" can="hold" action="group" obj2Id="tomatillos_IM"/>
+        <relationship obj1Id="sofiaWithTote_IM" can="hold" action="group" obj2Id="milk_IM"/>
+     
+        <relationship obj1Id="sofia_IM" can="holdFlowers" action="group" obj2Id="flowers_IM"/>
+        <relationship obj1Id="sofiaTote_IM" can="hold" action="group" obj2Id="sofiaTote_IM"/>
+        <relationship obj1Id="flowers_IM" can="getIn" action="group" obj2Id="flowers2_IM"/>
+        
+        <relationship obj1Id="sofia_IM" can="toward" action="group" obj2Id="market_IM"/>
+        <relationship obj1Id="sofiaFLip_IM" can="leave" action="group" obj2Id="market_IM"/>
+        
+        <relationship obj1Id="mom_IM" can="hold" action="group" obj2Id="groceries_IM"/>
+        <relationship obj1Id="mom_IM" can="hold" action="group" obj2Id="flowers_IM"/>
+    
+        <relationship obj1Id="flowersInVase_IM" can="inVase" action="group" obj2Id="flowersInVase_IM"/>
+        <relationship obj1Id="flowers_IM" can="nextTo" action="group" obj2Id="vase_IM"/>
+    </relationships>
+</metadata>

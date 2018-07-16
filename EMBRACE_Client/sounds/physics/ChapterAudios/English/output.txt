@@ -1,0 +1,109 @@
+1890705|e9d38f77ab1733cc1b577d9710fa8b8d.mp3|What makes balls and rockets and everything else move?
+1890706|01018b793f82317efb127bdb6c8fe0ce.mp3|A force is needed to start an object moving, to stop it from moving, or to change direction.
+1890707|927604a8649a649192744b79e021a92e.mp3|A force is like a push or a pull.
+1890708|fe9356fe3527ed89dc7be6e115a013bd.mp3|When you pull the boat by the rope,  the pulling force starts the boat moving.
+1890709|38cdb9e3fe02e60f34f4e1e68224625e.mp3|And when you push the small rocket, the pushing force starts the rocket moving.
+1890710|6430acb4b60477f7cef2d330e0142460.mp3|Sir Isaac Newton discovered three laws of motion 350 years ago.
+1890711|8bc3fb210f19627227e70798c19834e6.mp3|These three laws work for objects on Earth and for objects in space.
+1890712|06912b641fcf1547d91cbe754fe0586f.mp3|They even work for the moon, the sun, and the stars!.
+1890713|5ac7e715f495b571cef25588bdad675d.mp3|That Isaac Newton was very smart.
+1890714|20dffdb8d0cbf3a6c46d5ad25ecb1c66.mp3|Here is part of Newton’s First Law.
+1890715|9984a3ee450bcd7edab700dc23398708.mp3|A moving object keeps moving in the same direction and at the same speed.
+1890716|be0aa9d469ab74206972f5dce385a94f.mp3|Only when a force (a push or pull) is added does the object change direction or speed.
+1890717|c6a9a06a6c688dc9db912962e027a7c8.mp3|The small rocket keeps moving at the same speed in the same direction.
+1890718|a4c9158f2629aebe6a46e61304d1f721.mp3|A moving object keeps moving in the same direction and at the same speed until a force pushes or pulls on the object to change its direction or speed.
+1890719|82323e5a2704f78dcd9eb16ecac17aa0.mp3|If you push the rocket up, the force changes the rocket’s direction.
+1890720|3c09524ad805f03762da13e583bdfc91.mp3|You can add a new force that changes the direction of the rocket again by pushing it down.
+1890721|62a451f2f6d977590cee425e7d1f2fb6.mp3|When you push the rocket backward, the new force slows down the rocket.
+1890722|49da1b6e0c5e4641def10de7e62a2b7e.mp3|A new force can speed up a rocket, slow down a rocket, or change the direction.
+1890723|a5766c106e1024dbbb7e8de270ab134a.mp3|When you push the rocket backward, you can see how the new force slows down the rocket.
+1890724|48729525515a55bf1c9b51f34ca82ad0.mp3|And, if the rocket is stopped, it stays still until another force is added.
+1890725|aac593fde5bbfd5f913f75c909eb1f07.mp3|Here is the complete First Law.
+1890726|b7c32c5282ad29c29c643e9fdbb6ebaf.mp3|Moving objects keep moving in the same direction and at the same speed until a force is added, and stopped objects remain still until a force is added.
+1890727|7c512f13c6e62abab78c000cbf6936bc.mp3|Moving objects keep moving in the same direction and at the same speed until a force is added.
+1890728|db93c04e801dfa711622daea6647c98d.mp3|Stopped objects remain still until a force is added.
+1890729|99897d19819177de239a99b9b39e7f5c.mp3|Juan kicks the ball on the grass.
+1890730|1b76ed9d8af7d4cbd1e23f98174a6cfb.mp3|Juan added a force to start the ball rolling, but why did it stop.
+1890731|5ad1a96d2822b30cc145ab9962b709a1.mp3|The grass rubs on the ball.
+1890732|463915ef4a200ccfb053e8a266a88938.mp3|That rubbing is a force called friction, and friction is the force that slows the ball.
+1890733|521b07797632005140408ec9d77a0522.mp3|Juan added a force to start the ball rolling.
+1890734|ee4756290f5fd4f6da02c110489727b5.mp3|But why did it stop.
+1890735|f81c539a6d946e5b6cfefa85fb0d580d.mp3|That rubbing is a force called friction.
+1890736|4d48a4283a30be80a237c319820fde06.mp3|Friction is the force that slows the ball.
+1890737|ed0f565f2991445ab8d91ca3e2608e17.mp3|The grass rubs on the ball creating a rubbing force called friction, which slows the ball.
+1890738|5ef04eed90879160b37089839b835e33.mp3|Maria picks up the ball, and then she throws the ball in the air  .
+1890739|8522010432aeaad0dc365a65df853907.mp3|Why does the ball fall to the ground.
+1890740|82b895448edc111e4a95446de94ff1fc.mp3|Gravity pulls it down.
+1890741|2e5bea4b82f0eedad56cd020386e5fb5.mp3|Gravity is the force that pulls together objects like the ball and Earth.
+1890742|31fee0b6fd66d03e9165edfa3f4868e2.mp3|Maria picks up the ball.
+1890743|b2a52f06fefafd0491f3aefbb056ebfd.mp3|She throws the ball in the air.
+1890744|f0a1b51b97c002cd5915cb9016a5deb2.mp3|The First Law says that objects keep moving in the same direction until a force is added.
+1890745|010af79b32fee4e368192d5820da1161.mp3|On Earth, friction and gravity are forces that can change speed and direction of objects.
+1890746|a6f23959154a803bfe65c0948a5acf21.mp3|In space, there is no friction and only a little gravity.
+1890747|59361054fd7c401da88f208da1eb9187.mp3|So, objects in space, like the moon, keep moving for a very, very long time!.
+1890748|a2292afcae620bd3ffa9b8765500f560.mp3|On Earth, friction and gravity are forces that can change speed and direction of objects, but in space, there is no friction and only a little gravity.
+1890749|65cd4fe398bd6667225ca6bb549e3dcc.mp3|Acceleration is when something goes faster and faster.
+1890750|76dc574f35a631952804edb12d4de97e.mp3|When you run, you begin by accelerating; and when a car speeds up, it accelerates.
+1890751|d01136daff727f585aab35b086f371ce.mp3|Newton’s Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.
+1890752|cfc04debda0e94b7b371e4e01f76ef7f.mp3|When you run, you begin by accelerating.
+1890753|ae7d33ba03ec2243a61ac4bb583989f4.mp3|When a car speeds up, it accelerates.
+1890754|0a27982b4abf346bb818dcecd9772461.mp3|When you give a little push to the little rocket, it starts to move.
+1890756|99ffe21afb63db450c884cd34e8ef036.mp3|Going from no movement to some movement is acceleration.
+1890757|d893c2c1a0154428bc570d7924a4db32.mp3|If you give a little push to the big rocket, it starts to move, but more slowly.
+1890758|cc766c10703ef8a67fe1802f1772e623.mp3|If you give a little push to the big rocket, you’ll see that it starts to move, but more slowly.
+1890759|31efdecb7d073b0aa70b031b2b6d3bdb.mp3|Newton’s Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.
+1890760|62ad17e96434fd5073f0f8f5b2211f10.mp3|So, to get the big rocket to accelerate more, you’ll need to keep pushing it to add a big force.
+1890761|adce51296a9aa32d2e7484e578a51b1a.mp3|If you push it enough, it will start to go as fast as the little rocket.
+1890762|5f0e4b0c185560c233dd077e330d3943.mp3|You’ll need to keep pushing the rocket to add a big force.
+1890763|30217b07abe84d526180b00fede4d79a.mp3|This will make the rocket accelerate more.
+1890764|097863229d462661c4c44edbb667c760.mp3|Juan ties the dog to the cart.
+1890765|7197f012b4b987e4c55df32140c9ddfd.mp3|The dog pulls the cart to Maria.
+1890766|54f686eab06c1314b682cdda534df714.mp3|The dog adds a force to accelerate the cart.
+1890767|1f9304cca389c7d00cc44bae06b1a36b.mp3|Maria piles wood into the cart.
+1890768|1a24dccf40736c6dbf07f49245743641.mp3|Now the cart is so heavy that the dog can only accelerate it a tiny amount.
+1890769|41fd1b6ccf964a415d30e75f7deccc6c.mp3|Juan ties the dog to the cart , and the dog pulls the cart to Maria.
+1890770|9293fd5ab4f3cf7340faf81a7e046458.mp3|Maria piles wood into the cart,  which makes the cart so heavy that the dog can only accelerate it a tiny amount.
+1890771|aba46a1db7656c9e0a3d346fc055d696.mp3|Maria unties the dog and brings a horse to the cart.
+1890772|8f153ad1098f18338fe03739eeb8740b.mp3|The horse can pull the cart to Juan because the horse adds a bigger force.
+1890774|2c4acff412706dc4588fb11476f5008d.mp3|The big force accelerates the cart and gets it moving.
+1890775|2f1e27a8162fa39d893b99bd9efff747.mp3|When the horse stops pulling, the cart stops.
+1890776|a59ba9ba7524539078ef0e9778af1abf.mp3|Friction is the force that stops the cart.
+1890777|846b3e8928f9d48165829edc310bff9b.mp3|Maria unties the dog.
+1890778|e91112eb67e47c50925b2ac8d99cd4ac.mp3|She brings a horse to the cart.
+1890779|e3622c4166e4c138809c76189450cf53.mp3|The big force accelerates the cart and gets it moving, but when the horse stops pulling, the cart stops.
+1890780|11e28439bcbc8f250d57071d9f9264f4.mp3|Newton’s Third Law says that a force in one direction is always paired with a force in the other direction.
+1890781|d92d961a7b861ad1891dc9f429a3c84c.mp3|Maria and Sara get on their skateboards.
+1890782|2c60063c633a3292b35b5008c381f4c8.mp3|Maria pushes Sara.
+1890783|c769abb0d718c2eac33148dfa14dba1e.mp3|Sara moves forward, but Maria goes backward!.
+1890784|960614b0ed18117dacab4b51951d1496.mp3|When Maria pushes Sara,  Sara moves forward, but Maria goes backward!.
+1890785|3ae1dbfb2d5f85a5b4bc52589357e8d2.mp3|The force of Maria’s push on Sara is paired with a force pushing Maria back.
+1890786|4355004960559f97e5d43b1fc8f425be.mp3|That is why she goes backward.
+1890787|f575dc8ad2eda70824a895cad1c48523.mp3|Juan climbs into the boat.
+1890788|4d917f7db55b58b5dbc9b28e0e878e70.mp3|He puts the paddle into the water and pushes the water backward.
+1890789|d624c44480718e44de83182e21823e1f.mp3|  The water moves backward, but the boat moves forward!.
+1890790|6694e72e94b0203e1aa4dc017afc51c1.mp3|Maria goes backward because the force of Maria’s push on Sara is paired with a force pushing Maria back.
+1890791|733df4666ca57af34fc598c0e5704227.mp3|The force of pushing the water backward is paired with the forward force of the water on the paddle.
+1890792|2221f5d7c6f8e31f46d4ca93a552d6f1.mp3|And that pushes the boat forward.
+1890793|12359ad76b8855efa4648397e3281a83.mp3|A force in one direction is always paired with an equal force in the other direction.
+1890794|309cde5c0c4e1371b21b08d78ea4a0d9.mp3|The force of pushing the water backward is paired with the forward force of the water on the paddle, which pushes the boat forward.
+1890795|f1e125056353d69b9ffb2f509ffb6d42.mp3|A pair of forces make rockets move in space.
+1890796|2ed1e936c18a7c76648f3b845adafbaa.mp3|Flames shoot out from the back of the rocket.
+1890797|223ce433248726fa9f11084620867c68.mp3|Then, the rocket moves forward.
+1890798|85151148fe88837c307fc3d407f326c7.mp3|Because forces are paired, for every action in one direction, there is always a reaction in the other direction.
+1890799|00d4ba82400cfc11ee574ed9362e0d7a.mp3|When flames shoot out from the back of the rocket,  the rocket moves forward.
+1890800|dfbcb91fa71cfbae4816fbd1842a85a9.mp3|Maria gets on her skateboard.
+1890801|e56356cb1df28adbe8a2385e96fd2ac3.mp3|To get moving, she needs a force (First Law).
+1890802|e3a806ec56238df6ba3f5a00cc8e31c0.mp3|She pushes backward on the ground with one foot.
+1890803|cf5034afee9dc7486d4d582bd3c7e972.mp3|This makes the skateboard move forward (Law of Paired Forces).
+1890804|dabb2fe14fc0e1c75ba301a47511d781.mp3|She pushes backward on the ground with one foot, which makes the skateboard move forward (Law of Paired Forces).
+1890805|8c4c8b49626cc8c10c47a6eab011d11d.mp3|Maria starts down a hill.
+1890806|5787fee5bdbc67dea5deaae7f91f8236.mp3|The force of gravity pulls the skateboard down the hill faster and faster (Law of Acceleration).
+1890807|cfc144c3b56cbd65c22ef7f78a9d1196.mp3|Oh no, a toy truck moves onto the road.
+1890808|8be6e2943c0eb645b3c8b50dbd56db78.mp3|The toy truck stops the skateboard, but Maria keeps going.
+1890809|2532559c28bd48af246780c09b38c8ee.mp3|Maria keeps going because objects in motion stay in motion (First Law).
+1890810|f1f2d8e8575c0b0341249ea07cac2906.mp3|Maria stops when friction from the ground adds a force to stop her.
+1890811|c5cdc0c7f1bbabbf8b70d06d5f14ef58.mp3|The First Law explains why it is important to wear a seatbelt in the car.
+1890812|7929beb3b920214d98f998792a080862.mp3|When the car stops, you keep moving just like Maria.
+1890813|c4fc13cecfa94ef0e9f4a25dd99e42b9.mp3|The seatbelt adds a force to stop you and keep you safe.
+1890814|dee1a7d0a3563ccf19ad78054579acb0.mp3|Maria stops.
+1890815|39133f85790cd048b126e2e3a4923967.mp3|Friction from the ground adds a force to stop her.
