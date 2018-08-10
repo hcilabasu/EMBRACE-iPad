@@ -305,6 +305,7 @@
     else if( language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
     }
+    filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     
    // filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     //Get xml data of the toc file

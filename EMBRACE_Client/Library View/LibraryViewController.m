@@ -630,7 +630,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
                 else if ([currentMode interventionType] == ITSPM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
-                    conditionSetup.currentMode = ITSPM_MODE;
+                    //conditionSetup.currentMode = ITSPM_MODE;
+                    //Shang: Chile
+                    conditionSetup.currentMode = PM_MODE;
                     conditionSetup.appMode = ITS;
                 }
                 else if ([currentMode interventionType] == ITSIM_INTERVENTION) {
@@ -739,6 +741,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         BookHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"BookHeaderView" forIndexPath:indexPath];
         
         NSString *title;
+       
 
         //Books
         if (showBooks) {
@@ -753,7 +756,12 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header2"];
         }
         
+    
+        
         headerView.bookTitle.text = title;
+        if ([title rangeOfString:@"How Objects Move"].location != NSNotFound) {
+            headerView.bookTitle.text=@"¿Cómo Se Mueven Los Objetos?";
+        }
         
         reusableview = headerView;
     }

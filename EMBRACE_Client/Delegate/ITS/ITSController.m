@@ -218,6 +218,9 @@ static ITSController *sharedInstance = nil;
     }else if (ITS_COMPLEX == condition.ITSComplexity){
         complexity = EM_Complex;
     }
+    
+    //set all sentence to Medium
+    complexity = EM_Medium;
     _currentComplexity = complexity;
     
 

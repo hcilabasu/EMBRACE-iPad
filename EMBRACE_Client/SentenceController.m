@@ -144,8 +144,9 @@
                 !( [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"])) {
                 
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
-                [self.manipulationView removeAllSentences];
-                [self addSentencesWithComplexity:mvc.currentComplexityLevel];
+                //Shang: disable for Chile Study
+                //[self.manipulationView removeAllSentences];
+                //[self addSentencesWithComplexity:mvc.currentComplexityLevel];
             }
         }
     }
@@ -324,6 +325,9 @@
  *  Translation dictionary
  */
 - (NSString *)getEnglishTranslation:(NSString *)sentence {
+    //Shang: disable Translation
+    return sentence;
+    
     NSObject *englishTranslations = [[Translation translationWordsSpanish]objectForKey:sentence];
     
     if (englishTranslations != nil && [englishTranslations isKindOfClass:[NSArray class]]) {

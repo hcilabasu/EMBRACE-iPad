@@ -97,17 +97,17 @@
         }
     }
     
-    else if ([participantCode rangeOfString:@"BKB"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"BKB"][1] length] == 3) {
+    else if ([participantCode rangeOfString:@"VCL"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"VCL"][1] length] == 3) {
         numSequences = 4;
         
         //Get number at end of participant code and match it to appropriate sequence
-        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"BKB"][1] integerValue] % numSequences;
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"VCL"][1] integerValue] % numSequences;
         
         if (sequenceNumber == 0) {
-            adjustedParticipantCode = [NSString stringWithFormat:@"BKB004"];
+            adjustedParticipantCode = [NSString stringWithFormat:@"VCL004"];
         }
         else {
-            adjustedParticipantCode = [NSString stringWithFormat:@"BKB00%d", sequenceNumber];
+            adjustedParticipantCode = [NSString stringWithFormat:@"VCL00%d", sequenceNumber];
         }
     }
     

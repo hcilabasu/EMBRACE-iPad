@@ -1111,6 +1111,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //if audioPlayer is nil then we have returned to library view and should not play audio
         if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
+            //Shang: comment English Vocab for Spanish Study
+            /*
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],DEF_E]];
             
             if (!success) {
@@ -1121,7 +1123,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
             }
-            
+            */
             [self highlightImageForText:englishTappedWord];
             
             sentenceContext.currentSentence++;
@@ -1884,6 +1886,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     // Highlight correct objects
     else {
+        if(!currSolStep){
+            return;
+        }
         NSString *object1Id = [currSolStep object1Id];
         NSString *object2Id = [currSolStep object2Id];
         
@@ -2879,7 +2884,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]){
             [self.playaudioClass playAudioInSequence:@[@"thereismoreS.mp3"] :self];
         }else{
-            [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+            [self.playaudioClass playAudioInSequence:@[@"thereismoreS.mp3"] :self];
         }
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];

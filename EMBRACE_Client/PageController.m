@@ -285,6 +285,15 @@
  * Displays the assessment activity view controller
  */
 - (void)loadAssessmentActivity {
+
+    
+    //Set chapter as completed
+    [[(LibraryViewController *)self.mvc.libraryViewController studentProgress] setStatusOfChapter:self.chapterTitle :COMPLETED fromBook:self.bookTitle];
+    
+    [[ServerCommunicationController sharedInstance] createNewLogFile];
+    [self.mvc.navigationController popToViewController:self.mvc.libraryViewController animated:YES];
+    
+    /*
     UIImage *background = [mvc getBackgroundImage];
     
     //TODO: Remove hard coded workaround and find way to have same functionality
@@ -306,7 +315,7 @@
     }
     else{
         //TODO: Log fatal error and return to library view
-    }
+    }*/
 }
 
 @end

@@ -56,7 +56,7 @@
             sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%ldS.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2];
         }
         else {
-            sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%ldE.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2 ];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%ldS.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2 ];
         }
     }
     
@@ -243,7 +243,7 @@
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2 ];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", parentManipulaitonCtr.sentenceContext.currentSentence - 2 ];
             }
         }
         
@@ -454,7 +454,7 @@
                         audio = @"IntroReadNextChapter";
                     }
                     audio = [NSString stringWithFormat:@"%@.mp3",audio];
-                    preAudio = [NSArray arrayWithObjects:audio, spanishAudio, nil];
+                    preAudio = [NSArray arrayWithObjects: spanishAudio, nil];
                     
                 }
             }

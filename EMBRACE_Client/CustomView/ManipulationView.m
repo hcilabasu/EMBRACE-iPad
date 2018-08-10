@@ -352,7 +352,9 @@
 }
 
 - (void)addVocabularyWithID:(NSInteger)vocabID englishText:(NSString *)engText spanishText:(NSString *)spanText {
-    NSString *addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", vocabID, engText, spanText];
+    
+    //Shang: disable English vocab  NSString *addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", vocabID, engText, spanText];
+     NSString *addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", vocabID, engText, spanText];
     [self.bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
 }
 

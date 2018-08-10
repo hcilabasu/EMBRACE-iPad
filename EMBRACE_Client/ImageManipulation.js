@@ -1065,13 +1065,13 @@ function addVocabulary(sentenceID, englishText, spanishText) {
         newSentence.appendChild(newSpanishVocabulary);
         
         var divider = document.createElement("a");
-        
+        /*
         divider.className = "divider";
         divider.innerHTML = "&nbsp;/&nbsp;";
         
-        newSentence.appendChild(divider);
+        newSentence.appendChild(divider);*/
     }
-    
+    /*
     var newEnglishVocabulary = document.createElement("a");
     
     newEnglishVocabulary.className = "audible";
@@ -1079,9 +1079,10 @@ function addVocabulary(sentenceID, englishText, spanishText) {
     newEnglishVocabulary.innerHTML = englishText[0].toUpperCase() + englishText.slice(1);
     
     newSentence.appendChild(newEnglishVocabulary);
-    
+    */
     textboxCol.appendChild(newSentence);
 }
+
 
 function getTextAtLocation(x, y) {
     var element = document.elementFromPoint(x, y);

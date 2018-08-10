@@ -202,6 +202,7 @@
         if (sentenceContext.currentSentence > 0) {
             currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
         }
+       currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentSentence];
     }
     else {
         if (conditionSetup.condition == CONTROL) {
@@ -212,7 +213,9 @@
                     currSolSteps = [stepContext.ITSPMSolution getStepsForSentence:sentenceContext.currentIdea];
             }
             else if(conditionSetup.currentMode == ITSPM_MODE && [pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound){
-                currSolSteps = [stepContext.ITSPMSolution getStepsForSentence:sentenceContext.currentSentence];
+               // currSolSteps = [stepContext.ITSPMSolution getStepsForSentence:sentenceContext.currentSentence];
+                //Shang: Chile Study
+                 currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentSentence];
             }
             else if(conditionSetup.currentMode == PM_MODE){
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentSentence];
