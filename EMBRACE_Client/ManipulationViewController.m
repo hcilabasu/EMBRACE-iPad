@@ -1034,7 +1034,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
         
         //Play Sp audio then En auido
-        bool success = [self.playaudioClass playAudioInSequence:self :spanishAudio : engAudio];
+        //Shang: play only Spanish
+      //  bool success = [self.playaudioClass playAudioInSequence:self :spanishAudio : engAudio];
+        bool success = [self.playaudioClass playAudioFile:self :spanishAudio];
         
         if (!success) {
             NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, S];

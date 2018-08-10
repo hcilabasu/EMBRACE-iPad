@@ -326,7 +326,7 @@
  */
 - (NSString *)getEnglishTranslation:(NSString *)sentence {
     //Shang: disable Translation
-    return sentence;
+    
     
     NSObject *englishTranslations = [[Translation translationWordsSpanish]objectForKey:sentence];
     
