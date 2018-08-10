@@ -1807,7 +1807,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)showFeedback:(BOOL)showAlert {
     if (showAlert) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"¿Necesitas Ayuda? El iPad the mostrará como completar este paso." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
                                [self disableUserInteraction];
