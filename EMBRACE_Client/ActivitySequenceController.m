@@ -98,13 +98,13 @@
     }
     
     else if ([participantCode rangeOfString:@"VCL"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"VCL"][1] length] == 3) {
-        numSequences = 4;
+        numSequences = 5;
         
         //Get number at end of participant code and match it to appropriate sequence
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"VCL"][1] integerValue] % numSequences;
         
         if (sequenceNumber == 0) {
-            adjustedParticipantCode = [NSString stringWithFormat:@"VCL004"];
+            adjustedParticipantCode = [NSString stringWithFormat:@"VCL005"];
         }
         else {
             adjustedParticipantCode = [NSString stringWithFormat:@"VCL00%d", sequenceNumber];
