@@ -124,7 +124,7 @@
             <navLabel>
                 <text>Newton's Law of Acceleration on Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S).xhtml"/>
+            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-SO.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
