@@ -70,6 +70,14 @@
 			<text>Newton's First Law on Earth</text>
 		</navLabel>
 		<content src="Text/Story3-Newton's-First-Law-on-Earth-Title.xhtml"/>
+        
+        <navPoint class="PM_MODE" id="story3-Intro">
+            <navLabel>
+                <text>Newton's First Law - Intro</text>
+            </navLabel>
+            <content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml"/>
+        </navPoint>
+        
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
     		<text>Newton's First Law on Earth - PM</text>
@@ -95,6 +103,14 @@
 			<text>Newton's Second Law: Acceleration</text>
 		</navLabel>
 		<content src="Text/Story4-Newton's-Second-Law-Acceleration-Title.xhtml"/>
+        
+        <navPoint class="PM_MODE" id="story4-Intro">
+            <navLabel>
+                <text>Newton's First Law - Intro</text>
+            </navLabel>
+            <content src="Text/Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml"/>
+        </navPoint>
+        
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
     		<text>Newton's Second Law: Acceleration - PM</text>
@@ -182,6 +198,13 @@
 			<text>The Three Laws Work Together</text>
 		</navLabel>
 		<content src="Text/Story7-The-Three-Laws-Work-Together-Title.xhtml"/>
+        <navPoint class="PM_MODE" id="story7-Intro">
+            <navLabel>
+                <text>Newton's First Law - Intro</text>
+            </navLabel>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml"/>
+        </navPoint>
+        
         <navPoint class="PM_MODE" id="story7-PM-1">
             <navLabel>
                 <text>The Three Laws Work Together - PM</text>

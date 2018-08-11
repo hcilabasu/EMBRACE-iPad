@@ -1562,6 +1562,9 @@
 		565A9A8320FD409C00861BF0 /* sequences_EEG03.xml in Resources */ = {isa = PBXBuildFile; fileRef = 565A9A5F20FD409B00861BF0 /* sequences_EEG03.xml */; };
 		565A9A8420FD409C00861BF0 /* sequences_EEG02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 565A9A6020FD409B00861BF0 /* sequences_EEG02.xml */; };
 		565A9A8520FD409C00861BF0 /* sequences_EEG01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 565A9A6120FD409B00861BF0 /* sequences_EEG01.xml */; };
+		56848B2C211F8622005C652C /* Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56848B2B211F8621005C652C /* Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml */; };
+		56848B2E211F8627005C652C /* Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56848B2D211F8626005C652C /* Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml */; };
+		56848B30211F8677005C652C /* Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 56848B2F211F8677005C652C /* Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml */; };
 		568903CD211BA22500FAB84F /* sequences_VCL001.xml in Resources */ = {isa = PBXBuildFile; fileRef = 568903C8211BA22400FAB84F /* sequences_VCL001.xml */; };
 		568903CE211BA22500FAB84F /* sequences_VCL003.xml in Resources */ = {isa = PBXBuildFile; fileRef = 568903C9211BA22400FAB84F /* sequences_VCL003.xml */; };
 		568903CF211BA22500FAB84F /* sequences_VCL002.xml in Resources */ = {isa = PBXBuildFile; fileRef = 568903CA211BA22400FAB84F /* sequences_VCL002.xml */; };
@@ -8035,6 +8038,9 @@
 		565A9A5F20FD409B00861BF0 /* sequences_EEG03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG03.xml; sourceTree = "<group>"; };
 		565A9A6020FD409B00861BF0 /* sequences_EEG02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG02.xml; sourceTree = "<group>"; };
 		565A9A6120FD409B00861BF0 /* sequences_EEG01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG01.xml; sourceTree = "<group>"; };
+		56848B2B211F8621005C652C /* Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		56848B2D211F8626005C652C /* Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml"; sourceTree = "<group>"; };
+		56848B2F211F8677005C652C /* Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml"; sourceTree = "<group>"; };
 		568903C8211BA22400FAB84F /* sequences_VCL001.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_VCL001.xml; sourceTree = "<group>"; };
 		568903C9211BA22400FAB84F /* sequences_VCL003.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_VCL003.xml; sourceTree = "<group>"; };
 		568903CA211BA22400FAB84F /* sequences_VCL002.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_VCL002.xml; sourceTree = "<group>"; };
@@ -15251,6 +15257,8 @@
 				564F59702074522200C83F10 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1S.xhtml */,
 				564F59712074522200C83F10 /* Story1-How-do-Objects-Move-PM-1S.xhtml */,
 				564F59722074522200C83F10 /* Story3-Newton's-First-Law-on-Earth-PM-3.xhtml */,
+				56848B2D211F8626005C652C /* Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml */,
+				56848B2B211F8621005C652C /* Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml */,
 				564F59732074522200C83F10 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3S.xhtml */,
 				564F59742074522200C83F10 /* Story2-Newton's-First-Law-PM-2.xhtml */,
 				564F59752074522200C83F10 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */,
@@ -15260,6 +15268,7 @@
 				564F59792074522200C83F10 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-SO.xhtml */,
 				564F597A2074522200C83F10 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-1S.xhtml */,
 				564F597B2074522200C83F10 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */,
+				56848B2F211F8677005C652C /* Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml */,
 				564F597C2074522200C83F10 /* Story4-Newton's-Second-Law-Acceleration-PM-1.xhtml */,
 				564F597D2074522200C83F10 /* Story1-How-do-Objects-Move-Intro-E.xhtml */,
 				564F597E2074522200C83F10 /* Story3-Newton's-First-Law-on-Earth-PM-2S.xhtml */,
@@ -22297,6 +22306,7 @@
 				569E3B502075E73800385C09 /* TheLuckyStoneQ2A3S.mp3 in Resources */,
 				564F58972074521800C83F10 /* cribb_large_high_res.png in Resources */,
 				569E40E52075E73900385C09 /* Cilia_def_S.mp3 in Resources */,
+				56848B30211F8677005C652C /* Story7-The-Three-Laws-Work-Together-Intro-SO.xhtml in Resources */,
 				569E31302075E73500385C09 /* SwampsE.mp3 in Resources */,
 				569E31382075E73500385C09 /* ChickeesE.mp3 in Resources */,
 				569E35872075E73600385C09 /* 2ad996336b37f2be25bab1211f72082d.mp3 in Resources */,
@@ -23125,6 +23135,7 @@
 				569E331B2075E73600385C09 /* 090bdc68bce5a8c86a029bc04f59891b.mp3 in Resources */,
 				564F57302074520F00C83F10 /* dirt_move.png in Resources */,
 				569E317D2075E73500385C09 /* AlgonquianS.mp3 in Resources */,
+				56848B2E211F8627005C652C /* Story3-Newton's-First-Law-on-Earth-Intro-SO.xhtml in Resources */,
 				569E3E5E2075E73800385C09 /* BFEE_10B.m4a in Resources */,
 				569E3AF02075E73700385C09 /* WordsOfWisdomQ5.mp3 in Resources */,
 				569E2F052075E73500385C09 /* b5dee87ed1767f499741ca83afb799ea.mp3 in Resources */,
@@ -27011,6 +27022,7 @@
 				569E30912075E73500385C09 /* VolcanoesQ2A4.mp3 in Resources */,
 				569E34372075E73600385C09 /* AFriendinNeedQ3A1.mp3 in Resources */,
 				569E3F7A2075E73900385C09 /* Nest_def_E.mp3 in Resources */,
+				56848B2C211F8622005C652C /* Story4-Newton's-Second-Law-Acceleration-Intro-SO.xhtml in Resources */,
 				564F57A22074520F00C83F10 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml in Resources */,
 				569E3C8E2075E73800385C09 /* CleaningUpS7E.mp3 in Resources */,
 				564F4F97207450DB00C83F10 /* VocabularyIntroductions-MetaData.xml in Resources */,
