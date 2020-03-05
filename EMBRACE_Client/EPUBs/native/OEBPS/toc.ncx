@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+    <head>
+        <meta content="urn:uuid:eece7575-28d0-4489-9868-0084485e93e6" name="dtb:uid"/>
+        <meta content="0" name="dtb:depth"/>
+        <meta content="0" name="dtb:totalPageCount"/>
+        <meta content="0" name="dtb:maxPageNumber"/>
+    </head>
+    <docTitle>
+        <text>Intro to Native American Homes</text>
+    </docTitle>
+    <navMap>
+        <navPoint class="bookTitle" id="bookTitle">
+            <navLabel>
+                <text>Introduction to Native American Homes</text>
+            </navLabel>
+            <content src="Text/Introduction-to-Native-American-Homes-Title.xhtml"/>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter0Title" playOrder="0">
+            <navLabel>
+                <text>Introduction to Native American Homes</text>
+            </navLabel>
+            <content src="Text/Introduction-to-Native-American-Homes-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story0-Intro">
+                <navLabel>
+                    <text>Introduction to Native American Homes - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story0-PM">
+                <navLabel>
+                    <text>Introduction to Native American Homes - PM</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-PM.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story0-PM-2">
+                <navLabel>
+                    <text>Introduction to Native American Homes - PM</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-PM-2.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
+            <navLabel>
+                <text>The Navajo Hogan</text>
+            </navLabel>
+            <content src="Text/Story1-The-Navajo-Hogan-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story1-Intro">
+                <navLabel>
+                    <text>The Navajo Hogan - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-The-Navajo-Hogan-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-1">
+                <navLabel>
+                    <text>The Navajo Hogan - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-2">
+                <navLabel>
+                    <text>The Navajo Hogan - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-3">
+                <navLabel>
+                    <text>The Navajo Hogan - PM</text>
+                </navLabel>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-3.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
+            <navLabel>
+                <text>The Inuit Igloo</text>
+            </navLabel>
+            <content src="Text/Story2-The-Inuit-Igloo-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story2-Intro">
+                <navLabel>
+                    <text>The Inuit Igloo - Intro</text>
+                </navLabel>
+                <content src="Text/Story2-The-Inuit-Igloo-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-1">
+                <navLabel>
+                    <text>The Inuit Igloo - PM</text>
+                </navLabel>
+                <content src="Text/Story2-The-Inuit-Igloo-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-2">
+                <navLabel>
+                    <text>The Inuit Igloo - PM</text>
+                </navLabel>
+                <content src="Text/Story2-The-Inuit-Igloo-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-3">
+                <navLabel>
+                    <text>The Inuit Igloo - PM</text>
+                </navLabel>
+                <content src="Text/Story2-The-Inuit-Igloo-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story2-PM-4">
+                <navLabel>
+                    <text>The Inuit Igloo - PM</text>
+                </navLabel>
+                <content src="Text/Story2-The-Inuit-Igloo-PM-4.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
+            <navLabel>
+                <text>The Sioux Teepee</text>
+            </navLabel>
+            <content src="Text/Story3-The-Sioux-Teepee-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story3-Intro">
+                <navLabel>
+                    <text>The Sioux Teepee - Intro</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-1">
+                <navLabel>
+                    <text>The Sioux Teepee - PM</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-2">
+                <navLabel>
+                    <text>The Sioux Teepee - PM</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-3">
+                <navLabel>
+                    <text>The Sioux Teepee - PM</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-4">
+                <navLabel>
+                    <text>The Sioux Teepee - PM</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-PM-4.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-5">
+                <navLabel>
+                    <text>The Sioux Teepee - PM</text>
+                </navLabel>
+                <content src="Text/Story3-The-Sioux-Teepee-PM-5.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
+            <navLabel>
+                <text>The Algonquian Wigwam</text>
+            </navLabel>
+            <content src="Text/Story4-The-Algonquian-Wigwam-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story4-Intro">
+                <navLabel>
+                    <text>The Algonquian Wigwam - Intro</text>
+                </navLabel>
+                <content src="Text/Story4-The-Algonquian-Wigwam-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-1">
+                <navLabel>
+                    <text>The Algonquian Wigwam - PM</text>
+                </navLabel>
+                <content src="Text/Story4-The-Algonquian-Wigwam-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-2">
+                <navLabel>
+                    <text>The Algonquian Wigwam - PM</text>
+                </navLabel>
+                <content src="Text/Story4-The-Algonquian-Wigwam-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-3">
+                <navLabel>
+                    <text>The Algonquian Wigwam - PM</text>
+                </navLabel>
+                <content src="Text/Story4-The-Algonquian-Wigwam-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-4">
+                <navLabel>
+                    <text>The Algonquian Wigwam - PM</text>
+                </navLabel>
+                <content src="Text/Story4-The-Algonquian-Wigwam-PM-4.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
+            <navLabel>
+                <text>The Haida Plank House</text>
+            </navLabel>
+            <content src="Text/Story5-The-Haida-Plank-House-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story5-Intro">
+                <navLabel>
+                    <text>The Haida Plank House - Intro</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-1">
+                <navLabel>
+                    <text>The Haida Plank House - PM</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-2">
+                <navLabel>
+                    <text>The Haida Plank House - PM</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-3">
+                <navLabel>
+                    <text>The Haida Plank House - PM</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-4">
+                <navLabel>
+                    <text>The Haida Plank House - PM</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-PM-4.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-5">
+                <navLabel>
+                    <text>The Haida Plank House - PM</text>
+                </navLabel>
+                <content src="Text/Story5-The-Haida-Plank-House-PM-5.xhtml"/>
+            </navPoint>
+        </navPoint>
+        
+        <navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
+            <navLabel>
+                <text>The Seminole Chickee</text>
+            </navLabel>
+            <content src="Text/Story6-The-Seminole-Chickee-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story6-Intro">
+                <navLabel>
+                    <text>The Seminole Chickee - Intro</text>
+                </navLabel>
+                <content src="Text/Story6-The-Seminole-Chickee-Intro-S.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story6-PM-1">
+                <navLabel>
+                    <text>The Seminole Chickee - PM</text>
+                </navLabel>
+                <content src="Text/Story6-The-Seminole-Chickee-PM-1.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story6-PM-2">
+                <navLabel>
+                    <text>The Seminole Chickee - PM</text>
+                </navLabel>
+                <content src="Text/Story6-The-Seminole-Chickee-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story6-PM-3">
+                <navLabel>
+                    <text>The Seminole Chickee - PM</text>
+                </navLabel>
+                <content src="Text/Story6-The-Seminole-Chickee-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story6-PM-4">
+                <navLabel>
+                    <text>The Seminole Chickee - PM</text>
+                </navLabel>
+                <content src="Text/Story6-The-Seminole-Chickee-PM-4.xhtml"/>
+            </navPoint>
+        </navPoint>
+
+        
+    </navMap>
+    <pageList>
+    </pageList>
+</ncx>

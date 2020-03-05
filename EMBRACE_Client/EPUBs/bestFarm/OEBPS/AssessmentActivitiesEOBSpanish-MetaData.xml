@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+                <Questions title="The Best Farm">
+                    <Question number="1">
+                        <QuestionText>Cómo se llama el granjero?</QuestionText>
+                        <QuestionAudio>TheContestQ1S.mp3</QuestionAudio>
+                        <Answer1>Manuel</Answer1>
+                        <Answer1Audio>TheContestQ1A1S.mp3</Answer1Audio>
+                        <expectedSelection>Manuel</expectedSelection>
+                        <Answer2>Ben</Answer2>
+                        <Answer2Audio>TheContestQ1A2S.mp3</Answer2Audio>
+                        <Answer3>David</Answer3>
+                        <Answer3Audio>TheContestQ1A3S.mp3</Answer3Audio>
+                        <Answer4>Betty</Answer4>
+                        <Answer4Audio>TheContestQ1A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="2">
+                        <QuestionText>Qué día viene la juez?</QuestionText>
+                        <QuestionAudio>TheContestQ2S.mp3</QuestionAudio>
+                        <Answer1>Domingo</Answer1>
+                        <Answer1Audio>TheContestQ2A1S.mp3</Answer1Audio>
+                        <expectedSelection>Domingo</expectedSelection>
+                        <Answer2>Lunes</Answer2>
+                        <Answer2Audio>TheContestQ2A2S.mp3</Answer2Audio>
+                        <Answer3>Martes</Answer3>
+                        <Answer3Audio>TheContestQ2A3S.mp3</Answer3Audio>
+                        <Answer4>En Navidad</Answer4>
+                        <Answer4Audio>TheContestQ2A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="3">
+                        <QuestionText>Qué animal saltó a los brazos de Manuel?</QuestionText>
+                        <QuestionAudio>TheContestQ3S.mp3</QuestionAudio>
+                        <Answer1>La gata</Answer1>
+                        <Answer1Audio>TheContestQ3A1S.mp3</Answer1Audio>
+                        <expectedSelection>La gata</expectedSelection>
+                        <Answer2>La gallina</Answer2>
+                        <Answer2Audio>TheContestQ3A2S.mp3</Answer2Audio>
+                        <Answer3>El búho</Answer3>
+                        <Answer3Audio>TheContestQ3A3S.mp3</Answer3Audio>
+                        <Answer4>El hipopótamo</Answer4>
+                        <Answer4Audio>TheContestQ3A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="4">
+                        <QuestionText>En qué animal se sentó la gallina?</QuestionText>
+                        <QuestionAudio>TheContestQ4S.mp3</QuestionAudio>
+                        <Answer1>La vaca</Answer1>
+                        <Answer1Audio>TheContestQ4A1S.mp3</Answer1Audio>
+                        <expectedSelection>La vaca</expectedSelection>
+                        <Answer2>La cabra</Answer2>
+                        <Answer2Audio>TheContestQ4A2S.mp3</Answer2Audio>
+                        <Answer3>El caballo</Answer3>
+                        <Answer3Audio>TheContestQ4A3S.mp3</Answer3Audio>
+                        <Answer4>El bicho</Answer4>
+                        <Answer4Audio>TheContestQ4A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="5">
+                        <QuestionText>Por qué Manuel quiere trabajar duro esta semana?</QuestionText>
+                        <QuestionAudio>TheContestQ5S.mp3</QuestionAudio>
+                        <Answer1>Para ganar el premio de la mejor granja</Answer1>
+                        <Answer1Audio>TheContestQ5A1S.mp3</Answer1Audio>
+                        <expectedSelection>Para ganar el premio de la mejor granja</expectedSelection>
+                        <Answer2>Para hacer un picnic</Answer2>
+                        <Answer2Audio>TheContestQ5A2S.mp3</Answer2Audio>
+                        <Answer3>Para ganar dinero</Answer3>
+                        <Answer3Audio>TheContestQ5A3S.mp3</Answer3Audio>
+                        <Answer4>Porque su papá le dijo</Answer4>
+                        <Answer4Audio>TheContestQ5A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="6">
+                        <QuestionText>Después de que la cabra se acercó a la vaca, qué otro animal estaba cerca?</QuestionText>
+                        <QuestionAudio>TheContestQ6S.mp3</QuestionAudio>
+                        <Answer1>El caballo</Answer1>
+                        <Answer1Audio>TheContestQ6A1S.mp3</Answer1Audio>
+                        <expectedSelection>El caballo</expectedSelection>
+                        <Answer2>El cerdo</Answer2>
+                        <Answer2Audio>TheContestQ6A2S.mp3</Answer2Audio>
+                        <Answer3>El búho</Answer3>
+                        <Answer3Audio>TheContestQ6A3S.mp3</Answer3Audio>
+                        <Answer4>La cebra</Answer4>
+                        <Answer4Audio>TheContestQ6A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="7">
+                        <QuestionText>Cómo salió la cabra de su cuarto?</QuestionText>
+                        <QuestionAudio>TheContestQ7S.mp3</QuestionAudio>
+                        <Answer1>Manuel le abrió</Answer1>
+                        <Answer1Audio>TheContestQ7A1S.mp3</Answer1Audio>
+                        <expectedSelection>Manuel le abrió</expectedSelection>
+                        <Answer2>La cabra salió saltando</Answer2>
+                        <Answer2Audio>TheContestQ7A2S.mp3</Answer2Audio>
+                        <Answer3>La gallina le abrió</Answer3>
+                        <Answer3Audio>TheContestQ7A3S.mp3</Answer3Audio>
+                        <Answer4>El cuarto se desapareció</Answer4>
+                        <Answer4Audio>TheContestQ7A4S.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="8">
+                        <QuestionText>How does the milk help the cat's fur?</QuestionText>
+                        <QuestionAudio>GettingReadyQ1.mp3</QuestionAudio>
+                        <Answer1>The milk makes her fur shiny</Answer1>
+                        <Answer1Audio>GettingReadyQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>The milk makes her fur shiny</expectedSelection>
+                        <Answer2>The milk cleans her fur</Answer2>
+                        <Answer2Audio>GettingReadyQ1A2.mp3</Answer2Audio>
+                        <Answer3>The milk helps her fur to grow</Answer3>
+                        <Answer3Audio>GettingReadyQ1A3.mp3</Answer3Audio>
+                        <Answer4>The milk makes her fur fall out</Answer4>
+                        <Answer4Audio>GettingReadyQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="9">
+                        <QuestionText>How does eating an apple help the horse's teeth?</QuestionText>
+                        <QuestionAudio>GettingReadyQ2.mp3</QuestionAudio>
+                        <Answer1>Eating an apple cleans the horse's teeth</Answer1>
+                        <Answer1Audio>GettingReadyQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>Eating an apple cleans the horse's teeth</expectedSelection>
+                        <Answer2>Eating an apple makes the horse's teeth dirty</Answer2>
+                        <Answer2Audio>GettingReadyQ2A2.mp3</Answer2Audio>
+                        <Answer3>Eating an apple makes the horse's teeth stronger</Answer3>
+                        <Answer3Audio>GettingReadyQ2A3.mp3</Answer3Audio>
+                        <Answer4>Eating an apple gives the horse bad breath</Answer4>
+                        <Answer4Audio>GettingReadyQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="10">
+                        <QuestionText>How did Manuel help the goat to look good?</QuestionText>
+                        <QuestionAudio>GettingReadyQ3.mp3</QuestionAudio>
+                        <Answer1>Manuel brushed the goat's fur</Answer1>
+                        <Answer1Audio>GettingReadyQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>Manuel brushed the goat's fur</expectedSelection>
+                        <Answer2>Manuel gave the goat a pumpkin</Answer2>
+                        <Answer2Audio>GettingReadyQ3A2.mp3</Answer2Audio>
+                        <Answer3>Manuel carried the milk bucket to the goat</Answer3>
+                        <Answer3Audio>GettingReadyQ3A3.mp3</Answer3Audio>
+                        <Answer4>Manuel painted the goat's hooves</Answer4>
+                        <Answer4Audio>GettingReadyQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="11">
+                        <QuestionText>Which animal drank the milk?</QuestionText>
+                        <QuestionAudio>GettingReadyQ4.mp3</QuestionAudio>
+                        <Answer1>Cat</Answer1>
+                        <Answer1Audio>GettingReadyQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Cat</expectedSelection>
+                        <Answer2>Pig</Answer2>
+                        <Answer2Audio>GettingReadyQ4A2.mp3</Answer2Audio>
+                        <Answer3>Goat</Answer3>
+                        <Answer3Audio>GettingReadyQ4A3.mp3</Answer3Audio>
+                        <Answer4>Goldfish</Answer4>
+                        <Answer4Audio>GettingReadyQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="12">
+                        <QuestionText>What did Manuel put in the cart?</QuestionText>
+                        <QuestionAudio>GettingReadyQ5.mp3</QuestionAudio>
+                        <Answer1>Pumpkin</Answer1>
+                        <Answer1Audio>GettingReadyQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>Pumpkin</expectedSelection>
+                        <Answer2>Apple</Answer2>
+                        <Answer2Audio>GettingReadyQ5A2.mp3</Answer2Audio>
+                        <Answer3>Milk bucket</Answer3>
+                        <Answer3Audio>GettingReadyQ5A3.mp3</Answer3Audio>
+                        <Answer4>Candy</Answer4>
+                        <Answer4Audio>GettingReadyQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="13">
+                        <QuestionText>Why did Manuel want the animals to look good?</QuestionText>
+                        <QuestionAudio>GettingReadyQ6.mp3</QuestionAudio>
+                        <Answer1>To win the prize for best farm</Answer1>
+                        <Answer1Audio>GettingReadyQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>To win the prize for best farm</expectedSelection>
+                        <Answer2>To take a picture</Answer2>
+                        <Answer2Audio>GettingReadyQ6A2.mp3</Answer2Audio>
+                        <Answer3>To win the raffle</Answer3>
+                        <Answer3Audio>GettingReadyQ6A3.mp3</Answer3Audio>
+                        <Answer4>To bring them to the ballet</Answer4>
+                        <Answer4Audio>GettingReadyQ6A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="14">
+                        <QuestionText>Why did Manuel put the pumpkin in the cart?</QuestionText>
+                        <QuestionAudio>GettingReadyQ7.mp3</QuestionAudio>
+                        <Answer1>To give to the pig</Answer1>
+                        <Answer1Audio>GettingReadyQ7A1.mp3</Answer1Audio>
+                        <expectedSelection>To give to the pig</expectedSelection>
+                        <Answer2>To give to the horse</Answer2>
+                        <Answer2Audio>GettingReadyQ7A2.mp3</Answer2Audio>
+                        <Answer3>To show the judge</Answer3>
+                        <Answer3Audio>GettingReadyQ7A3.mp3</Answer3Audio>
+                        <Answer4>To carve for Halloween</Answer4>
+                        <Answer4Audio>GettingReadyQ7A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="15">
+                        <QuestionText>Why did Manuel want the farm to be clean?</QuestionText>
+                        <QuestionAudio>CleaningUpQ1.mp3</QuestionAudio>
+                        <Answer1>To win the Best Farm Award</Answer1>
+                        <Answer1Audio>CleaningUpQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>To win the Best Farm Award</expectedSelection>
+                        <Answer2>For a picture</Answer2>
+                        <Answer2Audio>CleaningUpQ1A2.mp3</Answer2Audio>
+                        <Answer3>To make it safer</Answer3>
+                        <Answer3Audio>CleaningUpQ1A3.mp3</Answer3Audio>
+                        <Answer4>Because it was stinky</Answer4>
+                        <Answer4Audio>CleaningUpQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="16">
+                        <QuestionText>Why did Manuel put some animals into the corral?</QuestionText>
+                        <QuestionAudio>CleaningUpQ2.mp3</QuestionAudio>
+                        <Answer1>So he can clean better</Answer1>
+                        <Answer1Audio>CleaningUpQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>So he can clean better</expectedSelection>
+                        <Answer2>To feed them</Answer2>
+                        <Answer2Audio>CleaningUpQ2A2.mp3</Answer2Audio>
+                        <Answer3>So they could sleep</Answer3>
+                        <Answer3Audio>CleaningUpQ2A3.mp3</Answer3Audio>
+                        <Answer4>Because they were fighting</Answer4>
+                        <Answer4Audio>CleaningUpQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="17">
+                        <QuestionText>Where did Manuel put the pig?</QuestionText>
+                        <QuestionAudio>CleaningUpQ3.mp3</QuestionAudio>
+                        <Answer1>In its pen</Answer1>
+                        <Answer1Audio>CleaningUpQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>In its pen</expectedSelection>
+                        <Answer2>In the corral</Answer2>
+                        <Answer2Audio>CleaningUpQ3A2.mp3</Answer2Audio>
+                        <Answer3>In the cart</Answer3>
+                        <Answer3Audio>CleaningUpQ3A3.mp3</Answer3Audio>
+                        <Answer4>On the roof</Answer4>
+                        <Answer4Audio>CleaningUpQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="18">
+                        <QuestionText>What did Manuel check the pumpkins for?</QuestionText>
+                        <QuestionAudio>CleaningUpQ4.mp3</QuestionAudio>
+                        <Answer1>Weeds</Answer1>
+                        <Answer1Audio>CleaningUpQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Weeds</expectedSelection>
+                        <Answer2>Hay</Answer2>
+                        <Answer2Audio>CleaningUpQ4A2.mp3</Answer2Audio>
+                        <Answer3>Mold</Answer3>
+                        <Answer3Audio>CleaningUpQ4A3.mp3</Answer3Audio>
+                        <Answer4>Bubbles</Answer4>
+                        <Answer4Audio>CleaningUpQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="19">
+                        <QuestionText>Where did Manuel put the hay?</QuestionText>
+                        <QuestionAudio>CleaningUpQ5.mp3</QuestionAudio>
+                        <Answer1>In the hayloft</Answer1>
+                        <Answer1Audio>CleaningUpQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>In the hayloft</expectedSelection>
+                        <Answer2>In the corral</Answer2>
+                        <Answer2Audio>CleaningUpQ5A2.mp3</Answer2Audio>
+                        <Answer3>In the chicken's nest</Answer3>
+                        <Answer3Audio>CleaningUpQ5A3.mp3</Answer3Audio>
+                        <Answer4>In his mouth</Answer4>
+                        <Answer4Audio>CleaningUpQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="20">
+                        <QuestionText>At the end of the story, how did Manuel feel?</QuestionText>
+                        <QuestionAudio>CleaningUpQ6.mp3</QuestionAudio>
+                        <Answer1>Hurt</Answer1>
+                        <Answer1Audio>CleaningUpQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>Hurt</expectedSelection>
+                        <Answer2>Happy</Answer2>
+                        <Answer2Audio>CleaningUpQ6A2.mp3</Answer2Audio>
+                        <Answer3>Hungry</Answer3>
+                        <Answer3Audio>CleaningUpQ6A3.mp3</Answer3Audio>
+                        <Answer4>Like singing</Answer4>
+                        <Answer4Audio>CleaningUpQ6A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="21">
+                        <QuestionText>Why couldn't the cat purr?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ1.mp3</QuestionAudio>
+                        <Answer1>She was thirsty</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>She was thirsty</expectedSelection>
+                        <Answer2>She was hurt</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ1A2.mp3</Answer2Audio>
+                        <Answer3>She was tired</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ1A3.mp3</Answer3Audio>
+                        <Answer4>There was a frog in her throat</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="22">
+                        <QuestionText>Which animal ate the apple?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ2.mp3</QuestionAudio>
+                        <Answer1>Goat</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>Goat</expectedSelection>
+                        <Answer2>Horse</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ2A2.mp3</Answer2Audio>
+                        <Answer3>Cow</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ2A3.mp3</Answer3Audio>
+                        <Answer4>Worm</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="23">
+                        <QuestionText>Which animal ate the hay?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ3.mp3</QuestionAudio>
+                        <Answer1>Horse</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>Horse</expectedSelection>
+                        <Answer2>Cow</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ3A2.mp3</Answer2Audio>
+                        <Answer3>Chicken</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ3A3.mp3</Answer3Audio>
+                        <Answer4>Donkey</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="24">
+                        <QuestionText>What did the chicken want the cat to do?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ4.mp3</QuestionAudio>
+                        <Answer1>Purr</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Purr</expectedSelection>
+                        <Answer2>Drink milk</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ4A2.mp3</Answer2Audio>
+                        <Answer3>Bring an apple</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ4A3.mp3</Answer3Audio>
+                        <Answer4>Catch the mouse</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="25">
+                        <QuestionText>Which animal jumped up to the chicken's nest?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ5.mp3</QuestionAudio>
+                        <Answer1>Cat</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>Cat</expectedSelection>
+                        <Answer2>Goat</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ5A2.mp3</Answer2Audio>
+                        <Answer3>Owl</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ5A3.mp3</Answer3Audio>
+                        <Answer4>Giraffe</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="26">
+                        <QuestionText>Which animal was near the hay?</QuestionText>
+                        <QuestionAudio>WhoIsTheBestAnimalQ6.mp3</QuestionAudio>
+                        <Answer1>Horse</Answer1>
+                        <Answer1Audio>WhoIsTheBestAnimalQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>Horse</expectedSelection>
+                        <Answer2>Cow</Answer2>
+                        <Answer2Audio>WhoIsTheBestAnimalQ6A2.mp3</Answer2Audio>
+                        <Answer3>Chicken</Answer3>
+                        <Answer3Audio>WhoIsTheBestAnimalQ6A3.mp3</Answer3Audio>
+                        <Answer4>Monkey</Answer4>
+                        <Answer4Audio>WhoIsTheBestAnimalQ6A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="27">
+                        <QuestionText>Who called the owl?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ1.mp3</QuestionAudio>
+                        <Answer1>Farmer Manuel</Answer1>
+                        <Answer1Audio>TheWiseOwlQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>Farmer Manuel</expectedSelection>
+                        <Answer2>Chicken</Answer2>
+                        <Answer2Audio>TheWiseOwlQ1A2.mp3</Answer2Audio>
+                        <Answer3>Pig</Answer3>
+                        <Answer3Audio>TheWiseOwlQ1A3.mp3</Answer3Audio>
+                        <Answer4>Teacher</Answer4>
+                        <Answer4Audio>TheWiseOwlQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="28">
+                        <QuestionText>Why was the chicken sad?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ2.mp3</QuestionAudio>
+                        <Answer1>Because she couldn't be the best with only one egg</Answer1>
+                        <Answer1Audio>TheWiseOwlQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>Because she couldn't be the best with only one egg</expectedSelection>
+                        <Answer2>Because she was hungry</Answer2>
+                        <Answer2Audio>TheWiseOwlQ2A2.mp3</Answer2Audio>
+                        <Answer3>Because she couldn't get to the pumpkins</Answer3>
+                        <Answer3Audio>TheWiseOwlQ2A3.mp3</Answer3Audio>
+                        <Answer4>Because she misses her mom</Answer4>
+                        <Answer4Audio>TheWiseOwlQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="29">
+                        <QuestionText>Which animal did the owl fly to first?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ3.mp3</QuestionAudio>
+                        <Answer1>Chicken</Answer1>
+                        <Answer1Audio>TheWiseOwlQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>Chicken</expectedSelection>
+                        <Answer2>Pig</Answer2>
+                        <Answer2Audio>TheWiseOwlQ3A2.mp3</Answer2Audio>
+                        <Answer3>Cat</Answer3>
+                        <Answer3Audio>TheWiseOwlQ3A3.mp3</Answer3Audio>
+                        <Answer4>Puppy</Answer4>
+                        <Answer4Audio>TheWiseOwlQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="30">
+                        <QuestionText>What did the chicken do when the owl visited?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ4.mp3</QuestionAudio>
+                        <Answer1>Flew to her nest to count her eggs</Answer1>
+                        <Answer1Audio>TheWiseOwlQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Flew to her nest to count her eggs</expectedSelection>
+                        <Answer2>Hopped on the cow's back</Answer2>
+                        <Answer2Audio>TheWiseOwlQ4A2.mp3</Answer2Audio>
+                        <Answer3>Flew to the pig</Answer3>
+                        <Answer3Audio>TheWiseOwlQ4A3.mp3</Answer3Audio>
+                        <Answer4>Did the chicken dance</Answer4>
+                        <Answer4Audio>TheWiseOwlQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="31">
+                        <QuestionText>Why couldn't the pig eat pumpkins?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ5.mp3</QuestionAudio>
+                        <Answer1>He was locked in his pen</Answer1>
+                        <Answer1Audio>TheWiseOwlQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>He was locked in his pen</expectedSelection>
+                        <Answer2>He was thirsty</Answer2>
+                        <Answer2Audio>TheWiseOwlQ5A2.mp3</Answer2Audio>
+                        <Answer3>He only had one egg</Answer3>
+                        <Answer3Audio>TheWiseOwlQ5A3.mp3</Answer3Audio>
+                        <Answer4>He was on a diet</Answer4>
+                        <Answer4Audio>TheWiseOwlQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="32">
+                        <QuestionText>Who did the owl talk to last?</QuestionText>
+                        <QuestionAudio>TheWiseOwlQ6.mp3</QuestionAudio>
+                        <Answer1>Farmer Manuel</Answer1>
+                        <Answer1Audio>TheWiseOwlQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>Farmer Manuel</expectedSelection>
+                        <Answer2>Pig</Answer2>
+                        <Answer2Audio>TheWiseOwlQ6A2.mp3</Answer2Audio>
+                        <Answer3>Chicken</Answer3>
+                        <Answer3Audio>TheWiseOwlQ6A3.mp3</Answer3Audio>
+                        <Answer4>Queen Elsa</Answer4>
+                        <Answer4Audio>TheWiseOwlQ6A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="33">
+                        <QuestionText>Which animal pushed hay to the cow?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ1.mp3</QuestionAudio>
+                        <Answer1>Horse</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>Horse</expectedSelection>
+                        <Answer2>Cow</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ1A2.mp3</Answer2Audio>
+                        <Answer3>Pig</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ1A3.mp3</Answer3Audio>
+                        <Answer4>Ninja Turtle</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="34">
+                        <QuestionText>At the beginning of the story, which animal wanted to eat a pumpkin?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ2.mp3</QuestionAudio>
+                        <Answer1>Pig</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>Pig</expectedSelection>
+                        <Answer2>Horse</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ2A2.mp3</Answer2Audio>
+                        <Answer3>Cow</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ2A3.mp3</Answer3Audio>
+                        <Answer4>Lizard</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="35">
+                        <QuestionText>What did the pig bring to the horse?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ3.mp3</QuestionAudio>
+                        <Answer1>Apple</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>Apple</expectedSelection>
+                        <Answer2>Pumpkin</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ3A2.mp3</Answer2Audio>
+                        <Answer3>Milk bucket</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ3A3.mp3</Answer3Audio>
+                        <Answer4>Milkshake</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="36">
+                        <QuestionText>Who called the cat to drink milk from the bucket?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ4.mp3</QuestionAudio>
+                        <Answer1>Cow</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Cow</expectedSelection>
+                        <Answer2>Chicken</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ4A2.mp3</Answer2Audio>
+                        <Answer3>Horse</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ4A3.mp3</Answer3Audio>
+                        <Answer4>Batman</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="37">
+                        <QuestionText>What did the chicken do after listening to the cat purr?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ5.mp3</QuestionAudio>
+                        <Answer1>Laid eggs</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>Laid eggs</expectedSelection>
+                        <Answer2>Opened the pig's pen</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ5A2.mp3</Answer2Audio>
+                        <Answer3>Pushed the hay to the cow</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ5A3.mp3</Answer3Audio>
+                        <Answer4>Crossed the road</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="38">
+                        <QuestionText>Where did the cat go after drinking milk?</QuestionText>
+                        <QuestionAudio>EveryoneHelpsQ6.mp3</QuestionAudio>
+                        <Answer1>To the chicken's nest</Answer1>
+                        <Answer1Audio>EveryoneHelpsQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>To the chicken's nest</expectedSelection>
+                        <Answer2>To the hayloft</Answer2>
+                        <Answer2Audio>EveryoneHelpsQ6A2.mp3</Answer2Audio>
+                        <Answer3>To visit the cow</Answer3>
+                        <Answer3Audio>EveryoneHelpsQ6A3.mp3</Answer3Audio>
+                        <Answer4>Over the moon</Answer4>
+                        <Answer4Audio>EveryoneHelpsQ6A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="39">
+                        <QuestionText>Which animal did the judge walk to first?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ1.mp3</QuestionAudio>
+                        <Answer1>Cow</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ1A1.mp3</Answer1Audio>
+                        <expectedSelection>Cow</expectedSelection>
+                        <Answer2>Horse</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ1A2.mp3</Answer2Audio>
+                        <Answer3>Pig</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ1A3.mp3</Answer3Audio>
+                        <Answer4>Panda</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ1A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="40">
+                        <QuestionText>How many eggs were in the chicken's nest?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ2.mp3</QuestionAudio>
+                        <Answer1>4</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ2A1.mp3</Answer1Audio>
+                        <expectedSelection>4</expectedSelection>
+                        <Answer2>6</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ2A2.mp3</Answer2Audio>
+                        <Answer3>2</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ2A3.mp3</Answer3Audio>
+                        <Answer4>100</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ2A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="41">
+                        <QuestionText>Which animal was fat?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ3.mp3</QuestionAudio>
+                        <Answer1>Pig</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ3A1.mp3</Answer1Audio>
+                        <expectedSelection>Pig</expectedSelection>
+                        <Answer2>Cow</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ3A2.mp3</Answer2Audio>
+                        <Answer3>Horse</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ3A3.mp3</Answer3Audio>
+                        <Answer4>Cheetah</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ3A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="42">
+                        <QuestionText>Which animal ran fast?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ4.mp3</QuestionAudio>
+                        <Answer1>Horse</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ4A1.mp3</Answer1Audio>
+                        <expectedSelection>Horse</expectedSelection>
+                        <Answer2>Chicken</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ4A2.mp3</Answer2Audio>
+                        <Answer3>Cow</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ4A3.mp3</Answer3Audio>
+                        <Answer4>Snail</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ4A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="43">
+                        <QuestionText>To whom did the judge give the award?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ5.mp3</QuestionAudio>
+                        <Answer1>Farmer Manuel</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ5A1.mp3</Answer1Audio>
+                        <expectedSelection>Farmer Manuel</expectedSelection>
+                        <Answer2>Pig</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ5A2.mp3</Answer2Audio>
+                        <Answer3>Horse</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ5A3.mp3</Answer3Audio>
+                        <Answer4>Old MacDonald</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ5A4.mp3</Answer4Audio>
+                    </Question>
+                    <Question number="44">
+                        <QuestionText>At the end of the story, who was close to the judge?</QuestionText>
+                        <QuestionAudio>TheBestFarmAwardQ6.mp3</QuestionAudio>
+                        <Answer1>Farmer Manuel</Answer1>
+                        <Answer1Audio>TheBestFarmAwardQ6A1.mp3</Answer1Audio>
+                        <expectedSelection>Farmer Manuel</expectedSelection>
+                        <Answer2>Horse</Answer2>
+                        <Answer2Audio>TheBestFarmAwardQ6A2.mp3</Answer2Audio>
+                        <Answer3>Pig</Answer3>
+                        <Answer3Audio>TheBestFarmAwardQ6A3.mp3</Answer3Audio>
+                        <Answer4>Wizard</Answer4>
+                        <Answer4Audio>TheBestFarmAwardQ6A4.mp3</Answer4Audio>
+                    </Question>
+                </Questions>
+            </ActivityAssessment>
+        </metadata>

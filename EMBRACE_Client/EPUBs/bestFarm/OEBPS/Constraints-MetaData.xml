@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<constraints>
+    <orderConstraints>
+        <constraint action1="count" rule="before" action2="stopCount"/>
+        <constraint action1="hook" rule="before" action2="unhook"/>
+        <constraint action1="getIn" rule="before" action2="getOut"/>
+        <constraint action1="getOn" rule="before" action2="getOff"/>
+        <constraint action1="give" rule="before" action2="receive"/>
+        <constraint action1="grab" rule="before" action2="give"/>
+        <constraint action1="grab" rule="before" action2="release"/>
+        <constraint action1="pickUp" rule="before" action2="give"/>
+        <constraint action1="pickUp" rule="before" action2="putDown"/>
+    </orderConstraints>
+    <movementConstraints>
+        <constraint objId="pen1" action="open" x="8.9%" y="39.25%" height="29%" width="12.1%"/>
+        <constraint objId="pen2" action="open" x="22%" y="39.25%" height="29%" width="12.1%"/>
+        <constraint objId="pen3" action="open" x="35%" y="39.25%" height="29%" width="12.1%"/>
+        <!--<constraint objId="pen4" action="open" x="50%" y="56.35%" height="11.7%" width="33%"/>-->
+    </movementConstraints>
+    <comboConstraints>
+        <constraint objId="farmer">
+            <comboAction action="grab"/>
+            <comboAction action="jumpOn"/>
+        </constraint>
+        <constraint objId="farmer">
+            <comboAction action="pickUp"/>
+            <comboAction action="lead"/>
+        </constraint>
+    </comboConstraints>
+</constraints>
+</metadata>

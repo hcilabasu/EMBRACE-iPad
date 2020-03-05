@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
+            <sentence number="4">
+                <step number="1">
+                    <group obj1Id="smallrocket_IM" action="getIn" obj2Id="smallrocket_IM"/>
+                    <group obj1Id="ball_IM" action="getIn" obj2Id="ball_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-3">
+            <sentence number="9">
+                <step number="1">
+                    <group obj1Id="smallrocket_IM" action="sameSpeed" obj2Id="bigrocket_IM"/>
+                    <group obj1Id="smallrocketMin_IM" action="fasterSpeed" obj2Id="bigrocketUp_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="dog_IM" action="toward" obj2Id="maria_IM"/>
+                    <group obj1Id="dog_IM" action="flip" obj2Id="maria_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="horse_IM" action="flip" obj2Id="horse_IM"/>
+                    <group obj1Id="dog_IM" action="getIn" obj2Id="dog_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="paddle_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="juanInBoat_IM" action="getIn" obj2Id="juanInBoat_IM"/>
+                    <group obj1Id="juan_IM" action="getOut" obj2Id="boat_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
+                    <group obj1Id="maria_IM" action="getOff" obj2Id="skateboard_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="car_IM" action="getWith" obj2Id="road_IM"/>
+                    <group obj1Id="rocket_IM" action="getWith" obj2Id="road_IM"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

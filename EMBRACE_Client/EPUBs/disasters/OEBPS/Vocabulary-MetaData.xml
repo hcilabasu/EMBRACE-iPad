@@ -1,0 +1,86 @@
+<metadata>
+  <vocabulary>
+    <story title="Tsunamis">
+      <vocabulary introWord="false">tsunamis</vocabulary>
+      <vocabulary introWord="false">sometimes</vocabulary>
+      <vocabulary introWord="false">india</vocabulary>
+      <vocabulary introWord="false">ocean</vocabulary>
+      <vocabulary introWord="false">tsunami</vocabulary>
+      <vocabulary introWord="false">earthquake</vocabulary>
+    </story>
+    <story title="Introduction">
+      <vocabulary introWord="false">tsunamis</vocabulary>
+      <vocabulary introWord="true">disaster</vocabulary>
+      <vocabulary introWord="true">nature</vocabulary>
+      <vocabulary introWord="false">sometimes</vocabulary>
+      <vocabulary introWord="false">earthquakes</vocabulary>
+      <vocabulary introWord="true">violent</vocabulary>
+      <vocabulary introWord="true">forest</vocabulary>
+      <vocabulary introWord="false">tornados</vocabulary>
+      <vocabulary introWord="false">winds</vocabulary>
+      <vocabulary introWord="false">disasters</vocabulary>
+      <vocabulary introWord="false">volcanoes</vocabulary>
+    </story>
+    <story title="Volcanoes and the Making of Hawai'i">
+      <vocabulary introWord="false">hawai'i</vocabulary>
+      <vocabulary introWord="false">million</vocabulary>
+      <vocabulary introWord="false">volcano</vocabulary>
+      <vocabulary introWord="false">hawaiian</vocabulary>
+      <vocabulary introWord="false">volcanoes</vocabulary>
+      <vocabulary introWord="false">spew</vocabulary>
+      <vocabulary introWord="false">sometimes</vocabulary>
+      <vocabulary introWord="false">lava</vocabulary>
+      <vocabulary introWord="false">ocean</vocabulary>
+      <vocabulary introWord="false">mantle</vocabulary>
+      <vocabulary introWord="false">spews</vocabulary>
+      <vocabulary introWord="false">enough</vocabulary>
+      <vocabulary introWord="false">hotspot</vocabulary>
+      <vocabulary introWord="false">islands</vocabulary>
+      <vocabulary introWord="false">kaua'i</vocabulary>
+      <vocabulary introWord="false">earth</vocabulary>
+      <vocabulary introWord="false">island</vocabulary>
+      <vocabulary introWord="false">pacific</vocabulary>
+      <vocabulary introWord="false">oahu</vocabulary>
+    </story>
+    <story title="Tornados">
+      <vocabulary introWord="false">swirls</vocabulary>
+      <vocabulary introWord="false">rapidly</vocabulary>
+      <vocabulary introWord="false">tornado</vocabulary>
+      <vocabulary introWord="false">rise</vocabulary>
+      <vocabulary introWord="false">spinning</vocabulary>
+      <vocabulary introWord="false">swirling</vocabulary>
+      <vocabulary introWord="false">supercell</vocabulary>
+      <vocabulary introWord="false">columns</vocabulary>
+      <vocabulary introWord="false">tornados</vocabulary>
+      <vocabulary introWord="true">swirl</vocabulary>
+      <vocabulary introWord="false">serious</vocabulary>
+      <vocabulary introWord="false">awhile</vocabulary>
+      <vocabulary introWord="false">spin</vocabulary>
+      <vocabulary introWord="false">cloud</vocabulary>
+    </story>
+    <story title="The Moving Earth">
+      <vocabulary introWord="false">mountains</vocabulary>
+      <vocabulary introWord="false">million</vocabulary>
+      <vocabulary introWord="false">mantle</vocabulary>
+      <vocabulary introWord="false">oceans</vocabulary>
+      <vocabulary introWord="false">india</vocabulary>
+      <vocabulary introWord="false">sometimes</vocabulary>
+      <vocabulary introWord="false">california</vocabulary>
+      <vocabulary introWord="true">earth</vocabulary>
+      <vocabulary introWord="false">himalaya</vocabulary>
+      <vocabulary introWord="true">drifted</vocabulary>
+      <vocabulary introWord="false">spin</vocabulary>
+      <vocabulary introWord="false">disasters</vocabulary>
+    </story>
+    <story title="Earthquakes">
+      <vocabulary introWord="false">mantle</vocabulary>
+      <vocabulary introWord="false">sometimes</vocabulary>
+      <vocabulary introWord="false">earthquake</vocabulary>
+      <vocabulary introWord="false">fault line</vocabulary>
+      <vocabulary introWord="true">pressure</vocabulary>
+      <vocabulary introWord="false">california</vocabulary>
+      <vocabulary introWord="false">plate tectonics</vocabulary>
+      <vocabulary introWord="false">earthquakes</vocabulary>
+    </story>
+  </vocabulary>
+</metadata>

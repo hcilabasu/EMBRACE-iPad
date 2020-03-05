@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "Natural Disasters">
+            <Question number="1">
+                <QuestionText>¿Qué puede ser calmado y violento?</QuestionText>
+                <QuestionAudio>IntroductionToNaturalDisastersQ1S.mp3</QuestionAudio>
+                <Answer1>La naturaleza</Answer1>
+                <Answer1Audio>IntroductionToNaturalDisastersQ1A1S.mp3</Answer1Audio>
+                <Answer2>El atardecer</Answer2>
+                <Answer2Audio>IntroductionToNaturalDisastersQ1A2S.mp3</Answer2Audio>
+                <Answer3>Un terremoto</Answer3>
+                <Answer3Audio>IntroductionToNaturalDisastersQ1A3S.mp3</Answer3Audio>
+                <Answer4>Frijoles mágicos</Answer4>
+                <Answer4Audio>IntroductionToNaturalDisastersQ1A4S.mp3</Answer4Audio>
+                <expectedSelection>La naturaleza</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>¿Qué causa terremotos, tsunamis, y volcanes?</QuestionText>
+                <QuestionAudio>IntroductionToNaturalDisastersQ2S.mp3</QuestionAudio>
+                <Answer1>Los movimientos de tierra</Answer1>
+                <Answer1Audio>IntroductionToNaturalDisastersQ2A1S.mp3</Answer1Audio>
+                <Answer2>Vientos muy fuertes</Answer2>
+                <Answer2Audio>IntroductionToNaturalDisastersQ2A2S.mp3</Answer2Audio>
+                <Answer3>Huracanes</Answer3>
+                <Answer3Audio>IntroductionToNaturalDisastersQ2A3S.mp3</Answer3Audio>
+                <Answer4>Unos gigantes!</Answer4>
+                <Answer4Audio>IntroductionToNaturalDisastersQ2A4S.mp3</Answer4Audio>
+                <expectedSelection>Los movimientos de tierra</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>¿Qué puede causar tornados?</QuestionText>
+                <QuestionAudio>IntroductionToNaturalDisastersQ3S.mp3</QuestionAudio>
+                <Answer1>Vientos muy fuertes</Answer1>
+                <Answer1Audio>IntroductionToNaturalDisastersQ3A1S.mp3</Answer1Audio>
+                <Answer2>El movimiento de la tierra</Answer2>
+                <Answer2Audio>IntroductionToNaturalDisastersQ3A2S.mp3</Answer2Audio>
+                <Answer3>La lluvia</Answer3>
+                <Answer3Audio>IntroductionToNaturalDisastersQ3A3S.mp3</Answer3Audio>
+                <Answer4>El presionar de un botón</Answer4>
+                <Answer4Audio>IntroductionToNaturalDisastersQ3A4S.mp3</Answer4Audio>
+                <expectedSelection>Vientos muy fuertes</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>¿Cómo se veía la Tierra hace 300 millones de años?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ1S.mp3</QuestionAudio>
+                <Answer1>La mayoría de la tierra estaba conectada</Answer1>
+                <Answer1Audio>TheMovingEarthQ1A1S.mp3</Answer1Audio>
+                <Answer2>Había muchas islas</Answer2>
+                <Answer2Audio>TheMovingEarthQ1A2S.mp3</Answer2Audio>
+                <Answer3>Solo había océanos</Answer3>
+                <Answer3Audio>TheMovingEarthQ1A3S.mp3</Answer3Audio>
+                <Answer4>Como que iba a hacer algo malo</Answer4>
+                <Answer4Audio>TheMovingEarthQ1A4S.mp3</Answer4Audio>
+                <expectedSelection>La mayoría de la tierra estaba conectada</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Las placas flotan sobre rocas derretidas llamadas…?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ2S.mp3</QuestionAudio>
+                <Answer1>Manto</Answer1>
+                <Answer1Audio>TheMovingEarthQ2A1S.mp3</Answer1Audio>
+                <Answer2>Montañas</Answer2>
+                <Answer2Audio>TheMovingEarthQ2A2S.mp3</Answer2Audio>
+                <Answer3>La Tierra Media</Answer3>
+                <Answer3Audio>TheMovingEarthQ2A3S.mp3</Answer3Audio>
+                <Answer4>La música Rock</Answer4>
+                <Answer4Audio>TheMovingEarthQ2A4S.mp3</Answer4Audio>
+                <expectedSelection>Manto</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>¿Qué hace que las placas se muevan?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ3S.mp3</QuestionAudio>
+                <Answer1>El calor en el manto</Answer1>
+                <Answer1Audio>TheMovingEarthQ3A1S.mp3</Answer1Audio>
+                <Answer2>Océanos en el manto</Answer2>
+                <Answer2Audio>TheMovingEarthQ3A2S.mp3</Answer2Audio>
+                <Answer3>Desastres naturales</Answer3>
+                <Answer3Audio>TheMovingEarthQ3A3S.mp3</Answer3Audio>
+                <Answer4>Un motor</Answer4>
+                <Answer4Audio>TheMovingEarthQ3A4S.mp3</Answer4Audio>
+                <expectedSelection>El calor en el manto</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>¿Qué hacen las placas para crear montañas?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ4S.mp3</QuestionAudio>
+                <Answer1>Una placa se mete debajo de otra</Answer1>
+                <Answer1Audio>TheMovingEarthQ4A1S.mp3</Answer1Audio>
+                <Answer2>Dos placas se deslizan entre ellas</Answer2>
+                <Answer2Audio>TheMovingEarthQ4A2S.mp3</Answer2Audio>
+                <Answer3>Una placa se rompe</Answer3>
+                <Answer3Audio>TheMovingEarthQ4A3S.mp3</Answer3Audio>
+                <Answer4>Acumulan mucha mugre</Answer4>
+                <Answer4Audio>TheMovingEarthQ4A4S.mp3</Answer4Audio>
+                <expectedSelection>Una placa se mete debajo de otra</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>¿Por qué se movió la pequeña placa café que se convirtió en California?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ5S.mp3</QuestionAudio>
+                <Answer1>Por el calor</Answer1>
+                <Answer1Audio>TheMovingEarthQ5A1S.mp3</Answer1Audio>
+                <Answer2>Porque la placa roja empujó debajo de ella</Answer2>
+                <Answer2Audio>TheMovingEarthQ5A2S.mp3</Answer2Audio>
+                <Answer3>Por las olas del océano</Answer3>
+                <Answer3Audio>TheMovingEarthQ5A3S.mp3</Answer3Audio>
+                <Answer4>Porque quería ir a una mejor escuela</Answer4>
+                <Answer4Audio>TheMovingEarthQ5A4S.mp3</Answer4Audio>
+                <expectedSelection>Por el calor</expectedSelection>
+            </Question>
+            <Question number="9">
+                <QuestionText>Después de qué las placas se movieron, ¿cómo se veía la Tierra?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ6S.mp3</QuestionAudio>
+                <Answer1>La tierra estaba conectada de una nueva manera</Answer1>
+                <Answer1Audio>TheMovingEarthQ6A1S.mp3</Answer1Audio>
+                <Answer2>Había muchas islas</Answer2>
+                <Answer2Audio>TheMovingEarthQ6A2S.mp3</Answer2Audio>
+                <Answer3>Solo había océanos</Answer3>
+                <Answer3Audio>TheMovingEarthQ6A3S.mp3</Answer3Audio>
+                <Answer4>Alegre y de buen ánimo</Answer4>
+                <Answer4Audio>TheMovingEarthQ6A4S.mp3</Answer4Audio>
+                <expectedSelection>La tierra estaba conectada de una nueva manera</expectedSelection>
+            </Question>
+            <Question number="10">
+                <QuestionText>¿Cuáles son las montañas más altas del mundo?</QuestionText>
+                <QuestionAudio>TheMovingEarthQ7S.mp3</QuestionAudio>
+                <Answer1>Las montañas del Himalaya</Answer1>
+                <Answer1Audio>TheMovingEarthQ7A1S.mp3</Answer1Audio>
+                <Answer2>Las montañas de Norteamérica</Answer2>
+                <Answer2Audio>TheMovingEarthQ7A2S.mp3</Answer2Audio>
+                <Answer3>Las montañas Rocosas</Answer3>
+                <Answer3Audio>TheMovingEarthQ7A3S.mp3</Answer3Audio>
+                <Answer4>Las montañas Rusas</Answer4>
+                <Answer4Audio>TheMovingEarthQ7A4S.mp3</Answer4Audio>
+                <expectedSelection>Las montañas del Himalaya</expectedSelection>
+            </Question>
+            <Question number="11">
+                <QuestionText>A fault line is...?</QuestionText>
+                <QuestionAudio>EarthquakesQ1.mp3</QuestionAudio>
+                <Answer1>Where plates push on each other</Answer1>
+                <Answer1Audio>EarthquakesQ1A1.mp3</Answer1Audio>
+                <Answer2>Found in the mantle</Answer2>
+                <Answer2Audio>EarthquakesQ1A2.mp3</Answer2Audio>
+                <Answer3>Plate tectonics</Answer3>
+                <Answer3Audio>EarthquakesQ1A3.mp3</Answer3Audio>
+                <Answer4>Where you shoot free throws</Answer4>
+                <Answer4Audio>EarthquakesQ1A4.mp3</Answer4Audio>
+                <expectedSelection>Where plates push on each other</expectedSelection>
+            </Question>
+            <Question number="12">
+                <QuestionText>Why do earthquakes happen?</QuestionText>
+                <QuestionAudio>EarthquakesQ2.mp3</QuestionAudio>
+                <Answer1>Quick movement of a plate because of pressure</Answer1>
+                <Answer1Audio>EarthquakesQ2A1.mp3</Answer1Audio>
+                <Answer2>Buildings fall down and shake the earth</Answer2>
+                <Answer2Audio>EarthquakesQ2A2.mp3</Answer2Audio>
+                <Answer3>Fire underground produces cracks on the earth</Answer3>
+                <Answer3Audio>EarthquakesQ2A3.mp3</Answer3Audio>
+                <Answer4>Elephant stampede</Answer4>
+                <Answer4Audio>EarthquakesQ2A4.mp3</Answer4Audio>
+                <expectedSelection>Quick movement of a plate because of pressure</expectedSelection>
+            </Question>
+            <Question number="13">
+                <QuestionText>How does the California plate move?</QuestionText>
+                <QuestionAudio>EarthquakesQ3.mp3</QuestionAudio>
+                <Answer1>Easily</Answer1>
+                <Answer1Audio>EarthquakesQ3A1.mp3</Answer1Audio>
+                <Answer2>Just a little</Answer2>
+                <Answer2Audio>EarthquakesQ3A2.mp3</Answer2Audio>
+                <Answer3>Back and forth</Answer3>
+                <Answer3Audio>EarthquakesQ3A3.mp3</Answer3Audio>
+                <Answer4>Like nobody's watching</Answer4>
+                <Answer4Audio>EarthquakesQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Just a little</expectedSelection>
+            </Question>
+            <Question number="14">
+                <QuestionText>The sudden movement when the ground on one side of the fault line slides past the ground on the other side is called...?</QuestionText>
+                <QuestionAudio>EarthquakesQ4.mp3</QuestionAudio>
+                <Answer1>An earthquake</Answer1>
+                <Answer1Audio>EarthquakesQ4A1.mp3</Answer1Audio>
+                <Answer2>A fault line</Answer2>
+                <Answer2Audio>EarthquakesQ4A2.mp3</Answer2Audio>
+                <Answer3>Pressure</Answer3>
+                <Answer3Audio>EarthquakesQ4A3.mp3</Answer3Audio>
+                <Answer4>The Charleston</Answer4>
+                <Answer4Audio>EarthquakesQ4A4.mp3</Answer4Audio>
+                <expectedSelection>An earthquake</expectedSelection>
+            </Question>
+            <Question number="15">
+                <QuestionText>What can happen to buildings during an earthquake?</QuestionText>
+                <QuestionAudio>EarthquakesQ5.mp3</QuestionAudio>
+                <Answer1>Buildings can fall down</Answer1>
+                <Answer1Audio>EarthquakesQ5A1.mp3</Answer1Audio>
+                <Answer2>The roof of the building can become stronger</Answer2>
+                <Answer2Audio>EarthquakesQ5A2.mp3</Answer2Audio>
+                <Answer3>Buildings can float on the mantle</Answer3>
+                <Answer3Audio>EarthquakesQ5A3.mp3</Answer3Audio>
+                <Answer4>They can get hurt</Answer4>
+                <Answer4Audio>EarthquakesQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Buildings can fall down</expectedSelection>
+            </Question>
+            <Question number="16">
+                <QuestionText>What is a tsunami?</QuestionText>
+                <QuestionAudio>TsunamisQ1.mp3</QuestionAudio>
+                <Answer1>A giant wave that can cause a lot of damage</Answer1>
+                <Answer1Audio>TsunamisQ1A1.mp3</Answer1Audio>
+                <Answer2>A sudden earthquake in the mountains</Answer2>
+                <Answer2Audio>TsunamisQ1A2.mp3</Answer2Audio>
+                <Answer3>When the water rushes back to the ocean</Answer3>
+                <Answer3Audio>TsunamisQ1A3.mp3</Answer3Audio>
+                <Answer4>Lunch meat</Answer4>
+                <Answer4Audio>TsunamisQ1A4.mp3</Answer4Audio>
+                <expectedSelection>A giant wave that can cause a lot of damage</expectedSelection>
+            </Question>
+            <Question number="17">
+                <QuestionText>What can cause a tsunami?</QuestionText>
+                <QuestionAudio>TsunamisQ2.mp3</QuestionAudio>
+                <Answer1>An earthquake under water</Answer1>
+                <Answer1Audio>TsunamisQ2A1.mp3</Answer1Audio>
+                <Answer2>A drawback</Answer2>
+                <Answer2Audio>TsunamisQ2A2.mp3</Answer2Audio>
+                <Answer3>Strong winds</Answer3>
+                <Answer3Audio>TsunamisQ2A3.mp3</Answer3Audio>
+                <Answer4>King Triton</Answer4>
+                <Answer4Audio>TsunamisQ2A4.mp3</Answer4Audio>
+                <expectedSelection>An earthquake under water</expectedSelection>
+            </Question>
+            <Question number="18">
+                <QuestionText>Where does water go during a drawback?</QuestionText>
+                <QuestionAudio>TsunamisQ3.mp3</QuestionAudio>
+                <Answer1>Toward the ocean</Answer1>
+                <Answer1Audio>TsunamisQ3A1.mp3</Answer1Audio>
+                <Answer2>Over buildings</Answer2>
+                <Answer2Audio>TsunamisQ3A2.mp3</Answer2Audio>
+                <Answer3>Under the plates</Answer3>
+                <Answer3Audio>TsunamisQ3A3.mp3</Answer3Audio>
+                <Answer4>Down the sink</Answer4>
+                <Answer4Audio>TsunamisQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Toward the ocean</expectedSelection>
+            </Question>
+            <Question number="19">
+                <QuestionText>What can happen under water when one plate quickly slides under another?</QuestionText>
+                <QuestionAudio>TsunamisQ4.mp3</QuestionAudio>
+                <Answer1>There is an earthquake under water</Answer1>
+                <Answer1Audio>TsunamisQ4A1.mp3</Answer1Audio>
+                <Answer2>The wave covers buildings</Answer2>
+                <Answer2Audio>TsunamisQ4A2.mp3</Answer2Audio>
+                <Answer3>Africa is made</Answer3>
+                <Answer3Audio>TsunamisQ4A3.mp3</Answer3Audio>
+                <Answer4>The fish are startled</Answer4>
+                <Answer4Audio>TsunamisQ4A4.mp3</Answer4Audio>
+                <expectedSelection>There is an earthquake under water</expectedSelection>
+            </Question>
+            <Question number="20">
+                <QuestionText>What should you do if you hear a tsunami warning?</QuestionText>
+                <QuestionAudio>TsunamisQ5.mp3</QuestionAudio>
+                <Answer1>Climb up high</Answer1>
+                <Answer1Audio>TsunamisQ5A1.mp3</Answer1Audio>
+                <Answer2>Hide in your basement</Answer2>
+                <Answer2Audio>TsunamisQ5A2.mp3</Answer2Audio>
+                <Answer3>Lock your doors</Answer3>
+                <Answer3Audio>TsunamisQ5A3.mp3</Answer3Audio>
+                <Answer4>Go swimming</Answer4>
+                <Answer4Audio>TsunamisQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Climb up high</expectedSelection>
+            </Question>
+            <Question number="21">
+                <QuestionText>What can carry buildings into the ocean?</QuestionText>
+                <QuestionAudio>TsunamisQ6.mp3</QuestionAudio>
+                <Answer1>A drawback</Answer1>
+                <Answer1Audio>TsunamisQ6A1.mp3</Answer1Audio>
+                <Answer2>An earthquake</Answer2>
+                <Answer2Audio>TsunamisQ6A2.mp3</Answer2Audio>
+                <Answer3>Tectonic plates</Answer3>
+                <Answer3Audio>TsunamisQ6A3.mp3</Answer3Audio>
+                <Answer4>The Hulk</Answer4>
+                <Answer4Audio>TsunamisQ6A4.mp3</Answer4Audio>
+                <expectedSelection>A drawback</expectedSelection>
+            </Question>
+            <Question number="22">
+                <QuestionText>Where are volcanoes often found?</QuestionText>
+                <QuestionAudio>VolcanoesQ1.mp3</QuestionAudio>
+                <Answer1>Where plates meet</Answer1>
+                <Answer1Audio>VolcanoesQ1A1.mp3</Answer1Audio>
+                <Answer2>Where there is a tsunami</Answer2>
+                <Answer2Audio>VolcanoesQ1A2.mp3</Answer2Audio>
+                <Answer3>Inside the mantle</Answer3>
+                <Answer3Audio>VolcanoesQ1A3.mp3</Answer3Audio>
+                <Answer4>In soda cans</Answer4>
+                <Answer4Audio>VolcanoesQ1A4.mp3</Answer4Audio>
+                <expectedSelection>Where plates meet</expectedSelection>
+            </Question>
+            <Question number="23">
+                <QuestionText>Which islands were formed while the Pacific plate moved over a hotspot?</QuestionText>
+                <QuestionAudio>VolcanoesQ2.mp3</QuestionAudio>
+                <Answer1>Hawaiian Islands</Answer1>
+                <Answer1Audio>VolcanoesQ2A1.mp3</Answer1Audio>
+                <Answer2>African Islands</Answer2>
+                <Answer2Audio>VolcanoesQ2A2.mp3</Answer2Audio>
+                <Answer3>Himalayan Islands</Answer3>
+                <Answer3Audio>VolcanoesQ2A3.mp3</Answer3Audio>
+                <Answer4>Poptropica Islands</Answer4>
+                <Answer4Audio>VolcanoesQ2A4.mp3</Answer4Audio>
+                <expectedSelection>Hawaiian Islands</expectedSelection>
+            </Question>
+            <Question number="24">
+                <QuestionText>What is the name for hot melted rock that spews out of volcanoes?</QuestionText>
+                <QuestionAudio>VolcanoesQ3.mp3</QuestionAudio>
+                <Answer1>Lava</Answer1>
+                <Answer1Audio>VolcanoesQ3A1.mp3</Answer1Audio>
+                <Answer2>Mantle</Answer2>
+                <Answer2Audio>VolcanoesQ3A2.mp3</Answer2Audio>
+                <Answer3>Gas</Answer3>
+                <Answer3Audio>VolcanoesQ3A3.mp3</Answer3Audio>
+                <Answer4>A hot mess</Answer4>
+                <Answer4Audio>VolcanoesQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lava</expectedSelection>
+            </Question>
+            <Question number="25">
+                <QuestionText>What does lava turn into as it cools off in the ocean?</QuestionText>
+                <QuestionAudio>VolcanoesQ4.mp3</QuestionAudio>
+                <Answer1>Rock</Answer1>
+                <Answer1Audio>VolcanoesQ4A1.mp3</Answer1Audio>
+                <Answer2>Plates</Answer2>
+                <Answer2Audio>VolcanoesQ4A2.mp3</Answer2Audio>
+                <Answer3>Hotspot</Answer3>
+                <Answer3Audio>VolcanoesQ4A3.mp3</Answer3Audio>
+                <Answer4>Lava lamp</Answer4>
+                <Answer4Audio>VolcanoesQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Rock</expectedSelection>
+            </Question>
+            <Question number="26">
+                <QuestionText>Where can you sometimes find hotspots?</QuestionText>
+                <QuestionAudio>VolcanoesQ5.mp3</QuestionAudio>
+                <Answer1>In the middle of a plate</Answer1>
+                <Answer1Audio>VolcanoesQ5A1.mp3</Answer1Audio>
+                <Answer2>Inside of a volcano</Answer2>
+                <Answer2Audio>VolcanoesQ5A2.mp3</Answer2Audio>
+                <Answer3>On the tops of mountains</Answer3>
+                <Answer3Audio>VolcanoesQ5A3.mp3</Answer3Audio>
+                <Answer4>At many coffee shops</Answer4>
+                <Answer4Audio>VolcanoesQ5A4.mp3</Answer4Audio>
+                <expectedSelection>In the middle of a plate</expectedSelection>
+            </Question>
+            <Question number="27">
+                <QuestionText>What are the islands of Hawai'i made out of?</QuestionText>
+                <QuestionAudio>VolcanoesQ6.mp3</QuestionAudio>
+                <Answer1>Rocks from lava</Answer1>
+                <Answer1Audio>VolcanoesQ6A1.mp3</Answer1Audio>
+                <Answer2>Hotspots</Answer2>
+                <Answer2Audio>VolcanoesQ6A2.mp3</Answer2Audio>
+                <Answer3>Plates</Answer3>
+                <Answer3Audio>VolcanoesQ6A3.mp3</Answer3Audio>
+                <Answer4>Coconuts</Answer4>
+                <Answer4Audio>VolcanoesQ6A4.mp3</Answer4Audio>
+                <expectedSelection>Rocks from lava</expectedSelection>
+            </Question>
+            <Question number="28">
+                <QuestionText>Why should you be careful if you visit the Big Island?</QuestionText>
+                <QuestionAudio>VolcanoesQ7.mp3</QuestionAudio>
+                <Answer1>Because the volcano is still spewing lava and can kill people</Answer1>
+                <Answer1Audio>VolcanoesQ7A1.mp3</Answer1Audio>
+                <Answer2>Because there is a tsunami warning</Answer2>
+                <Answer2Audio>VolcanoesQ7A2.mp3</Answer2Audio>
+                <Answer3>Because the plates are pushing up more mountains</Answer3>
+                <Answer3Audio>VolcanoesQ7A3.mp3</Answer3Audio>
+                <Answer4>Because it is so big, you can get lost</Answer4>
+                <Answer4Audio>VolcanoesQ7A4.mp3</Answer4Audio>
+                <expectedSelection>Because the volcano is still spewing lava and can kill people</expectedSelection>
+            </Question>
+            <Question number="29">
+                <QuestionText>Before the lava spews out of the volcano, where does it come from?</QuestionText>
+                <QuestionAudio>VolcanoesQ8.mp3</QuestionAudio>
+                <Answer1>Within the earth</Answer1>
+                <Answer1Audio>VolcanoesQ8A1.mp3</Answer1Audio>
+                <Answer2>In the ocean</Answer2>
+                <Answer2Audio>VolcanoesQ8A2.mp3</Answer2Audio>
+                <Answer3>The Hawaiian Islands</Answer3>
+                <Answer3Audio>VolcanoesQ8A3.mp3</Answer3Audio>
+                <Answer4>The volcano supplies store</Answer4>
+                <Answer4Audio>VolcanoesQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Within the earth</expectedSelection>
+            </Question>
+            <Question number="30">
+                <QuestionText>What do you call a large swirling column of air?</QuestionText>
+                <QuestionAudio>TornadosQ1.mp3</QuestionAudio>
+                <Answer1>Tornado</Answer1>
+                <Answer1Audio>TornadosQ1A1.mp3</Answer1Audio>
+                <Answer2>Supercell</Answer2>
+                <Answer2Audio>TornadosQ1A2.mp3</Answer2Audio>
+                <Answer3>Hurricane</Answer3>
+                <Answer3Audio>TornadosQ1A3.mp3</Answer3Audio>
+                <Answer4>Scary</Answer4>
+                <Answer4Audio>TornadosQ1A4.mp3</Answer4Audio>
+                <expectedSelection>Tornado</expectedSelection>
+            </Question>
+            <Question number="31">
+                <QuestionText>What happens to the tornado after the cool air blocks the warm air?</QuestionText>
+                <QuestionAudio>TornadosQ2.mp3</QuestionAudio>
+                <Answer1>The tornado shrinks</Answer1>
+                <Answer1Audio>TornadosQ2A1.mp3</Answer1Audio>
+                <Answer2>The tornado grows</Answer2>
+                <Answer2Audio>TornadosQ2A2.mp3</Answer2Audio>
+                <Answer3>The tornado turns around</Answer3>
+                <Answer3Audio>TornadosQ2A3.mp3</Answer3Audio>
+                <Answer4>The tornado gets sent home</Answer4>
+                <Answer4Audio>TornadosQ2A4.mp3</Answer4Audio>
+                <expectedSelection>The tornado shrinks</expectedSelection>
+            </Question>
+            <Question number="32">
+                <QuestionText>How long do most tornados last?</QuestionText>
+                <QuestionAudio>TornadosQ3.mp3</QuestionAudio>
+                <Answer1>A few minutes</Answer1>
+                <Answer1Audio>TornadosQ3A1.mp3</Answer1Audio>
+                <Answer2>For hours</Answer2>
+                <Answer2Audio>TornadosQ3A2.mp3</Answer2Audio>
+                <Answer3>For days</Answer3>
+                <Answer3Audio>TornadosQ3A3.mp3</Answer3Audio>
+                <Answer4>Forever!</Answer4>
+                <Answer4Audio>TornadosQ3A4.mp3</Answer4Audio>
+                <expectedSelection>A few minutes</expectedSelection>
+            </Question>
+            <Question number="33">
+                <QuestionText>Why do tornados look brown or gray?</QuestionText>
+                <QuestionAudio>TornadosQ4.mp3</QuestionAudio>
+                <Answer1>Because the rising warm air pulls dirt into the tornado</Answer1>
+                <Answer1Audio>TornadosQ4A1.mp3</Answer1Audio>
+                <Answer2>Because they are reflecting off the buildings</Answer2>
+                <Answer2Audio>TornadosQ4A2.mp3</Answer2Audio>
+                <Answer3>Because they came from deep inside the earth</Answer3>
+                <Answer3Audio>TornadosQ4A3.mp3</Answer3Audio>
+                <Answer4>Because they were playing in the mud</Answer4>
+                <Answer4Audio>TornadosQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Because the rising warm air pulls dirt into the tornado</expectedSelection>
+            </Question>
+            <Question number="34">
+                <QuestionText>How fast can the air swirl as a tornado is made?</QuestionText>
+                <QuestionAudio>TornadosQ5.mp3</QuestionAudio>
+                <Answer1>Up to 300 miles per hour</Answer1>
+                <Answer1Audio>TornadosQ5A1.mp3</Answer1Audio>
+                <Answer2>Up to 3000 miles per hour</Answer2>
+                <Answer2Audio>TornadosQ5A2.mp3</Answer2Audio>
+                <Answer3>Up to 300 miles per second</Answer3>
+                <Answer3Audio>TornadosQ5A3.mp3</Answer3Audio>
+                <Answer4>As fast as the Tasmanian Devil</Answer4>
+                <Answer4Audio>TornadosQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Up to 300 miles per hour</expectedSelection>
+            </Question>
+            <Question number="35">
+                <QuestionText>What type of cloud do tornados start off as?</QuestionText>
+                <QuestionAudio>TornadosQ6.mp3</QuestionAudio>
+                <Answer1>Supercell</Answer1>
+                <Answer1Audio>TornadosQ6A1.mp3</Answer1Audio>
+                <Answer2>Tsunami</Answer2>
+                <Answer2Audio>TornadosQ6A2.mp3</Answer2Audio>
+                <Answer3>Superstorm</Answer3>
+                <Answer3Audio>TornadosQ6A3.mp3</Answer3Audio>
+                <Answer4>Superglue</Answer4>
+                <Answer4Audio>TornadosQ6A4.mp3</Answer4Audio>
+                <expectedSelection>Supercell</expectedSelection>
+            </Question>
+            <Question number="36">
+                <QuestionText>What drags down the spinning cool air?</QuestionText>
+                <QuestionAudio>TornadosQ7.mp3</QuestionAudio>
+                <Answer1>Rain</Answer1>
+                <Answer1Audio>TornadosQ7A1.mp3</Answer1Audio>
+                <Answer2>Warm air</Answer2>
+                <Answer2Audio>TornadosQ7A2.mp3</Answer2Audio>
+                <Answer3>Snow</Answer3>
+                <Answer3Audio>TornadosQ7A3.mp3</Answer3Audio>
+                <Answer4>Bowling ball</Answer4>
+                <Answer4Audio>TornadosQ7A4.mp3</Answer4Audio>
+                <expectedSelection>Rain</expectedSelection>
+            </Question>
+            <Question number="37">
+                <QuestionText>What does the cool air do inside of the supercell?</QuestionText>
+                <QuestionAudio>TornadosQ8.mp3</QuestionAudio>
+                <Answer1>Spins</Answer1>
+                <Answer1Audio>TornadosQ8A1.mp3</Answer1Audio>
+                <Answer2>Rises</Answer2>
+                <Answer2Audio>TornadosQ8A2.mp3</Answer2Audio>
+                <Answer3>Pulls in dirt</Answer3>
+                <Answer3Audio>TornadosQ8A3.mp3</Answer3Audio>
+                <Answer4>The limbo</Answer4>
+                <Answer4Audio>TornadosQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Spins</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>

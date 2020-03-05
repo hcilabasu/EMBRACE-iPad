@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:f0fe710e-44d7-4626-8b59-20cd5fe9699f</dc:identifier>
+        <dc:date opf:event="modification">2015-07-06</dc:date>
+        <meta content="0.7.2" name="Sigil version" />
+        <dc:title>A Celebration to Remember</dc:title>
+    </metadata>
+  <manifest>
+    <item href="Images/bag.png" id="bag.png" media-type="image/png" />
+    <item href="Images/bg_balloon_kitchen_door.png" id="bg_balloon_kitchen_door.png" media-type="image/png" />
+    <item href="Images/bg_barn.png" id="bg_barn.png" media-type="image/png" />
+    <item href="Images/bg_ch3.png" id="bg_ch3.png" media-type="image/png" />
+    <item href="Images/bg_dirt_road.png" id="bg_dirt_road.png" media-type="image/png" />
+    <item href="Images/bg_faucet_on.png" id="bg_faucet_on.png" media-type="image/png" />
+    <item href="Images/bg_kitchen_door.png" id="bg_kitchen_door.png" media-type="image/png" />
+    <item href="Images/bg_kitchen.png" id="bg_kitchen.png" media-type="image/png" />
+    <item href="Images/bg_kitchen_balloons.png" id="bg_kitchen_balloons.png" media-type="image/png" />
+    <item href="Images/bg_market.png" id="bg_market.png" media-type="image/png" />
+    <item href="Images/bluesaddlebag_closed.png" id="bluesaddlebag_closed.png" media-type="image/png" />
+    <item href="Images/bluesaddlebag_open.png" id="bluesaddlebag_open.png" media-type="image/png" />
+    <item href="Images/bridle.png" id="bridle.png" media-type="image/png" />
+    <item href="Images/brownsaddlebag_closed.png" id="brownsaddlebag_closed.png" media-type="image/png" />
+    <item href="Images/brownsaddlebag_open.png" id="brownsaddlebag_open.png" media-type="image/png" />
+    <item href="Images/calf.png" id="calf.png" media-type="image/png" />
+    <item href="Images/calf_flipped.png" id="calf_flipped.png" media-type="image/png" />
+    <item href="Images/champoorado.png" id="champoorado.png" media-type="image/png" />
+    <item href="Images/chili.png" id="chili.png" media-type="image/png" />
+    <item href="Images/counter_empty.png" id="counter_empty.png" media-type="image/png" />
+    <item href="Images/cow_bw.png" id="cow_bw.png" media-type="image/png" />
+    <item href="Images/cow_bw_flipped.png" id="cow_bw_flipped.png" media-type="image/png" />
+    <item href="Images/cow2.png" id="cow2.png" media-type="image/png" />
+    <item href="Images/cow3.png" id="cow3.png" media-type="image/png" />
+    <item href="Images/cow4.png" id="cow4.png" media-type="image/png" />
+    <item href="Images/emilio_horse.png" id="emilio_horse.png" media-type="image/png" />
+    <item href="Images/emilio_standing.png" id="emilio_standing.png" media-type="image/png" />
+    <item href="Images/fence_closed.png" id="fence_closed.png" media-type="image/png" />
+    <item href="Images/fence_open.png" id="fence_open.png" media-type="image/png" />
+    <item href="Images/garlic.png" id="garlic.png" media-type="image/png" />
+    <item href="Images/gate_closed.png" id="gate_closed.png" media-type="image/png" />
+    <item href="Images/gate_open.png" id="gate_open.png" media-type="image/png" />
+    <item href="Images/horse_unmounted.png" id="horse_unmounted.png" media-type="image/png" />
+    <item href="Images/icon_balloons.png" id="icon_balloons.png" media-type="image/png" />
+    <item href="Images/icon_Emilio.png" id="icon_Emilio.png" media-type="image/png" />
+    <item href="Images/icon_key_ingredients.png" id="icon_key_ingredients.png" media-type="image/png" />
+    <item href="Images/icon_mancha.png" id="icon_mancha.png" media-type="image/png" />
+    <item href="Images/icon_roses.png" id="icon_roses.png" media-type="image/png" />
+    <item href="Images/icon_scale.png" id="icon_scale.png" media-type="image/png" />
+    <item href="Images/list.png" id="list.png" media-type="image/png" />
+    <item href="Images/mancha_blue_saddlebag_open.png" id="mancha_blue_saddlebag_open.png" media-type="image/png" />
+    <item href="Images/mancha_bridle_only.png" id="mancha_bridle_only.png" media-type="image/png" />
+    <item href="Images/mancha_eating_grass.png" id="mancha_eating_grass.png" media-type="image/png" />
+    <item href="Images/mancha_equiped.png" id="mancha_equiped.png" media-type="image/png" />
+    <item href="Images/mancha_loose_reins.png" id="mancha_loose_reins.png" media-type="image/png" />
+    <item href="Images/mancha_naked.png" id="mancha_naked.png" media-type="image/png" />
+    <item href="Images/mancha_open_saddlebag.png" id="mancha_open_saddlebag.png" media-type="image/png" />
+    <item href="Images/mancha_saddle_only.png" id="mancha_saddle_only.png" media-type="image/png" />
+    <item href="Images/mancha_tied.png" id="mancha_tied.png" media-type="image/png" />
+    <item href="Images/mangos.png" id="mangos.png" media-type="image/png" />
+    <item href="Images/milk.png" id="milk.png" media-type="image/png" />
+    <item href="Images/mom_counter.png" id="mom_counter.png" media-type="image/png" />
+    <item href="Images/mom_full.png" id="mom_full.png" media-type="image/png" />
+    <item href="Images/mom_full_hands_out.png" id="mom_full_hands_out.png" media-type="image/png" />
+    <item href="Images/mom_tote.png" id="mom_tote.png" media-type="image/png" />
+    <item href="Images/mrs_pena.png" id="mrs_pena.png" media-type="image/png" />
+    <item href="Images/notebook.png" id="notebook.png" media-type="image/png" />
+    <item href="Images/pesos.png" id="pesos.png" media-type="image/png" />
+    <item href="Images/roses_pink.png" id="roses_pink.png" media-type="image/png" />
+    <item href="Images/roses_white.png" id="roses_white.png" media-type="image/png" />
+    <item href="Images/saddle.png" id="saddle.png" media-type="image/png" />
+    <item href="Images/scale_no_weight.png" id="scale_no_weight.png" media-type="image/png" />
+    <item href="Images/scale_weighed_down.png" id="scale_weighed_down.png" media-type="image/png" />
+    <item href="Images/sofia_empty_tote.png" id="sofia_empty_tote.png" media-type="image/png" />
+    <item href="Images/sofia_full_tote.png" id="sofia_full_tote.png" media-type="image/png" />
+    <item href="Images/sofia_hands_out.png" id="sofia_hands_out.png" media-type="image/png" />
+    <item href="Images/sofia_horse.png" id="sofia_horse.png" media-type="image/png" />
+    <item href="Images/sofia_on_horse2.png" id="sofia_on_horse2.png" media-type="image/png" />
+    <item href="Images/sofia_on_mancha.png" id="sofia_on_mancha.png" media-type="image/png" />
+    <item href="Images/sofia_spoon.png" id="sofia_spoon.png" media-type="image/png" />
+    <item href="Images/sofia_spoon_down.png" id="sofia_spoon_down.png" media-type="image/png" />
+    <item href="Images/sofia_spoon_up.png" id="sofia_spoon_up.png" media-type="image/png" />
+    <item href="Images/sofia_standing.png" id="sofia_standing.png" media-type="image/png" />
+    <item href="Images/sofia_standing2.png" id="sofia_standing2.png" media-type="image/png" />
+    <item href="Images/sofia_stool.png" id="sofia_stool.png" media-type="image/png" />
+    <item href="Images/sofia.png" id="sofia.png" media-type="image/png" />
+    <item href="Images/spinach.png" id="spinach.png" media-type="image/png" />
+    <item href="Images/stool.png" id="stool.png" media-type="image/png" />
+    <item href="Images/tomatillos.png" id="tomatillos.png" media-type="image/png" />
+    <item href="Images/tote_for_scale.png" id="tote_for_scale.png" media-type="image/png" />
+    <item href="Images/vase_empty.png" id="vase_empty.png" media-type="image/png" />
+    <item href="Images/vase_flower.png" id="vase_flower.png" media-type="image/png" />
+    <item href="Images/vase_water.png" id="vase_water.png" media-type="image/png" />
+    
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+    <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
+    <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />
+    <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css" />
+    
+    <item href="Text/Story1-Key-Ingredients-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Key-Ingredients-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Key-Ingredients-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Key-Ingredients-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Key-Ingredients-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Mancha-the-Horse-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Mancha-the-Horse-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Mancha-the-Horse-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Mancha-the-Horse-PM-3.xhtml" id="story2-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Mancha-the-Horse-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-A-Friend-in-Need-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-A-Friend-in-Need-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-A-Friend-in-Need-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-A-Friend-in-Need-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-A-Friend-in-Need-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-4.xhtml" id="story5-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-5.xhtml" id="story5-PM-5" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-PM-3.xhtml" id="story6-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-PM-4.xhtml" id="story6-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Homecoming-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml" />
+
+    
+    
+    
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="story1-Intro" />
+    <itemref idref="story2-Intro" />
+    <itemref idref="story3-Intro" />
+    <itemref idref="story4-Intro" />
+    <itemref idref="story5-Intro" />
+    <itemref idref="story6-Intro" />
+    <itemref idref="Chapter1Title" />
+    <itemref idref="Chapter2Title" />
+    <itemref idref="Chapter3Title" />
+    <itemref idref="Chapter4Title" />
+    <itemref idref="Chapter5Title" />
+    <itemref idref="Chapter6Title" />
+    <itemref idref="story1-PM-1" />
+    <itemref idref="story1-PM-2" />
+    <itemref idref="story1-PM-3" />
+    <itemref idref="story2-PM-1" />
+    <itemref idref="story2-PM-2" />
+    <itemref idref="story2-PM-3" />
+    <itemref idref="story3-PM-1" />
+    <itemref idref="story3-PM-2" />
+    <itemref idref="story3-PM-3" />
+    <itemref idref="story4-PM-1" />
+    <itemref idref="story4-PM-2" />
+    <itemref idref="story4-PM-3" />
+    <itemref idref="story4-PM-4" />
+    <itemref idref="story5-PM-1" />
+    <itemref idref="story5-PM-2" />
+    <itemref idref="story5-PM-3" />
+    <itemref idref="story5-PM-4" />
+    <itemref idref="story5-PM-5" />
+    <itemref idref="story6-PM-1" />
+    <itemref idref="story6-PM-2" />
+    <itemref idref="story6-PM-3" />
+    <itemref idref="story6-PM-4" />
+
+    
+  </spine>
+  <guide/>
+</package>

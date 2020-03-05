@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <areas>
+        <area areaId="arrowPath" pageId="story3-PM-1">
+            <point x="41.552734%" y="55.965908%"/>
+            <point x="10%" y="55.965908%"/>
+        </area>
+        <area areaId="crossRiverPath" pageId="story3-PM-1">
+            <point x="41.552734%" y="55.965908%"/>
+            <point x="10%" y="55.965908%"/>
+        </area>
+        <area areaId="swamp" pageId="All_Chapters">
+            <point x="0%" y="26.6%"/>
+            <point x="44.7%" y="26.6%"/>
+            <point x="44.7%" y="100%"/>
+            <point x="0%" y="100%"/>
+        </area>
+        <area areaId="totempoles" pageId="All_Chapters">
+            <point x="65%" y="0%"/>
+            <point x="72%" y="0%"/>
+            <point x="72%" y="50%"/>
+            <point x="65%" y="50%"/>
+        </area>
+    </areas>
+</metadata>

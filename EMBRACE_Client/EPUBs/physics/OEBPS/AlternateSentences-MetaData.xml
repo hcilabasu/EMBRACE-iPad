@@ -1,0 +1,3555 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+    
+    <alternateSentences>
+        
+        <story title="How do Objects Move?" page_id="story1-PM-1">
+            
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>What makes balls and rockets and everything else move?</text>
+                
+                <ideas>
+                    
+                    <idea number="1"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A force is needed to start an object moving, to stop it from moving, or to change direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="2"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A force is like a push or a pull.</text>
+                
+                <ideas>
+                    
+                    <idea number="3"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>When you pull the boat by the rope, &#160;the pulling force starts the boat moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="4"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="1"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>What makes balls and rockets and everything else move?</text>
+                
+                <ideas>
+                    
+                    <idea number="1"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A force is needed to start an object moving, to stop it from moving, or to change direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="2"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A force is like a push or a pull.</text>
+                
+                <ideas>
+                    
+                    <idea number="3"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>When you pull the boat by the rope, &#160;the pulling force starts the boat moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="4"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="1"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="How do Objects Move?" page_id="story1-PM-2">
+            
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>And when you push the small rocket, the pushing force starts the rocket moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="5"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="2"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sir Isaac Newton discovered three laws of motion 350 years ago.</text>
+                
+                <ideas>
+                    
+                    <idea number="6"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>These three laws work for objects on Earth and for objects in space.</text>
+                
+                <ideas>
+                    
+                    <idea number="7"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>They even work for the moon, the sun, and the stars!</text>
+                
+                <ideas>
+                    
+                    <idea number="8"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>That Isaac Newton was very smart.</text>
+                
+                <ideas>
+                    
+                    <idea number="9"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>And when you push the small rocket, the pushing force starts the rocket moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="5"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="2"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sir Isaac Newton discovered three laws of motion 350 years ago.</text>
+                
+                <ideas>
+                    
+                    <idea number="6"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>These three laws work for objects on Earth and for objects in space.</text>
+                
+                <ideas>
+                    
+                    <idea number="7"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>They even work for the moon, the sun, and the stars!</text>
+                
+                <ideas>
+                    
+                    <idea number="8"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>That Isaac Newton was very smart.</text>
+                
+                <ideas>
+                    
+                    <idea number="9"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law" page_id="story2-PM-1">
+            
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Here is part of Newton's First Law.</text>
+                
+                <ideas>
+                    
+                    <idea number="10"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="3"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A moving object keeps moving in the same direction and at the same speed.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Only when a force (a push or pull) is added does the object change direction or speed.</text>
+                
+                <ideas>
+                    
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The small rocket keeps moving at the same speed in the same direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="13"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Here is part of Newton's First Law.</text>
+                
+                <ideas>
+                    
+                    <idea number="10"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="3"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A moving object keeps moving in the same direction and at the same speed.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Only when a force (a push or pull) is added does the object change direction or speed.</text>
+                
+                <ideas>
+                    
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The small rocket keeps moving at the same speed in the same direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="13"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>A moving object keeps moving in the same direction and at the same speed until a force pushes or pulls on the object to change its direction or speed.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law" page_id="story2-PM-2">
+            
+            <sentence number="10" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you push the rocket up, the force changes the rocket's direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="14"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="4"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>You can add a new force that changes the direction of the rocket again by pushing it down.</text>
+                
+                <ideas>
+                    
+                    <idea number="15"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="5"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>When you push the rocket backward, the new force slows down the rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="16"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A new force can speed up a rocket, slow down a rocket, or change the direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>If you push the rocket up, the force changes the rocket's direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="14"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="4"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>You can add a new force that changes the direction of the rocket again by pushing it down.</text>
+                
+                <ideas>
+                    
+                    <idea number="15"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="5"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>When you push the rocket backward, the new force slows down the rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="16"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A new force can speed up a rocket, slow down a rocket, or change the direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>When you push the rocket backward, you can see how the new force slows down the rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="16"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law" page_id="story2-PM-3">
+            
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>And, if the rocket is stopped, it stays still until another force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Here is the complete First Law.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Moving objects keep moving in the same direction and at the same speed until a force is added, and stopped objects remain still until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>And, if the rocket is stopped, it stays still until another force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Here is the complete First Law.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Moving objects keep moving in the same direction and at the same speed until a force is added, and stopped objects remain still until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Moving objects keep moving in the same direction and at the same speed until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Stopped objects remain still until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law on Earth" page_id="story3-PM-1">
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Juan kicks the ball on the grass.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The grass rubs on the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>That rubbing is a force called friction, and friction is the force that slows the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Juan kicks the ball on the grass.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Juan added a force to start the ball rolling, but why did it stop?</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The grass rubs on the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>That rubbing is a force called friction, and friction is the force that slows the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Juan added a force to start the ball rolling.</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>But why did it stop?</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The grass rubs on the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>That rubbing is a force called friction.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Friction is the force that slows the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>The grass rubs on the ball creating a rubbing force called friction, which slows the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law on Earth" page_id="story3-PM-2">
+            
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria picks up the ball, and then she throws the ball in the air &#160;.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Why does the ball fall to the ground?</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Gravity pulls it down.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Gravity is the force that pulls together objects like the ball and Earth.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="19" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria picks up the ball, and then she throws the ball in the air &#160;.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Why does the ball fall to the ground?</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Gravity pulls it down.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Gravity is the force that pulls together objects like the ball and Earth.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>Maria picks up the ball.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>She throws the ball in the air.</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Why does the ball fall to the ground?</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's First Law on Earth" page_id="story3-PM-3">
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The First Law says that objects keep moving in the same direction until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>On Earth, friction and gravity are forces that can change speed and direction of objects.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>In space, there is no friction and only a little gravity.</text>
+                
+                <ideas>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>So, objects in space, like the moon, keep moving for a very, very long time!</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The First Law says that objects keep moving in the same direction until a force is added.</text>
+                
+                <ideas>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>On Earth, friction and gravity are forces that can change speed and direction of objects.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>In space, there is no friction and only a little gravity.</text>
+                
+                <ideas>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>So, objects in space, like the moon, keep moving for a very, very long time!</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>On Earth, friction and gravity are forces that can change speed and direction of objects, but in space, there is no friction and only a little gravity.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Second Law: Acceleration" page_id="story4-PM-1">
+            
+            
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Acceleration is when something goes faster and faster.</text>
+                
+                <ideas>
+                    
+                    <idea number="33"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When you run, you begin by accelerating; and when a car speeds up, it accelerates.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Newton's Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>
+                
+                <ideas>
+                    
+                    <idea number="35"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Acceleration is when something goes faster and faster.</text>
+                
+                <ideas>
+                    
+                    <idea number="33"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>When you run, you begin by accelerating; and when a car speeds up, it accelerates.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Newton's Second Law says that the amount of acceleration depends on the amount of force and the weight of the object.</text>
+                
+                <ideas>
+                    
+                    <idea number="35"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>When you run, you begin by accelerating.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>When a car speeds up, it accelerates.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Second Law: Acceleration" page_id="story4-PM-2">
+            
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>When you give a little push to the little rocket, it starts to move.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Going from no movement to some movement is acceleration.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you give a little push to the big rocket, it starts to move, but more slowly.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>When you give a little push to the little rocket, it starts to move.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Going from no movement to some movement is acceleration.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>If you give a little push to the big rocket, it starts to move, but more slowly.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>If you give a little push to the big rocket, you'll see that it starts to move, but more slowly.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Second Law: Acceleration" page_id="story4-PM-3">
+            
+            
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>So, to get the big rocket to accelerate more, you'll need to keep pushing it to add a big force.</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you push it enough, it will start to go as fast as the little rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="41"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>So, to get the big rocket to accelerate more, you'll need to keep pushing it to add a big force.</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>If you push it enough, it will start to go as fast as the little rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="41"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>You'll need to keep pushing the rocket to add a big force.</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>This will make the rocket accelerate more.</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Law of Acceleration on Earth" page_id="story5-PM-1">
+            
+            
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Juan ties the dog to the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The dog pulls the cart to Maria.</text>
+                
+                <ideas>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The dog adds a force to accelerate the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria piles wood into the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="17"/>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Now the cart is so heavy that the dog can only accelerate it a tiny amount.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Juan ties the dog to the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The dog pulls the cart to Maria.</text>
+                
+                <ideas>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The dog adds a force to accelerate the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria piles wood into the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="17"/>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Now the cart is so heavy that the dog can only accelerate it a tiny amount.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>Juan ties the dog to the cart, and the dog pulls the cart to Maria.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                    <step number="15"/>
+                    <step number="16"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>Maria piles wood into the cart,  which makes the cart so heavy that the dog can only accelerate it a tiny amount.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="17"/>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Law of Acceleration on Earth" page_id="story5-PM-2">
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria unties the dog and brings a horse to the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                    <step number="20"/>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The horse can pull the cart to Juan because the horse adds a bigger force.</text>
+                
+                <ideas>
+                    
+                    <idea number="48"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="22"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The big force accelerates the cart and gets it moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When the horse stops pulling, the cart stops.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Friction is the force that stops the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+
+
+
+
+
+
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria unties the dog and brings a horse to the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                    <step number="20"/>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The horse can pull the cart to Juan because the horse adds a bigger force.</text>
+                
+                <ideas>
+                    
+                    <idea number="48"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="22"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The big force accelerates the cart and gets it moving.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>When the horse stops pulling, the cart stops.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Friction is the force that stops the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Maria unties the dog.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>She brings a horse to the cart.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="20"/>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>The big force accelerates the cart and gets it moving, but when the horse stops pulling, the cart stops.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-1">
+            
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Newton's Third Law says that a force in one direction is always paired with a force in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria and Sara get on their skateboards.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="23"/>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria pushes Sara.</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sara moves forward, but Maria goes backward!</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Newton's Third Law says that a force in one direction is always paired with a force in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria and Sara get on their skateboards.</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="23"/>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria pushes Sara.</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Sara moves forward, but Maria goes backward!</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>When Maria pushes Sara,  Sara moves forward, but Maria goes backward!</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-2">
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The force of Maria's push on Sara is paired with a force pushing Maria back.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>That is why she goes backward.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Juan climbs into the boat.</text>
+                
+                <ideas>
+                    
+                    <idea number="58"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>He puts the paddle into the water and pushes the water backward.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="27"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>&#160;&#160;The water moves backward, but the boat moves forward!</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+           
+           
+           
+           
+           
+           
+           
+           <sentence number="15" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The force of Maria's push on Sara is paired with a force pushing Maria back.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>That is why she goes backward.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Juan climbs into the boat.</text>
+                
+                <ideas>
+                    
+                    <idea number="58"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>He puts the paddle into the water and pushes the water backward.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="27"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>&#160;&#160;The water moves backward, but the boat moves forward!</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>Maria goes backward because the force of Maria's push on Sara is paired with a force pushing Maria back.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-3">
+            
+            
+            <sentence number="21" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The force of pushing the water backward is paired with the forward force of the water on the paddle.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>And that pushes the boat forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A force in one direction is always paired with an equal force in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The force of pushing the water backward is paired with the forward force of the water on the paddle.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>And that pushes the boat forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A force in one direction is always paired with an equal force in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="no">
+                
+                <attributes complexity="3"/>
+                
+                <text>The force of pushing the water backward is paired with the forward force of the water on the paddle, which pushes the boat forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="Newton's Third Law: Forces are Paired" page_id="story6-PM-4">
+            <sentence number="28" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A pair of forces make rockets move in space.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Flames shoot out from the back of the rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then, the rocket moves forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Because forces are paired, for every action in one direction, there is always a reaction in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="32" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A pair of forces make rockets move in space.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Flames shoot out from the back of the rocket.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="34" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Then, the rocket moves forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="35" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Because forces are paired, for every action in one direction, there is always a reaction in the other direction.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>When flames shoot out from the back of the rocket,  the rocket moves forward.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="28"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="The Three Laws Work Together" page_id="story7-PM-1">
+            
+            <sentence number="1" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria gets on her skateboard.</text>
+                
+                <ideas>
+                    
+                    <idea number="68"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="29"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>To get moving, she needs a force (First Law).</text>
+                
+                <ideas>
+                    
+                    <idea number="69"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="3" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>She pushes backward on the ground with one foot.</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>This makes the skateboard move forward (Law of Paired Forces).</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria gets on her skateboard.</text>
+                
+                <ideas>
+                    
+                    <idea number="68"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="29"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>To get moving, she needs a force (First Law).</text>
+                
+                <ideas>
+                    
+                    <idea number="69"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>She pushes backward on the ground with one foot.</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>This makes the skateboard move forward (Law of Paired Forces).</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="9" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>She pushes backward on the ground with one foot, which makes the skateboard move forward (Law of Paired Forces).</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="30"/>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="The Three Laws Work Together" page_id="story7-PM-2">
+            
+            <sentence number="10" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria starts down a hill.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="31"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The force of gravity pulls the skateboard down the hill faster and faster (Law of Acceleration).</text>
+                
+                <ideas>
+                    
+                    <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Oh no, a toy truck moves onto the road.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The toy truck stops the skateboard, but Maria keeps going.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria keeps going because objects in motion stay in motion (First Law).</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria starts down a hill.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="31"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The force of gravity pulls the skateboard down the hill faster and faster (Law of Acceleration).</text>
+                
+                <ideas>
+                    
+                    <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Oh no, a toy truck moves onto the road.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="32"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The toy truck stops the skateboard, but Maria keeps going.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria keeps going because objects in motion stay in motion (First Law).</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+        <story title="The Three Laws Work Together" page_id="story7-PM-3">
+            
+            <sentence number="20" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Maria stops when friction from the ground adds a force to stop her.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="21" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The First Law explains why it is important to wear a seatbelt in the car.</text>
+                
+                <ideas>
+                    
+                    <idea number="78"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When the car stops, you keep moving just like Maria.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The seatbelt adds a force to stop you and keep you safe.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Maria stops when friction from the ground adds a force to stop her.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The First Law explains why it is important to wear a seatbelt in the car.</text>
+                
+                <ideas>
+                    
+                    <idea number="78"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>When the car stops, you keep moving just like Maria.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="27" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The seatbelt adds a force to stop you and keep you safe.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="28" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Maria stops.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>Friction from the ground adds a force to stop her.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+        </story>
+        
+    </alternateSentences>
+    
+</metadata>
+

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="Introduction to The Best Farm" activity_id="story0-PM">
+            <sentence number="0">
+                <step number="1">
+                    <check obj1Id="farmer" action="getIn" locationId="corralArea"/>
+                </step>
+                <step number="2">
+                    <group obj1Id="farmer" action="lead" obj2Id="cow"/>
+                </step>
+                <step number="3">
+                    <check obj1Id="cow" action="getIn" locationId="pen4"/>
+                    <ungroup obj1Id="farmer" action="release" obj2Id="cow"/>
+                    <move obj1Id="cow" action="getIn" waypointId="insideCowPen"/>
+                    <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
+                </step>
+                <step number="4">
+                    <group obj1Id="farmer" action="lead" obj2Id="apple"/>
+                </step>
+                <step number="5">
+                    <transferAndDisappear obj1Id="farmer" action="give" obj2Id="apple"/>
+                    <transferAndDisappear obj1Id="goat" action="receive" obj2Id="apple"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Contest" activity_id="story1-PM-1">
+            
+            <sentence number="2">
+                <step number="6">
+                    <group obj1Id="farmer" action="open" obj2Id="pen4"/>
+                    <ungroup obj1Id="farmer" action="letGo" obj2Id="pen4"/>
+                    <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
+                    <move obj1Id="farmer" action="letGo" waypointId="nearCowPen"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="7">
+                    <check obj1Id="cow" action="getIn" locationId="corralArea"/>
+                    <move obj1Id="cow" action="getIn" waypointId="nearCorral"/>
+                    <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="8">
+                    <group obj1Id="farmer" action="open" obj2Id="pen3"/>
+                    <ungroup obj1Id="farmer" action="letGo" obj2Id="pen3"/>
+                    <move obj1Id="pen3" action="open" waypointId="pen3Open"/>
+                    <move obj1Id="farmer" action="open" waypointId="nearGoatPen"/>
+                </step>
+                <step number="9">
+                    <group obj1Id="goat" action="visit" obj2Id="cow"/>
+                    <move obj1Id="pen3" action="close" waypointId="pen3Close"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="10">
+                    <group obj1Id="chicken" action="getOn" obj2Id="cow"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Contest" activity_id="story1-PM-2">
+            <sentence number="10">
+                <step number="11">
+                    <group obj1Id="cat" action="jumpOn" obj2Id="farmer"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting Ready" activity_id="story2-PM-1">
+            
+            <sentence number="2">
+                <step number="12">
+                    <check obj1Id="farmer" action="getIn" locationId="nearGoat"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="combGoat"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="13">
+                    <ungroup obj1Id="farmer" action="release" obj2Id="comb"/>
+                    <move obj1Id="comb" action="release" waypointId="dropComb"/>
+                </step>
+                <step number="14">
+                    <group obj1Id="farmer" action="grab" obj2Id="bucket"/>
+                </step>
+                <step number="15">
+                    <transferAndGroup obj1Id="farmer" action="give" obj2Id="bucket"/>
+                    <transferAndGroup obj1Id="cat" action="finish" obj2Id="bucket"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="16">
+                    <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
+                    <move obj1Id="cat" action="getIn" waypointId="catDrink"/>
+                </step>
+                <step number="17">
+                    <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+                    <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink" areaId=""/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting Ready" activity_id="story2-PM-2">
+            <sentence number="5">
+                <step number="18">
+                    <group obj1Id="farmer" action="lead" obj2Id="apple"/>
+                </step>
+                <step number="19">
+                    <transferAndDisappear obj1Id="farmer" action="release" obj2Id="apple"/>
+                    <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="farmerFeedHorse"/>
+                </step>
+            </sentence>
+            
+            <sentence number="7">
+                <step number="20">
+                    <group obj1Id="farmer" action="grab" obj2Id="cart"/>
+                </step>
+                <step number="21">
+                    <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="22">
+                    <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
+                </step>
+                <step number="23">
+                    <group obj1Id="farmer" action="pickUp" obj2Id="pumpkin"/>
+                </step>
+                <step number="24">
+                    <transferAndGroup obj1Id="farmer" action="putDown" obj2Id="pumpkin"/>
+                    <transferAndGroup obj1Id="pumpkin" action="getIn" obj2Id="cart"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+                </step>
+            </sentence>
+            
+            <sentence number="10">
+                <step number="25">
+                    <group obj1Id="farmer" action="grab" obj2Id="cart"/>
+                </step>
+                <step number="26">
+                    <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="27">
+                    <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
+                    <move obj1Id="cart" action="getIn" waypointId="cartNearBarn"/>
+                </step>
+                <step number="28">
+                    <transferAndGroup obj1Id="pumpkin" action="getOut" obj2Id="cart"/>
+                    <transferAndGroup obj1Id="farmer" action="pickUp" obj2Id="pumpkin"/>
+                    <move obj1Id="cart" action="getIn" waypointId="cartNearBarn"/>
+                    <move obj1Id="pumpkin" action="getIn" waypointId="pumpkinNearBarn"/>
+                </step>
+                <step number="29">
+                    <transferAndDisappear obj1Id="farmer" action="give" obj2Id="pumpkin"/>
+                    <transferAndDisappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="farmerFeedPig"/>
+                </step>
+            </sentence>
+
+        </story>
+        <story title="Cleaning Up" activity_id="story3-PM-1">
+            
+            <sentence number="3">
+                <step number="30">
+                    <group obj1Id="farmer" action="lead" obj2Id="horse"/>
+                </step>
+                <step number="31">
+                    <check obj1Id="horse" action="getIn" locationId="corral"/>
+                    <move obj1Id="horse" action="getIn" waypointId="horseInCorral"/>
+                </step>
+                <step number="32">
+                    <ungroup obj1Id="farmer" action="leave" obj2Id="horse"/>
+                </step>
+                <step number="33">
+                    <group obj1Id="farmer" action="lead" obj2Id="cow"/>
+                </step>
+                <step number="34">
+                    <check obj1Id="cow" action="getIn" locationId="corral"/>
+                    <move obj1Id="cow" action="getIn" waypointId="cowInCorral"/>
+                </step>
+                <step number="35">
+                    <ungroup obj1Id="farmer" action="leave" obj2Id="cow"/>
+                    <move obj1Id="corralDoor" action="close" waypointId="corralDoorClose"/>
+                </step>
+            </sentence>
+            
+            <sentence number="5">
+                <step number="36">
+                    <group obj1Id="farmer" action="lead" obj2Id="pig"/>
+                </step>
+                <step number="37">
+                    <check obj1Id="pig" action="getIn" locationId="pen2"/>
+                </step>
+                <step number="38">
+                    <ungroup obj1Id="farmer" action="leave" obj2Id="pig"/>
+                    <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+                    <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="farmerNearPig"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cleaning Up" activity_id="story3-PM-2">
+            <sentence number="6">
+                <step number="39">
+                    <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="40">
+                    <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
+                </step>
+            </sentence>
+            <sentence number="9">
+                <step number="41">
+                    <group obj1Id="farmer" action="pickUp" obj2Id="hay"/>
+                </step>
+                <step number="42">
+                    <check obj1Id="farmer" action="getIn" locationId="hayloft"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
+                    <ungroup obj1Id="farmer" action="putDown" obj2Id="hay"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="43">
+                    <check obj1Id="farmer" action="getIn" locationId="farmerFall"/>
+                </step>
+                <step number="44">
+                    <swapImage obj1Id="farmer" action="falling"/>
+                    <move obj1Id="farmer" action="getIn" waypointId="farmerFallPosition"/>
+                    <animate obj1Id="hay" action="fallAnimation" waypointId="hayFallPosition" areaId=""/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Who is the Best Animal?" activity_id="story4-PM-1">
+            <sentence number="3">
+                <step number="45">
+                    <group obj1Id="cat" action="moveTo" obj2Id="chicken"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Who is the Best Animal?" activity_id="story4-PM-2">
+            <sentence number="9">
+                <step number="46">
+                    <disappear obj1Id="goat" action="receive" obj2Id="apple"/>
+                </step>
+            </sentence>
+            
+            <sentence number="13">
+                <step number="47">
+                    <disappear obj1Id="horse" action="receive" obj2Id="hay"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Wise Owl" activity_id="story5-PM-1">
+            
+            <sentence number="3">
+                <step number="48">
+                    <group obj1Id="owl" action="visit" obj2Id="farmer"/>
+                </step>
+            </sentence>
+            
+            <sentence number="5">
+                <step number="49">
+                    <ungroupAndStay obj1Id="owl" action="leave" obj2Id="farmer"/>
+                </step>
+                <step number="50">
+                    <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Wise Owl" activity_id="story5-PM-2">
+            <sentence number="6">
+                <step number="51">
+                    <ungroup obj1Id="chicken" action="leave" obj2Id="owl"/>
+                </step>
+                <step number="52">
+                    <group obj1Id="chicken" action="count" obj2Id="egg"/>
+                    <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenNextToNest" areaId=""/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="53">
+                    <group obj1Id="owl" action="visit" obj2Id="pig"/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="54">
+                    <ungroup obj1Id="owl" action="leave" obj2Id="pig"/>
+                    <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+                </step>
+                <step number="55">
+                    <group obj1Id="owl" action="visit" obj2Id="farmer"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Everyone Helps" activity_id="story6-PM-1">
+            <sentence number="1">
+                <step number="56">
+                    <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
+                </step>
+            </sentence>
+            
+            <sentence number="3">
+                <step number="57">
+                    <ungroupAndStay obj1Id="chicken" action="leave" obj2Id="owl"/>
+                </step>
+                <step number="58">
+                    <group obj1Id="chicken" action="open" obj2Id="pen2"/>
+                    <ungroup obj1Id="chicken" action="leave" obj2Id="pen2"/>
+                    <move obj1Id="pen2" action="open" waypointId="pen2Open"/>
+                    <move obj1Id="chicken" action="leave" waypointId="nearPigPen"/>
+                </step>
+            </sentence>
+            
+            <sentence number="5">
+                <step number="59">
+                    <disappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
+                    <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="60">
+                    <group obj1Id="pig" action="pickUp" obj2Id="apple"/>
+                </step>
+                <step number="61">
+                    <transferAndDisappear obj1Id="pig" action="give" obj2Id="apple"/>
+                    <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
+                    <move obj1Id="pig" action="getIn" waypointId="pigNearHorse"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Everyone Helps" activity_id="story6-PM-2">
+            <sentence number="8">
+                <step number="62">
+                    <group obj1Id="horse" action="push" obj2Id="hay"/>
+                    <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
+                </step>
+                <step number="63">
+                    <transferAndDisappear obj1Id="horse" action="give" obj2Id="hay"/>
+                    <transferAndDisappear obj1Id="cow" action="receive" obj2Id="hay"/>
+                    <move obj1Id="horse" action="getIn" waypointId="horseFeedCow"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="64">
+                    <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+                    <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink" areaId=""/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="65">
+                    <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
+                </step>
+                <step number="66">
+                    <check obj1Id="cat" action="getIn" locationId="nest"/>
+                    <move obj1Id="cat" action="getIn" waypointId="catInNest"/>
+                </step>
+            </sentence>
+            <sentence number="12">
+                <step number="67">
+                    <check obj1Id="chicken" action="getIn" locationId="nest"/>
+                    <move obj1Id="chicken" action="getIn" waypointId="chickenInNest"/>
+                </step>
+                <step number="68">
+                    <swapImage obj1Id="egg" action="lay"/>
+                    <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenInNest" areaId=""/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Best Farm Award" activity_id="story7-PM-1">
+
+            <sentence number="2">
+                <step number="69">
+                    <group obj1Id="judge" action="visit" obj2Id="cow"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="70">
+                    <ungroup obj1Id="judge" action="leave" obj2Id="cow"/>
+                </step>
+                <step number="71">
+                    <group obj1Id="judge" action="grab" obj2Id="bucket"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="72">
+                    <ungroup obj1Id="judge" action="leave" obj2Id="bucket"/>
+                    <move obj1Id="bucket" action="getin" waypointId="dropBucket"/>
+                </step>
+                <step number="73">
+                    <group obj1Id="judge" action="count" obj2Id="eggs"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="74">
+                    <ungroup obj1Id="judge" action="stopCount" obj2Id="eggs"/>
+                </step>
+                <step number="75">
+                    <group obj1Id="judge" action="visit" obj2Id="pig"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Best Farm Award" activity_id="story7-PM-2">
+            <sentence number="8">
+                <step number="76">
+                    <ungroup obj1Id="judge" action="leave" obj2Id="pig"/>
+                    <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+                </step>
+                <step number="77">
+                    <group obj1Id="judge" action="open" obj2Id="corralDoor"/>
+                    <move obj1Id="corralDoor" action="open" waypointId="corralDoorOpen"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="78">
+                    <group obj1Id="horse" action="visit" obj2Id="judge"/>
+                </step>
+            </sentence>
+            <sentence number="12">
+                <step number="79">
+                    <ungroup obj1Id="judge" action="letGo" obj2Id="corralDoor"/>
+                </step>
+                <step number="80">
+                    <ungroup obj1Id="judge" action="leave" obj2Id="horse"/>
+                </step>
+                <step number="81">
+                    <transferAndGroup obj1Id="judge" action="give" obj2Id="award"/>
+                    <transferAndGroup obj1Id="farmer" action="receive" obj2Id="award"/>
+                </step>
+            </sentence>
+            <sentence number="14">
+                <step number="82">
+                    <animate obj1Id="chicken" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="owl" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="sheep" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="pig" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="goat" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="cow" action="cheerAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="horse" action="cheerAnimation" waypointId="" areaId=""/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

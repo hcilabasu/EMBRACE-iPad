@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "Introduction to EMBRACE">
+            <Question number="1">
+                <QuestionText>What did Lisa do to fill the trough with water?</QuestionText>
+                <QuestionAudio>TheNaughtyMonkeyQ1.mp3</QuestionAudio>
+                <Answer1>Lift the handle</Answer1>
+                <Answer1Audio>TheNaughtyMonkeyQ1A1.mp3</Answer1Audio>
+                <Answer2>Squeeze the handle</Answer2>
+                <Answer2Audio>TheNaughtyMonkeyQ1A2.mp3</Answer2Audio>
+                <Answer3>Turn the handle</Answer3>
+                <Answer3Audio>TheNaughtyMonkeyQ1A3.mp3</Answer3Audio>
+                <Answer4>Pull out the handle</Answer4>
+                <Answer4Audio>TheNaughtyMonkeyQ1A4.mp3</Answer4Audio>
+                <expectedSelection>Lift the handle</expectedSelection>
+            </Question>
+            
+            <Question number="2">
+                <QuestionText>Why did Lisa think Coco was naughty?</QuestionText>
+                <QuestionAudio>TheNaughtyMonkeyQ2.mp3</QuestionAudio>
+                <Answer1>Coco threw the banana peel at Lisa</Answer1>
+                <Answer1Audio>TheNaughtyMonkeyQ2A1.mp3</Answer1Audio>
+                <Answer2>Coco ate the banana</Answer2>
+                <Answer2Audio>TheNaughtyMonkeyQ2A2.mp3</Answer2Audio>
+                <Answer3>Coco took the banana into the tree</Answer3>
+                <Answer3Audio>TheNaughtyMonkeyQ2A3.mp3</Answer3Audio>
+                <Answer4>Coco slipped on the banana peel</Answer4>
+                <Answer4Audio>TheNaughtyMonkeyQ2A4.mp3</Answer4Audio>
+                <expectedSelection>Coco threw the banana peel at Lisa</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>
